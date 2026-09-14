@@ -1,0 +1,157 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oidasheim-beatsync"
+version = "1.0.0"
+description = "ART DIRECTOR BEAT SYNC VIDEO EDITOR — 1-Click: MP3 + Clips -> Epic Music Videos"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Oidasheim", email = "dev@oidasheim.de"}
+]
+requires-python = ">=3.10"
+
+keywords = [
+    "video", "music", "beat-sync", "clip-pool", "ffmpeg",
+    "ai", "editing", "automation", "semantic", "rhythm"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Artistic Software",
+]
+
+dependencies = [
+    "numpy>=1.24.0,<2.0",
+    "librosa>=0.10.0,<1.0",
+    "soundfile>=0.12.0,<1.0",
+    "mutagen>=1.46.0,<2.0",
+    "eyed3>=0.9.7,<1.0",
+    "tinytag>=1.9.0,<2.0",
+    "ffmpeg-python>=0.2.0,<1.0",
+    "torch>=2.0.0,<3.0",
+    "torchvision>=0.15.0,<1.0",
+    "opencv-python>=4.8.0,<5.0",
+    "transformers>=4.35.0,<5.0",
+    "open-clip-torch>=2.23.0,<3.0",
+    "requests>=2.31.0,<3.0",
+    "flask>=3.0.0,<4.0",
+    # web3 removed: unused (no import anywhere in codebase), and pinned range
+    # pulls in lru-dict<1.3.0 which has no Windows/py3.12 wheel (needs MSVC to build).
+    "pandas>=2.1.0,<3.0",
+    "beautifulsoup4>=4.12.0,<5.0",
+    "playwright>=1.40.0,<2.0",
+    "typing-extensions>=4.8.0,<5.0",
+    "python-dotenv>=1.0.0,<2.0",
+    "pydantic>=2.4.0,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "isort>=5.12.0",
+]
+gpu = [
+    "torch[cuda118]>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/oidasheim/beatsync"
+Documentation = "https://github.com/oidasheim/beatsync/wiki"
+Repository = "https://github.com/oidasheim/beatsync.git"
+"Bug Tracker" = "https://github.com/oidasheim/beatsync/issues"
+
+[project.scripts]
+genome-engine = "genome_engine.cli:main"
+beatsync = "main:main"
+beatsync-builder = "analysis.songrid_builder:main"
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+py_version = 310
+skip_gitignore = true
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "transformers.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "librosa.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "cv2.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+pythonpath = ["src"]
+addopts = "-v"
+
+
+[tool.coverage.run]
+omit = [
+    "*/site-packages/*",
+    "*/tests/*",
+    "*/__main__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

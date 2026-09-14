@@ -1,0 +1,122 @@
+# OIDASHEIM BEAT SYNC — .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+.venv*/
+
+# Build/scratch (TEMP redirect workaround, see UPGRADE.md v1.0.1)
+.tmp_build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.hypothesis/
+bandit-report.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs & Temporary
+logs/
+*.log
+*.pot
+tmp/
+temp/
+*.tmp
+
+# Data & Cache
+*.db
+*.json.bak
+*.cache
+flat-globe*.json
+database.csv
+database.json
+alle_songs_extrahiert.csv
+songrid.html
+*.zip
+*.vsix
+
+
+# Video & Media Output
+output/
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.flv
+
+# OS Specific
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Project Specific
+beat_sync.db
+libsync-flat-globe.db.json
+data/processed/
+data/raw/
+*.edl.json
+*.genome.json
+
+# Build Output
+dist/
+build/
+*.whl
+*.tar.gz
+
+# Documentation
+site/
+docs/_build/
+
+# Credentials (NEVER commit these!)
+client_secret*.json
+*.pem
+*.key
+.credentials/
+secrets/
