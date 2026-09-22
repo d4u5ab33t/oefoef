@@ -14,6 +14,7 @@ from genome_engine.camera.kinematics import KinematicsEngine
 from genome_engine.renderer.otio_exporter import OTIOExporter
 from genome_engine.renderer.ffmpeg_engine import FFmpegRenderEngine
 from genome_engine.learning.synapse_loop import AestheticGenomeLearner
+from genome_engine.compiler.timeline import EditDecisionList
 from genome_engine.cli import main
 
 
@@ -35,6 +36,7 @@ def test_full_genome_pipeline(tmp_path):
     compiler = SongCompiler()
     edl = compiler.compile(genome)
     assert len(edl.segments) > 0
+    assert edl.validate_integrity() == []
 
     # 5. Director Council
     council = DirectorCouncil("alpine_drill_comedy")
@@ -67,12 +69,40 @@ def test_full_genome_pipeline(tmp_path):
     assert adapted_visual.target_cuts_per_min == 63.0
 
 
-
-def test_cli_e2e_compile(tmp_path):
+def test_cli_e2e_compile_and_subcommands(tmp_path):
     dummy_audio = tmp_path / "song.mp3"
     dummy_audio.write_bytes(b"dummy audio data")
     out_edl = tmp_path / "edl.json"
+    out_otio = tmp_path / "timeline.otio"
+    out_genome = tmp_path / "genome.json"
 
-    ret = main(["compile", "--song", str(dummy_audio), "--output", str(out_edl), "--dry-run"])
-    assert ret == 0
+    # Test scan CLI
+    ret_scan = main(["scan", "--song", str(dummy_audio), "--output", str(out_genome)])
+    assert ret_scan == 0
+    assert os.path.exists(out_genome)
+
+    # Test compile CLI with OTIO export
+    ret_compile = main([
+        "compile",
+        "--song", str(dummy_audio),
+        "--output", str(out_edl),
+        "--otio", str(out_otio),
+        "--dry-run"
+    ])
+    assert ret_compile == 0
     assert os.path.exists(out_edl)
+    assert os.path.exists(out_otio)
+
+    # Test render CLI (dry-run)
+    out_video = tmp_path / "output.mp4"
+    ret_render = main(["render", "--edl", str(out_edl), "--output", str(out_video), "--dry-run"])
+    assert ret_render == 0
+    assert os.path.exists(str(out_video) + ".concat.txt")
+
+    # Test learn CLI
+    dummy_ref = tmp_path / "ref.mp4"
+    dummy_ref.write_bytes(b"dummy video")
+    out_learned = tmp_path / "learned.json"
+    ret_learn = main(["learn", "--reference", str(dummy_ref), "--output", str(out_learned)])
+    assert ret_learn == 0
+    assert os.path.exists(out_learned)

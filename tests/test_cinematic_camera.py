@@ -16,6 +16,21 @@ def test_push_zoom_kinematics():
     assert kf_mid.zoom_scale == pytest.approx(1.1)
     assert kf_mid.focal_length_mm == pytest.approx(42.5)
 
+    ffmpeg_filter = traj.to_ffmpeg_filter(1920, 1080, 30.0)
+    assert "zoompan" in ffmpeg_filter
+
+
+def test_subwoofer_shake_and_dutch_roll():
+    shake = KinematicsEngine.generate_subwoofer_shake(duration=2.0)
+    assert shake.motion_type == "subwoofer_shake"
+    filter_str = shake.to_ffmpeg_filter(1920, 1080)
+    assert "crop=" in filter_str
+
+    roll = KinematicsEngine.generate_dutch_roll(duration=3.0, max_deg=10.0)
+    assert roll.motion_type == "dutch_roll"
+    roll_filter = roll.to_ffmpeg_filter(1920, 1080)
+    assert "rotate=" in roll_filter
+
 
 def test_unreal_export():
     traj = KinematicsEngine.generate_push_zoom(duration=2.0)

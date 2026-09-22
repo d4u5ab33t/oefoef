@@ -5,6 +5,7 @@ from dataclasses import dataclass, field, asdict
 from typing import List, Dict, Any, Optional
 import json
 import time
+import os
 
 
 @dataclass
@@ -12,7 +13,7 @@ class SectionInfo:
     start_sec: float
     end_sec: float
     label: str  # "intro", "verse", "chorus", "bridge", "outro"
-    energy: float
+    energy: float = 0.5
 
 
 @dataclass
@@ -49,16 +50,38 @@ class GenomeData:
     def to_json(self, indent: int = 2) -> str:
         return json.dumps(self.to_dict(), indent=indent)
 
+    def save_json(self, output_path: str) -> None:
+        os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(self.to_json())
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "GenomeData":
-        sections = [SectionInfo(**s) for s in data["rhythm"]["sections"]]
-        rhythm_dict = dict(data["rhythm"])
+        sections = [
+            SectionInfo(
+                start_sec=float(s.get("start_sec", 0.0)),
+                end_sec=float(s.get("end_sec", 0.0)),
+                label=str(s.get("label", "verse")),
+                energy=float(s.get("energy", 0.5))
+            )
+            for s in data.get("rhythm", {}).get("sections", [])
+        ]
+        rhythm_dict = dict(data.get("rhythm", {}))
         rhythm_dict["sections"] = sections
         rhythm = RhythmGenome(**rhythm_dict)
-        visual = VisualGenome(**data["visual"])
+        visual = VisualGenome(**data.get("visual", {}))
         return cls(
-            audio_path=data["audio_path"],
+            audio_path=data.get("audio_path", ""),
             rhythm=rhythm,
             visual=visual,
             created_at=data.get("created_at", time.time())
         )
+
+    @classmethod
+    def from_json(cls, json_str: str) -> "GenomeData":
+        return cls.from_dict(json.loads(json_str))
+
+    @classmethod
+    def load_json(cls, file_path: str) -> "GenomeData":
+        with open(file_path, "r", encoding="utf-8") as f:
+            return cls.from_json(f.read())
