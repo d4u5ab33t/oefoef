@@ -1,0 +1,36 @@
+core A ignaz  key kind –  IGNAZ: AI Art Director & Beat-Sync Engine
+
+WE.ED.IT - AI Art Director & Intelligent Beat-Sync Video Editor
+"Musik dirigiert. KI schneidet. Du kreierst."
+
+1. Audio-Intelligence 🎯 Features
+WE.ED.IT ist der erste intelligente KI-Regisseur für Musikvideos. Die Song ist der Director. Die Clips sind die Darsteller. Die KI ist der Cutter mit jahrelanger Musikvideo-Erfahrung.
+
+Automatisch Musikvideos aus MP3 + Clips generieren
+ Volle FFmpeg Filtergraph VFX Integration
+Offline-first automatic dynamic music video deployment.
+
+ AI Beat-Sync Music Video Creator  v4.20
+update ascibanner texte 420mode
+Keep vfx filter simple
+erhöhee aber imense die matching algorythmen variationen
+
+# CONFIGURATION
+CONFIG = {
+    "clip_dirs": [
+        "D:/raw_vidz/Pun",
+        "D:/raw_vidz/WK MVV",
+        "D:/raw_vidz/Agnet_Video",
+        "D:/raw_vidz/grok/1zu1/_toVid_",
+        "D:/raw_vidz/grok/#clippool",
+    ],
+    "mp3_dir": "I:\Oidasheim\Sound\FAVs07072026",
+    "done_dir": "./done",
+    "db_path": "./weedit_v-FAVs.db",
+    "cache_json": "./weedit_clip_cache-FAVs.json",
+    
+    # Rendering & Engine Profiles
+    "gpu_acceleration": "nvenc",  # "nvenc" (NVIDIA), "cpu" (libx264) oder "hevc_nvenc"
+    "target_fps": 30,
+    "default_resolution": "1920x1080",  # Wird dynamisch bei 9_16 zu 1080x1920 gedreht
+"I:\Oidasheim\Sound\FAVs07072026\+.mp3" #snd

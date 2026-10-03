@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OIDANATIVE_11.0_GRAVITY_SHADOW</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
+        canvas { display: block; }
+        #hud {
+            position: absolute; top: 20px; left: 20px;
+            color: #00ff41; font-size: 11px; line-height: 1.5;
+            background: rgba(0,20,0,0.85); padding: 15px; border: 1px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0,255,65,0.3); pointer-events: none;
+        }
+        .warning { color: #fff; text-shadow: 0 0 5px #f00; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        CORE: OIDANATIVE_11.0<br>
+        GRAVITY: <span id="g-stat">9.81 m/s²</span><br>
+        FLOOR: BETON_089_ACTIVE<br>
+        SHADOWS: DYNAMIC_3D_ENABLED<br>
+        <span class="warning">PRESS MOUSE TO SLAM</span>
+    </div>
+    <canvas id="physicsMatrix"></canvas>
+
+<script>
+const canvas = document.getElementById('physicsMatrix');
+const ctx = canvas.getContext('2d');
+
+let w, h, cx, cy;
+let mouse = { x: 0, y: 0, targetX: 0, targetY: 0, down: false };
+const gravity = 0.25;
+const floorY = 450; // 3D Y-coordinate for the ground
+const bounce = -0.6;
+
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cx = w / 2; cy = h / 2;
+}
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => {
+    mouse.targetX = (e.clientX - cx);
+    mouse.targetY = (e.clientY - cy);
+});
+window.addEventListener('mousedown', () => { mouse.down = true; });
+window.addEventListener('mouseup', () => { mouse.down = false; });
+resize();
+
+const vocab = ["OIDA", "089", "BETON", "KURWA", "BASS", "STADELHEIM", "CHIPRUSH"];
+
+class PhysicalObject {
+    constructor(isBanner = false) {
+        this.isBanner = isBanner;
+        this.init();
+    }
+
+    init() {
+        this.x = (Math.random() - 0.5) * 2500;
+        this.y = -800 - Math.random() * 1000; // Start high up
+        this.z = Math.random() * 2000 + 500;
+        this.vx = (Math.random() - 0.5) * 2;
+        this.vy = 0;
+        this.vz = -(Math.random() * 10 + 5);
+        this.text = vocab[Math.floor(Math.random() * vocab.length)];
+        this.mass = Math.random() * 2 + 1;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotV = (Math.random() - 0.5) * 0.1;
+    }
+
+    update() {
+        // Apply Gravity
+        this.vy += gravity * this.mass;
+        
+        // Mouse Lift
+        if (Math.abs(mouse.targetY - this.y) < 200) {
+            this.vy -= 0.5;
+        }
+
+        // Slam
+        if (mouse.down) this.vy += 2.0;
+
+        this.x += this.vx;
+        this.y += this.vy;
+        this.z += this.vz;
+        this.rotation += this.rotV;
+
+        // Collision with Beton Floor
+        if (this.y > floorY) {
+            this.y = floorY;
+            this.vy *= bounce;
+            this.rotV *= bounce;
+            // Add slight glitch on impact
+            if (Math.abs(this.vy) > 2) ctx.fillStyle = "rgba(255,255,255,0.1)";
+        }
+
+        if (this.z < 100 || this.z > 3000) this.init();
+    }
+
+    draw() {
+        const scale = 600 / this.z;
+        const x2d = cx + (this.x + mouse.x) * scale;
+        const y2d = cy + (this.y + mouse.y) * scale;
+        const shadowY2d = cy + (floorY + mouse.y) * scale;
+
+        // 1. Draw Shadow on Floor
+        const shadowAlpha = Math.max(0, 0.4 - (floorY - this.y) / 500);
+        ctx.save();
+        ctx.translate(x2d, shadowY2d);
+        ctx.scale(scale * 2, scale * 0.5); // Flattened shadow
+        ctx.rotate(this.rotation);
+        ctx.fillStyle = `rgba(0, 40, 0, ${shadowAlpha})`;
+        ctx.font = `bold 20px monospace`;
+        ctx.fillText(this.text, -ctx.measureText(this.text).width / 2, 0);
+        ctx.restore();
+
+        // 2. Draw Physical Object
+        ctx.save();
+        ctx.translate(x2d, y2d);
+        ctx.scale(scale, scale);
+        ctx.rotate(this.rotation);
+        
+        const brightness = Math.floor(Math.min(255, 100000 / this.z));
+        ctx.fillStyle = `rgb(0, ${brightness}, 65)`;
+        
+        // Dynamic Depth (Offset layers for 3D effect)
+        for(let i = 3; i > 0; i--) {
+            ctx.fillStyle = `rgba(0, ${brightness}, 65, ${1/i})`;
+            ctx.fillText(this.text, -ctx.measureText(this.text).width / 2 + i, i);
+        }
+        
+        ctx.restore();
+    }
+}
+
+const particles = Array.from({length: 150}, () => new PhysicalObject());
+
+function drawFloor() {
+    ctx.strokeStyle = "rgba(0, 100, 30, 0.2)";
+    ctx.lineWidth = 1;
+    for (let z = 100; z < 3000; z += 150) {
+        const scale = 600 / z;
+        const y2d = cy + (floorY + mouse.y) * scale;
+        ctx.beginPath();
+        ctx.moveTo(0, y2d);
+        ctx.lineTo(w, y2d);
+        ctx.stroke();
+    }
+}
+
+function loop() {
+    // Smooth Mouse Lerp
+    mouse.x += (mouse.targetX - mouse.x) * 0.1;
+    mouse.y += (mouse.targetY - mouse.y) * 0.1;
+
+    // Background
+    ctx.fillStyle = mouse.down ? "rgba(0, 40, 10, 0.3)" : "rgba(0, 5, 0, 0.2)";
+    ctx.fillRect(0, 0, w, h);
+
+    drawFloor();
+
+    // Sort by Z-depth
+    particles.sort((a, b) => b.z - a.z);
+
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+
+    // Impact Flash
+    if (mouse.down) {
+        document.getElementById('g-stat').innerText = "SLAM_MODE_420";
+        document.getElementById('g-stat').style.color = "#fff";
+    } else {
+        document.getElementById('g-stat').innerText = "9.81 m/s²";
+        document.getElementById('g-stat').style.color = "#00ff41";
+    }
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+from pathlib import Path
+import re, shutil, textwrap
+
+src = Path("/mnt/data/files/oida_viral_grid.py")
+agents = Path("/mnt/data/files/oida_trend_agents.py")
+out = Path("/mnt/data/oida_viral_grid_fullstack.py")
+
+s = src.read_text(encoding="utf-8")
+
+# Add subprocess import for invoking the agent network.
+s = s.replace("import argparse\n", "import argparse\nimport subprocess\n")
+
+# Insert agent-network helpers before run_once.
+marker = "def run_once(root: Path, out: Path, do_web=True):"
+helpers = r'''
+# ---------------------------------------------------------------------------
+# FULL-STACK TREND AGENT NETWORK
+# ---------------------------------------------------------------------------
+
+AGENT_IDS = [
+    "US", "UK", "ESP", "FR", "IT", "POL", "RUS",
+    "DE_MAINSTREAM", "DE_UNDERGROUND", "REST"
+]
+
+def _agent_key(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", norm(str(s))).strip("_")
+
+def run_trend_agent_network(root: Path, out: Path, enabled=True) -> dict[str, Any]:
+    """
+    Run oida_trend_agents.py and return a compact, track-matchable snapshot.
+
+    The agent network remains a separate process/module so the viral grid can
+    still run offline if the network is unavailable.
+    """
+    state_file = out / "trend_agent_state.json"
+    if not enabled:
+        return {"status": "disabled", "agents": {}, "network": {}}
+
+    agent_script = Path(__file__).with_name("oida_trend_agents.py")
+    if not agent_script.exists():
+        # Also support running the two scripts from the same output/tool dir.
+        alt = out.parent / "oida_trend_agents.py"
+        if alt.exists():
+            agent_script = alt
+
+    if not agent_script.exists():
+        return {
+            "status": "missing_agent_script",
+            "agents": {},
+            "network": {},
+            "error": f"Nicht gefunden: {agent_script}",
+        }
+
+    try:
+        cmd = [
+            sys.executable, str(agent_script),
+            "--root", str(root),
+            "--out", str(out),
+        ]
+        proc = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=900,
+            encoding="utf-8", errors="replace"
+        )
+        if proc.returncode != 0:
+            return {
+                "status": "agent_error",
+                "agents": {},
+                "network": {},
+                "error": (proc.stderr or proc.stdout)[-4000:],
+            }
+    except Exception as e:
+        return {
+            "status": "agent_exception",
+            "agents": {},
+            "network": {},
+            "error": str(e),
+        }
+
+    try:
+        payload = json.loads(state_file.read_text(encoding="utf-8"))
+        reports = payload.get("agents", [])
+        return {
+            "status": "ok",
+            "checked_at": payload.get("generated_at"),
+            "agents": {r.get("agent_id"): r for r in reports if r.get("agent_id")},
+            "network": payload.get("network", {}),
+        }
+    except Exception as e:
+        return {
+            "status": "state_read_error",
+            "agents": {},
+            "network": {},
+            "error": str(e),
+        }
+
+def _track_text(t: Track) -> str:
+    return norm(" ".join([
+        t.title, t.artist, t.genre, t.comment, t.lyrics,
+        str(t.key), str(t.bpm), str(t.release_date)
+    ]))
+
+def _term_match(text: str, term: str) -> bool:
+    term = norm(term)
+    if not term:
+        return False
+    return term in text
+
+def score_track_against_agent(t: Track, agent: dict[str, Any]) -> dict[str, Any]:
+    """
+    Match a track against an agent's observed trend vocabulary.
+
+    Score = metadata/text fit × observed trend pressure × confidence.
+    This intentionally stays explainable: every boost has a matching term.
+    """
+    cfg_terms = agent.get("_terms", {})
+    top_terms = agent.get("top_terms", {}) or {}
+    signal_scores = agent.get("signal_scores", {}) or {}
+    text = _track_text(t)
+
+    hits = []
+    raw = 0.0
+    for term, weight in cfg_terms.items():
+        if _term_match(text, term):
+            observed = min(1.0, float(top_terms.get(term, 0)) / 5.0)
+            boost = 0.55 + 0.45 * observed
+            contribution = float(weight) * boost
+            raw += contribution
+            hits.append({
+                "term": term,
+                "weight": round(float(weight), 3),
+                "observed": round(observed, 3),
+                "contribution": round(contribution, 3),
+            })
+
+    # Signal names are often broader than exact metadata terms.
+    signal_bonus = 0.0
+    for sig, val in signal_scores.items():
+        if _term_match(text, sig):
+            signal_bonus += 0.10 * float(val)
+
+    raw += signal_bonus
+    denom = max(2.0, sum(float(x) for x in cfg_terms.values()) * 0.30)
+    fit = max(0.0, min(1.0, raw / denom))
+
+    confidence = float(agent.get("confidence", 0.5) or 0.5)
+    trend = float(agent.get("trend_score", 0.0) or 0.0)
+    forecast30 = float((agent.get("forecast") or {}).get("30d", trend) or trend)
+
+    # Agent impact: local track fit + current regional momentum.
+    momentum = 0.55 * trend + 0.45 * forecast30
+    impact = max(0.0, min(1.0, fit * (0.65 + 0.35 * confidence) *
+                              (0.70 + 0.30 * momentum)))
+
+    return {
+        "fit": round(fit, 4),
+        "impact": round(impact, 4),
+        "confidence": round(confidence, 4),
+        "trend": round(trend, 4),
+        "forecast30": round(forecast30, 4),
+        "hits": sorted(hits, key=lambda x: -x["contribution"])[:8],
+    }
+
+def enrich_agent_reports(agent_net: dict[str, Any]) -> dict[str, Any]:
+    """
+    Attach the term dictionaries from the agent script to the persisted
+    reports. This makes the state self-contained for the grid.
+    """
+    # Kept in sync with the dedicated agent network. If that module changes,
+    # import it rather than duplicating the dictionaries here.
+    try:
+        import importlib.util
+        agent_path = Path(__file__).with_name("oida_trend_agents.py")
+        if not agent_path.exists():
+            agent_path = Path("oida_trend_agents.py")
+        spec = importlib.util.spec_from_file_location("oida_trend_agents_local", agent_path)
+        if spec and spec.loader:
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            for aid, report in agent_net.get("agents", {}).items():
+                if aid in getattr(mod, "AGENTS", {}):
+                    report["_terms"] = mod.AGENTS[aid].get("terms", {})
+                    report["_weight"] = mod.AGENTS[aid].get("weight", 1.0)
+    except Exception:
+        pass
+    return agent_net
+
+def apply_agent_scores(tracks: list[Track], agent_net: dict[str, Any]) -> None:
+    """
+    Fuse the 10-agent network into each Track's trend_score and viral_score.
+
+    Important: the agent layer is a bounded component, not a replacement for
+    the existing local/audio/vote signals.
+    """
+    agents = agent_net.get("agents", {})
+    if not agents:
+        return
+
+    ranked_network = []
+    weighted_impacts = []
+    for t in tracks:
+        per_agent = {}
+        weighted = 0.0
+        total_w = 0.0
+
+        for aid in AGENT_IDS:
+            a = agents.get(aid)
+            if not a:
+                continue
+            result = score_track_against_agent(t, a)
+            per_agent[aid] = result
+
+            # Agent's configured regional weight.
+            w = float(a.get("_weight", 1.0) or 1.0)
+            weighted += result["impact"] * w
+            total_w += w
+
+        agent_score = weighted / total_w if total_w else 0.0
+
+        # Preserve the original score and add a bounded agent contribution.
+        # 35% max prevents web noise from overwhelming actual track evidence.
+        old_trend = float(t.trend_score or 0.0)
+        fused_trend = max(0.0, min(1.0, 0.65 * old_trend + 0.35 * agent_score))
+        t.trend_score = round(fused_trend, 4)
+
+        # Existing viral_score is 0..100. Add at most 12.0 points from agents.
+        old_viral = float(t.viral_score or 0.0)
+        delta = (agent_score - 0.5) * 24.0
+        t.viral_score = round(max(0.0, min(100.0, old_viral + delta)), 1)
+
+        ordered = sorted(per_agent.items(), key=lambda kv: -kv[1]["impact"])
+        t.agent_scores = per_agent
+        t.agent_score = round(agent_score, 4)
+        t.best_agents = [a for a, _ in ordered[:4]]
+        t.agent_reason = "; ".join(
+            f"{aid} {res['impact']:.2f}"
+            + (f" [{', '.join(h['term'] for h in res['hits'][:3])}]" if res["hits"] else "")
+            for aid, res in ordered[:4]
+        )
+
+        ranked_network.append((t.viral_score, t))
+        weighted_impacts.append(agent_score)
+
+    if weighted_impacts:
+        agent_net["mean_track_agent_score"] = round(
+            sum(weighted_impacts) / len(weighted_impacts), 4
+        )
+        agent_net["tracks_scored"] = len(weighted_impacts)
+
+def update_forecast_with_agents(t: Track, agent_net: dict[str, Any]) -> None:
+    """
+    Upgrade the existing forecast using agent consensus + regional fit.
+    """
+    a = getattr(t, "agent_score", 0.0)
+    top = getattr(t, "best_agents", [])
+    if a >= .78:
+        label = "BREAKOUT"
+    elif a >= .62:
+        label = "HIGH"
+    elif a >= .46:
+        label = "WATCH"
+    else:
+        label = "NICHE"
+
+    if top:
+        t.forecast = label
+        t.forecast_reason = (
+            f"Agent-Network: {label} ({a:.2f}); "
+            f"stärkste Märkte: {', '.join(top)}. "
+            + getattr(t, "forecast_reason", "")
+        )
+
+'''
+s = s.replace(marker, helpers + "\n" + marker)
+
+# Replace the scoring sequence to run agent network after base scoring.
+old = """    learn_from_votes(state, unique)
+    score_tracks(unique, snapshot, state)
+
+    version = next_version(out)
+"""
+newseq = """    learn_from_votes(state, unique)
+    score_tracks(unique, snapshot, state)
+
+    # FULL-STACK FUSION:
+    # 1) run the 10 regional trend agents
+    # 2) fuse regional momentum into every track
+    # 3) keep the result in the same state/history used by the viral grid
+    agent_net = run_trend_agent_network(root, out, enabled=do_web)
+    agent_net = enrich_agent_reports(agent_net)
+    apply_agent_scores(unique, agent_net)
+    for _track in unique:
+        update_forecast_with_agents(_track, agent_net)
+
+    # Store a compact agent snapshot in the persistent learning state.
+    state["agent_network"] = {
+        "status": agent_net.get("status"),
+        "checked_at": agent_net.get("checked_at"),
+        "network": agent_net.get("network", {}),
+        "mean_track_agent_score": agent_net.get("mean_track_agent_score", 0.0),
+        "tracks_scored": agent_net.get("tracks_scored", 0),
+        "agents": {
+            aid: {
+                "trend_score": r.get("trend_score", 0),
+                "confidence": r.get("confidence", 0),
+                "forecast": r.get("forecast", {}),
+                "top_terms": r.get("top_terms", {}),
+            }
+            for aid, r in agent_net.get("agents", {}).items()
+        },
+    }
+
+    version = next_version(out)
+"""
+if old not in s:
+    raise RuntimeError("Scoring insertion point not found")
+s = s.replace(old, newseq)
+
+# Add agent columns to HTML after trend score.
+s = s.replace(
+    '<td>{t.trend_score:.2f}</td>\n           <td>{t.identity_score:.2f}</td>',
+    '<td>{t.trend_score:.2f}<br><small>agents {getattr(t, "agent_score", 0.0):.2f}</small></td>\n'
+    '           <td>{esc(", ".join(getattr(t, "best_agents", [])))}</td>\n'
+    '           <td>{esc(getattr(t, "agent_reason", ""))}</td>\n'
+    '           <td>{t.identity_score:.2f}</td>'
+)
+
+# Add header columns corresponding to the inserted cells.
+s = s.replace(
+    '<th>Trend</th><th>Identity</th>',
+    '<th>Trend / Agent</th><th>Best Agents</th><th>Agent Reason</th><th>Identity</th>'
+)
+
+# Add agent state to top summary if the dashboard has a summary block.
+needle = 'trend_terms = ", ".join'
+if needle in s:
+    s = s.replace(
+        needle,
+        'agent_state = state.get("agent_network", {})\n    agent_summary = (f"Agent Network: {esc(agent_state.get(\'status\', \'n/a\'))} · "\n                     f"mean track score {float(agent_state.get(\'mean_track_agent_score\', 0)):.2f}")\n    ' + needle
+    )
+    s = s.replace(
+        'source_rows = "".join(',
+        '<p><b>{agent_summary}</b></p>\n    source_rows = "".join('
+    )
+
+# Ensure Track dataclass accepts the new fields. Insert fields before methods.
+# Find class Track and its last scalar fields; safest: add default fields just
+# before the first method in the class.
+m = re.search(r'(@dataclass\s+class Track:.*?)(\n\s+def )', s, re.S)
+if not m:
+    raise RuntimeError("Track dataclass not found")
+block = m.group(1)
+if "agent_scores:" not in block:
+    block += (
+        '\n    agent_scores: dict[str, Any] = field(default_factory=dict)\n'
+        '    agent_score: float = 0.0\n'
+        '    best_agents: list[str] = field(default_factory=list)\n'
+        '    agent_reason: str = ""\n'
+    )
+    s = s[:m.start(1)] + block + s[m.end(1)-len("\n    def "):]
+
+# Fix accidental duplicate "def" possibility by normalizing.
+s = s.replace("\n    def \n    def ", "\n    def ")
+
+# Add CSV fields by locating DictWriter fieldnames.
+# We inspect dynamically at runtime if fieldnames are explicit; add keys if found.
+s = s.replace(
+    '"trend_score", "identity_score",',
+    '"trend_score", "agent_score", "best_agents", "agent_reason", "identity_score",'
+)
+s = s.replace(
+    '"trend_score": t.trend_score,',
+    '"trend_score": t.trend_score,\n            "agent_score": getattr(t, "agent_score", 0.0),\n            "best_agents": ", ".join(getattr(t, "best_agents", [])),\n            "agent_reason": getattr(t, "agent_reason", ""),'
+)
+
+out.write_text(s, encoding="utf-8")
+print(out)

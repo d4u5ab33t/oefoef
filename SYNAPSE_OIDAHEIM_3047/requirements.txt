@@ -1,0 +1,5 @@
+dataclasses
+json
+web3
+openzeppelin-solidity
+matplotlib

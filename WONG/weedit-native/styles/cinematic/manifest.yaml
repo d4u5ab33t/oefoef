@@ -1,0 +1,9 @@
+name: cinematic
+version: 1.0.0
+description: "Cinematic style music video"
+author: "WE.ED.IT Team"
+license: "MIT"
+dependencies: []
+files: [camera.yaml, transitions.yaml]
+tags: [cinematic]
+min_weedit_version: "2.0.0"

@@ -1,0 +1,20 @@
+{
+  "extends": "default",
+  "name": "drill-pack",
+  "constraints": {
+    "camera": "push",
+    "lighting": "lowkey",
+    "transition": "whip",
+    "fx": "grain",
+    "color": "warm",
+    "motion": "high"
+  },
+  "physics": {
+    "tension": "exponential",
+    "release": "instant"
+  },
+  "palette": {
+    "primary": "#FFD700",
+    "secondary": "#000000"
+  }
+}

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyecannndy Visual Effect Presets & Grid Showcase</title>
+  <style>
+    :root {
+      --bg-dark: #09090c;
+      --bg-card: #13131a;
+      --bg-card-hover: #1c1c26;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00f0ff;
+      --accent-pink: #ff2a8d;
+      --accent-yellow: #ffe600;
+      --accent-purple: #9d4edd;
+      --text-main: #f0f0f5;
+      --text-muted: #8a8a9e;
+      --glass-bg: rgba(19, 19, 26, 0.75);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 80px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      color: #000;
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #fff, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Image Switcher Bar */
+    .image-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .switcher-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .img-chip {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      opacity: 0.6;
+    }
+
+    .img-chip:hover, .img-chip.active {
+      opacity: 1;
+      border-color: var(--accent-cyan);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    }
+
+    .upload-btn-label {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--accent-yellow);
+      border: 1px dashed rgba(255, 230, 0, 0.4);
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .upload-btn-label:hover {
+      background: rgba(255, 230, 0, 0.2);
+      transform: scale(1.1);
+    }
+
+    /* Controls & Filters Bar */
+    .toolbar {
+      max-width: 1400px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px 14px 44px;
+      color: var(--text-main);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .mode-toggle-group {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Category Pills */
+    .categories-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+
+    .cat-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--accent-pink);
+      color: #fff;
+      border-color: var(--accent-pink);
+      box-shadow: 0 4px 12px rgba(255, 42, 141, 0.3);
+    }
+
+    /* Main Grid */
+    .grid-container {
+      max-width: 1400px;
+      margin: 24px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Effect Card */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+
+    .card-preview {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .preview-img-layer {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      will-change: transform, filter;
+    }
+
+    .card-overlay-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--accent-cyan);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    .card-eyecannndy-link {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 12px;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+
+    .card-eyecannndy-link:hover {
+      background: var(--accent-pink);
+      transform: scale(1.15);
+    }
+
+    .card-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag-chip {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .card-actions {
+      margin-top: auto;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-inspect {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-inspect:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+    }
+
+    /* Modal / Inspector Drawer */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.2);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .close-modal-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .close-modal-btn:hover {
+      background: var(--accent-pink);
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .modal-stage {
+      width: 100%;
+      height: 320px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .slider-input {
+      width: 100%;
+      accent-color: var(--accent-cyan);
+    }
+
+    .code-block {
+      background: #09090d;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--accent-cyan);
+      max-height: 140px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .btn-copy-code {
+      align-self: flex-end;
+      background: rgba(255, 230, 0, 0.15);
+      color: var(--accent-yellow);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-code:hover {
+      background: var(--accent-yellow);
+      color: #000;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* DYNAMIC CSS ANIMATIONS & VFX CLASSES FOR TECHNIQUES           */
+    /* ------------------------------------------------------------- */
+
+    /* 1. Dolly Zoom */
+    .card:hover .fx-dolly-zoom, .active-play .fx-dolly-zoom {
+      animation: animDollyZoom 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes animDollyZoom {
+      0% { transform: scale(1) rotate(0deg); filter: contrast(1); }
+      50% { transform: scale(1.45) rotate(0.5deg); filter: contrast(1.15) brightness(1.1); }
+      100% { transform: scale(1) rotate(0deg); filter: contrast(1); }
+    }
+
+    /* 2. Camera Roll */
+    .card:hover .fx-camera-roll, .active-play .fx-camera-roll {
+      animation: animCameraRoll 4s infinite linear;
+    }
+    @keyframes animCameraRoll {
+      0% { transform: scale(1.3) rotate(0deg); }
+      100% { transform: scale(1.3) rotate(360deg); }
+    }
+
+    /* 3. Datamosh / Glitch */
+    .card:hover .fx-datamosh, .active-play .fx-datamosh {
+      animation: animDatamosh 1.2s infinite steps(4);
+    }
+    @keyframes animDatamosh {
+      0% { transform: translate(0, 0) scale(1); filter: hue-rotate(0deg) contrast(1); }
+      25% { transform: translate(-8px, 4px) scale(1.05) skewX(10deg); filter: hue-rotate(90deg) invert(0.2); }
+      50% { transform: translate(6px, -6px) scale(0.98) skewY(-8deg); filter: hue-rotate(180deg) saturate(2); }
+      75% { transform: translate(-4px, 2px) scale(1.02); filter: hue-rotate(270deg) contrast(1.4); }
+      100% { transform: translate(0, 0) scale(1); filter: hue-rotate(360deg); }
+    }
+
+    /* 4. Kaleidoscope */
+    .card:hover .fx-kaleidoscope, .active-play .fx-kaleidoscope {
+      animation: animKaleido 3s infinite linear;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    }
+    @keyframes animKaleido {
+      0% { transform: scale(1.2) rotate(0deg); filter: hue-rotate(0deg); }
+      100% { transform: scale(1.2) rotate(360deg); filter: hue-rotate(360deg); }
+    }
+
+    /* 5. Thermal */
+    .card:hover .fx-thermal, .active-play .fx-thermal {
+      animation: animThermal 2s infinite ease-in-out alternate;
+    }
+    @keyframes animThermal {
+      0% { filter: invert(0.9) hue-rotate(180deg) saturate(3) contrast(1.5); }
+      100% { filter: invert(0.7) hue-rotate(300deg) saturate(4) contrast(2); }
+    }
+
+    /* 6. Night Vision */
+    .card:hover .fx-night-vision, .active-play .fx-night-vision {
+      animation: animNightVision 1.5s infinite linear;
+    }
+    @keyframes animNightVision {
+      0% { filter: sepia(1) hue-rotate(90deg) saturate(5) brightness(1.2) contrast(1.4); }
+      50% { filter: sepia(1) hue-rotate(95deg) saturate(6) brightness(1.4) contrast(1.6); }
+      100% { filter: sepia(1) hue-rotate(90deg) saturate(5) brightness(1.2) contrast(1.4); }
+    }
+
+    /* 7. Wigglegram */
+    .card:hover .fx-wigglegram, .active-play .fx-wigglegram {
+      animation: animWiggle 0.15s infinite alternate steps(2);
+    }
+    @keyframes animWiggle {
+      0% { transform: scale(1.1) translate(-6px, 0) rotate(-1deg); }
+      100% { transform: scale(1.1) translate(6px, 0) rotate(1deg); }
+    }
+
+    /* 8. Whip Pan */
+    .card:hover .fx-whip-pan, .active-play .fx-whip-pan {
+      animation: animWhipPan 1.2s infinite cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    @keyframes animWhipPan {
+      0% { transform: translateX(-100%) scaleX(1.5); filter: blur(10px); }
+      50% { transform: translateX(0) scaleX(1); filter: blur(0px); }
+      100% { transform: translateX(100%) scaleX(1.5); filter: blur(10px); }
+    }
+
+    /* 9. Fisheye */
+    .card:hover .fx-fisheye, .active-play .fx-fisheye {
+      animation: animFisheye 2s infinite ease-in-out alternate;
+    }
+    @keyframes animFisheye {
+      0% { transform: scale(1.1); border-radius: 0%; filter: contrast(1); }
+      100% { transform: scale(1.4); border-radius: 40%; filter: contrast(1.3) brightness(1.1); }
+    }
+
+    /* 10. Bullet Time */
+    .card:hover .fx-bullet-time, .active-play .fx-bullet-time {
+      animation: animBulletTime 3s infinite linear;
+    }
+    @keyframes animBulletTime {
+      0% { transform: scale(1.2) perspective(400px) rotateY(-20deg); }
+      50% { transform: scale(1.25) perspective(400px) rotateY(20deg); }
+      100% { transform: scale(1.2) perspective(400px) rotateY(-20deg); }
+    }
+
+    /* 11. Speed Ramp */
+    .card:hover .fx-speed-ramp, .active-play .fx-speed-ramp {
+      animation: animSpeedRamp 2s infinite cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+    @keyframes animSpeedRamp {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.05); }
+      60% { transform: scale(1.4) rotate(3deg); filter: blur(2px); }
+      100% { transform: scale(1); }
+    }
+
+    /* 12. Double Exposure */
+    .card:hover .fx-double-exposure, .active-play .fx-double-exposure {
+      animation: animDoubleExp 2s infinite alternate ease-in-out;
+    }
+    @keyframes animDoubleExp {
+      0% { filter: contrast(1.2) brightness(1.2); opacity: 0.8; transform: scale(1); }
+      100% { filter: contrast(1.8) invert(0.3) hue-rotate(120deg); opacity: 1; transform: scale(1.15) rotate(2deg); }
+    }
+
+    /* 13. Slit Scan */
+    .card:hover .fx-slit-scan, .active-play .fx-slit-scan {
+      animation: animSlitScan 1.8s infinite ease-in-out alternate;
+    }
+    @keyframes animSlitScan {
+      0% { transform: scaleY(1) skewX(0deg); }
+      50% { transform: scaleY(1.3) skewX(25deg); filter: hue-rotate(90deg); }
+      100% { transform: scaleY(1) skewX(0deg); }
+    }
+
+    /* 14. Floating UI */
+    .card:hover .fx-floating-ui, .active-play .fx-floating-ui {
+      animation: animFloatingUI 2s infinite alternate ease-in-out;
+    }
+    @keyframes animFloatingUI {
+      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 5px var(--accent-cyan)); }
+      100% { transform: translateY(-10px) scale(1.05); filter: drop-shadow(0 0 15px var(--accent-pink)); }
+    }
+
+    /* Generic Motion Fallback FX */
+    .card:hover .fx-generic-motion, .active-play .fx-generic-motion {
+      animation: animGenericMotion 3s infinite alternate ease-in-out;
+    }
+    @keyframes animGenericMotion {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.12) rotate(1.5deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">E</div>
+      <div>
+        <div class="brand-title">EYECANNNDY PRESET STUDIO</div>
+        <div style="font-size:11px; color: var(--text-muted)">136 Visual Filmmaking & VFX Techniques Library</div>
+      </div>
+      <span class="brand-badge">V3.7 PRO</span>
+    </div>
+
+    <!-- Image Asset Selector -->
+    <div class="image-switcher">
+      <span class="switcher-label">Source Asset:</span>
+      <img src="./Gemini_Generated_Image_pgb9pbpgb9pbpgb9.jfif" class="img-chip active" data-src="./Gemini_Generated_Image_pgb9pbpgb9pbpgb9.jfif" title="Gemini Image 1" onclick="switchSourceImage(this)">
+      <img src="./Gemini_Generated_Image_ct65nbct65nbct65.jfif" class="img-chip" data-src="./Gemini_Generated_Image_ct65nbct65nbct65.jfif" title="Gemini Image 2" onclick="switchSourceImage(this)">
+      <img src="./Gemini_Generated_Image_xiqbdgxiqbdgxiqb.jfif" class="img-chip" data-src="./Gemini_Generated_Image_xiqbdgxiqbdgxiqb.jfif" title="Gemini Image 3" onclick="switchSourceImage(this)">
+      <img src="./Gemini_Generated_Image_m0yeu5m0yeu5m0ye.jfif" class="img-chip" data-src="./Gemini_Generated_Image_m0yeu5m0yeu5m0ye.jfif" title="Gemini Image 4" onclick="switchSourceImage(this)">
+      
+      <label class="upload-btn-label" title="Upload Custom Test Image">
+        +
+        <input type="file" accept="image/*" style="display:none;" onchange="handleCustomImage(event)">
+      </label>
+    </div>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-row">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search 136 techniques (e.g., Dolly Zoom, Datamosh, Glitch, FPV, Fisheye)..." oninput="filterGrid()">
+      </div>
+
+      <div class="mode-toggle-group">
+        <button class="mode-btn active" onclick="setPlayMode('hover', this)">On Hover</button>
+        <button class="mode-btn" onclick="setPlayMode('all', this)">Autoplay All Grid</button>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories-row" id="categoriesRow">
+      <button class="cat-pill active" onclick="filterCategory('all', this)">All Techniques (136)</button>
+      <button class="cat-pill" onclick="filterCategory('Camera Motion', this)">Camera Motion</button>
+      <button class="cat-pill" onclick="filterCategory('Lens & Optics', this)">Lens & Optics</button>
+      <button class="cat-pill" onclick="filterCategory('Transitions & Cuts', this)">Transitions & Cuts</button>
+      <button class="cat-pill" onclick="filterCategory('VFX & Glitch', this)">VFX & Glitch</button>
+      <button class="cat-pill" onclick="filterCategory('Lighting & Color', this)">Lighting & Color</button>
+      <button class="cat-pill" onclick="filterCategory('Framing & Composition', this)">Framing & Composition</button>
+      <button class="cat-pill" onclick="filterCategory('Stylized & Retros', this)">Stylized & Retros</button>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="grid-container" id="gridContainer"></main>
+
+  <!-- Inspector Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-title" id="modalTitle">Technique Title</div>
+          <span class="card-overlay-badge" id="modalCategory">Category</span>
+        </div>
+        <button class="close-modal-btn" onclick="closeModal()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <div class="modal-stage">
+            <img id="modalStageImg" src="./Gemini_Generated_Image_pgb9pbpgb9pbpgb9.jfif" alt="Stage Preview">
+          </div>
+          <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <a id="modalEyecannndyLink" href="#" target="_blank" style="color: var(--accent-cyan); font-size: 13px; font-weight: 600; text-decoration: none;">
+              Open Official Eyecannndy Breakdown ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="modal-controls">
+          <div class="control-group">
+            <div class="control-label">
+              <span>Effect Animation Speed</span>
+              <span id="speedVal">1.0x</span>
+            </div>
+            <input type="range" class="slider-input" min="0.2" max="3.0" step="0.1" value="1.0" oninput="updateModalEffect()">
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>FX Intensity / Scale</span>
+              <span id="intensityVal">100%</span>
+            </div>
+            <input type="range" class="slider-input" min="50" max="200" step="5" value="100" oninput="updateModalEffect()">
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>Generated CSS Preset Code</span>
+              <button class="btn-copy-code" onclick="copyCSSCode()">Copy CSS</button>
+            </div>
+            <pre class="code-block" id="modalCSSCode">/* Select a technique to generate CSS code */</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Full Dataset of all 136 Techniques from Request
+    const TECHNIQUES = [
+      { name: "Aerial", url: "https://eyecannndy.com/technique/aerial", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Altered state", url: "https://eyecannndy.com/technique/trip", cat: "Lighting & Color", fx: "fx-thermal" },
+      { name: "Animation", url: "https://eyecannndy.com/technique/traditional", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Anthropo", url: "https://eyecannndy.com/technique/anthropomorphism", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Arc", url: "https://eyecannndy.com/technique/arc-movement", cat: "Camera Motion", fx: "fx-bullet-time" },
+      { name: "Architexture", url: "https://eyecannndy.com/technique/architexture", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Bolt Cam", url: "https://eyecannndy.com/technique/bolt-cam", cat: "Camera Motion", fx: "fx-whip-pan" },
+      { name: "Boomerang", url: "https://eyecannndy.com/technique/boomerang", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "BTS", url: "https://eyecannndy.com/technique/breakdown", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Bullet Time", url: "https://eyecannndy.com/technique/bullet-time", cat: "Camera Motion", fx: "fx-bullet-time" },
+      { name: "Camera Roll", url: "https://eyecannndy.com/technique/camera-roll", cat: "Camera Motion", fx: "fx-camera-roll" },
+      { name: "Central Framing", url: "https://eyecannndy.com/technique/central-framing", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Choreo", url: "https://eyecannndy.com/technique/choreo", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Cinemagraph", url: "https://eyecannndy.com/technique/cinemagraph", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Close-Up", url: "https://eyecannndy.com/technique/close-up", cat: "Framing & Composition", fx: "fx-dolly-zoom" },
+      { name: "Collage", url: "https://eyecannndy.com/technique/collage", cat: "Stylized & Retros", fx: "fx-datamosh" },
+      { name: "Color Shift", url: "https://eyecannndy.com/technique/color-shift", cat: "Lighting & Color", fx: "fx-thermal" },
+      { name: "Conveyor", url: "https://eyecannndy.com/technique/conveyor", cat: "Camera Motion", fx: "fx-whip-pan" },
+      { name: "Crash cut", url: "https://eyecannndy.com/technique/crash-transition", cat: "Transitions & Cuts", fx: "fx-whip-pan" },
+      { name: "Cut-ins", url: "https://eyecannndy.com/technique/cut-ins", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "Datamosh", url: "https://eyecannndy.com/technique/datamosh", cat: "VFX & Glitch", fx: "fx-datamosh" },
+      { name: "Diorama", url: "https://eyecannndy.com/technique/model", cat: "Framing & Composition", fx: "fx-fisheye" },
+      { name: "Distortions", url: "https://eyecannndy.com/technique/distortions", cat: "VFX & Glitch", fx: "fx-slit-scan" },
+      { name: "Dolly", url: "https://eyecannndy.com/technique/dolly-shot", cat: "Camera Motion", fx: "fx-dolly-zoom" },
+      { name: "Dolly Zoom", url: "https://eyecannndy.com/technique/dolly-zoom", cat: "Camera Motion", fx: "fx-dolly-zoom" },
+      { name: "Double Dolly", url: "https://eyecannndy.com/technique/double-dolly", cat: "Camera Motion", fx: "fx-dolly-zoom" },
+      { name: "Double Exposure", url: "https://eyecannndy.com/technique/double-exposure", cat: "VFX & Glitch", fx: "fx-double-exposure" },
+      { name: "Dreamcore", url: "https://eyecannndy.com/technique/dreamcore", cat: "Stylized & Retros", fx: "fx-thermal" },
+      { name: "Duplication", url: "https://eyecannndy.com/technique/duplication", cat: "VFX & Glitch", fx: "fx-double-exposure" },
+      { name: "Dutch Angle", url: "https://eyecannndy.com/technique/dutch-angle", cat: "Camera Motion", fx: "fx-camera-roll" },
+      { name: "Dystopian", url: "https://eyecannndy.com/technique/dystopian", cat: "Stylized & Retros", fx: "fx-night-vision" },
+      { name: "Echo print", url: "https://eyecannndy.com/technique/echo-printing", cat: "VFX & Glitch", fx: "fx-wigglegram" },
+      { name: "Epiphany", url: "https://eyecannndy.com/technique/epiphany-shot", cat: "Stylized & Retros", fx: "fx-dolly-zoom" },
+      { name: "Falling", url: "https://eyecannndy.com/technique/falling", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Fast Motion", url: "https://eyecannndy.com/technique/undercranking", cat: "Stylized & Retros", fx: "fx-speed-ramp" },
+      { name: "Feedback", url: "https://eyecannndy.com/technique/glitch", cat: "VFX & Glitch", fx: "fx-datamosh" },
+      { name: "First-Person", url: "https://eyecannndy.com/technique/first-person-pov", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Fisheye", url: "https://eyecannndy.com/technique/fisheye", cat: "Lens & Optics", fx: "fx-fisheye" },
+      { name: "Fixed Cam", url: "https://eyecannndy.com/technique/fixed-camera", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Flash Cut", url: "https://eyecannndy.com/technique/flash-cut", cat: "Transitions & Cuts", fx: "fx-datamosh" },
+      { name: "Floating UI", url: "https://eyecannndy.com/technique/digital-overlay", cat: "VFX & Glitch", fx: "fx-floating-ui" },
+      { name: "Focal shift", url: "https://eyecannndy.com/technique/focal-shift", cat: "Lens & Optics", fx: "fx-dolly-zoom" },
+      { name: "Fourth Wall", url: "https://eyecannndy.com/technique/fourth-wall", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "FPV Drone", url: "https://eyecannndy.com/technique/fpv-drone", cat: "Camera Motion", fx: "fx-camera-roll" },
+      { name: "Freeze Frame", url: "https://eyecannndy.com/technique/freeze-frame", cat: "Transitions & Cuts", fx: "fx-bullet-time" },
+      { name: "Generative", url: "https://eyecannndy.com/technique/generative", cat: "VFX & Glitch", fx: "fx-kaleidoscope" },
+      { name: "Gesture", url: "https://eyecannndy.com/technique/digital-gesture", cat: "Stylized & Retros", fx: "fx-floating-ui" },
+      { name: "Ground Level", url: "https://eyecannndy.com/technique/ground-shot", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Halation", url: "https://eyecannndy.com/technique/halation", cat: "Lighting & Color", fx: "fx-double-exposure" },
+      { name: "Handheld", url: "https://eyecannndy.com/technique/shaky-cam", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Hard Light", url: "https://eyecannndy.com/technique/hard-light", cat: "Lighting & Color", fx: "fx-thermal" },
+      { name: "Haze", url: "https://eyecannndy.com/technique/haze", cat: "Lighting & Color", fx: "fx-double-exposure" },
+      { name: "High Angle", url: "https://eyecannndy.com/technique/high-angle", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Infinite Loop", url: "https://eyecannndy.com/technique/infinite", cat: "Stylized & Retros", fx: "fx-dolly-zoom" },
+      { name: "Interview", url: "https://eyecannndy.com/technique/interview", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Jump cut", url: "https://eyecannndy.com/technique/jump-cut", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "Kaleidoscope", url: "https://eyecannndy.com/technique/kaleidoscope", cat: "VFX & Glitch", fx: "fx-kaleidoscope" },
+      { name: "Lazy Susan", url: "https://eyecannndy.com/technique/lazy-susan", cat: "Camera Motion", fx: "fx-camera-roll" },
+      { name: "Levitation", url: "https://eyecannndy.com/technique/floating", cat: "Stylized & Retros", fx: "fx-floating-ui" },
+      { name: "Light Flash", url: "https://eyecannndy.com/technique/light-flash", cat: "Lighting & Color", fx: "fx-datamosh" },
+      { name: "Locked-On", url: "https://eyecannndy.com/technique/locked-on", cat: "Camera Motion", fx: "fx-bullet-time" },
+      { name: "Low Angle", url: "https://eyecannndy.com/technique/low-angle", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Magical realism", url: "https://eyecannndy.com/technique/surrealism", cat: "Stylized & Retros", fx: "fx-kaleidoscope" },
+      { name: "Magnification", url: "https://eyecannndy.com/technique/magnification", cat: "Lens & Optics", fx: "fx-fisheye" },
+      { name: "Masking", url: "https://eyecannndy.com/technique/masking", cat: "VFX & Glitch", fx: "fx-double-exposure" },
+      { name: "Match Cut", url: "https://eyecannndy.com/technique/match-cut", cat: "Transitions & Cuts", fx: "fx-whip-pan" },
+      { name: "Match motion", url: "https://eyecannndy.com/technique/match-motion", cat: "VFX & Glitch", fx: "fx-bullet-time" },
+      { name: "Match Split", url: "https://eyecannndy.com/technique/match-split", cat: "Transitions & Cuts", fx: "fx-whip-pan" },
+      { name: "Maximalism", url: "https://eyecannndy.com/technique/maximalism", cat: "Stylized & Retros", fx: "fx-datamosh" },
+      { name: "Mixed Media", url: "https://eyecannndy.com/technique/mixed-media", cat: "Stylized & Retros", fx: "fx-datamosh" },
+      { name: "Morphing", url: "https://eyecannndy.com/technique/morphing", cat: "VFX & Glitch", fx: "fx-slit-scan" },
+      { name: "Motion Blur", url: "https://eyecannndy.com/technique/motion-blur", cat: "VFX & Glitch", fx: "fx-whip-pan" },
+      { name: "Night Vision", url: "https://eyecannndy.com/technique/night-vision", cat: "Lighting & Color", fx: "fx-night-vision" },
+      { name: "Object Portal", url: "https://eyecannndy.com/technique/object-portal", cat: "Transitions & Cuts", fx: "fx-dolly-zoom" },
+      { name: "Object POV", url: "https://eyecannndy.com/technique/as-object", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Omnidirectional", url: "https://eyecannndy.com/technique/omnidirectional", cat: "Camera Motion", fx: "fx-camera-roll" },
+      { name: "Overhead", url: "https://eyecannndy.com/technique/overhead", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Over the Shoulder", url: "https://eyecannndy.com/technique/over-the-shoulder", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Pan", url: "https://eyecannndy.com/technique/pan", cat: "Camera Motion", fx: "fx-whip-pan" },
+      { name: "Parallax", url: "https://eyecannndy.com/technique/parallax", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Pass Through", url: "https://eyecannndy.com/technique/pass-through", cat: "Camera Motion", fx: "fx-dolly-zoom" },
+      { name: "Pedestal", url: "https://eyecannndy.com/technique/pedestal", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Photogrammetry", url: "https://eyecannndy.com/technique/photogrammetry", cat: "VFX & Glitch", fx: "fx-bullet-time" },
+      { name: "Photography", url: "https://eyecannndy.com/technique/photography", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Pixel Art", url: "https://eyecannndy.com/technique/pixel-art", cat: "VFX & Glitch", fx: "fx-datamosh" },
+      { name: "Probe", url: "https://eyecannndy.com/technique/probe-lens", cat: "Lens & Optics", fx: "fx-dolly-zoom" },
+      { name: "Product", url: "https://eyecannndy.com/technique/product", cat: "Framing & Composition", fx: "fx-bullet-time" },
+      { name: "Profile", url: "https://eyecannndy.com/technique/profile-shot", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Projections", url: "https://eyecannndy.com/technique/projections", cat: "VFX & Glitch", fx: "fx-double-exposure" },
+      { name: "Quick Cuts", url: "https://eyecannndy.com/technique/quick-cuts", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "Ratio Switch", url: "https://eyecannndy.com/technique/aspect-ratio-switch", cat: "Lens & Optics", fx: "fx-generic-motion" },
+      { name: "Reflections", url: "https://eyecannndy.com/technique/reflections", cat: "Lighting & Color", fx: "fx-double-exposure" },
+      { name: "Scale Shift", url: "https://eyecannndy.com/technique/scale-shift", cat: "Stylized & Retros", fx: "fx-dolly-zoom" },
+      { name: "Screen in Screen", url: "https://eyecannndy.com/technique/screen-in-screen", cat: "Framing & Composition", fx: "fx-floating-ui" },
+      { name: "Set Transition", url: "https://eyecannndy.com/technique/set-transition", cat: "Transitions & Cuts", fx: "fx-whip-pan" },
+      { name: "Shadow Box", url: "https://eyecannndy.com/technique/shadow-box", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Shallow Focus", url: "https://eyecannndy.com/technique/focal-focus", cat: "Lens & Optics", fx: "fx-dolly-zoom" },
+      { name: "Silhouette", url: "https://eyecannndy.com/technique/silhouette", cat: "Lighting & Color", fx: "fx-night-vision" },
+      { name: "Slit-scan", url: "https://eyecannndy.com/technique/slit-scan", cat: "VFX & Glitch", fx: "fx-slit-scan" },
+      { name: "Slow Motion", url: "https://eyecannndy.com/technique/slow-motion", cat: "Stylized & Retros", fx: "fx-bullet-time" },
+      { name: "Snorricam", url: "https://eyecannndy.com/technique/snorricam", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Speed Ramp", url: "https://eyecannndy.com/technique/speed-ramping", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "Split Diopter", url: "https://eyecannndy.com/technique/split-diopter", cat: "Lens & Optics", fx: "fx-dolly-zoom" },
+      { name: "Split Screen", url: "https://eyecannndy.com/technique/split-screen", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Spotlight", url: "https://eyecannndy.com/technique/spotlight", cat: "Lighting & Color", fx: "fx-thermal" },
+      { name: "Step-print", url: "https://eyecannndy.com/technique/step-printing", cat: "Stylized & Retros", fx: "fx-speed-ramp" },
+      { name: "Stop Motion", url: "https://eyecannndy.com/technique/stop-motion", cat: "Stylized & Retros", fx: "fx-wigglegram" },
+      { name: "Stutter", url: "https://eyecannndy.com/technique/stutter", cat: "Transitions & Cuts", fx: "fx-speed-ramp" },
+      { name: "Stylistic Suck", url: "https://eyecannndy.com/technique/stylistic-suck", cat: "Stylized & Retros", fx: "fx-datamosh" },
+      { name: "Tableau", url: "https://eyecannndy.com/technique/tableau-shots", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Thermal", url: "https://eyecannndy.com/technique/thermal", cat: "Lighting & Color", fx: "fx-thermal" },
+      { name: "Tilt", url: "https://eyecannndy.com/technique/tilt", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Tilt Shift", url: "https://eyecannndy.com/technique/tilt-shift", cat: "Lens & Optics", fx: "fx-fisheye" },
+      { name: "Tracking", url: "https://eyecannndy.com/technique/tracking", cat: "Camera Motion", fx: "fx-dolly-zoom" },
+      { name: "Transformation", url: "https://eyecannndy.com/technique/transformation", cat: "VFX & Glitch", fx: "fx-slit-scan" },
+      { name: "Transitions", url: "https://eyecannndy.com/technique/transition", cat: "Transitions & Cuts", fx: "fx-whip-pan" },
+      { name: "Trucking", url: "https://eyecannndy.com/technique/trucking", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Two Shot", url: "https://eyecannndy.com/technique/two-shot", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Typography", url: "https://eyecannndy.com/technique/typography", cat: "Stylized & Retros", fx: "fx-floating-ui" },
+      { name: "Ultra Wide", url: "https://eyecannndy.com/technique/ultra-wide-zero-d", cat: "Lens & Optics", fx: "fx-fisheye" },
+      { name: "Underwater", url: "https://eyecannndy.com/technique/underwater", cat: "Lighting & Color", fx: "fx-double-exposure" },
+      { name: "Video Game", url: "https://eyecannndy.com/technique/video-game", cat: "Stylized & Retros", fx: "fx-floating-ui" },
+      { name: "Video Portraits", url: "https://eyecannndy.com/technique/video-portraits", cat: "Stylized & Retros", fx: "fx-generic-motion" },
+      { name: "Vignette", url: "https://eyecannndy.com/technique/vignette", cat: "Lighting & Color", fx: "fx-night-vision" },
+      { name: "Vintage", url: "https://eyecannndy.com/technique/vhs", cat: "Stylized & Retros", fx: "fx-datamosh" },
+      { name: "Void", url: "https://eyecannndy.com/technique/void", cat: "Framing & Composition", fx: "fx-night-vision" },
+      { name: "Voyeur", url: "https://eyecannndy.com/technique/voyeur", cat: "Framing & Composition", fx: "fx-fisheye" },
+      { name: "Wandering", url: "https://eyecannndy.com/technique/wandering", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "Weirdcore", url: "https://eyecannndy.com/technique/wierdcore", cat: "Stylized & Retros", fx: "fx-kaleidoscope" },
+      { name: "Whip Pan", url: "https://eyecannndy.com/technique/whip-pan", cat: "Camera Motion", fx: "fx-whip-pan" },
+      { name: "Wide shot", url: "https://eyecannndy.com/technique/wide-shot", cat: "Framing & Composition", fx: "fx-generic-motion" },
+      { name: "Wigglegram", url: "https://eyecannndy.com/technique/wigglegram", cat: "Camera Motion", fx: "fx-wigglegram" },
+      { name: "Worms-Eye", url: "https://eyecannndy.com/technique/worms-eye", cat: "Camera Motion", fx: "fx-generic-motion" },
+      { name: "X-Ray", url: "https://eyecannndy.com/technique/x-ray", cat: "VFX & Glitch", fx: "fx-thermal" },
+      { name: "Zoetrope", url: "https://eyecannndy.com/technique/zoetrope", cat: "Stylized & Retros", fx: "fx-camera-roll" },
+      { name: "Zoom", url: "https://eyecannndy.com/technique/zoom-in", cat: "Camera Motion", fx: "fx-dolly-zoom" }
+    ];
+
+    let currentImageSrc = "./Gemini_Generated_Image_pgb9pbpgb9pbpgb9.jfif";
+    let activeCategory = "all";
+    let playMode = "hover"; // 'hover' or 'all'
+    let selectedTechnique = null;
+
+    // Render Grid Cards
+    function renderGrid() {
+      const container = document.getElementById("gridContainer");
+      const searchVal = document.getElementById("searchInput").value.toLowerCase();
+      container.innerHTML = "";
+
+      const filtered = TECHNIQUES.filter(item => {
+        const matchesCat = (activeCategory === "all" || item.cat === activeCategory);
+        const matchesSearch = item.name.toLowerCase().includes(searchVal) || item.cat.toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
+      });
+
+      filtered.forEach(tech => {
+        const card = document.createElement("div");
+        card.className = `card ${playMode === 'all' ? 'active-play' : ''}`;
+        card.onclick = () => openModal(tech);
+
+        card.innerHTML = `
+          <div class="card-preview">
+            <span class="card-overlay-badge">${tech.cat}</span>
+            <a href="${tech.url}" target="_blank" class="card-eyecannndy-link" title="Open Eyecannndy page" onclick="event.stopPropagation()">↗</a>
+            <img src="${currentImageSrc}" class="preview-img-layer ${tech.fx}" alt="${tech.name}">
+          </div>
+          <div class="card-content">
+            <div class="card-title">${tech.name}</div>
+            <div class="card-tags">
+              <span class="tag-chip">${tech.fx.replace('fx-', '').toUpperCase()}</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn-inspect">Preset Code ⚡</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Switch active Image source
+    function switchSourceImage(chipElem) {
+      document.querySelectorAll(".img-chip").forEach(c => c.classList.remove("active"));
+      chipElem.classList.add("active");
+      currentImageSrc = chipElem.getAttribute("data-src");
+
+      // Update all grid images
+      document.querySelectorAll(".preview-img-layer").forEach(img => {
+        img.src = currentImageSrc;
+      });
+      document.getElementById("modalStageImg").src = currentImageSrc;
+    }
+
+    // Handle File Upload
+    function handleCustomImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          currentImageSrc = e.target.result;
+          document.querySelectorAll(".preview-img-layer").forEach(img => {
+            img.src = currentImageSrc;
+          });
+          document.getElementById("modalStageImg").src = currentImageSrc;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Filter Logic
+    function filterGrid() {
+      renderGrid();
+    }
+
+    function filterCategory(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll(".cat-pill").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      renderGrid();
+    }
+
+    function setPlayMode(mode, btn) {
+      playMode = mode;
+      document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderGrid();
+    }
+
+    // Inspector Modal Logic
+    function openModal(tech) {
+      selectedTechnique = tech;
+      document.getElementById("modalTitle").innerText = tech.name;
+      document.getElementById("modalCategory").innerText = tech.cat;
+      document.getElementById("modalEyecannndyLink").href = tech.url;
+      
+      const stageImg = document.getElementById("modalStageImg");
+      stageImg.className = tech.fx;
+      stageImg.src = currentImageSrc;
+
+      generateCSSCode(tech);
+
+      const backdrop = document.getElementById("modalBackdrop");
+      backdrop.classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("modalBackdrop").classList.remove("active");
+    }
+
+    function generateCSSCode(tech) {
+      const codeBlock = document.getElementById("modalCSSCode");
+      const code = `/* Eyecannndy Preset: ${tech.name} (${tech.cat}) */
+.eyecannndy-${tech.name.toLowerCase().replace(/[^a-z0-0]/g, '-')} {
+  animation: ${tech.fx} 2.5s infinite ease-in-out alternate;
+  will-change: transform, filter;
+}
+
+/* Reference: ${tech.url} */`;
+      codeBlock.innerText = code;
+    }
+
+    function updateModalEffect() {
+      const speed = document.querySelectorAll(".slider-input")[0].value;
+      const intensity = document.querySelectorAll(".slider-input")[1].value;
+
+      document.getElementById("speedVal").innerText = `${speed}x`;
+      document.getElementById("intensityVal").innerText = `${intensity}%`;
+
+      const stageImg = document.getElementById("modalStageImg");
+      stageImg.style.animationDuration = `${2.5 / speed}s`;
+      stageImg.style.transform = `scale(${intensity / 100})`;
+    }
+
+    function copyCSSCode() {
+      const code = document.getElementById("modalCSSCode").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("CSS Preset code copied to clipboard!");
+      });
+    }
+
+    // Initial load
+    renderGrid();
+  </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+File: J:\Oidasheim\Musik\FAVs\1_00.html
+Keyword Counts: {'OIDA': 532, 'rap': 82, 'München': 9, 'gangsta': 0, 'grime': 20, 'drill': 36, '808': 45, 'bass': 52, 'beat': 69}
+
+File: J:\Oidasheim\Musik\FAVs\BAM-OIDA Kommando.html
+Keyword Counts: {'OIDA': 1374, 'rap': 60, 'München': 35, 'gangsta': 0, 'grime': 6, 'drill': 22, '808': 21, 'bass': 59, 'beat': 51}
+
+File: J:\Oidasheim\Musik\FAVs\BPM 120 - 130.html
+Keyword Counts: {'OIDA': 518, 'rap': 58, 'München': 7, 'gangsta': 0, 'grime': 0, 'drill': 2, '808': 9, 'bass': 36, 'beat': 62}
+
+File: J:\Oidasheim\Musik\FAVs\clippool.html
+Keyword Counts: {'OIDA': 7872, 'rap': 1146, 'München': 469, 'gangsta': 16, 'grime': 71, 'drill': 188, '808': 262, 'bass': 617, 'beat': 1609}
+
+File: J:\Oidasheim\Musik\FAVs\FAFs06082026.html
+Keyword Counts: {'OIDA': 4262, 'rap': 723, 'München': 262, 'gangsta': 12, 'grime': 85, 'drill': 132, '808': 163, 'bass': 393, 'beat': 823}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs.html
+Keyword Counts: {'OIDA': 2866, 'rap': 459, 'München': 191, 'gangsta': 5, 'grime': 36, 'drill': 79, '808': 112, 'bass': 269, 'beat': 531}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs07072026.html
+Keyword Counts: {'OIDA': 2524, 'rap': 418, 'München': 177, 'gangsta': 6, 'grime': 34, 'drill': 77, '808': 94, 'bass': 239, 'beat': 515}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs29062026.html
+Keyword Counts: {'OIDA': 2356, 'rap': 375, 'München': 165, 'gangsta': 2, 'grime': 27, 'drill': 72, '808': 78, 'bass': 213, 'beat': 454}
+
+File: J:\Oidasheim\Musik\FAVs\FAVS5Stars.html
+Keyword Counts: {'OIDA': 619, 'rap': 85, 'München': 42, 'gangsta': 0, 'grime': 9, 'drill': 11, '808': 17, 'bass': 42, 'beat': 107}
+
+File: J:\Oidasheim\Musik\FAVs\ignaz.html
+Keyword Counts: {'OIDA': 2067, 'rap': 201, 'München': 87, 'gangsta': 2, 'grime': 27, 'drill': 65, '808': 90, 'bass': 202, 'beat': 257}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls (2).html
+Keyword Counts: {'OIDA': 1221, 'rap': 197, 'München': 67, 'gangsta': 6, 'grime': 18, 'drill': 46, '808': 47, 'bass': 122, 'beat': 254}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls.html
+Keyword Counts: {'OIDA': 0, 'rap': 0, 'München': 0, 'gangsta': 0, 'grime': 0, 'drill': 0, '808': 0, 'bass': 0, 'beat': 0}
+
+File: J:\Oidasheim\Musik\FAVs\jopt_tmp_pls.html
+Keyword Counts: {'OIDA': 1241, 'rap': 206, 'München': 70, 'gangsta': 6, 'grime': 18, 'drill': 47, '808': 48, 'bass': 124, 'beat': 272}
+
+File: J:\Oidasheim\Musik\FAVs\labadoida Minga God Frequency.html
+Keyword Counts: {'OIDA': 141, 'rap': 12, 'München': 10, 'gangsta': 0, 'grime': 0, 'drill': 5, '808': 8, 'bass': 11, 'beat': 11}
+
+File: J:\Oidasheim\Musik\FAVs\Oida 21.html
+Keyword Counts: {'OIDA': 439, 'rap': 32, 'München': 38, 'gangsta': 7, 'grime': 1, 'drill': 4, '808': 18, 'bass': 113, 'beat': 143}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo ignatz-Schr__dingers_H__hner.html
+Keyword Counts: {'OIDA': 424, 'rap': 89, 'München': 21, 'gangsta': 4, 'grime': 5, 'drill': 17, '808': 14, 'bass': 43, 'beat': 105}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Tape (2).html
+Keyword Counts: {'OIDA': 238, 'rap': 14, 'München': 8, 'gangsta': 0, 'grime': 1, 'drill': 4, '808': 17, 'bass': 32, 'beat': 26}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Zither Oida.html
+Keyword Counts: {'OIDA': 608, 'rap': 70, 'München': 17, 'gangsta': 0, 'grime': 7, 'drill': 7, '808': 22, 'bass': 44, 'beat': 81}
+
+File: J:\Oidasheim\Musik\FAVs\OIDA_SEMANTIK_TRACK_GRID_100_v5.1.html
+Keyword Counts: {'OIDA': 161, 'rap': 24, 'München': 0, 'gangsta': 0, 'grime': 0, 'drill': 81, '808': 0, 'bass': 114, 'beat': 473}
+
+File: J:\Oidasheim\Musik\FAVs\pl5.html
+Keyword Counts: {'OIDA': 4512, 'rap': 537, 'München': 190, 'gangsta': 6, 'grime': 61, 'drill': 146, '808': 152, 'bass': 405, 'beat': 633}
+
+File: J:\Oidasheim\Musik\FAVs\pl6.html
+Keyword Counts: {'OIDA': 3357, 'rap': 361, 'München': 155, 'gangsta': 6, 'grime': 52, 'drill': 157, '808': 158, 'bass': 380, 'beat': 518}
+
+File: J:\Oidasheim\Musik\FAVs\pl7.html
+Keyword Counts: {'OIDA': 4979, 'rap': 585, 'München': 237, 'gangsta': 6, 'grime': 65, 'drill': 153, '808': 186, 'bass': 462, 'beat': 763}
+
+File: J:\Oidasheim\Musik\FAVs\Playlist 999999999 offthewallclef1328.html
+Keyword Counts: {'OIDA': 7070, 'rap': 435, 'München': 105, 'gangsta': 14, 'grime': 11, 'drill': 84, '808': 137, 'bass': 134, 'beat': 107}
+
+File: J:\Oidasheim\Musik\FAVs\testbsyn.html
+Keyword Counts: {'OIDA': 642, 'rap': 73, 'München': 32, 'gangsta': 0, 'grime': 5, 'drill': 11, '808': 27, 'bass': 93, 'beat': 84}
+
+File: J:\Oidasheim\Musik\FAVs\tmp_incomming21062026.html
+Keyword Counts: {'OIDA': 4669, 'rap': 613, 'München': 210, 'gangsta': 14, 'grime': 32, 'drill': 119, '808': 156, 'bass': 346, 'beat': 722}
+
+File: J:\Oidasheim\Musik\FAVs\tpl000.html
+Keyword Counts: {'OIDA': 32132, 'rap': 4338, 'München': 1471, 'gangsta': 118, 'grime': 248, 'drill': 1128, '808': 1068, 'bass': 2264, 'beat': 4847}
+
+File: J:\Oidasheim\Musik\FAVs\tpl000120-130bopm.html
+Keyword Counts: {'OIDA': 432, 'rap': 52, 'München': 5, 'gangsta': 0, 'grime': 0, 'drill': 2, '808': 18, 'bass': 44, 'beat': 101}
+
+File: J:\Oidasheim\Musik\FAVs\tpl1.html
+Keyword Counts: {'OIDA': 1666, 'rap': 224, 'München': 48, 'gangsta': 0, 'grime': 8, 'drill': 42, '808': 31, 'bass': 56, 'beat': 144}
+
+File: J:\Oidasheim\Musik\FAVs\tpl2.html
+Keyword Counts: {'OIDA': 2893, 'rap': 192, 'München': 48, 'gangsta': 0, 'grime': 8, 'drill': 72, '808': 90, 'bass': 152, 'beat': 317}
+
+File: J:\Oidasheim\Musik\FAVs\tpl3.html
+Keyword Counts: {'OIDA': 1276, 'rap': 195, 'München': 101, 'gangsta': 8, 'grime': 0, 'drill': 65, '808': 20, 'bass': 64, 'beat': 100}
+
+File: J:\Oidasheim\Musik\FAVs\tpl4.html
+Keyword Counts: {'OIDA': 62, 'rap': 84, 'München': 0, 'gangsta': 0, 'grime': 0, 'drill': 8, '808': 21, 'bass': 0, 'beat': 38}
+
+File: J:\Oidasheim\Musik\FAVs\WeissWurschtIs.html
+Keyword Counts: {'OIDA': 7867, 'rap': 1146, 'München': 469, 'gangsta': 16, 'grime': 71, 'drill': 188, '808': 262, 'bass': 617, 'beat': 1609}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] dr_naz.html
+Keyword Counts: {'OIDA': 161, 'rap': 17, 'München': 15, 'gangsta': 1, 'grime': 0, 'drill': 4, '808': 2, 'bass': 9, 'beat': 29}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida (2).html
+Keyword Counts: {'OIDA': 244, 'rap': 47, 'München': 14, 'gangsta': 0, 'grime': 6, 'drill': 20, '808': 9, 'bass': 23, 'beat': 78}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida.html
+Keyword Counts: {'OIDA': 253, 'rap': 42, 'München': 13, 'gangsta': 0, 'grime': 3, 'drill': 20, '808': 9, 'bass': 23, 'beat': 99}
+
+File: J:\Oidasheim\Musik\FAVs\_ 1_05.html
+Keyword Counts: {'OIDA': 3700, 'rap': 612, 'München': 231, 'gangsta': 15, 'grime': 29, 'drill': 118, '808': 176, 'bass': 289, 'beat': 1010}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (3).html
+Keyword Counts: {'OIDA': 244, 'rap': 47, 'München': 14, 'gangsta': 0, 'grime': 6, 'drill': 20, '808': 9, 'bass': 23, 'beat': 78}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (4).html
+Keyword Counts: {'OIDA': 29242, 'rap': 4115, 'München': 1584, 'gangsta': 101, 'grime': 305, 'drill': 990, '808': 1173, 'bass': 2478, 'beat': 4820}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (5).html
+Keyword Counts: {'OIDA': 204, 'rap': 28, 'München': 21, 'gangsta': 0, 'grime': 4, 'drill': 7, '808': 11, 'bass': 26, 'beat': 48}
+
+File: J:\Oidasheim\Musik\FAVs\abfuck-test\abfuck-test.html
+Keyword Counts: {'OIDA': 2753, 'rap': 445, 'München': 180, 'gangsta': 5, 'grime': 34, 'drill': 79, '808': 110, 'bass': 261, 'beat': 518}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\ALT + F4.html
+Keyword Counts: {'OIDA': 305, 'rap': 26, 'München': 21, 'gangsta': 5, 'grime': 0, 'drill': 2, '808': 11, 'bass': 58, 'beat': 95}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\Betonkrone\Betonkrone.html
+Keyword Counts: {'OIDA': 31, 'rap': 3, 'München': 7, 'gangsta': 2, 'grime': 1, 'drill': 0, '808': 1, 'bass': 17, 'beat': 8}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\roottoor\roottoor.html
+Keyword Counts: {'OIDA': 310, 'rap': 41, 'München': 9, 'gangsta': 0, 'grime': 0, 'drill': 14, '808': 4, 'bass': 24, 'beat': 72}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + Tab\ALT + Tab.html
+Keyword Counts: {'OIDA': 107, 'rap': 4, 'München': 10, 'gangsta': 0, 'grime': 0, 'drill': 2, '808': 6, 'bass': 48, 'beat': 45}
+
+File: J:\Oidasheim\Musik\FAVs\anlooten\anlooten.html
+Keyword Counts: {'OIDA': 1236, 'rap': 207, 'München': 80, 'gangsta': 1, 'grime': 17, 'drill': 14, '808': 43, 'bass': 113, 'beat': 207}
+
+File: J:\Oidasheim\Musik\FAVs\Ein Hubschrauber-Rotor\Ein Hubschrauber-Rotor.html
+Keyword Counts: {'OIDA': 1327, 'rap': 175, 'München': 96, 'gangsta': 6, 'grime': 12, 'drill': 38, '808': 85, 'bass': 289, 'beat': 297}
+
+File: J:\Oidasheim\Musik\FAVs\Ein voll Zug fährt ein achtung am gleis\Ein voll Zug f__hrt ein achtung am gleis.html
+Keyword Counts: {'OIDA': 378, 'rap': 46, 'München': 25, 'gangsta': 1, 'grime': 0, 'drill': 6, '808': 25, 'bass': 91, 'beat': 105}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs\FAVs.html
+Keyword Counts: {'OIDA': 2866, 'rap': 459, 'München': 191, 'gangsta': 5, 'grime': 36, 'drill': 79, '808': 112, 'bass': 269, 'beat': 531}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 105\FAVs 105.html
+Keyword Counts: {'OIDA': 1880, 'rap': 199, 'München': 95, 'gangsta': 53, 'grime': 6, 'drill': 32, '808': 36, 'bass': 185, 'beat': 207}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 3\FAVs 3.html
+Keyword Counts: {'OIDA': 648, 'rap': 64, 'München': 38, 'gangsta': 3, 'grime': 4, 'drill': 31, '808': 31, 'bass': 76, 'beat': 70}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 4\FAVs 4.html
+Keyword Counts: {'OIDA': 1804, 'rap': 222, 'München': 72, 'gangsta': 23, 'grime': 18, 'drill': 67, '808': 64, 'bass': 209, 'beat': 263}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 5\FAVs 5+.html
+Keyword Counts: {'OIDA': 834, 'rap': 106, 'München': 45, 'gangsta': 4, 'grime': 9, 'drill': 14, '808': 19, 'bass': 64, 'beat': 120}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs082326\FAVs082326.html
+Keyword Counts: {'OIDA': 2857, 'rap': 231, 'München': 89, 'gangsta': 3, 'grime': 31, 'drill': 78, '808': 71, 'bass': 233, 'beat': 255}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs2\FAVs2.html
+Keyword Counts: {'OIDA': 2866, 'rap': 459, 'München': 191, 'gangsta': 5, 'grime': 36, 'drill': 79, '808': 112, 'bass': 269, 'beat': 531}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs3\FAVs3.html
+Keyword Counts: {'OIDA': 379, 'rap': 47, 'München': 8, 'gangsta': 0, 'grime': 10, 'drill': 4, '808': 6, 'bass': 27, 'beat': 27}
+
+File: J:\Oidasheim\Musik\FAVs\five stars\five stars.html
+Keyword Counts: {'OIDA': 618, 'rap': 52, 'München': 39, 'gangsta': 4, 'grime': 5, 'drill': 3, '808': 13, 'bass': 103, 'beat': 93}
+
+File: J:\Oidasheim\Musik\FAVs\Grind im Glas\Grind im Glas.html
+Keyword Counts: {'OIDA': 1849, 'rap': 174, 'München': 80, 'gangsta': 1, 'grime': 22, 'drill': 75, '808': 93, 'bass': 195, 'beat': 277}
+
+File: J:\Oidasheim\Musik\FAVs\ignaz\ignaz.html
+Keyword Counts: {'OIDA': 2067, 'rap': 201, 'München': 87, 'gangsta': 2, 'grime': 27, 'drill': 65, '808': 90, 'bass': 202, 'beat': 257}
+
+File: J:\Oidasheim\Musik\FAVs\Instrumental in Name\Instrumental in Name.html
+Keyword Counts: {'OIDA': 89, 'rap': 3, 'München': 1, 'gangsta': 0, 'grime': 6, 'drill': 6, '808': 3, 'bass': 22, 'beat': 6}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls\jopt pls (2).html
+Keyword Counts: {'OIDA': 1221, 'rap': 197, 'München': 67, 'gangsta': 6, 'grime': 18, 'drill': 46, '808': 47, 'bass': 122, 'beat': 254}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls\jopt pls.html
+Keyword Counts: {'OIDA': 1221, 'rap': 197, 'München': 67, 'gangsta': 6, 'grime': 18, 'drill': 46, '808': 47, 'bass': 122, 'beat': 254}
+
+File: J:\Oidasheim\Musik\FAVs\Karl-Marx-Ring 104\Karl-Marx-Ring 104.html
+Keyword Counts: {'OIDA': 228, 'rap': 35, 'München': 26, 'gangsta': 1, 'grime': 0, 'drill': 12, '808': 25, 'bass': 64, 'beat': 115}
+
+File: J:\Oidasheim\Musik\FAVs\kurwajoopta\kurwajoopta.html
+Keyword Counts: {'OIDA': 333, 'rap': 40, 'München': 9, 'gangsta': 0, 'grime': 4, 'drill': 9, '808': 18, 'bass': 41, 'beat': 58}
+
+File: J:\Oidasheim\Musik\FAVs\Minga God Frequency\Minga God Frequency.html
+Keyword Counts: {'OIDA': 139, 'rap': 12, 'München': 10, 'gangsta': 0, 'grime': 0, 'drill': 5, '808': 8, 'bass': 11, 'beat': 11}
+
+File: J:\Oidasheim\Musik\FAVs\OdaMoHAHA\OdaMoHAHA.html
+Keyword Counts: {'OIDA': 876, 'rap': 84, 'München': 41, 'gangsta': 8, 'grime': 8, 'drill': 12, '808': 27, 'bass': 134, 'beat': 161}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo\Oidamo.html
+Keyword Counts: {'OIDA': 1795, 'rap': 271, 'München': 100, 'gangsta': 5, 'grime': 27, 'drill': 45, '808': 74, 'bass': 178, 'beat': 359}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - Ein voll Zug fährt ein achtung am gleis\Oidamo - Ein voll Zug f__hrt ein achtung am gleis.html
+Keyword Counts: {'OIDA': 380, 'rap': 46, 'München': 25, 'gangsta': 1, 'grime': 0, 'drill': 6, '808': 25, 'bass': 91, 'beat': 105}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - Placebo Bande\Oidamo - Placebo Bande.html
+Keyword Counts: {'OIDA': 255, 'rap': 38, 'München': 12, 'gangsta': 0, 'grime': 1, 'drill': 13, '808': 13, 'bass': 23, 'beat': 63}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - RuffTopLess\Oidamo - RuffTopLess.html
+Keyword Counts: {'OIDA': 171, 'rap': 19, 'München': 10, 'gangsta': 0, 'grime': 6, 'drill': 1, '808': 9, 'bass': 35, 'beat': 37}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo ignatz-Schr__dingers_H__hner\Oidamo ignatz-Schr__dingers_H__hner.html
+Keyword Counts: {'OIDA': 424, 'rap': 89, 'München': 21, 'gangsta': 4, 'grime': 5, 'drill': 17, '808': 14, 'bass': 43, 'beat': 105}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Mischung viel Raum organisch\Oidamo Mischung viel Raum organisch.html
+Keyword Counts: {'OIDA': 189, 'rap': 32, 'München': 5, 'gangsta': 2, 'grime': 0, 'drill': 6, '808': 7, 'bass': 20, 'beat': 33}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Tape\Oidamo Tape.html
+Keyword Counts: {'OIDA': 238, 'rap': 14, 'München': 8, 'gangsta': 0, 'grime': 1, 'drill': 4, '808': 17, 'bass': 32, 'beat': 26}
+
+File: J:\Oidasheim\Musik\FAVs\Quellcode 089\Quellcode 089.html
+Keyword Counts: {'OIDA': 282, 'rap': 22, 'München': 11, 'gangsta': 0, 'grime': 9, 'drill': 7, '808': 5, 'bass': 18, 'beat': 14}
+
+File: J:\Oidasheim\Musik\FAVs\Stadelheim Door Slam\Stadelheim Door Slam.html
+Keyword Counts: {'OIDA': 1027, 'rap': 106, 'München': 44, 'gangsta': 0, 'grime': 12, 'drill': 25, '808': 34, 'bass': 121, 'beat': 125}
+
+File: J:\Oidasheim\Musik\FAVs\Ultraschall vs\Ultraschall vs.html
+Keyword Counts: {'OIDA': 1143, 'rap': 127, 'München': 117, 'gangsta': 2, 'grime': 2, 'drill': 23, '808': 65, 'bass': 334, 'beat': 337}
+
+File: J:\Oidasheim\Musik\FAVs\Weed___Eat___Need___Sleep___Repeat\Weed ___ Eat ___ Need ___ Sleep ___ Repeat.html
+Keyword Counts: {'OIDA': 728, 'rap': 91, 'München': 29, 'gangsta': 2, 'grime': 10, 'drill': 35, '808': 25, 'bass': 75, 'beat': 136}
+
+File: J:\Oidasheim\Musik\FAVs\WeISSWurscht is 30 JAHRE OIDA\WeISSWurscht is 30 JAHRE OIDA.html
+Keyword Counts: {'OIDA': 420, 'rap': 49, 'München': 37, 'gangsta': 1, 'grime': 0, 'drill': 4, '808': 11, 'bass': 24, 'beat': 60}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] dr_naz\[BeatSync] dr_naz.html
+Keyword Counts: {'OIDA': 158, 'rap': 21, 'München': 19, 'gangsta': 1, 'grime': 0, 'drill': 4, '808': 3, 'bass': 9, 'beat': 62}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida\FAVs07072026.html
+Keyword Counts: {'OIDA': 445, 'rap': 46, 'München': 13, 'gangsta': 0, 'grime': 3, 'drill': 24, '808': 9, 'bass': 23, 'beat': 185}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida\song_grid.html
+Keyword Counts: {'OIDA': 13, 'rap': 1, 'München': 0, 'gangsta': 0, 'grime': 0, 'drill': 3, '808': 0, 'bass': 14, 'beat': 19}

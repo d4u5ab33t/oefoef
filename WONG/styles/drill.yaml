@@ -1,0 +1,5 @@
+id: drill_v1
+sections:
+  chorus:
+    cut_every_n_beats: 1
+    camera_motion: 'dynamic_whip'

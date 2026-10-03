@@ -1,0 +1,4473 @@
+# Copilot Chat Conversation Export: WE.ED.IT OIDA project overview
+
+**User:** @d4u5a
+**Thread URL:** https://github.com/copilot/c/b316dcde-4fa2-41d6-b36f-4b9fc11687a8
+
+## @d4u5a
+
+```
+Oida – nach der ganzen Evolution sehe ich ehrlich gesagt nicht mehr das ursprüngliche weed-lite.
+
+Ich sehe ein neues Projekt.
+
+🧬 WE.ED.IT OIDA Native Genome 1.0
+
+Slogan
+
+The MP3 is the source code.
+
+The Genome is the standard library.
+
+The Director is the optimizer.
+
+The Renderer is the backend.
+
+Ziel
+
+Nicht:
+
+Auto-Video-Editor
+
+sondern
+
+Music Video Compiler with a self-evolving Visual Genome
+
+Architektur
+                         MP3
+                          │
+                 Song Compiler
+                          │
+                 Song Genome AST
+                          │
+             Intent / Story Compiler
+                          │
+                  Story Genome AST
+                          │
+                  Director Compiler
+                          │
+                   Shot Genome AST
+                          │
+               Constraint Optimizer
+                          │
+                  Genome Resolver
+                          │
+                   Candidate Graph
+                          │
+                     RL Bandit
+                          │
+                  Render Genome AST
+                          │
+                    Backend API
+          ┌──────────────┼──────────────┐
+          │              │              │
+       FFmpeg      OpenTimelineIO   DaVinci XML
+
+No renderer contains creativity.
+
+Only execution.
+
+Project
+weedit-native/
+
+core/
+
+compiler/
+
+genome/
+
+director/
+
+resolver/
+
+bandit/
+
+renderer/
+
+scanner/
+
+plugins/
+
+styles/
+
+camera/
+
+transitions/
+
+fx/
+
+tests/
+
+docs/
+
+runtime/
+
+projects/
+
+models/
+
+cache/
+
+reports/
+Core Objects
+
+Everything derives from
+
+class GenomeAsset:
+
+    id
+
+    type
+
+    version
+
+    genes
+
+    reward
+
+    metadata
+
+    history
+
+    tags
+
+Everything.
+
+Clip.
+
+Camera.
+
+Transition.
+
+Style.
+
+FX.
+
+Subtitle.
+
+LUT.
+
+Prompt.
+
+Even Projects.
+
+Visual Genome
+
+Scanner creates
+
+Motion
+
+Color
+
+Emotion
+
+Camera
+
+Composition
+
+Objects
+
+Faces
+
+Lighting
+
+Optical Flow
+
+Entropy
+
+OCR
+
+Embedding
+
+Scene
+
+Weather
+
+Time
+
+Location
+
+Texture
+
+Automatically.
+
+ClipCSS
+
+Generated automatically.
+
+Example
+
+.fast
+
+.orange
+
+.hero
+
+.city
+
+.smoke
+
+.sunset
+
+.closeup
+
+.handheld
+
+Higher level
+
+.drill
+
+.trap
+
+.lofi
+
+.cinematic
+
+.epic
+
+Generated.
+
+Not handwritten.
+
+Style Packages
+style/
+
+drill/
+
+trap/
+
+cinematic/
+
+horror/
+
+anime/
+
+musicvideo/
+
+
+Each contains
+
+constraints.yaml
+
+camera.yaml
+
+fx.yaml
+
+transition.yaml
+
+grading.yaml
+
+director.yaml
+
+Swap styles instantly.
+
+Song Compiler
+
+Outputs
+
+SongAST
+
+↓
+
+SectionAST
+
+↓
+
+PhraseAST
+
+↓
+
+BeatAST
+
+↓
+
+SilenceAST
+
+↓
+
+EnergyCurve
+
+↓
+
+EmotionCurve
+Director
+
+No clips.
+
+Only intentions.
+
+Need
+
+Energy
+
+Camera
+
+Emotion
+
+Color
+
+Rhythm
+
+Continuity
+Genome Resolver
+
+Think SAT solver.
+
+Input
+
+Need
+
+Hero
+
+Warm
+
+Fast
+
+Night
+
+Smoke
+
+Output
+
+Top 25 candidates
+RL Bandit
+
+Never creative.
+
+Only
+
+Which of these 25?
+
+Reward
+
+Beat sync
+
+Continuity
+
+Novelty
+
+Viewer score
+
+Watch time
+
+Manual rating
+Camera Engine
+
+Persistent.
+
+Phrase
+
+↓
+
+Virtual Camera
+
+↓
+
+Clip A
+
+↓
+
+Clip B
+
+↓
+
+Clip C
+
+↓
+
+Clip D
+
+Camera exists independently.
+
+Color Engine
+
+Persistent.
+
+Orange
+
+↓
+
+Orange
+
+↓
+
+Gold
+
+↓
+
+Warm
+
+↓
+
+Fade
+Motion Engine
+
+Persistent.
+
+Motion Curve
+
+↓
+
+applies
+
+↓
+
+whole phrase
+Continuity Engine
+
+Tracks
+
+Faces
+
+Objects
+
+Camera
+
+Motion
+
+Light
+
+Scene
+
+Direction
+
+Speed
+
+Emotion
+
+Across clips.
+
+Visual Grammar
+
+Generated automatically.
+
+.orange
+
++
+
+.smoke
+
++
+
+.hero
+
+↓
+
+.hero_push
+
+Frequently used combinations become reusable tokens.
+
+Exactly like a compiler builds optimization passes.
+
+Genome Database
+
+Not clips.
+
+Experiences.
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Reward
+
+↓
+
+Alternatives
+
+↓
+
+Outcome
+Replay System
+
+Every render becomes reproducible.
+
+Why Shot 28?
+
+↓
+
+Constraint
+
+↓
+
+Candidates
+
+↓
+
+Bandit Decision
+
+↓
+
+Reward
+
+↓
+
+History
+Render AST
+
+Renderer only receives
+
+clip:
+
+trim:
+
+camera:
+
+transition:
+
+lut:
+
+fx:
+
+subtitle:
+
+speed:
+
+audio:
+
+No intelligence.
+
+Backend Interface
+Backend
+
+↓
+
+render(RenderAST)
+
+Implementations
+
+FFmpeg
+
+OpenTimelineIO
+
+Resolve
+
+Premiere
+
+Blender
+
+Unreal
+
+Future AI renderer
+
+Backend interchangeable.
+
+Genome Marketplace
+weed install drill
+
+weed install horror
+
+weed install anime
+
+weed install cinematic
+
+Downloads only
+
+Styles
+
+Camera
+
+Transitions
+
+FX
+
+Constraints
+
+Genome Rules
+
+No code required.
+
+Native Learning
+
+Bandit learns
+
+NOT
+
+Clip 14 good
+
+Instead
+
+When
+
+High Energy Chorus
+
++
+
+Orange
+
++
+
+Push Camera
+
+↓
+
+Reward 96
+
+Knowledge survives projects.
+
+CLI
+weed scan
+
+weed bootstrap
+
+weed compile
+
+weed render
+
+weed replay
+
+weed doctor
+
+weed benchmark
+
+weed report
+
+weed learn
+
+weed upgrade
+
+weed install style drill
+
+weed install camera cinematic
+Report
+
+Automatic HTML
+
+Beat Sync
+
+Camera Curve
+
+Motion Curve
+
+Emotion Curve
+
+Continuity
+
+Reward
+
+Timeline
+
+Statistics
+
+Warnings
+
+Genome Diff
+Philosophy
+
+The most important design decision:
+
+The MP3 is the source code.
+
+The MP3 defines:
+
+total duration
+sections
+phrases
+beats
+pauses
+energy
+
+Everything else follows the music.
+
+Clip audio is always discarded.
+
+Exactly one audio track exists:
+
+MP3
+
+Never
+
+Clip Audio
++
+MP3
+The last missing piece: The Optimizer
+
+This is the part I think would make WE.ED.IT OIDA fundamentally different from existing editors.
+
+Like LLVM repeatedly optimizes machine code, the video compiler would run optimization passes on the Shot AST before rendering:
+
+Beat Alignment Pass
+Camera Continuity Pass
+Motion Flow Pass
+Color Harmony Pass
+Face Diversity Pass
+Transition Simplification Pass
+Surprise Placement Pass
+RL Refinement Pass
+Runtime Reduction Pass
+Render Validation Pass
+
+Only after all passes succeed is the Render AST emitted.
+
+If this were my project
+
+I would stop calling it an editor entirely.
+
+I would build it as a compiler toolchain:
+
+MP3 → Song AST → Intent AST → Story AST → Shot AST → Optimizer Passes → Render AST → Backend
+
+That architecture is modular, explainable, deterministic where it should be, and leaves AI to the places where it adds value (analysis and candidate selection) rather than making the entire pipeline opaque. It's also something that can evolve for years without requiring a complete rewrite.
+
+heute 21:32
+1-Click: MP3 + Clips → Epic Music Video 
+
+Automatisches Matching von Songs und Clips basierend auf semantischen Eigenschaften. Musikvideo-Pipeline 1-Click-1-File
+
+1-Click: MP3 + Clips → Epic Music Video Autonomer AI Art Director  + SCRIPT ENGINE + LEARNED SELECTOR  
+
+use https://github.com/Merserk/BeatSync-Engine.git und https://github.com/GVCLab/CutClaw
+
+Ich glaube, daraus kann man tatsächlich ein sehr starkes Projekt machen. Ich würde es aber nicht als zwei GitHub-Projekte "zusammenkleben", sondern sie als Bausteine in eine saubere Compiler-Architektur integrieren.
+
+🧬 WE.ED.IT OIDA Native Genome 2.0
+1-Click Music Video Compiler
+MP3
+      +
+Clip Library
+
+↓
+
+SCAN
+
+↓
+
+GENOME
+
+↓
+
+DIRECTOR
+
+↓
+
+SCRIPT
+
+↓
+
+RESOLVER
+
+↓
+
+RL BANDIT
+
+↓
+
+SHOT AST
+
+↓
+
+OPTIMIZER
+
+↓
+
+RENDER AST
+
+↓
+
+FFMPEG
+
+↓
+
+FINAL VIDEO
+Philosophy
+MP3
+
+=
+
+Source Code
+
+Clip Library
+
+=
+
+Standard Library
+
+Director
+
+=
+
+Compiler
+
+Optimizer
+
+=
+
+LLVM
+
+Renderer
+
+=
+
+Backend
+
+Everything follows the MP3.
+
+Not the clips.
+
+New Pipeline
+music/
+
+song.mp3
+
+clips/
+
+*.mp4
+
+↓
+
+weed compile
+
+↓
+
+Automatically
+
+Analyze MP3
+
+Analyze Clips
+
+Create Genome
+
+Generate Script
+
+Find Scenes
+
+Optimize
+
+Render
+
+Report
+
+One command.
+
+1. Song Compiler
+
+Uses BeatSync ideas.
+
+Not only BPM.
+
+Extract
+
+Tempo
+
+Downbeats
+
+Phrases
+
+Sections
+
+Drops
+
+Silence
+
+Energy
+
+Novelty
+
+Dynamic Range
+
+Outputs
+
+SongAST
+2. Genome Scanner
+
+Every clip scanned once.
+
+Outputs
+
+ClipDNA
+
+Motion
+
+Faces
+
+Objects
+
+Colors
+
+Camera
+
+Entropy
+
+Scene
+
+Lighting
+
+Embedding
+
+Emotion
+
+Stored forever.
+
+Never rescanned unless changed.
+
+3. Auto ClipCSS
+
+Generated automatically.
+
+.orange
+
+.city
+
+.hero
+
+.fast
+
+.sunset
+
+.smoke
+
+.lowkey
+
+.handheld
+
+Higher classes
+
+.drill
+
+.trap
+
+.lofi
+
+.hype
+
+.epic
+
+Generated by clustering.
+
+4. Script Engine
+
+This is new.
+
+Instead of timeline.
+
+Generate
+
+SCRIPT
+
+Example
+
+INTRO
+
+slow
+
+night
+
+wide
+
+VERSE
+
+medium
+
+city
+
+handheld
+
+PRECHORUS
+
+push
+
+energy rise
+
+CHORUS
+
+hero
+
+closeup
+
+whip
+
+orange
+
+OUTRO
+
+pull
+
+fade
+
+Human readable.
+
+5. Director
+
+Reads
+
+SongAST
+
++
+
+SCRIPT
+
++
+
+Genome
+
+Produces
+
+ShotAST
+
+Only intentions.
+
+Never clips.
+
+6. Resolver
+
+Here CutClaw-style candidate search can fit conceptually.
+
+Input
+
+Need
+
+Hero
+
+Night
+
+Orange
+
+Fast
+
+Output
+
+Top 50 clips
+7. RL Bandit
+
+Very small responsibility.
+
+50 candidates
+
+↓
+
+Best one
+
+Reward
+
+Beat alignment
+
+Continuity
+
+Novelty
+
+User likes
+
+No duplicates
+
+Smooth camera
+
+Viewer retention
+8. Optimizer
+
+Runs passes.
+
+BeatPass
+
+↓
+
+MotionPass
+
+↓
+
+ColorPass
+
+↓
+
+ContinuityPass
+
+↓
+
+CameraPass
+
+↓
+
+TransitionPass
+
+↓
+
+RenderPass
+
+Exactly like LLVM.
+
+9. RenderAST
+
+Renderer gets only
+
+Clip
+
+Trim
+
+Transform
+
+Camera
+
+FX
+
+Transition
+
+Subtitle
+
+Renderer has zero intelligence.
+
+Virtual Camera
+
+Persistent.
+
+Phrase
+
+↓
+
+Camera
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+Instead of zooming every clip independently.
+
+Persistent Color
+Orange
+
+↓
+
+Orange
+
+↓
+
+Gold
+
+↓
+
+Warm
+
+Across multiple clips.
+
+Transition Graph
+
+Instead of random.
+
+CUT
+
+↓
+
+CUT
+
+↓
+
+WHIP
+
+↓
+
+FLASH
+
+↓
+
+SMOOTH
+
+Optimized.
+
+Learned Genome
+
+Every render
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Reward
+
+Database grows forever.
+
+Automatic Reports
+
+Every render creates
+
+HTML
+
+JSON
+
+Timeline
+
+Camera Curve
+
+Beat Curve
+
+Motion Curve
+
+Reward
+
+Warnings
+Output Naming
+
+Automatically
+
+Artist
+
+-
+
+Song
+
+-
+
+DirectorV2
+
+-
+
+Genome17
+
+-
+
+Reward94
+
+-
+
+v003.mp4
+Install Command
+weed install
+
+Creates
+
+models/
+
+cache/
+
+database/
+
+styles/
+
+plugins/
+
+runtime/
+
+reports/
+
+Downloads optional AI models only when needed.
+
+Doctor
+weed doctor
+
+Checks
+
+ffmpeg
+Python
+CUDA
+Torch
+OpenCV
+Database
+Models
+Audio backend
+GPU
+Clip cache
+One Command
+weed make
+
+Does
+
+Scan
+
+↓
+
+Learn
+
+↓
+
+Analyze MP3
+
+↓
+
+Compile
+
+↓
+
+Optimize
+
+↓
+
+Render
+
+↓
+
+Report
+My biggest architectural improvement
+
+I would introduce an Intermediate Representation (IR) that separates creative decisions from rendering.
+
+MP3
+    │
+    ▼
+ Song AST
+    │
+    ▼
+ Director AST
+    │
+    ▼
+ Shot IR
+    │
+    ▼
+ Render IR
+    │
+    ▼
+ FFmpeg / OpenTimelineIO / Resolve XML
+
+That makes the system:
+
+deterministic
+debuggable
+testable
+backend-independent
+extensible
+
+It also means you can later support multiple render targets (FFmpeg today, professional NLE timelines tomorrow) without changing the Director or learning components.
+
+About BeatSync-Engine and CutClaw
+
+Both projects contain ideas that can inspire this architecture:
+
+BeatSync-Engine is a good fit as a music analysis frontend feeding the Song Compiler with beat and section information.
+CutClaw is a good source of ideas for candidate generation and shot selection, but I would adapt those concepts into the Genome Resolver rather than embedding it wholesale.
+
+The result is that WE.ED.IT remains one coherent compiler, where every module has a single responsibility instead of becoming a collection of loosely connected tools. I think that separation is what will keep the project maintainable as it grows.
+```
+
+## Copilot
+
+I can see this is a comprehensive design document for **WE.ED.IT OIDA**, an ambitious music video compiler project that treats MP3 files as source code and applies compiler principles (similar to LLVM) to video generation.
+
+Let me break down the core vision:
+
+## Key Architecture
+
+**The Philosophy**: MP3 is source code; clips are the standard library; the director is the compiler; the optimizer is LLVM.
+
+**The Pipeline**:
+```
+MP3 + Clip Library 
+  → Scanner (extract genome from clips)
+  → Song Compiler (analyze music)
+  → Director (generate intentions, not clips)
+  → Resolver (candidate generation)
+  → RL Bandit (select best candidate)
+  → Optimizer Passes (like LLVM)
+  → Render AST
+  → Backend (FFmpeg, OpenTimelineIO, Resolve)
+```
+
+## Core Components
+
+1. **Song Compiler**: Extracts BPM, phrases, sections, energy curves from MP3
+2. **Genome Scanner**: Analyzes each clip once for motion, faces, colors, camera, emotion
+3. **Auto ClipCSS**: Generates semantic tags like `.orange`, `.hero`, `.handheld`
+4. **Script Engine**: Human-readable shot intentions (NEW)
+5. **Director**: Takes Song AST + Script + Genome → Shot AST (intentions only, no clips)
+6. **Resolver**: Finds top candidates matching director's needs
+7. **RL Bandit**: Selects best candidate based on rewards (beat sync, continuity, novelty)
+8. **Optimizer**: Runs passes (Beat, Motion, Color, Camera, Continuity, Render)
+9. **Renderer**: Receives deterministic RenderAST, no intelligence needed
+
+## Key Innovations
+
+- **Persistent Engines** (Camera, Color, Motion) instead of per-clip transformations
+- **Learned Genome Database**: Stores situation→decision→reward→outcome for transfer learning
+- **Replay System**: Every render is reproducible with full decision history
+- **Intermediate Representation (IR)**: Separates creative decisions from rendering backends
+- **One Command**: `weed make` orchestrates entire pipeline
+
+## Integration Points
+
+The document mentions integrating ideas from:
+- **BeatSync-Engine**: For music analysis
+- **CutClaw**: For candidate generation concepts
+
+## CLI Commands Proposed
+
+```bash
+weed scan           # Analyze clips
+weed compile        # Process MP3
+weed render         # Generate video
+weed replay         # Reproduce past render
+weed doctor         # Check dependencies
+weed install style  # Download genome packages
+weed learn          # Update learned database
+```
+
+---
+
+**Would you like me to help with:**
+1. Implementing any specific component?
+2. Setting up the project structure?
+3. Creating issues for development phases?
+4. Reviewing architecture decisions?
+
+## @d4u5a
+
+full code stack
+
+## Copilot
+
+The **snddot** repository currently only contains a README.md file with the design document. There's no implementation code yet.
+
+Based on the comprehensive architecture in the README, here's the **full code stack** you'd need to build:
+
+## Project Structure
+
+```
+weedit-native/
+├── core/                      # Core data structures
+│   ├── __init__.py
+│   ├── genome.py             # GenomeAsset, ClipDNA base classes
+│   ├── ast_nodes.py          # SongAST, SectionAST, PhraseAST, BeatAST
+│   └── models.py             # Reward, Situation, Decision models
+│
+├── compiler/                  # Music & script compilation
+│   ├── __init__.py
+│   ├── song_compiler.py      # MP3 → SongAST (tempo, beats, phrases, energy)
+│   ├── script_engine.py      # SCRIPT → director intentions
+│   └── intent_compiler.py    # Intent AST generation
+│
+├── scanner/                   # Clip genome extraction
+│   ├── __init__.py
+│   ├── clip_scanner.py       # Motion, faces, objects, colors
+│   ├── css_generator.py      # Auto ClipCSS tags (.orange, .hero, etc)
+│   ├── embeddings.py         # Semantic embeddings
+│   └── analyzers/
+│       ├── motion.py         # Optical flow, motion detection
+│       ├── faces.py          # Face detection & tracking
+│       ├── objects.py        # Object detection
+│       ├── colors.py         # Color analysis
+│       ├── camera.py         # Camera movement analysis
+│       ├── emotion.py        # Emotion detection
+│       └── scene.py          # Scene classification
+│
+├── genome/                    # Genome representation & storage
+│   ├── __init__.py
+│   ├── genome_db.py          # Genome database (clips cache)
+│   ├── genome_rules.py       # Genome constraints & rules
+│   └── genome_diff.py        # Version tracking
+│
+├── director/                  # Creative intent generation
+│   ├── __init__.py
+│   ├── director.py           # SongAST + Script → ShotAST
+│   ├── shot_generator.py     # Generate shot intentions
+│   └── constraints.py        # Camera, FX, transition constraints
+│
+├── resolver/                  # Candidate generation (CutClaw-style)
+│   ├── __init__.py
+│   ├── resolver.py           # SAT solver-like candidate search
+│   ├── matcher.py            # Match needs to clip DNA
+│   └── constraint_solver.py  # Solve constraints
+│
+├── bandit/                    # Reinforcement learning candidate selection
+│   ├── __init__.py
+│   ├── rl_bandit.py          # Multi-armed bandit
+│   ├── rewards.py            # Reward function (beat sync, continuity, novelty)
+│   └── replay_buffer.py      # Store situations & decisions
+│
+├── optimizer/                 # LLVM-style optimization passes
+│   ├── __init__.py
+│   ├── optimizer.py          # Pass orchestrator
+│   ├── passes/
+│   │   ├── beat_pass.py      # Align shots to beats
+│   │   ├── camera_pass.py    # Camera continuity
+│   │   ├── motion_pass.py    # Motion flow smoothing
+│   │   ├── color_pass.py     # Color harmony
+│   │   ├── continuity_pass.py
+│   │   ├── transition_pass.py
+│   │   ├── face_pass.py      # Face diversity
+│   │   ├── surprise_pass.py  # Surprise placement
+│   │   └── render_pass.py    # Final validation
+│   └── engines/
+│       ├── camera_engine.py  # Persistent camera
+│       ├── color_engine.py   # Persistent color
+│       ├── motion_engine.py  # Motion curves
+│       └── continuity_engine.py
+│
+├── renderer/                  # RenderAST → video
+│   ├── __init__.py
+│   ├── render_ast.py         # RenderAST IR definition
+│   ├── ffmpeg_backend.py     # FFmpeg renderer
+│   ├── timeline_backend.py   # OpenTimelineIO
+│   ├── resolve_backend.py    # DaVinci Resolve XML
+│   └── backend_factory.py    # Backend selection
+│
+├── cli/                       # Command-line interface
+│   ├── __init__.py
+│   ├── main.py               # Entry point (weed command)
+│   ├── scan.py               # weed scan
+│   ├── compile.py            # weed compile
+│   ├── render.py             # weed render
+│   ├── replay.py             # weed replay
+│   ├── doctor.py             # weed doctor
+│   ├── install.py            # weed install
+│   ├── learn.py              # weed learn
+│   ├── make.py               # weed make (orchestrator)
+│   └── report.py             # weed report
+│
+├── runtime/                   # Project runtime state
+│   ├── __init__.py
+│   ├── project.py            # Project configuration
+│   ├── session.py            # Render session tracking
+│   └── cache.py              # Clip cache management
+│
+├── models/                    # Pre-trained models
+│   ├── download.py           # Model downloader
+│   └── model_registry.py     # Available models
+│
+├── styles/                    # Style packages
+│   ├── drill/
+│   │   ├── constraints.yaml
+│   │   ├── camera.yaml
+│   │   ├── fx.yaml
+│   │   ├── transition.yaml
+│   │   ├── grading.yaml
+│   │   └── director.yaml
+│   ├── trap/
+│   ├── lofi/
+│   ├── cinematic/
+│   ├── horror/
+│   ├── anime/
+│   └── musicvideo/
+│
+├── plugins/                   # Plugin system
+│   ├── __init__.py
+│   └── plugin_base.py
+│
+├── tests/                     # Comprehensive test suite
+│   ├── __init__.py
+│   ├── test_song_compiler.py
+│   ├── test_scanner.py
+│   ├── test_director.py
+│   ├── test_resolver.py
+│   ├── test_bandit.py
+│   ├── test_optimizer.py
+│   ├── test_renderer.py
+│   └── integration/
+│       └── test_full_pipeline.py
+│
+├── docs/                      # Documentation
+│   ├── architecture.md
+│   ├── api.md
+│   ├── style_guide.md
+│   └── examples/
+│
+├── setup.py                   # Package setup
+├── requirements.txt           # Python dependencies
+├── pyproject.toml            # Project configuration
+└── LICENSE
+
+```
+
+## Core Dependencies
+
+```
+# requirements.txt
+
+# Audio processing
+librosa>=0.10.0
+pydub>=0.25.1
+soundfile>=0.12.1
+
+# ML/Computer Vision
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Video processing
+opencv-python>=4.8.0
+ffmpeg-python>=0.2.1
+av>=10.0.0
+
+# Music analysis
+beat-sync-engine>=0.1.0  # BeatSync integration
+madmom>=0.16.1          # Beat tracking
+
+# Media editing
+pyopentimelineio>=0.15.0
+pymediainfo>=6.0.0
+
+# Face & object detection
+mediapipe>=0.10.0
+ultralytics>=8.0.0      # YOLOv8
+
+# Database & caching
+sqlalchemy>=2.0.0
+redis>=5.0.0
+
+# CLI & utilities
+click>=8.1.0
+rich>=13.5.0
+tqdm>=4.66.0
+
+# Config & serialization
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+```
+
+## Key Module Details
+
+### 1. **core/genome.py** - Base Genome Asset
+```python
+class GenomeAsset:
+    id: str
+    type: str  # Clip, Camera, Transition, Style, FX, etc
+    version: int
+    genes: Dict[str, Any]  # Properties
+    reward: float
+    metadata: Dict
+    history: List[Event]
+    tags: List[str]
+```
+
+### 2. **compiler/song_compiler.py** - MP3 Analysis
+```
+MP3 → Extract:
+  - BPM/Tempo changes
+  - Downbeats & beat grid
+  - Phrases (8/16/32 bars)
+  - Sections (intro, verse, chorus, outro)
+  - Energy curve (0-1 over time)
+  - Emotion curve
+  - Dynamic range
+  → SongAST
+```
+
+### 3. **scanner/clip_scanner.py** - Clip Analysis
+```
+Each MP4 → Extract once:
+  - Motion/optical flow
+  - Face detection & emotion
+  - Object detection
+  - Color histogram & dominant colors
+  - Camera movement (pan, zoom, tilt)
+  - Scene classification
+  - Lighting analysis
+  - Embedding (semantic vector)
+  → ClipDNA (cached forever)
+```
+
+### 4. **director/director.py** - Intention Generation
+```
+Input:
+  - SongAST (beats, energy, structure)
+  - SCRIPT (INTRO/VERSE/CHORUS intentions)
+  - Genome (all clip DNAs)
+
+Output:
+  - ShotAST (intentions, not clips)
+    - Need: "Hero, Warm, Fast, Night, Smoke"
+    - Camera: "Push"
+    - Energy: "Rise"
+    - Color: "Orange"
+```
+
+### 5. **resolver/resolver.py** - Constraint Solver
+```
+Input: Need(Hero, Night, Orange, Fast)
+↓
+Search ClipDNA for matches:
+  - Hero shot? ✓
+  - Night scene? ✓
+  - Orange color? ✓
+  - Fast motion? ✓
+↓
+Output: Top 50 candidates ranked by relevance
+```
+
+### 6. **bandit/rl_bandit.py** - Selection
+```
+Input: 50 candidates
+↓
+Multi-armed bandit selects best:
+  - Reward: beat alignment
+  - Reward: continuity (face, object, camera)
+  - Reward: novelty (not used recently)
+  - Reward: viewer retention
+↓
+Output: Best 1 clip for this shot
+```
+
+### 7. **optimizer/optimizer.py** - Optimization Passes
+```
+ShotAST → Runs 10 passes:
+  1. BeatPass (align to beats)
+  2. MotionPass (smooth motion)
+  3. ColorPass (harmony)
+  4. CameraPass (continuity)
+  5. ContinuityPass (faces, objects)
+  6. TransitionPass (optimize transitions)
+  7. FacePass (diversity)
+  8. SurprisePass (surprise moments)
+  9. RenderPass (validate)
+  10. FinalPass
+→ Render AST
+```
+
+### 8. **renderer/render_ast.py** - Deterministic IR
+```python
+@dataclass
+class RenderAST:
+    clip: str
+    trim: (float, float)        # start, end
+    camera: CameraTransform     # position, zoom, rotation
+    transition: str             # type
+    lut: Optional[str]         # color grading
+    fx: List[Effect]           # effects
+    subtitle: Optional[str]
+    speed: float
+    audio: str                 # MP3 reference
+```
+
+### 9. **cli/main.py** - CLI Commands
+```bash
+weed scan              # Scan clips once → ClipDNA
+weed compile          # MP3 → SongAST
+weed render           # Full pipeline
+weed replay ID        # Reproduce render with history
+weed doctor           # Check dependencies
+weed install style drill
+weed make             # One command: scan → compile → optimize → render
+weed report           # Generate HTML report
+```
+
+### 10. **runtime/project.py** - Project Structure
+```
+music/
+  song.mp3
+
+clips/
+  *.mp4
+
+weed.yaml (config):
+  title: Artist - Song
+  director: DirectorV2
+  style: cinematic
+  
+cache/
+  genomes.db
+  renders/
+  
+reports/
+  render_001.html
+  render_002.html
+```
+
+## Data Flow
+
+```
+1. INPUT
+   music/song.mp3
+   clips/*.mp4
+
+2. SCAN (scanner/)
+   Each clip → ClipDNA (cached)
+   GenomeDB: clip_id → DNA
+
+3. COMPILE (compiler/)
+   MP3 → SongAST (beats, sections, energy)
+
+4. SCRIPT (script_engine/)
+   User writes: INTRO/VERSE/CHORUS intentions
+
+5. DIRECTOR (director/)
+   SongAST + SCRIPT → ShotAST (intentions)
+
+6. RESOLVER (resolver/)
+   Need(Hero, Orange) → Top 50 clips
+
+7. BANDIT (bandit/)
+   50 candidates → 1 best clip
+   Stores: Situation, Decision, Reward
+
+8. OPTIMIZER (optimizer/)
+   ShotAST → 10 passes → Render AST
+
+9. RENDERER (renderer/)
+   Render AST → FFmpeg → VIDEO.mp4
+
+10. REPORT (cli/report.py)
+    HTML timeline, beat curve, reward graph
+```
+
+---
+
+This is a **production-grade compiler architecture** with:
+- ✅ Modular, testable components
+- ✅ Deterministic + learnable
+- ✅ Backend-agnostic (FFmpeg, Resolve, etc)
+- ✅ Reproducible renders with full history
+- ✅ LLVM-style optimization passes
+
+**Ready to start implementing any specific component?**
+
+## @d4u5a
+
+go all
+
+## Copilot
+
+I'm waiting for your confirmation to create the development branch and begin the full stack implementation. This will set up the repository for building the entire WE.ED.IT OIDA compiler architecture.
+
+## @d4u5a
+
+@Copilot Accepted Confirmation: Are you sure?
+
+## Copilot
+
+Now I'll create the complete project structure and all core modules:
+
+*System: User retried message*
+
+## Copilot
+
+I'm ready to proceed with building the full WE.ED.IT OIDA compiler stack. Let me create all the core files and push them together:
+
+*System: User retried message*
+
+## @d4u5a
+
+@Copilot Accepted Confirmation: Are you sure?
+
+## Copilot
+
+Great! The branch exists. Now I'll push the complete code stack:
+
+*System: User retried message*
+
+## Copilot
+
+
+
+*System: User retried message*
+
+## @d4u5a
+
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+WE.ED.IT v9.0 – Audiovisuelles Storytelling mit Full‑HD & einfachen Filtern
+- Full HD (1920x1080) immer, keine Auflösungsreduktion
+- Beat‑sync‑Motion: Bewegung folgt Downbeat/Snare (1 & 2)
+- Joogweel‑Scratch: Vor‑/Rückwärts‑Spul‑Effekt
+- Geister‑Überblendungen (Ghost) in Bridge/Breakdown mit längerem xfade
+- Automatische GPU‑Erkennung + NVENC, Fallback auf CPU
+- 10 einfache, klare Filterpresets
+- Alle bisherigen Fixes (DB‑Migration, Formatkonvertierung, Vektorisierung)
+- Multiuser‑tauglich (Default‑DB‑Kopie, JSON‑Import/Export)
+"""
+
+from __future__ import annotations
+
+import argparse
+import gc
+import json
+import math
+import os
+import random
+import re
+import shutil
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import time
+import warnings
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass, field
+from fractions import Fraction
+from pathlib import Path
+from typing import Callable, Dict, List, Optional, Tuple
+
+warnings.filterwarnings("ignore")
+import numpy as np
+
+# ── Optional deps ────────────────────────────────────────────────────────────
+try:
+    from mutagen.easyid3 import EasyID3
+    from mutagen.id3 import ID3
+    HAS_MUTAGEN = True
+except ImportError:
+    HAS_MUTAGEN = False
+
+try:
+    import psutil
+    HAS_PSUTIL = True
+except ImportError:
+    HAS_PSUTIL = False
+
+try:
+    import aubio
+    HAS_AUBIO = True
+except ImportError:
+    HAS_AUBIO = False
+
+try:
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    HAS_SKLEARN = True
+except ImportError:
+    HAS_SKLEARN = False
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ① CONFIGURATION – v9.0
+# ══════════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class Config:
+    clips_dir:      str = r"D:/raw_vidz/grok"
+    audio_dir:      str = r"D:/Oidasheim/NFOs/mp3s"
+    output_dir:     str = r"D:/Oidasheim/NFOs/done"
+    db_path:        str = r"D:/Oidasheim/weedit/weedit_v4.db"
+    legacy_json_path: str = r"D:/Oidasheim/weedit/weedit_clip_cache.json"
+    fav_html_path:    str = r"D:/Oidasheim/weedit/FAVs29062026.html"
+    default_db_path: Optional[str] = None   # für --copy-default-db
+
+    target_width:   int = 1920
+    target_height:  int = 1080
+    fps:            int = 30
+    video_codec:    str = "libx264"
+    audio_codec:    str = "aac"
+    audio_bitrate:  str = "192k"
+    crf:            int = 18
+    preset:         str = "medium"
+    use_gpu:        bool = False
+    hwaccel:        str = "cuda"
+
+    video_exts: set = field(default_factory=lambda: {".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"})
+    audio_exts: set = field(default_factory=lambda: {".mp3", ".wav", ".flac", ".ogg", ".m4a"})
+
+    # Cut‑Parameter
+    min_cut:        float = 0.15
+    max_cut:        float = 8.0
+    repetition_window: int = 100
+    repetition_penalty: float = 0.50
+    max_segments:   int = 500
+    max_clips:      Optional[int] = None
+
+    # Storytelling‑Gewichte
+    w_semantic: float = 0.45
+    w_energy:   float = 0.30
+    w_diversity: float = 0.70
+    w_tfidf:    float = 0.15
+    w_story:    float = 0.20
+    w_usage:    float = 0.35
+    w_continuity: float = 0.15
+    w_motion:   float = 0.25
+
+    motion_sync_strength: float = 0.40
+    motion_sync_min_speed: float = 0.75
+    motion_sync_max_speed: float = 1.40
+
+    # Beat‑Sync‑Motion: Modulation des Motion‑Bonuses
+    motion_sync_beat_factor: float = 0.30   # Stärke der Beat‑Modulation
+
+    stutter_on:    bool = True
+    stutter_frac:  float = 0.22
+    stutter_reps:  int = 2
+    stutter_every: int = 4
+
+    # Scratch (Joogweel)
+    scratch_prob:  float = 0.05   # Wahrscheinlichkeit pro Segment
+
+    # Geister‑Überblendung (Ghost)
+    ghost_duration: float = 0.8   # Dauer in Sekunden für Geister‑xfade
+
+    blend_duration: float = 0.12
+    xfade_duration: float = 0.35
+    xfade_duration_calm: float = 0.50
+    xfade_duration_hype: float = 0.25
+    xfade_min_overlap: float = 0.14
+
+    num_threads:    int = 1
+    temp_cleanup:   bool = True
+    audio_sr:       int = 22050
+    max_audio_dur:  Optional[float] = None
+    learn_lexicon:  bool = True
+    verbose:        bool = False
+    script_version: str = "v9.0_storytelling"
+
+    # Lyric‑Verständnis
+    use_lyrics:      bool = True
+    lyric_window:    float = 6.0
+    lyric_blend:     float = 0.60
+    w_lyric_tfidf:   float = 0.25
+
+    @classmethod
+    def from_args(cls, args: argparse.Namespace) -> "Config":
+        cfg = cls()
+        if args.clips:  cfg.clips_dir = args.clips
+        if args.audio:  cfg.audio_dir = args.audio
+        if args.output: cfg.output_dir = args.output
+        if args.jobs:   cfg.num_threads = args.jobs
+        if args.crf:    cfg.crf = args.crf
+        if getattr(args, "gpu", False):        cfg.use_gpu = True
+        if getattr(args, "verbose", False):    cfg.verbose = True
+        if getattr(args, "no_learn", False):   cfg.learn_lexicon = False
+        if getattr(args, "no_stutter", False): cfg.stutter_on = False
+        if getattr(args, "no_lyrics", False):  cfg.use_lyrics = False
+        if getattr(args, "db", None):          cfg.db_path = args.db
+        if getattr(args, "copy_default_db", False):
+            script_dir = Path(__file__).parent
+            default_candidates = [
+                script_dir / "default.clip.db",
+                Path.cwd() / "default.clip.db",
+            ]
+            for cand in default_candidates:
+                if cand.is_file():
+                    cfg.default_db_path = str(cand)
+                    break
+        return cfg
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ② HARDWARE AUTO-TUNE (Full‑HD fix, GPU‑Erkennung)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _available_ram() -> float:
+    if HAS_PSUTIL:
+        try:
+            return psutil.virtual_memory().available / 1024**3
+        except Exception:
+            pass
+    if hasattr(os, "sysconf"):
+        try:
+            return os.sysconf("SC_AVPHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") / 1024**3
+        except Exception:
+            pass
+    return 4.0
+
+def _total_ram() -> float:
+    if HAS_PSUTIL:
+        try:
+            return psutil.virtual_memory().total / 1024**3
+        except Exception:
+            pass
+    return 8.0
+
+def _has_nvidia_gpu() -> bool:
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+            capture_output=True, text=True, timeout=5
+        )
+        return result.returncode == 0 and "NVIDIA" in result.stdout
+    except Exception:
+        return False
+
+def _nvenc_available() -> bool:
+    try:
+        result = subprocess.run(
+            ["ffmpeg", "-hide_banner", "-encoders"],
+            capture_output=True, text=True, timeout=10
+        )
+        return "h264_nvenc" in result.stdout
+    except Exception:
+        return False
+
+def _physical_cores() -> int:
+    try:
+        if HAS_PSUTIL:
+            return psutil.cpu_count(logical=False) or os.cpu_count() or 1
+    except Exception:
+        pass
+    return os.cpu_count() or 1
+
+def auto_tune(cfg: Config) -> str:
+    physical_cores = _physical_cores()
+    total_ram = _total_ram()
+    has_nvidia = _has_nvidia_gpu()
+    nvenc_ok = has_nvidia and _nvenc_available()
+
+    # Threads: Windows‑stabil
+    if physical_cores >= 8:
+        cfg.num_threads = min(physical_cores - 1, 6)
+    elif physical_cores >= 4:
+        cfg.num_threads = min(physical_cores - 1, 4)
+    else:
+        cfg.num_threads = 1
+
+    # GPU‑Aktivierung
+    if nvenc_ok:
+        cfg.use_gpu = True
+        cfg.video_codec = "h264_nvenc"
+        cfg.preset = "p2"
+        cfg.hwaccel = "cuda"
+    else:
+        cfg.use_gpu = False
+        cfg.video_codec = "libx264"
+        cfg.hwaccel = "cuda"
+
+    # IMMER Full HD
+    cfg.target_width, cfg.target_height = 1920, 1080
+
+    # Tier‑abhängige Einstellungen (FPS, Preset, Segmentzahl)
+    if physical_cores >= 6 and total_ram >= 16:
+        tier = "high"
+        cfg.fps = 30
+        cfg.max_segments = 500
+        cfg.preset = "p2" if cfg.use_gpu else "medium"
+    elif physical_cores >= 4 and total_ram >= 8:
+        tier = "balanced"
+        cfg.fps = 24
+        cfg.max_segments = 400
+        cfg.max_audio_dur = 900.0
+        cfg.preset = "p2" if cfg.use_gpu else "fast"
+    else:
+        tier = "low"
+        cfg.fps = 20
+        cfg.max_segments = 250
+        cfg.max_audio_dur = 420.0
+        cfg.stutter_on = False
+        cfg.preset = "ultrafast"
+
+    gpu_status = "✅" if cfg.use_gpu else "❌"
+    print(f"[auto-tune] CPU: {physical_cores} Kerne | RAM: {total_ram:.1f} GB | GPU: {gpu_status} | Full HD fix")
+    return tier
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ③ UTILITIES (unverändert)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def log(msg: str, cfg: Optional[Config] = None, level: str = "info", end: str = "\n"):
+    if cfg and not cfg.verbose and level == "debug":
+        return
+    print(msg, end=end)
+
+def scan_recursive(directory: str, exts: set, max_items: Optional[int] = None) -> List[str]:
+    result, seen = [], set()
+    for root, dirs, files in os.walk(directory, followlinks=False):
+        real = os.path.realpath(root)
+        if real in seen:
+            dirs[:] = []
+            continue
+        seen.add(real)
+        for f in files:
+            if Path(f).suffix.lower() in exts:
+                result.append(os.path.join(root, f))
+                if max_items is not None and len(result) >= max_items:
+                    return sorted(result)
+    return sorted(result)
+
+def ffprobe_duration(path: str) -> Optional[float]:
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "json", str(path)],
+            capture_output=True, text=True, timeout=30,
+        )
+        return float(json.loads(r.stdout)["format"]["duration"])
+    except Exception:
+        return None
+
+def versioned_filename(output_dir: str, song_stem: str, script_version: str = "v9.0_storytelling") -> str:
+    os.makedirs(output_dir, exist_ok=True)
+    song_stem = re.sub(r'[^\w\-_. ]', '_', song_stem)
+    n = 1
+    while True:
+        name = f"{song_stem} - WEED{script_version} - v{n:03d}.mp4"
+        p = os.path.join(output_dir, name)
+        if not os.path.exists(p):
+            return p
+        n += 1
+
+def fmt_time(seconds: float) -> str:
+    m, s = divmod(int(seconds), 60)
+    h, m = divmod(m, 60)
+    return f"{h:02d}:{m:02d}:{s:02d}" if h else f"{m:02d}:{s:02d}"
+
+def progress_bar(done: int, total: int, width: int = 30) -> str:
+    if total == 0:
+        return "[" + "─" * width + "]"
+    filled = int(width * done / total)
+    return f"[{'█' * filled}{'─' * (width - filled)}] {done}/{total}"
+
+# ── JSON cache ───────────────────────────────────────────────────────────────
+_CLIP_CACHE: Dict[str, dict] = {}
+
+def load_clip_cache(cfg: Config) -> Dict[str, dict]:
+    global _CLIP_CACHE
+    cache_path = cfg.legacy_json_path
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                for p, info in data.items():
+                    if "vector" in info and isinstance(info["vector"], list):
+                        info["vector"] = np.array(info["vector"], dtype=np.float32)
+                _CLIP_CACHE = data
+                log(f"    Loaded {len(_CLIP_CACHE)} clips from JSON cache.", cfg, "info")
+        except Exception as e:
+            log(f"    ⚠️  Failed to load JSON cache: {e}", cfg, "info")
+            _CLIP_CACHE = {}
+    else:
+        _CLIP_CACHE = {}
+    return _CLIP_CACHE
+
+def save_clip_cache(cfg: Config) -> None:
+    global _CLIP_CACHE
+    if not _CLIP_CACHE:
+        return
+    try:
+        cache_path = cfg.legacy_json_path
+        cache_dir = os.path.dirname(cache_path)
+        if cache_dir:
+            os.makedirs(cache_dir, exist_ok=True)
+        data = {}
+        for p, info in _CLIP_CACHE.items():
+            info_copy = info.copy()
+            if "vector" in info_copy and isinstance(info_copy["vector"], np.ndarray):
+                info_copy["vector"] = info_copy["vector"].tolist()
+            data[p] = info_copy
+        with open(cache_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        log(f"    Saved {len(_CLIP_CACHE)} clips to JSON cache.", cfg, "debug")
+    except Exception as e:
+        log(f"    ⚠️  Failed to save JSON cache: {e}", cfg, "info")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ④ SELF-LEARNING LEXICON (unverändert)
+# ══════════════════════════════════════════════════════════════════════════════
+
+GENRE_KW_SEED: Dict[str, List[str]] = {
+    "electronic": ["techno","house","electro","synth","cyberpunk","drum","bass","dnb","edm",
+                   "rave","club","bpm","beatdrop","laser","strobe","neon","robot","machine",
+                   "kick","snare","sub","glitch","future","digital"],
+    "hiphop":     ["hiphop","hip-hop","rap","trap","drill","underground","beat","flow",
+                   "street","bavaria","munich","minga","corner","ganja","sesh","block",
+                   "hood","grind","hustle","respekt","gang","crew","mic","freestyle",
+                   "money","cash","kette","auto","bling","real","game","boss","szene"],
+    "pop":        ["pop","chart","dance","synthpop","radio","hit","catchy","mainstream",
+                    "party","tanzen","feiern","sommer","sonne"],
+    "soul":       ["soul","rnb","blues","funk","jazz","groove","herz","seele","gefuehl",
+                    "gefühl","zaertlich","zärtlich","sanft","warm"],
+    "rock":       ["rock","metal","punk","guitar","grunge","indie","gitarre","riff",
+                    "band","stage","buehne","bühne","distortion","wild","laut","rebell"],
+}
+MOOD_KW_SEED: Dict[str, List[str]] = {
+    "happy":   ["happy","bright","vibrant","fun","summer","love","high","joy","smile",
+                "sunshine","free","freedom","dance","celebrate","party","together",
+                "gluecklich","glücklich","froh","freude","lachen","liebe","frei","freiheit",
+                "sonne","sommer","tanzen","feiern","zusammen","hoffnung","hope","licht",
+                "light","fly","flying","fliegen","leicht","schoen","schön","strahlen",
+                "shine","gold","hell","farben","colors","juhu","yeah"],
+    "intense": ["intense","dark","aggressive","hard","heavy","evil","gothic",
+                "combat","battle","ruthless","insane","firewall","hass","hate","wut",
+                "anger","kampf","fight","krieg","war","blut","blood","schmerz","pain",
+                "angst","fear","dunkel","dark","schwarz","black","feuer","fire","brennen",
+                "burn","zerbrochen","broken","allein","alone","einsam","lonely","schrei",
+                "scream","wild","chaos","gefahr","danger","messer","gun","waffe",
+                "toedlich","tödlich","rache","revenge","stolz","pride","macht","power",
+                "hart","cold","kalt","eiskalt","brutal","laut","loud"],
+    "calm":    ["calm","chill","atmospheric","slow","ambient","melancholic","peaceful","dreamy",
+                "ruhig","stille","still","traurig","sad","tears","traenen","tränen","weinen",
+                "cry","regen","rain","nacht","night","mond","moon","sterne","stars","himmel",
+                "sky","meer","ocean","see","wolken","clouds","erinnerung","memory","vermissen",
+                "miss","sehnsucht","longing","nostalgie","langsam","leise","quiet","frieden",
+                "peace","atmen","breathe","warten","waiting","zeit","time","zuhause","home"],
+}
+
+LYRIC_STOPWORDS: set = {
+    "der","die","das","den","dem","des","ein","eine","einen","einem","einer","eines",
+    "und","oder","aber","doch","noch","auch","nur","schon","immer","nie","nicht","kein",
+    "keine","ich","du","er","sie","es","wir","ihr","mich","dich","sich","uns","euch",
+    "mein","meine","dein","deine","sein","seine","ihre","unser","euer","ist","war","sind",
+    "war","waren","bin","bist","hat","hab","habe","haben","hatte","werde","wirst","wird",
+    "werden","kann","kannst","koennen","können","muss","musst","muessen","müssen","soll",
+    "sollst","sollen","will","willst","wollen","mag","moechte","möchte","auf","in","an",
+    "am","im","zu","zur","zum","von","vom","mit","bei","nach","aus","fuer","für","um",
+    "durch","gegen","ohne","ueber","über","unter","vor","hinter","neben","zwischen","so",
+    "wie","was","wer","wo","wann","warum","weil","dass","damit","als","wenn","dann","hier",
+    "da","dort","jetzt","heute","this","that","these","those","the","a","an","and","or",
+    "but","not","no","yes","i","you","he","she","it","we","they","me","him","her","us",
+    "them","my","your","his","its","our","their","is","was","were","am","are","be","been",
+    "being","have","has","had","will","would","can","could","should","shall","may","might",
+    "must","do","does","did","to","of","in","on","at","by","for","with","about","against",
+    "between","into","through","during","before","after","above","below","from","up","down",
+    "so","than","too","very","just","now","here","there","when","where","why","how","all",
+    "each","few","more","most","other","some","such","only","own","same","oh","yeah","uh",
+    "na","hey","ah","la","yo",
+}
+
+class LearnedLexicon:
+    def __init__(self, db: "WeeditDB", cfg: Config):
+        self.db = db
+        self.cfg = cfg
+        self.genre_kw = GENRE_KW_SEED.copy()
+        self.mood_kw = MOOD_KW_SEED.copy()
+        self._load()
+    def _load(self):
+        stored = self.db.kv_get("learned_lexicon")
+        if stored:
+            self.genre_kw = stored.get("genre_kw", GENRE_KW_SEED)
+            self.mood_kw = stored.get("mood_kw", MOOD_KW_SEED)
+        elif self.cfg.learn_lexicon:
+            self._learn_from_corpus()
+    def _learn_from_corpus(self):
+        clip_texts = self.db.clip_tag_text()
+        dj_texts = self.db.dj_corpus_text()
+        corpus = clip_texts + dj_texts
+        if not corpus: return
+        word_counts = defaultdict(int)
+        for text in corpus:
+            for word in re.sub(r"[^a-z0-9 ]", " ", text.lower()).split():
+                word_counts[word] += 1
+        with self.db.conn:
+            rows = self.db.conn.execute("SELECT genre, title, artist, comment FROM dj_library").fetchall()
+        genre_associations = defaultdict(list)
+        for genre, title, artist, comment in rows:
+            if genre:
+                text = f"{title} {artist} {comment}".lower()
+                genre_associations[genre.lower()].append(text)
+        all_texts = " ".join(corpus).lower()
+        total_words = len(all_texts.split()) if all_texts else 1
+        for genre, keywords in self.genre_kw.items():
+            genre_texts = " ".join(genre_associations.get(genre, []))
+            genre_words = len(genre_texts.split()) if genre_texts else 1
+            for kw in keywords:
+                general_cnt = word_counts.get(kw, 0)
+                genre_cnt = genre_texts.count(kw) if genre_texts else 0
+                if genre_cnt > 0 and general_cnt > 0:
+                    ratio = (genre_cnt / genre_words) / (general_cnt / total_words)
+                    boost = 1.0 + 0.3 * min(ratio, 2.0)
+        self.db.kv_set("learned_lexicon", {
+            "genre_kw": self.genre_kw,
+            "mood_kw": self.mood_kw,
+            "updated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        })
+    def get_genre_kw(self) -> Dict[str, List[str]]: return self.genre_kw
+    def get_mood_kw(self) -> Dict[str, List[str]]: return self.mood_kw
+
+_DE_UMLAUT_MAP = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"})
+def normalize_de(text: str) -> str:
+    return (text or "").lower().translate(_DE_UMLAUT_MAP)
+
+def extract_lyric_keywords(text: str, max_words: int = 12) -> str:
+    if not text:
+        return ""
+    tokens = re.sub(r"[^a-z0-9 ]", " ", normalize_de(text)).split()
+    kept: List[str] = []
+    for t in tokens:
+        if len(t) < 3 or t in LYRIC_STOPWORDS or t in kept:
+            continue
+        kept.append(t)
+        if len(kept) >= max_words:
+            break
+    return " ".join(kept)
+
+def text_to_9d(text: str, energy: float = 0.5, lexicon: Optional[LearnedLexicon] = None) -> np.ndarray:
+    tokens = set(re.sub(r"[^a-z0-9 ]", " ", normalize_de(text)).split())
+    vec = np.zeros(9, dtype=np.float32)
+    genre_kw = lexicon.get_genre_kw() if lexicon else GENRE_KW_SEED
+    mood_kw = lexicon.get_mood_kw() if lexicon else MOOD_KW_SEED
+    for i, g in enumerate(["electronic", "hiphop", "pop", "soul", "rock"]):
+        vec[i] = min(1.0, sum(normalize_de(kw) in tokens for kw in genre_kw.get(g, [])) * 0.5)
+    for i, m in enumerate(["happy", "intense", "calm"]):
+        vec[5+i] = min(1.0, sum(normalize_de(kw) in tokens for kw in mood_kw.get(m, [])) * 0.5)
+    vec[8] = float(energy)
+    if vec[:8].sum() == 0:
+        vec[1], vec[6] = 0.6, 0.4
+    return vec
+
+def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
+    na, nb = np.linalg.norm(a), np.linalg.norm(b)
+    if na < 1e-9 or nb < 1e-9: return 0.0
+    return float(np.dot(a, b) / (na * nb))
+
+_tfidf_vectorizer = None
+_tfidf_matrix = None
+_tfidf_path_order: List[str] = []
+def prepare_tfidf(clip_texts: List[str], paths: Optional[List[str]] = None) -> None:
+    global _tfidf_vectorizer, _tfidf_matrix, _tfidf_path_order
+    if not HAS_SKLEARN or not clip_texts: return
+    try:
+        _tfidf_vectorizer = TfidfVectorizer()
+        _tfidf_matrix = _tfidf_vectorizer.fit_transform(clip_texts)
+        _tfidf_path_order = list(paths) if paths is not None else []
+    except Exception:
+        _tfidf_vectorizer = None
+        _tfidf_matrix = None
+        _tfidf_path_order = []
+
+def clean_text(text: str) -> str:
+    text = normalize_de(text)
+    text = re.sub(r'[\W_]+', ' ', text)
+    return text.strip()
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑤ SQLITE DATABASE (mit JSON‑Import/Export und Default‑Kopie)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class WeeditDB:
+    def __init__(self, path: str, cfg: Config):
+        self.path = path
+        self.cfg = cfg
+        self._ensure_db_exists()
+        self.conn = sqlite3.connect(path)
+        self.conn.execute("PRAGMA journal_mode=WAL;")
+        self.conn.execute("PRAGMA synchronous=NORMAL;")
+        self.conn.execute("PRAGMA cache_size=-65536;")
+        self._init_tables()
+        load_clip_cache(cfg)
+
+    def _ensure_db_exists(self):
+        if os.path.exists(self.path):
+            return
+        if self.cfg.default_db_path and os.path.isfile(self.cfg.default_db_path):
+            print(f"[DB] Keine Datenbank gefunden. Kopiere Standard-DB von {self.cfg.default_db_path} nach {self.path}")
+            shutil.copy2(self.cfg.default_db_path, self.path)
+
+    def _init_tables(self):
+        c = self.conn.cursor()
+        c.execute("""CREATE TABLE IF NOT EXISTS clips (
+            path TEXT PRIMARY KEY,
+            filename TEXT NOT NULL,
+            duration_s REAL,
+            motion REAL,
+            mtime_ms INTEGER,
+            vector BLOB NOT NULL,
+            emotion TEXT,
+            camera_style TEXT,
+            tags TEXT,
+            last_used INTEGER DEFAULT 0,
+            use_count INTEGER DEFAULT 0,
+            embedding_full BLOB,
+            width INTEGER,
+            height INTEGER,
+            fps REAL,
+            codec TEXT,
+            genre_bucket TEXT DEFAULT 'other'
+        )""")
+        existing_cols = {row[1] for row in c.execute("PRAGMA table_info(clips)").fetchall()}
+        all_columns = [
+            ("filename", "TEXT NOT NULL"),
+            ("duration_s", "REAL"),
+            ("motion", "REAL"),
+            ("mtime_ms", "INTEGER"),
+            ("vector", "BLOB NOT NULL"),
+            ("emotion", "TEXT"),
+            ("camera_style", "TEXT"),
+            ("tags", "TEXT"),
+            ("last_used", "INTEGER DEFAULT 0"),
+            ("use_count", "INTEGER DEFAULT 0"),
+            ("embedding_full", "BLOB"),
+            ("width", "INTEGER"),
+            ("height", "INTEGER"),
+            ("fps", "REAL"),
+            ("codec", "TEXT"),
+            ("genre_bucket", "TEXT DEFAULT 'other'"),
+        ]
+        for col, decl in all_columns:
+            if col not in existing_cols:
+                try:
+                    c.execute(f"ALTER TABLE clips ADD COLUMN {col} {decl}")
+                except sqlite3.OperationalError:
+                    pass
+        c.execute("CREATE INDEX IF NOT EXISTS idx_clips ON clips(filename);")
+        c.execute("CREATE TABLE IF NOT EXISTS kv (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+        c.execute("""CREATE TABLE IF NOT EXISTS dj_library (
+            file_path TEXT PRIMARY KEY, file_name TEXT, title TEXT, artist TEXT,
+            genre TEXT, comment TEXT, bpm REAL, key_text TEXT, rating TEXT, imported_ts INTEGER
+        )""")
+        self.conn.commit()
+
+    def export_json(self, json_path: str) -> int:
+        with self.conn:
+            rows = self.conn.execute("SELECT * FROM clips").fetchall()
+        if not rows:
+            print("[DB] Keine Clips zum Exportieren.")
+            return 0
+        col_names = [desc[0] for desc in self.conn.execute("PRAGMA table_info(clips)").fetchall()]
+        data = []
+        for row in rows:
+            entry = dict(zip(col_names, row))
+            if entry.get("vector"):
+                try:
+                    entry["vector"] = np.frombuffer(entry["vector"], dtype=np.float32).tolist()
+                except:
+                    entry["vector"] = None
+            data.append(entry)
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False, default=str)
+        print(f"[DB] Exportiert {len(data)} Clips nach {json_path}")
+        return len(data)
+
+    def import_json(self, json_path: str) -> int:
+        if not os.path.isfile(json_path):
+            raise FileNotFoundError(f"JSON-Datei nicht gefunden: {json_path}")
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, list):
+            raise ValueError("JSON muss eine Liste von Clip-Objekten sein.")
+        count = 0
+        with self.conn:
+            for entry in data:
+                if "path" not in entry or "vector" not in entry:
+                    continue
+                vec = entry.get("vector")
+                if isinstance(vec, list):
+                    vec_blob = np.array(vec, dtype=np.float32).tobytes()
+                else:
+                    vec_blob = sqlite3.Binary(b"")
+                cols = [
+                    "path", "filename", "duration_s", "motion", "mtime_ms",
+                    "vector", "emotion", "camera_style", "tags",
+                    "use_count", "last_used", "genre_bucket"
+                ]
+                values = [
+                    entry.get("path"),
+                    entry.get("filename", Path(entry["path"]).name),
+                    entry.get("duration_s", 0.0),
+                    entry.get("motion", 0.5),
+                    entry.get("mtime_ms", 0),
+                    vec_blob,
+                    entry.get("emotion", "neutral"),
+                    entry.get("camera_style", "static"),
+                    entry.get("tags", ""),
+                    entry.get("use_count", 0),
+                    entry.get("last_used", 0),
+                    entry.get("genre_bucket", "other"),
+                ]
+                placeholders = ", ".join(["?"] * len(cols))
+                self.conn.execute(
+                    f"INSERT OR REPLACE INTO clips ({', '.join(cols)}) VALUES ({placeholders})",
+                    values
+                )
+                count += 1
+            self.conn.commit()
+        print(f"[DB] Importiert {count} Clips aus {json_path}")
+        return count
+
+    def _normalize_path(self, p: str) -> str:
+        return os.path.normpath(p).replace('\\', '/')
+
+    @staticmethod
+    def _parse_vector(data):
+        if data is None: return np.zeros(9, dtype=np.float32)
+        if isinstance(data, bytes):
+            try: return np.frombuffer(data, dtype=np.float32)
+            except Exception: pass
+        if isinstance(data, str):
+            try:
+                lst = json.loads(data)
+                if isinstance(lst, list): return np.array(lst, dtype=np.float32)
+            except Exception: pass
+        return np.zeros(9, dtype=np.float32)
+
+    def get_cached_clips(self, paths: List[str]) -> Tuple[Dict[str, dict], List[str]]:
+        norm_paths = [self._normalize_path(p) for p in paths]
+        with self.conn:
+            rows = self.conn.execute(
+                "SELECT path, mtime_ms, duration_s, motion, vector, emotion, camera_style, tags, use_count, last_used, genre_bucket FROM clips"
+            ).fetchall()
+        sql_cache = {self._normalize_path(r[0]): r for r in rows}
+        hit, miss = {}, []
+        for p, norm_p in zip(paths, norm_paths):
+            try:
+                mtime = int(Path(p).stat().st_mtime * 1000)
+            except Exception:
+                continue
+            if norm_p in sql_cache and sql_cache[norm_p][1] == mtime:
+                row = sql_cache[norm_p]
+                vec = self._parse_vector(row[4])
+                hit[p] = {
+                    "vector": vec, "duration_s": row[2], "motion": row[3],
+                    "emotion": row[5] or "neutral",
+                    "camera_style": row[6] or "static",
+                    "tags": row[7] or "",
+                    "use_count": row[8] or 0,
+                    "last_used": row[9] or 0,
+                    "genre_bucket": row[10] or "other",
+                }
+                _CLIP_CACHE[p] = hit[p].copy()
+                _CLIP_CACHE[p]["vector"] = vec.tolist()
+            elif p in _CLIP_CACHE:
+                info = _CLIP_CACHE[p]
+                if isinstance(info.get("vector"), list):
+                    info["vector"] = np.array(info["vector"], dtype=np.float32)
+                hit[p] = info
+                self._upsert_from_cache(p, info)
+            else:
+                miss.append(p)
+        return hit, miss
+
+    def _upsert_from_cache(self, path: str, info: dict):
+        try:
+            vec = info.get("vector")
+            if vec is None: return
+            if isinstance(vec, list): vec = np.array(vec, dtype=np.float32)
+            mtime = int(Path(path).stat().st_mtime * 1000)
+            with self.conn:
+                self.conn.execute(
+                    "INSERT OR REPLACE INTO clips (path, filename, duration_s, motion, mtime_ms, vector, emotion, camera_style, tags, genre_bucket) "
+                    "VALUES (?,?,?,?,?,?,?,?,?,?)",
+                    (path, Path(path).name, info.get("duration_s", 0.0),
+                     info.get("motion", 0.5), mtime, vec.tobytes(),
+                     info.get("emotion", "neutral"), info.get("camera_style", "static"),
+                     info.get("tags", ""), info.get("genre_bucket", "other"))
+                )
+                self.conn.commit()
+        except Exception:
+            pass
+
+    def update_motion_scores(self, updates: List[Tuple[str, float]]):
+        if not updates:
+            return
+        with self.conn:
+            self.conn.executemany(
+                "UPDATE clips SET motion = ? WHERE path = ?",
+                [(mot, p) for p, mot in updates]
+            )
+            self.conn.commit()
+        for p, mot in updates:
+            if p in _CLIP_CACHE:
+                _CLIP_CACHE[p]["motion"] = mot
+        save_clip_cache(self.cfg)
+
+    def save_clips(self, entries: List[Tuple]):
+        if not entries: return
+        with self.conn:
+            self.conn.executemany(
+                "INSERT OR REPLACE INTO clips (path, filename, duration_s, motion, mtime_ms, vector, emotion, camera_style, tags, use_count, last_used, genre_bucket) "
+                "VALUES (?,?,?,?,?,?,?,?,?, COALESCE((SELECT use_count FROM clips WHERE path=?1), 0), COALESCE((SELECT last_used FROM clips WHERE path=?1), 0), ?)",
+                [(p, fn, dur, mot, mt, vec.astype(np.float32).tobytes(), emo, cam, tags, genre)
+                 for p, fn, dur, mot, mt, vec, emo, cam, tags, genre in entries]
+            )
+            self.conn.commit()
+        for p, fn, dur, mot, mt, vec, emo, cam, tags, genre in entries:
+            _CLIP_CACHE[p] = {
+                "duration_s": dur, "motion": mot, "vector": vec.tolist(),
+                "emotion": emo, "camera_style": cam, "tags": tags,
+                "genre_bucket": genre,
+            }
+        save_clip_cache(self.cfg)
+
+    def bump_usage(self, paths: List[str]):
+        if not paths: return
+        now = int(time.time())
+        with self.conn:
+            self.conn.executemany(
+                "UPDATE clips SET use_count = COALESCE(use_count,0) + 1, last_used = ? WHERE path = ?",
+                [(now, p) for p in paths]
+            )
+            self.conn.commit()
+        for p in paths:
+            if p in _CLIP_CACHE:
+                _CLIP_CACHE[p]["use_count"] = _CLIP_CACHE[p].get("use_count", 0) + 1
+                _CLIP_CACHE[p]["last_used"] = now
+        save_clip_cache(self.cfg)
+
+    def upsert_dj_track(self, entry: dict):
+        with self.conn:
+            self.conn.execute(
+                "INSERT OR REPLACE INTO dj_library (file_path, file_name, title, artist, genre, comment, bpm, key_text, rating, imported_ts) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (entry.get("file_path",""), entry.get("file_name",""),
+                 entry.get("title",""), entry.get("artist",""), entry.get("genre",""),
+                 entry.get("comment",""), entry.get("bpm") or 0.0, entry.get("key_text",""),
+                 entry.get("rating",""), int(time.time()))
+            )
+            self.conn.commit()
+
+    def dj_corpus_text(self) -> List[str]:
+        with self.conn:
+            rows = self.conn.execute("SELECT title, artist, genre, comment FROM dj_library").fetchall()
+        return [" ".join(filter(None, r)) for r in rows]
+
+    def clip_tag_text(self) -> List[str]:
+        with self.conn:
+            rows = self.conn.execute("SELECT emotion, tags FROM clips WHERE tags IS NOT NULL").fetchall()
+        return [" ".join(filter(None, r)) for r in rows]
+
+    def kv_get(self, key: str) -> Optional[dict]:
+        with self.conn:
+            row = self.conn.execute("SELECT value FROM kv WHERE key=?", (key,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def kv_set(self, key: str, value: dict):
+        with self.conn:
+            self.conn.execute("INSERT OR REPLACE INTO kv (key,value) VALUES (?,?)", (key, json.dumps(value)))
+            self.conn.commit()
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑥ EUCLIDEAN RHYTHM ENGINE (unverändert)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class EuclideanRhythm:
+    @staticmethod
+    def generate(n: int, k: int) -> List[bool]:
+        if k <= 0: return [False] * n
+        if k >= n: return [True] * n
+        pattern = []
+        counts = []
+        remainders = []
+        divisor = n - k
+        level = 0
+        while True:
+            counts.append(divisor // k)
+            remainders.append(divisor % k)
+            divisor = k
+            k = remainders[level]
+            level += 1
+            if k == 0: break
+        def build(level: int) -> List[bool]:
+            if level == 0: return [True]
+            if level == 1: return [True] + [False] * (counts[0] + 1)
+            prev = build(level - 1)
+            result = []
+            for i, val in enumerate(prev):
+                result.append(val)
+                if i < counts[level - 1]:
+                    result.append(False)
+            return result
+        pattern = build(level)
+        while len(pattern) < n: pattern.append(False)
+        pattern = pattern[:n]
+        return pattern
+
+    @staticmethod
+    def pattern_to_indices(pattern: List[bool]) -> List[int]:
+        return [i for i, hit in enumerate(pattern) if hit]
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑦ AUDIO ANALYSIS (erweitert für Vibe & Story)
+# ══════════════════════════════════════════════════════════════════════════════
+
+SECTION_RULES: Dict[str, dict] = {
+    "intro":      {"bpc": 4,  "stutter": 0.00, "timewarp": 0.00, "phrase_bars": 4, "triplet_prob": 0.00},
+    "verse":      {"bpc": 2,  "stutter": 0.10, "timewarp": 0.10, "phrase_bars": 4, "triplet_prob": 0.08},
+    "pre-chorus": {"bpc": 1,  "stutter": 0.20, "timewarp": 0.00, "phrase_bars": 2, "triplet_prob": 0.15},
+    "chorus":     {"bpc": 1,  "stutter": 0.15, "timewarp": 0.00, "phrase_bars": 2, "triplet_prob": 0.10},
+    "drop":       {"bpc": 1,  "stutter": 0.40, "timewarp": 0.00, "phrase_bars": 2, "triplet_prob": 0.05},
+    "bridge":     {"bpc": 2,  "stutter": 0.05, "timewarp": 0.50, "phrase_bars": 3, "triplet_prob": 0.35},
+    "breakdown":  {"bpc": 4,  "stutter": 0.00, "timewarp": 0.80, "phrase_bars": 4, "triplet_prob": 0.20},
+    "outro":      {"bpc": 4,  "stutter": 0.00, "timewarp": 0.20, "phrase_bars": 4, "triplet_prob": 0.00},
+}
+DEFAULT_RULE = {"bpc": 2, "stutter": 0.10, "timewarp": 0.10, "phrase_bars": 3, "triplet_prob": 0.05}
+
+def _lcm(a: int, b: int) -> int:
+    a, b = max(1, abs(a)), max(1, abs(b))
+    return a * b // math.gcd(a, b)
+
+def compute_stutter_params(section: str, cfg: "Config") -> Tuple[float, int]:
+    rule = SECTION_RULES.get(section, DEFAULT_RULE)
+    triplet_prob = float(rule.get("triplet_prob", 0.0))
+    if triplet_prob > 0.0 and random.random() < triplet_prob:
+        bpc = max(1, int(rule.get("bpc", DEFAULT_RULE["bpc"])))
+        frac = Fraction(1, 3)
+        cycle = _lcm(3, bpc)
+        reps = int(np.clip(cycle // 3, 2, 4))
+        return float(frac), reps
+    return cfg.stutter_frac, cfg.stutter_reps
+
+_BPM_LO, _BPM_HI = 70.0, 180.0
+_SECTION_MOTION_BIAS = {
+    "intro": -0.15, "outro": -0.15, "breakdown": -0.20,
+    "verse": -0.05, "bridge": -0.05,
+    "pre-chorus": 0.05, "chorus": 0.10, "drop": 0.20,
+}
+
+def compute_target_motion(bpm: float, section: str) -> float:
+    bpm_norm = np.clip((bpm - _BPM_LO) / (_BPM_HI - _BPM_LO), 0.0, 1.0)
+    base = 0.15 + 0.65 * bpm_norm
+    target = base + _SECTION_MOTION_BIAS.get(section, 0.0)
+    return float(np.clip(target, 0.05, 0.95))
+
+def compute_motion_speed(actual_motion: float, target_motion: float, cfg: "Config") -> float:
+    actual_motion = max(actual_motion, 0.02)
+    target_motion = max(target_motion, 0.02)
+    ratio = actual_motion / target_motion
+    strength = float(np.clip(cfg.motion_sync_strength, 0.0, 1.0))
+    factor = 1.0 + strength * (ratio - 1.0)
+    return float(np.clip(factor, cfg.motion_sync_min_speed, cfg.motion_sync_max_speed))
+
+def _ffmpeg_decode_pcm(path: str, sr: int = 22050, max_dur: Optional[float] = None) -> Optional[np.ndarray]:
+    cmd = ["ffmpeg", "-v", "error"]
+    if max_dur: cmd += ["-t", f"{max_dur:.2f}"]
+    cmd += ["-i", path, "-ac", "1", "-ar", str(sr), "-f", "f32le", "-"]
+    try:
+        result = subprocess.run(cmd, capture_output=True, timeout=180)
+        if result.returncode != 0 or not result.stdout: return None
+        return np.frombuffer(result.stdout, dtype=np.float32).copy()
+    except Exception: return None
+
+def _rms_curve(y: np.ndarray, sr: int, hop: int = 512) -> Tuple[np.ndarray, np.ndarray]:
+    win = hop * 2
+    n_frames = max(1, (len(y) - win) // hop + 1)
+    rms = np.zeros(n_frames, dtype=np.float32)
+    for i in range(n_frames):
+        s = i * hop
+        frame = y[s: s + win]
+        rms[i] = float(np.sqrt(np.mean(frame ** 2))) if len(frame) else 0.0
+    rms = np.convolve(rms, np.ones(20) / 20, mode="same").astype(np.float32)
+    lo, hi = rms.min(), rms.max()
+    return (rms - lo) / (hi - lo + 1e-9), np.arange(n_frames, dtype=np.float32) * hop / sr
+
+def _autocorr_bpm(y: np.ndarray, sr: int) -> float:
+    try:
+        hop = 512
+        rms, _ = _rms_curve(y, sr, hop)
+        fps_env = sr / hop
+        lag_lo = max(1, int(fps_env * 60 / 210))
+        lag_hi = int(fps_env * 60 / 60)
+        lag_hi = min(lag_hi, len(rms) - 1)
+        if lag_hi <= lag_lo: return 120.0
+        rms_c = rms - rms.mean()
+        ac = np.correlate(rms_c, rms_c, mode="full")[len(rms_c) - 1:]
+        best = int(np.argmax(ac[lag_lo: lag_hi + 1])) + lag_lo
+        return float(np.clip((fps_env * 60.0) / best, 60, 210))
+    except Exception: return 120.0
+
+def _beat_grid(bpm: float, duration: float, y: np.ndarray, sr: int) -> np.ndarray:
+    step = 60.0 / max(bpm, 1)
+    grid = np.arange(0, duration, step, dtype=np.float64)
+    rms, times = _rms_curve(y, sr, 512)
+    window = step / 3.0
+    out = []
+    for t in grid:
+        lo = int(np.searchsorted(times, t - window))
+        hi = int(np.searchsorted(times, t + window))
+        if hi > lo:
+            out.append(float(times[lo + int(np.argmax(rms[lo:hi]))]))
+        else:
+            out.append(float(t))
+    return np.array(out, dtype=np.float32)
+
+def _detect_scratches_np(y: np.ndarray, sr: int) -> List[dict]:
+    try:
+        hop, win = 512, 1024
+        n_frames = max(0, (len(y) - win) // hop)
+        if n_frames < 4: return []
+        prev_mag = None
+        flux = np.zeros(n_frames, dtype=np.float32)
+        for i in range(n_frames):
+            frame = y[i * hop: i * hop + win] * np.hanning(win)
+            mag = np.abs(np.fft.rfft(frame))
+            if prev_mag is not None:
+                flux[i] = float(np.sum(np.maximum(mag - prev_mag, 0)))
+            prev_mag = mag
+        times = np.arange(n_frames, dtype=np.float32) * hop / sr
+        mean_f = np.convolve(flux, np.ones(20) / 20, mode="same")
+        peaks = np.where(flux > 2.0 * mean_f + flux.std() * 0.5)[0]
+        result, last = [], -1.0
+        for idx in peaks:
+            t = float(times[idx])
+            if t - last > 0.5:
+                result.append({"time": t, "strength": float(flux[idx])})
+                last = t
+        return result
+    except Exception: return []
+
+def _detect_onsets_aubio(y: np.ndarray, sr: int) -> List[float]:
+    if not HAS_AUBIO: return []
+    try:
+        win = 512
+        hop = win // 2
+        onset = aubio.onset("default", win, hop, sr)
+        onsets = []
+        for i in range(0, len(y) - win, hop):
+            frame = y[i:i+win]
+            if onset(frame):
+                onsets.append(i / sr)
+        return onsets
+    except Exception: return []
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑦b LYRICS (verbessert für Storytelling)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class Lyrics:
+    _LRC_TS = re.compile(r"\[(\d{1,2}):(\d{2})(?:[.:](\d{1,3}))?\]")
+
+    def __init__(self, audio_path: str, duration: float, cfg: Config):
+        self.cfg = cfg
+        self.duration = max(duration, 0.1)
+        self.lines: List[Tuple[float, float, str]] = []
+        self.source = "none"
+        if cfg.use_lyrics:
+            self._load(audio_path)
+        self._repeated_cache: Optional[set] = None
+
+    def _load(self, audio_path: str):
+        pairs = self._read_id3_sylt(audio_path)
+        if pairs:
+            self.lines = self._pairs_to_spans(pairs)
+            self.source = "id3_sylt"
+            return
+        lrc_path = Path(audio_path).with_suffix(".lrc")
+        if lrc_path.is_file():
+            pairs = self._parse_lrc(lrc_path)
+            if pairs:
+                self.lines = self._pairs_to_spans(pairs)
+                self.source = "lrc_file"
+                return
+        text = self._read_id3_uslt(audio_path)
+        if text and text.strip():
+            self.lines = self._spread_text(text)
+            self.source = "id3_uslt"
+            return
+        txt_path = Path(audio_path).with_suffix(".txt")
+        if txt_path.is_file():
+            try:
+                text = txt_path.read_text(encoding="utf-8", errors="ignore")
+            except Exception:
+                text = ""
+            if text.strip():
+                self.lines = self._spread_text(text)
+                self.source = "txt_file"
+
+    def _read_id3_sylt(self, path: str) -> Optional[List[Tuple[float, str]]]:
+        if not HAS_MUTAGEN:
+            return None
+        try:
+            id3 = ID3(path)
+            for key in id3.keys():
+                if not key.startswith("SYLT"):
+                    continue
+                frame = id3.get(key)
+                pairs = [(ms / 1000.0, txt) for txt, ms in getattr(frame, "text", [])
+                         if txt and txt.strip()]
+                if pairs:
+                    return sorted(pairs, key=lambda p: p[0])
+        except Exception:
+            pass
+        return None
+
+    def _read_id3_uslt(self, path: str) -> Optional[str]:
+        if not HAS_MUTAGEN:
+            return None
+        try:
+            id3 = ID3(path)
+            for key in id3.keys():
+                if key.startswith("USLT"):
+                    frame = id3.get(key)
+                    txt = getattr(frame, "text", "")
+                    if txt and txt.strip():
+                        return txt
+        except Exception:
+            pass
+        return None
+
+    def _parse_lrc(self, path: Path) -> Optional[List[Tuple[float, str]]]:
+        try:
+            raw = path.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            return None
+        pairs: List[Tuple[float, str]] = []
+        for line in raw.splitlines():
+            stamps = self._LRC_TS.findall(line)
+            if not stamps:
+                continue
+            text = self._LRC_TS.sub("", line).strip()
+            if not text:
+                continue
+            for m, s, ms in stamps:
+                frac = (ms.ljust(3, "0")[:3]) if ms else "0"
+                t = int(m) * 60 + int(s) + int(frac) / 1000.0
+                pairs.append((t, text))
+        return sorted(pairs, key=lambda p: p[0]) if pairs else None
+
+    def _pairs_to_spans(self, pairs: List[Tuple[float, str]]) -> List[Tuple[float, float, str]]:
+        spans = []
+        for i, (t, text) in enumerate(pairs):
+            end = pairs[i + 1][0] if i + 1 < len(pairs) else self.duration
+            if end <= t:
+                end = min(self.duration, t + 2.5)
+            spans.append((t, end, text))
+        return spans
+
+    def _spread_text(self, text: str) -> List[Tuple[float, float, str]]:
+        lines = [l.strip() for l in re.split(r"[\r\n]+", text) if l.strip()]
+        if not lines:
+            return []
+        span = self.duration / len(lines)
+        return [(i * span, (i + 1) * span, l) for i, l in enumerate(lines)]
+
+    def at(self, t: float, window: Optional[float] = None) -> str:
+        if not self.lines:
+            return ""
+        w = window if window is not None else self.cfg.lyric_window
+        lo, hi = t - w / 2, t + w / 2
+        return " ".join(text for (s, e, text) in self.lines if e >= lo and s <= hi)
+
+    def full_text(self) -> str:
+        return " ".join(text for (_, _, text) in self.lines)
+
+    def repeated_lines(self, min_count: int = 2) -> set:
+        if self._repeated_cache is not None:
+            return self._repeated_cache
+        counts: Dict[str, int] = defaultdict(int)
+        for (_, _, text) in self.lines:
+            norm = re.sub(r"[^a-z0-9 ]", "", normalize_de(text)).strip()
+            if len(norm) >= 4:
+                counts[norm] += 1
+        self._repeated_cache = {t for t, c in counts.items() if c >= min_count}
+        return self._repeated_cache
+
+    def is_repeated_at(self, t: float, window: Optional[float] = None) -> bool:
+        if not self.lines:
+            return False
+        rep = self.repeated_lines()
+        if not rep:
+            return False
+        w = window if window is not None else self.cfg.lyric_window
+        lo, hi = t - w / 2, t + w / 2
+        for (s, e, text) in self.lines:
+            if e >= lo and s <= hi:
+                norm = re.sub(r"[^a-z0-9 ]", "", normalize_de(text)).strip()
+                if norm in rep:
+                    return True
+        return False
+
+
+class AudioAnalysis:
+    def __init__(self, path: str, cfg: Config, lexicon: Optional[LearnedLexicon] = None):
+        self.path = path
+        self.name = Path(path).stem
+        self.cfg = cfg
+        self.lexicon = lexicon
+        log(f"\n🎵  Analysing: {self.name}", cfg, "info")
+        self.meta = self._read_id3()
+        self.duration = ffprobe_duration(path) or 180.0
+        if cfg.max_audio_dur:
+            self.duration = min(self.duration, cfg.max_audio_dur)
+        log(f"    ID3 → {self.meta.get('artist','?')} — {self.meta.get('title', self.name)} [{self.meta.get('genre','?')}]", cfg, "info")
+        self.lyrics = Lyrics(path, self.duration, cfg)
+        if self.lyrics.source != "none":
+            log(f"    📝 Lyrics ← {self.lyrics.source} ({len(self.lyrics.lines)} Zeilen)", cfg, "info")
+        else:
+            log(f"    📝 Lyrics: keine Quelle gefunden – nutze nur Metadaten.", cfg, "info")
+        sr = cfg.audio_sr
+        self.sr = sr
+        y = _ffmpeg_decode_pcm(path, sr=sr, max_dur=cfg.max_audio_dur)
+        if y is None or len(y) < sr * 2:
+            self._fallback_init()
+            return
+        self.energy_curve, self.energy_times = _rms_curve(y, sr)
+        self.tempo = _autocorr_bpm(y, sr)
+        self.beat_times = _beat_grid(self.tempo, self.duration, y, sr)
+        self.scratches = _detect_scratches_np(y, sr)
+        self.onsets = _detect_onsets_aubio(y, sr) if HAS_AUBIO else []
+        self.sections = self._detect_structure()
+        lyric_full = self.lyrics.full_text() if getattr(self, "lyrics", None) else ""
+        tag_text = " ".join(filter(None, [
+            self.meta.get("title",""), self.meta.get("artist",""),
+            self.meta.get("genre",""), self.meta.get("comment",""), self.name,
+            lyric_full,
+        ]))
+        self.base_vector = text_to_9d(tag_text, energy=0.5, lexicon=lexicon)
+        del y
+        gc.collect()
+        log(f"    ⏱  {self.duration:.1f}s | {self.tempo:.1f} BPM | {len(self.beat_times)} beats | {len(self.scratches)} scratches | {len(self.onsets)} onsets | {len(self.sections)} sections", cfg, "info")
+
+    def _fallback_init(self):
+        self.tempo = 120.0
+        step = 60.0 / self.tempo
+        self.beat_times = np.arange(0, self.duration, step, dtype=np.float32)
+        n = 200
+        self.energy_times = np.linspace(0, self.duration, n, dtype=np.float32)
+        self.energy_curve = np.full(n, 0.5, dtype=np.float32)
+        self.scratches = []
+        self.onsets = []
+        self.sections = self._detect_structure() if getattr(self, "lyrics", None) else [{"label": "verse", "start": 0.0}]
+        self.base_vector = text_to_9d(self.name, 0.5, lexicon=self.lexicon)
+        log(f"    ⚠️  PCM decode failed — 120 BPM fallback, {self.duration:.1f}s", self.cfg, "info")
+
+    def energy_at(self, t: float) -> float:
+        idx = int(np.clip(np.searchsorted(self.energy_times, t), 0, len(self.energy_curve) - 1))
+        return float(self.energy_curve[idx])
+    def section_at(self, t: float) -> str:
+        for s in reversed(self.sections):
+            if t >= s["start"]: return s["label"]
+        return "verse"
+    def has_scratch_at(self, t: float, window: float = 0.3) -> bool:
+        return any(abs(s["time"] - t) <= window for s in self.scratches)
+
+    def vibe_9d_at(self, t: float) -> np.ndarray:
+        vec = self.base_vector.copy()
+        local_text = self.lyrics.at(t) if getattr(self, "lyrics", None) else ""
+        if local_text:
+            local_vec = text_to_9d(local_text, energy=self.energy_at(t), lexicon=self.lexicon)
+            if local_vec[:8].sum() > 0:
+                b = self.cfg.lyric_blend
+                vec[:8] = (1.0 - b) * vec[:8] + b * local_vec[:8]
+        vec[8] = self.energy_at(t)
+        return vec
+
+    def lyric_query_at(self, t: float) -> str:
+        if not getattr(self, "lyrics", None):
+            return ""
+        return extract_lyric_keywords(self.lyrics.at(t))
+
+    def close(self):
+        self.energy_curve = self.energy_times = self.beat_times = None
+        gc.collect()
+
+    def _read_id3(self) -> dict:
+        if not HAS_MUTAGEN: return {}
+        try:
+            t = EasyID3(self.path)
+            return {"title": t.get("title", [""])[0], "artist": t.get("artist", [""])[0],
+                    "genre": t.get("genre", [""])[0], "comment": t.get("comment",[""])[0]}
+        except Exception: return {}
+
+    def _detect_structure(self) -> List[dict]:
+        seg_s = 4.0
+        n = max(1, int(self.duration / seg_s))
+        energies = []
+        for i in range(n):
+            s = int(np.searchsorted(self.energy_times, i * seg_s))
+            e = int(np.searchsorted(self.energy_times, min((i+1)*seg_s, self.duration)))
+            chunk = self.energy_curve[s:e]
+            energies.append(float(np.mean(chunk)) if chunk.size > 0 else 0.0)
+        e_hi = float(np.percentile(energies, 75))
+        e_lo = float(np.percentile(energies, 30))
+        lyrics = getattr(self, "lyrics", None)
+        has_lyric_signal = bool(lyrics and lyrics.repeated_lines())
+        sections, prev = [], None
+        for i, e in enumerate(energies):
+            rel = i / max(1, n - 1)
+            seg_mid = (i + 0.5) * seg_s
+            if rel < 0.10: label = "intro"
+            elif rel > 0.90: label = "outro"
+            elif e >= e_hi: label = "drop" if i > 0 and (e - energies[i-1]) > 0.2 else "chorus"
+            elif e <= e_lo: label = "breakdown"
+            else: label = "verse"
+            if has_lyric_signal and 0.10 <= rel <= 0.90 and lyrics.is_repeated_at(seg_mid, window=seg_s):
+                label = "chorus"
+            if label != prev:
+                sections.append({"label": label, "start": i * seg_s})
+                prev = label
+        return sections or [{"label": "verse", "start": 0.0}]
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑧ CLIP DIRECTOR – v9.0 mit Beat‑Modulation und Motion‑Gewicht
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _motion_score(path: str, sample_seconds: float = 5.0, size: int = 64, fps: int = 5) -> float:
+    try:
+        dur = ffprobe_duration(path)
+        start = 0.0
+        if dur and dur > sample_seconds * 1.6:
+            start = max(0.0, dur / 2 - sample_seconds / 2)
+        cmd = [
+            "ffmpeg", "-v", "error", "-ss", f"{start:.2f}",
+            "-i", str(path), "-t", f"{sample_seconds:.2f}",
+            "-vf", f"scale={size}:{size}:flags=fast_bilinear,fps={fps},format=gray",
+            "-f", "rawvideo", "-",
+        ]
+        r = subprocess.run(cmd, capture_output=True, timeout=20)
+        if r.returncode != 0 or not r.stdout:
+            return 0.5
+        frame_bytes = size * size
+        n_frames = len(r.stdout) // frame_bytes
+        if n_frames < 2:
+            return 0.5
+        frames = np.frombuffer(
+            r.stdout[: n_frames * frame_bytes], dtype=np.uint8
+        ).reshape(n_frames, size, size).astype(np.float32)
+        diffs = np.abs(np.diff(frames, axis=0)).mean(axis=(1, 2))
+        score = float(diffs.mean() / 255.0)
+        return float(np.clip(score * 6.0, 0.0, 1.0))
+    except Exception:
+        return 0.5
+
+def build_clip_db(pool: List[str], db: WeeditDB, cfg: Config, lexicon: Optional[LearnedLexicon] = None) -> Dict[str, dict]:
+    log(f"\n🔍  Indexing {len(pool)} clips (cached entries will be skipped)…", cfg, "info")
+    cached, missing = db.get_cached_clips(pool)
+    if missing:
+        log(f"    → {len(cached)} cached | {len(missing)} to analyse", cfg, "info")
+        new_entries = []
+        total = len(missing)
+        def analyse_one(p: str, idx: int) -> Tuple[str, dict, Tuple]:
+            name = Path(p).name
+            dur = ffprobe_duration(p) or 0.0
+            motion = _motion_score(p)
+            genre_bucket = "other"
+            for genre in ["electronic", "hiphop", "pop", "soul", "rock"]:
+                if any(kw in name.lower() for kw in GENRE_KW_SEED.get(genre, [])):
+                    genre_bucket = genre
+                    break
+            parent = Path(p).parent.name
+            tags = re.sub(r"[_\-]+", " ", parent).strip() if parent else ""
+            vec = text_to_9d(f"{name} {tags}", motion, lexicon=lexicon)
+            mtime = int(Path(p).stat().st_mtime * 1000)
+            entry = (p, name, dur, motion, mtime, vec, "neutral", "static", tags, genre_bucket)
+            clip_info = {"vector": vec, "duration_s": dur, "motion": motion,
+                         "genre_bucket": genre_bucket, "tags": tags,
+                         "emotion": "neutral", "camera_style": "static"}
+            return p, clip_info, entry
+        workers = min(cfg.num_threads, 8)
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures = [executor.submit(analyse_one, p, i) for i, p in enumerate(missing)]
+            for idx, fut in enumerate(as_completed(futures)):
+                p, clip_info, entry = fut.result()
+                cached[p] = clip_info
+                new_entries.append(entry)
+                if (idx+1) % 50 == 0 or (idx+1) == total:
+                    db.save_clips(new_entries)
+                    new_entries = []
+                    log(f"    [{idx+1}/{total}]", cfg, "info", end="\r")
+        if new_entries: db.save_clips(new_entries)
+        log(f"    ✅ Analysed {total} new clips.", cfg, "info")
+        if HAS_SKLEARN:
+            clip_texts = []
+            tfidf_paths = []
+            for p in cached:
+                info = cached[p]
+                text = f"{Path(p).stem} {info.get('tags','')} {info.get('camera_style','')}"
+                clip_texts.append(clean_text(text))
+                tfidf_paths.append(p)
+            prepare_tfidf(clip_texts, tfidf_paths)
+    else:
+        log(f"    ✅ All {len(cached)} clips loaded from cache.", cfg, "info")
+        if HAS_SKLEARN and _tfidf_matrix is None:
+            clip_texts = []
+            tfidf_paths = []
+            for p in cached:
+                info = cached[p]
+                text = f"{Path(p).stem} {info.get('tags','')} {info.get('camera_style','')}"
+                clip_texts.append(clean_text(text))
+                tfidf_paths.append(p)
+            prepare_tfidf(clip_texts, tfidf_paths)
+    return cached
+
+def backfill_motion_scores(clip_db: Dict[str, dict], db: WeeditDB, cfg: Config) -> int:
+    STUB = 0.5
+    targets = [p for p, info in clip_db.items() if abs(info.get("motion", STUB) - STUB) < 1e-9]
+    if not targets:
+        log("    ✅  No clips with old placeholder motion value.", cfg, "info")
+        return 0
+    log(f"\n🔧  Backfilling real motion scores for {len(targets)} clips …", cfg, "info")
+    def _recompute(p: str) -> Tuple[str, float]:
+        return p, _motion_score(p)
+    updates = []
+    total = len(targets)
+    workers = min(cfg.num_threads, 8)
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = [executor.submit(_recompute, p) for p in targets]
+        for idx, fut in enumerate(as_completed(futures)):
+            p, motion = fut.result()
+            clip_db[p]["motion"] = motion
+            updates.append((p, motion))
+            if (idx + 1) % 50 == 0 or (idx + 1) == total:
+                db.update_motion_scores(updates)
+                updates = []
+                log(f"    [{idx+1}/{total}]", cfg, "info", end="\r")
+    if updates:
+        db.update_motion_scores(updates)
+    log(f"\n    ✅  Backfilled {total} clips.", cfg, "info")
+    return total
+
+
+class Director:
+    def __init__(self, clip_db: Dict[str, dict], cfg: Config,
+                 weights: Optional[dict] = None,
+                 target_genre: str = "other",
+                 song_query: str = "",
+                 total_duration: float = 0.0,
+                 bpm: float = 120.0):
+        self.cfg = cfg
+        w = weights or {
+            "semantic": cfg.w_semantic,
+            "energy": cfg.w_energy,
+            "diversity": cfg.w_diversity,
+            "tfidf": cfg.w_tfidf,
+            "story": cfg.w_story,
+            "usage": cfg.w_usage,
+            "motion": cfg.w_motion
+        }
+        self.w_s = w.get("semantic", cfg.w_semantic)
+        self.w_e = w.get("energy", cfg.w_energy)
+        self.w_d = w.get("diversity", cfg.w_diversity)
+        self.w_t = w.get("tfidf", cfg.w_tfidf)
+        self.w_story = w.get("story", cfg.w_story)
+        self.w_usage = w.get("usage", cfg.w_usage)
+        self.w_motion = w.get("motion", cfg.w_motion)
+        self.w_continuity = cfg.w_continuity
+        self.target_genre = target_genre
+        self.song_query = song_query
+        self.total_duration = total_duration
+        self.bpm = max(bpm, 1.0)
+        self.bar_duration = 4.0 * 60.0 / self.bpm
+
+        if target_genre != "other":
+            self.paths = [p for p in clip_db if clip_db[p].get("genre_bucket", "other") == target_genre]
+            if not self.paths:
+                self.paths = list(clip_db.keys())
+        else:
+            self.paths = list(clip_db.keys())
+
+        self.vectors = np.array([clip_db[p]["vector"] for p in self.paths], dtype=np.float32)
+        self.durations = np.array([clip_db[p]["duration_s"] for p in self.paths], dtype=np.float32)
+        self.motions = np.array([clip_db[p]["motion"] for p in self.paths], dtype=np.float32)
+        self.use_counts = np.array([clip_db[p].get("use_count", 0) for p in self.paths], dtype=np.float32)
+        self.last_used = np.array([clip_db[p].get("last_used", 0) for p in self.paths], dtype=np.float32)
+
+        norm = np.linalg.norm(self.vectors[:, :8], axis=1, keepdims=True) + 1e-9
+        self.norm_vectors = self.vectors[:, :8] / norm
+
+        self._used: List[str] = []
+        self._path_to_idx: Dict[str, int] = {p: i for i, p in enumerate(self.paths)}
+        self._last_vec: Optional[np.ndarray] = None
+        self._last_phrase_idx: Optional[int] = None
+
+        self.tfidf_scores = self._tfidf_query_scores(self.song_query)
+        self._lyric_tfidf_cache: Dict[str, Optional[np.ndarray]] = {}
+
+    def _tfidf_query_scores(self, query_text: str) -> Optional[np.ndarray]:
+        if not (HAS_SKLEARN and _tfidf_matrix is not None and query_text):
+            return None
+        try:
+            q_vec = _tfidf_vectorizer.transform([clean_text(query_text)])
+            full_scores = (_tfidf_matrix * q_vec.T).toarray().flatten().astype(np.float32)
+            if len(_tfidf_path_order) == len(full_scores):
+                global_idx = {p: i for i, p in enumerate(_tfidf_path_order)}
+                return np.fromiter(
+                    (full_scores[global_idx.get(p, -1)] if p in global_idx else 0.0 for p in self.paths),
+                    dtype=np.float32,
+                    count=len(self.paths)
+                )
+            elif len(full_scores) == len(self.paths):
+                return full_scores
+        except Exception:
+            pass
+        return None
+
+    def motion_of(self, path: str) -> float:
+        idx = self._path_to_idx.get(path)
+        if idx is None:
+            return 0.5
+        return float(self.motions[idx])
+
+    def select(self, vibe: np.ndarray, section: str = "verse",
+               min_dur: float = 0.0, clip_idx: int = 0,
+               segment_start: float = 0.0, lyric_text: str = "") -> Optional[str]:
+        if not self.paths:
+            return None
+
+        vibe_norm = vibe[:8] / (np.linalg.norm(vibe[:8]) + 1e-9)
+        genre_sims = np.dot(self.norm_vectors, vibe_norm)
+        genre_sims = (genre_sims + 1.0) / 2.0
+
+        energy_sims = 1.0 - np.abs(vibe[8] - self.vectors[:, 8])
+
+        # Beat‑Modulation: Downbeat (clip_idx % 4 == 0) → mehr Motion,
+        # Snare/Clap (2) → weniger
+        beat_pos = clip_idx % 4
+        if beat_pos == 0:      # Downbeat
+            motion_mod = 1.0 + self.cfg.motion_sync_beat_factor
+        elif beat_pos == 2:    # Snare/Clap
+            motion_mod = 1.0 - self.cfg.motion_sync_beat_factor * 0.5
+        else:
+            motion_mod = 1.0
+
+        if section in ("drop", "chorus", "pre-chorus"):
+            motion_bonus = self.motions * (0.20 * motion_mod)
+        elif section in ("intro", "outro", "breakdown"):
+            motion_bonus = (1.0 - self.motions) * (0.10 * motion_mod)
+        else:
+            motion_bonus = np.zeros(len(self.paths))
+
+        # Diversity & Nutzung
+        recent_set = set(self._used[-self.cfg.repetition_window:])
+        recent_idx = [self._path_to_idx[p] for p in recent_set if p in self._path_to_idx]
+        is_recent = np.zeros(len(self.paths), dtype=bool)
+        if recent_idx:
+            is_recent[recent_idx] = True
+        diversity = np.where(is_recent, 0.0, 1.0).astype(np.float32)
+
+        max_use = max(1.0, np.max(self.use_counts))
+        usage_penalty = 1.0 - (self.use_counts / max_use) * 0.8
+        now = time.time()
+        time_since = now - self.last_used
+        time_factor = np.clip(time_since / (60*60*24), 0.0, 1.0)
+        time_bonus = time_factor * 0.3
+
+        tfidf = self.tfidf_scores if self.tfidf_scores is not None else np.zeros(len(self.paths))
+
+        # Lyric‑TF‑IDF (live)
+        if lyric_text:
+            if lyric_text in self._lyric_tfidf_cache:
+                lyric_tfidf = self._lyric_tfidf_cache[lyric_text]
+            else:
+                lyric_tfidf = self._tfidf_query_scores(lyric_text)
+                if len(self._lyric_tfidf_cache) > 500:
+                    self._lyric_tfidf_cache.clear()
+                self._lyric_tfidf_cache[lyric_text] = lyric_tfidf
+            if lyric_tfidf is not None:
+                tfidf = tfidf + lyric_tfidf * (self.cfg.w_lyric_tfidf / max(self.w_t, 1e-6))
+
+        # Story‑Bogen (Energieverlauf)
+        pos = segment_start / self.total_duration if self.total_duration > 0 else 0.5
+        if pos < 0.15:
+            desired_energy = 0.2
+        elif pos < 0.6:
+            desired_energy = 0.2 + 0.8 * ((pos - 0.15) / 0.45)
+        else:
+            desired_energy = 1.0 - 0.8 * ((pos - 0.6) / 0.4)
+            desired_energy = max(0.1, desired_energy)
+        story_bonus = 1.0 - np.abs(self.vectors[:, 8] - desired_energy)
+
+        duration_bonus = np.minimum(self.durations / (min_dur + 0.1), 1.5)
+        duration_bonus = np.clip(duration_bonus, 0.5, 1.5)
+
+        # Phrasen‑Kontinuität
+        rule = SECTION_RULES.get(section, DEFAULT_RULE)
+        phrase_bars = max(1, int(rule.get("phrase_bars", DEFAULT_RULE["phrase_bars"])))
+        if self.bar_duration > 0:
+            bar_idx = int(segment_start // self.bar_duration)
+            phrase_idx = bar_idx // phrase_bars
+            bars_into_phrase = bar_idx - phrase_idx * phrase_bars
+            phrase_pos = bars_into_phrase / phrase_bars
+        else:
+            phrase_idx = 0
+            phrase_pos = 0.0
+
+        if self._last_vec is not None:
+            same_phrase = (self._last_phrase_idx is not None and phrase_idx == self._last_phrase_idx)
+            sim = np.dot(self.norm_vectors, self._last_vec)
+            if same_phrase:
+                strength = 1.0 - 0.35 * phrase_pos
+                continuity = sim * strength
+            else:
+                continuity = -sim
+        else:
+            continuity = np.zeros(len(self.paths), dtype=np.float32)
+
+        # Gesamtscore mit Motion‑Gewicht
+        scores = (genre_sims * self.w_s
+                  + energy_sims * self.w_e
+                  + diversity * self.w_d
+                  + motion_bonus * self.w_motion
+                  + tfidf * self.w_t
+                  + story_bonus * self.w_story
+                  + continuity * self.w_continuity
+                  + duration_bonus * 0.1
+                  + usage_penalty * self.w_usage
+                  + time_bonus * 0.2)
+
+        scores[is_recent] *= self.cfg.repetition_penalty
+
+        if min_dur > 0:
+            scores[self.durations < min_dur * 0.9] *= 0.2
+
+        score_std = np.std(scores) + 1e-9
+        noise = np.random.normal(0, 0.1 * score_std, size=len(self.paths))
+        scores += noise
+
+        best_idx = int(np.argmax(scores))
+        best = self.paths[best_idx]
+        self._used.append(best)
+        self._last_vec = self.norm_vectors[best_idx].copy()
+        self._last_phrase_idx = phrase_idx
+        return best
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑨ CONTEXTUAL RL-BANDIT (unverändert)
+# ══════════════════════════════════════════════════════════════════════════════
+
+RL_ARMS = [
+    {"semantic": 0.45, "energy": 0.30, "diversity": 0.70, "tfidf": 0.15, "story": 0.20, "usage": 0.35, "motion": 0.25},
+    {"semantic": 0.50, "energy": 0.25, "diversity": 0.75, "tfidf": 0.15, "story": 0.20, "usage": 0.40, "motion": 0.20},
+    {"semantic": 0.40, "energy": 0.35, "diversity": 0.65, "tfidf": 0.10, "story": 0.25, "usage": 0.30, "motion": 0.30},
+]
+GENRE_BUCKETS = ["electronic", "hiphop", "pop", "soul", "rock", "other"]
+
+class ContextualRLBandit:
+    EPS_START = 0.30
+    EPS_MIN = 0.05
+    EPS_DECAY = 0.985
+    def __init__(self, db: WeeditDB):
+        self.db = db
+        self.epsilon = self.EPS_START
+        self.state = {}
+        self._load()
+    def _load(self):
+        state = self.db.kv_get("rl_bandit_contextual")
+        if not state:
+            for g in GENRE_BUCKETS:
+                self.state[g] = {"counts": np.zeros(len(RL_ARMS)), "values": np.zeros(len(RL_ARMS)), "total": 0, "epsilon": self.EPS_START}
+            return
+        for g, s in state.items():
+            if g in GENRE_BUCKETS:
+                counts = s.get("counts", [0]*len(RL_ARMS))
+                values = s.get("values", [0]*len(RL_ARMS))
+                if len(counts) != len(RL_ARMS):
+                    if len(counts) > len(RL_ARMS):
+                        counts = counts[:len(RL_ARMS)]
+                    else:
+                        counts = counts + [0]*(len(RL_ARMS)-len(counts))
+                if len(values) != len(RL_ARMS):
+                    if len(values) > len(RL_ARMS):
+                        values = values[:len(RL_ARMS)]
+                    else:
+                        values = values + [0]*(len(RL_ARMS)-len(values))
+                self.state[g] = {
+                    "counts": np.array(counts),
+                    "values": np.array(values),
+                    "total": s.get("total", 0),
+                    "epsilon": s.get("epsilon", self.EPS_START),
+                }
+    def _save(self):
+        serializable = {}
+        for g, s in self.state.items():
+            serializable[g] = {
+                "counts": s["counts"].tolist(),
+                "values": s["values"].tolist(),
+                "total": s["total"],
+                "epsilon": s["epsilon"],
+            }
+        self.db.kv_set("rl_bandit_contextual", serializable)
+    def select_arm(self, genre: str = "other") -> int:
+        if genre not in self.state: genre = "other"
+        s = self.state[genre]
+        s["total"] += 1
+        s["epsilon"] = max(self.EPS_MIN, s["epsilon"] * self.EPS_DECAY)
+        if random.random() < s["epsilon"]:
+            return random.randrange(len(RL_ARMS))
+        exploration = np.sqrt(2.0 * math.log(max(s["total"], 1)) / (s["counts"] + 1e-9))
+        scores = s["values"] + exploration
+        scores[s["counts"] == 0] = float("inf")
+        return int(np.argmax(scores))
+    def weights(self, arm: int) -> dict:
+        if arm >= len(RL_ARMS):
+            arm = random.randrange(len(RL_ARMS))
+        return dict(RL_ARMS[arm])
+    def reward(self, genre: str, arm: int, score: float):
+        if genre not in self.state: genre = "other"
+        s = self.state[genre]
+        if arm >= len(s["counts"]):
+            return
+        s["counts"][arm] += 1
+        n = s["counts"][arm]
+        s["values"][arm] += (score - s["values"][arm]) / n
+        self._save()
+    def log_render(self, genre: str, arm: int, output: str):
+        history = self.db.kv_get("rl_renders") or []
+        history.append({"genre": genre, "arm": arm, "weights": self.weights(arm),
+                        "output": output, "ts": time.strftime("%Y-%m-%dT%H:%M:%S")})
+        self.db.kv_set("rl_renders", history[-300:])
+    def summary(self) -> str:
+        lines = []
+        for g in GENRE_BUCKETS:
+            if g not in self.state: continue
+            s = self.state[g]
+            if s["total"] == 0:
+                lines.append(f"{g}: no data")
+            else:
+                best = int(np.argmax(s["values"]))
+                lines.append(f"{g}: best arm={best}, weights={RL_ARMS[best]}, score={s['values'][best]:.3f} (n={int(s['counts'][best])})")
+        return "\n".join(lines)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑩ VSFX – EINFACHE FILTERPRESETS (10 + Ghost + Scratch)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class VSFX:
+    _W = 1920
+    _H = 1080
+    _FPS = 30
+
+    @classmethod
+    def _presets(cls) -> Dict[str, Callable[[float], str]]:
+        def safe_filter(f: str) -> Callable[[float], str]:
+            return lambda d: f
+        return {
+            "clean": lambda d: "",   # kein Filter
+            "warm": safe_filter("colorbalance=rs=0.1:gs=-0.05:bs=-0.1"),
+            "cold": safe_filter("colorbalance=rs=-0.05:gs=0.0:bs=0.15"),
+            "grain": lambda d: f"noise=alls=10:allf=t:enable='lt(mod(n),{int(d*cls._FPS)//2})'",
+            "blur": safe_filter("boxblur=luma_radius=2:luma_power=1"),
+            "sharp": safe_filter("unsharp=5:5:1.2:5:5:0.5"),
+            "contrast": safe_filter("eq=contrast=1.3:brightness=0.05"),
+            "vignette": safe_filter("vignette=angle=PI/4"),
+            "colorpop": safe_filter("hue=s=1.2"),
+            "neon": safe_filter("eq=contrast=1.5:brightness=0.1:saturation=1.8"),
+            # Ghost: unscharf + halbtransparent (für Geister‑Überblendung)
+            "ghost": safe_filter("boxblur=luma_radius=4:luma_power=1,colorchannelmixer=aa=0.5"),
+            # Scratch: wird in render_segment speziell behandelt (kein Filter hier)
+            "scratch": lambda d: "",
+        }
+
+    PRESET_NAMES = ["clean", "warm", "cold", "grain", "blur", "sharp", "contrast", "vignette", "colorpop", "neon", "ghost", "scratch"]
+
+    SHORT_SAFE = {"clean", "warm", "cold"}
+
+    SECTION_MAP: Dict[str, List[str]] = {
+        "intro":      ["clean", "warm", "vignette", "cold"],
+        "verse":      ["clean", "warm", "cold", "contrast"],
+        "pre-chorus": ["contrast", "colorpop", "sharp"],
+        "chorus":     ["colorpop", "contrast", "neon", "sharp"],
+        "drop":       ["neon", "contrast", "colorpop", "sharp", "scratch"],
+        "bridge":     ["cold", "vignette", "blur", "ghost"],
+        "breakdown":  ["blur", "vignette", "cold", "ghost"],
+        "outro":      ["clean", "vignette", "cold"],
+        "scratch":    ["grain", "neon", "contrast", "scratch"],
+    }
+
+    EMOTION_MAP: Dict[str, List[str]] = {
+        "aggressive":   ["contrast", "neon", "sharp", "scratch"],
+        "tender":       ["warm", "vignette", "blur", "ghost"],
+        "euphoric":     ["colorpop", "contrast", "neon"],
+        "melancholic":  ["cold", "vignette", "blur", "ghost"],
+        "chaotic":      ["grain", "neon", "contrast", "scratch"],
+        "hypnotic":     ["blur", "vignette", "ghost"],
+        "cinematic":    ["vignette", "contrast", "ghost"],
+        "neutral":      PRESET_NAMES,
+        "scratch":      ["grain", "neon", "contrast", "scratch"],
+    }
+
+    @classmethod
+    def pick(cls, duration: float, idx: int, bpm: float,
+             section: str = "verse", emotion: str = "neutral",
+             has_scratch: bool = False) -> str:
+        if has_scratch or random.random() < 0.05:  # 5% Scratch‑Wahrscheinlichkeit
+            return "scratch"
+        if duration < 0.45:
+            return random.choice(list(cls.SHORT_SAFE))
+        section_pool = cls.SECTION_MAP.get(section, cls.SECTION_MAP["verse"])
+        emotion_pool = cls.EMOTION_MAP.get(emotion, cls.EMOTION_MAP["neutral"])
+        combined = section_pool * 7 + emotion_pool * 3
+        return random.choice(combined)
+
+    _PRESET_BASE_SPEED = {}  # keine Geschwindigkeitsänderungen mehr
+
+    @classmethod
+    def build_filter_chain(cls, preset: str, duration: float,
+                           w: int, h: int, fps: int,
+                           blend: bool = True, blend_dur: float = 0.12,
+                           speed: float = 1.0) -> str:
+        cls._W = w
+        cls._H = h
+        cls._FPS = fps
+        presets = cls._presets()
+
+        # Skalierung + Beschnitt (immer)
+        parts = [
+            f"scale={w}:{h}:force_original_aspect_ratio=increase:flags=lanczos,crop={w}:{h}"
+        ]
+
+        # Bei Scratch kein Denoise/Sharpening – das kommt später durch den Effekt
+        if preset != "scratch" and preset != "clean":
+            parts.append("hqdn3d=1.0:0.8:1.5:1.5,unsharp=5:5:0.8:5:5:0.3")
+        elif preset == "clean":
+            # Optional leichtes Schärfen für clean
+            parts.append("unsharp=5:5:0.5:5:5:0.2")
+
+        # Preset‑Filter (außer Scratch, das wird in render_segment behandelt)
+        if preset != "scratch":
+            fx = presets.get(preset, presets["clean"])(duration)
+            if fx:
+                parts.append(fx)
+
+        # Geschwindigkeitsanpassung (nur wenn speed != 1.0)
+        if speed != 1.0:
+            parts.append(f"setpts={speed:.4f}*PTS")
+
+        # Lokales Fade‑in (nur im Concat‑Fallback)
+        if blend and duration > blend_dur * 2:
+            parts.append(f"fade=t=in:st=0:d={blend_dur:.3f}")
+
+        parts.append(f"fps=fps={fps}")
+        return ",".join(p for p in parts if p)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑪ RENDERER – GPU‑fehlerkorrigiert, mit Scratch‑Unterstützung und Ghost‑xfade
+# ══════════════════════════════════════════════════════════════════════════════
+
+XFADE_TRANSITIONS_CALM = ["fade", "dissolve", "smoothleft", "smoothright", "circleopen", "circleclose"]
+XFADE_TRANSITIONS_HYPE = ["wipeleft", "wiperight", "slideup", "slidedown", "diagtl", "diagbr", "dissolve"]
+CALM_SECTIONS = {"intro", "verse", "breakdown", "outro"}
+MAX_XFADE_SEGMENTS = 220
+
+class Renderer:
+    def __init__(self, cfg: Config):
+        self.cfg = cfg
+
+    def render_segment(self, clip_path, start_time, duration, vf_chain, output_path,
+                       stutter=False, stutter_reps=2, stutter_frac=0.22,
+                       fx_preset="clean"):
+        # Scratch hat Vorrang vor Stutter
+        if fx_preset == "scratch":
+            return self._render_scratch(clip_path, start_time, duration, vf_chain, output_path)
+        if stutter:
+            return self._render_stutter(clip_path, start_time, duration,
+                                        vf_chain, output_path,
+                                        stutter_reps, stutter_frac)
+
+        cmd = ["ffmpeg", "-y", "-v", "error"]
+
+        # GPU‑Decoding (korrekte Reihenfolge: -hwaccel vor -i)
+        if self.cfg.use_gpu:
+            cmd += ["-hwaccel", "cuda", "-hwaccel_output_format", "cuda"]
+
+        cmd += [
+            "-ss", f"{start_time:.3f}",
+            "-i", str(clip_path),
+            "-t", f"{duration:.3f}",
+            "-vf", vf_chain,
+        ]
+
+        # Encoder
+        if self.cfg.use_gpu:
+            cmd += ["-c:v", "h264_nvenc", "-preset", self.cfg.preset]
+        else:
+            cmd += ["-c:v", self.cfg.video_codec, "-preset", self.cfg.preset]
+        cmd += ["-crf", str(self.cfg.crf), "-pix_fmt", "yuv420p", "-an", str(output_path)]
+
+        ok = self._run(cmd, output_path, timeout=600)
+        if not ok and self.cfg.use_gpu:
+            print(f"  ⚠️  GPU render failed for {Path(output_path).stem}, retrying CPU...")
+            self.cfg.use_gpu = False
+            return self.render_segment(clip_path, start_time, duration, vf_chain, output_path,
+                                       stutter=False, fx_preset=fx_preset)
+        return ok
+
+    def _render_stutter(self, clip_path, start_time, duration, vf_chain, output_path,
+                        stutter_reps, stutter_frac):
+        loop_dur = max(0.05, duration * stutter_frac)
+        total_dur = loop_dur * stutter_reps + duration
+        n = stutter_reps + 1
+        ins = "".join(f"[v{i}]" for i in range(n))
+        fc_parts = []
+        for i in range(stutter_reps):
+            fc_parts.append(
+                f"[0:v]trim=start={start_time:.3f}:duration={loop_dur:.3f},"
+                f"setpts=PTS-STARTPTS,{vf_chain}[v{i}]"
+            )
+        fc_parts.append(
+            f"[0:v]trim=start={start_time:.3f}:duration={duration:.3f},"
+            f"setpts=PTS-STARTPTS,{vf_chain}[v{stutter_reps}]"
+        )
+        fc_parts.append(f"{ins}concat=n={n}:v=1:a=0[out]")
+
+        cmd = ["ffmpeg", "-y", "-v", "error"]
+        if self.cfg.use_gpu:
+            cmd += ["-hwaccel", "cuda", "-hwaccel_output_format", "cuda"]
+        cmd += ["-i", str(clip_path)]
+        cmd += ["-filter_complex", ";".join(fc_parts)]
+        cmd += ["-map", "[out]"]
+        if self.cfg.use_gpu:
+            cmd += ["-c:v", "h264_nvenc", "-preset", self.cfg.preset]
+        else:
+            cmd += ["-c:v", self.cfg.video_codec, "-preset", self.cfg.preset]
+        cmd += ["-crf", str(self.cfg.crf), "-pix_fmt", "yuv420p", "-t", f"{total_dur:.3f}", "-an", str(output_path)]
+
+        ok = self._run(cmd, output_path, timeout=600)
+        if not ok and self.cfg.use_gpu:
+            print(f"  ⚠️  GPU stutter failed, retrying without GPU...")
+            self.cfg.use_gpu = False
+            return self.render_segment(clip_path, start_time, duration, vf_chain, output_path, stutter=False)
+        return ok
+
+    def _render_scratch(self, clip_path, start_time, duration, vf_chain, output_path):
+        """Joogweel‑Scratch: kurze Vorwärts/Rückwärts‑Schleife."""
+        loop_dur = min(0.3, duration * 0.2)
+        n = 4  # 2x vor, 2x zurück
+        parts = []
+        for i in range(n):
+            direction = "forward" if i % 2 == 0 else "reverse"
+            if direction == "forward":
+                parts.append(
+                    f"[0:v]trim=start={start_time:.3f}:duration={loop_dur:.3f},"
+                    f"setpts=PTS-STARTPTS,{vf_chain}[v{i}]"
+                )
+            else:
+                parts.append(
+                    f"[0:v]trim=start={start_time:.3f}:duration={loop_dur:.3f},"
+                    f"reverse,setpts=PTS-STARTPTS,{vf_chain}[v{i}]"
+                )
+        ins = "".join(f"[v{i}]" for i in range(n))
+        parts.append(f"{ins}concat=n={n}:v=1:a=0[out]")
+        cmd = [
+            "ffmpeg", "-y", "-v", "error",
+            "-i", str(clip_path),
+            "-filter_complex", ";".join(parts),
+            "-map", "[out]",
+        ]
+        if self.cfg.use_gpu:
+            cmd += ["-c:v", "h264_nvenc", "-preset", self.cfg.preset]
+        else:
+            cmd += ["-c:v", self.cfg.video_codec, "-preset", self.cfg.preset]
+        cmd += ["-crf", str(self.cfg.crf), "-pix_fmt", "yuv420p",
+                "-t", str(loop_dur * n), "-an", str(output_path)]
+        ok = self._run(cmd, output_path, timeout=600)
+        if not ok and self.cfg.use_gpu:
+            print(f"  ⚠️  GPU scratch failed, retrying CPU...")
+            self.cfg.use_gpu = False
+            return self._render_scratch(clip_path, start_time, duration, vf_chain, output_path)
+        return ok
+
+    def mux_with_xfade(self, segment_paths, durations, work_dir, output_path, rng, sections=None):
+        n = len(segment_paths)
+        if n < 2 or n > MAX_XFADE_SEGMENTS:
+            return self._concat_segments(segment_paths, output_path)
+        if sections is None:
+            sections = ["verse"] * n
+        try:
+            inputs = []
+            for p in segment_paths:
+                inputs.extend(["-i", str(p)])
+            filter_parts = []
+            cumulative = durations[0]
+            prev_label = "0:v"
+            last_transition = None
+            for i in range(1, n):
+                is_calm = sections[i] in CALM_SECTIONS
+                # Ghost‑Modus: längere Überblendung in Bridge/Breakdown
+                if is_calm and sections[i] in ("bridge", "breakdown"):
+                    base_dur = self.cfg.ghost_duration
+                else:
+                    base_dur = (self.cfg.xfade_duration_calm if is_calm
+                                else self.cfg.xfade_duration_hype)
+                overlap = min(base_dur, durations[i-1] * 0.6, durations[i] * 0.6)
+                overlap = max(self.cfg.xfade_min_overlap, overlap)
+                offset = max(0.0, cumulative - overlap)
+
+                pool = XFADE_TRANSITIONS_CALM if is_calm else XFADE_TRANSITIONS_HYPE
+                choices = [t for t in pool if t != last_transition] or pool
+                transition = rng.choice(choices)
+                last_transition = transition
+
+                out_label = f"x{i}" if i < n - 1 else "outv"
+                filter_parts.append(
+                    f"[{prev_label}][{i}:v]xfade=transition={transition}:"
+                    f"duration={overlap:.3f}:offset={offset:.3f}[{out_label}]"
+                )
+                cumulative = offset + durations[i]
+                prev_label = out_label
+            filter_complex = ";".join(filter_parts)
+            silent_video = os.path.join(work_dir, "silent_video.mp4")
+
+            cmd = [
+                "ffmpeg", "-y", "-v", "error",
+                *inputs,
+                "-filter_complex", filter_complex,
+                "-map", "[outv]",
+            ]
+            if self.cfg.use_gpu:
+                cmd += ["-c:v", "h264_nvenc", "-preset", self.cfg.preset]
+            else:
+                cmd += ["-c:v", self.cfg.video_codec, "-preset", self.cfg.preset]
+            cmd += ["-crf", str(self.cfg.crf), "-pix_fmt", "yuv420p", str(silent_video)]
+
+            mux_timeout = max(600, n * 4)
+            if not self._run(cmd, silent_video, timeout=mux_timeout):
+                return self._concat_segments(segment_paths, output_path)
+            shutil.move(silent_video, output_path)
+            return True
+        except Exception:
+            return self._concat_segments(segment_paths, output_path)
+
+    def _concat_segments(self, segment_paths, output_path):
+        list_file = os.path.join(os.path.dirname(output_path), "concat.txt")
+        with open(list_file, "w", encoding="utf-8") as f:
+            for p in segment_paths:
+                f.write(f"file '{Path(p).as_posix()}'\n")
+        cmd = [
+            "ffmpeg", "-y", "-v", "error",
+            "-f", "concat", "-safe", "0",
+            "-i", str(list_file),
+            "-c", "copy",
+            str(output_path),
+        ]
+        return self._run(cmd, output_path, timeout=600)
+
+    def mux_audio(self, video_path, audio_path, output_path):
+        cmd = [
+            "ffmpeg", "-y", "-v", "error",
+            "-i", str(video_path),
+            "-i", str(audio_path),
+            "-map", "0:v", "-map", "1:a",
+            "-c:v", "copy",
+            "-c:a", self.cfg.audio_codec,
+            "-b:a", self.cfg.audio_bitrate,
+            "-shortest",
+            str(output_path),
+        ]
+        return self._run(cmd, output_path, timeout=600)
+
+    @staticmethod
+    def _run(cmd, output_path, timeout=600):
+        try:
+            subprocess.run(cmd, check=True, capture_output=True, timeout=timeout)
+            return True
+        except subprocess.CalledProcessError as e:
+            stderr = e.stderr.decode(errors="replace").strip()
+            first = next((l for l in stderr.splitlines() if l.strip()), stderr[:120])
+            print(f"\n  ⚠️  {Path(output_path).stem}: {first}")
+            return False
+        except subprocess.TimeoutExpired:
+            print(f"\n  ⚠️  {Path(output_path).stem}: timeout after {timeout}s")
+            return False
+        except Exception as exc:
+            print(f"\n  ⚠️  {Path(output_path).stem}: {exc}")
+            return False
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑫ CUT PLAN BUILDER (speichert beat_mod und fx‑Preset)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def build_cut_plan(audio: AudioAnalysis, director: Director,
+                   cfg: Config, samples: Optional[np.ndarray] = None) -> List[dict]:
+    plan = []
+    bpm = max(audio.tempo, 60.0)
+
+    if audio.beat_times is None or audio.beat_times.size == 0:
+        log("    ⚠️  No beat times – using dense fallback grid (0.5s).", cfg, "info")
+        step = 0.5
+        beat_times = np.arange(0, audio.duration, step, dtype=np.float32)
+    else:
+        beat_times = audio.beat_times
+
+    section_boundaries = []
+    current_section = audio.section_at(0)
+    for i, bt in enumerate(beat_times):
+        if i == 0: continue
+        sec = audio.section_at(bt)
+        if sec != current_section:
+            section_boundaries.append((i, current_section, beat_times[i-1], bt))
+            current_section = sec
+    if beat_times.size > 0:
+        section_boundaries.append((len(beat_times)-1, current_section,
+                                   beat_times[section_boundaries[-1][0]] if section_boundaries else 0,
+                                   audio.duration))
+
+    patterns = {}
+    for start_idx, section, start_time, end_time in section_boundaries:
+        beats_in_section = [bt for bt in beat_times if start_time <= bt <= end_time]
+        n_beats = len(beats_in_section)
+        if n_beats < 4: continue
+        energies = [audio.energy_at(bt) for bt in beats_in_section if bt < audio.duration]
+        avg_energy = np.mean(energies) if energies else 0.5
+        if section in ("drop", "chorus"):
+            k = max(1, int(n_beats * (0.5 + 0.5 * avg_energy)))
+        elif section in ("verse", "pre-chorus"):
+            k = max(1, int(n_beats * (0.4 + 0.4 * avg_energy)))
+        elif section in ("intro", "outro", "breakdown"):
+            k = max(1, int(n_beats * (0.3 + 0.3 * avg_energy)))
+        else:
+            k = max(1, int(n_beats * (0.4 + 0.4 * avg_energy)))
+        k = min(k, n_beats)
+        pattern = EuclideanRhythm.generate(n_beats, k)
+        patterns[(start_time, end_time)] = pattern
+
+    cut_points: List[Tuple[float, str, int]] = []
+    for i, bt in enumerate(beat_times):
+        if bt >= audio.duration: break
+        section = audio.section_at(bt)
+        matched = False
+        for (s, e), pattern in patterns.items():
+            if s <= bt < e:
+                section_beats = [b for b in beat_times if s <= b < e]
+                if not section_beats: continue
+                beat_idx = int(np.searchsorted(section_beats, bt))
+                if beat_idx < len(pattern) and pattern[beat_idx]:
+                    cut_points.append((float(bt), section, i))
+                    matched = True
+                break
+        if not matched:
+            step = SECTION_RULES.get(section, DEFAULT_RULE)["bpc"]
+            if i % step == 0:
+                cut_points.append((float(bt), section, i))
+
+    for idx, (bt, section, beat_idx) in enumerate(cut_points):
+        if len(plan) >= cfg.max_segments: break
+        next_bt = cut_points[idx + 1][0] if idx + 1 < len(cut_points) else float(audio.duration)
+        gap = next_bt - bt
+        if gap < cfg.min_cut:
+            continue
+
+        seg_start = bt
+        remaining = gap
+        first_sub = True
+        # Beat‑Modulation für alle Sub‑Segmente gleich (basierend auf dem Beat‑Index)
+        beat_mod = beat_idx % 4
+        while remaining > 1e-3 and len(plan) < cfg.max_segments:
+            dur = min(remaining, cfg.max_cut)
+            if dur < cfg.min_cut and plan and not first_sub:
+                plan[-1]["duration"] = round(plan[-1]["duration"] + dur, 3)
+                break
+            vibe = audio.vibe_9d_at(seg_start)
+            clip = director.select(vibe, section=section, min_dur=dur,
+                                   clip_idx=beat_idx, segment_start=seg_start,
+                                   lyric_text=audio.lyric_query_at(seg_start))
+            if clip is None:
+                break
+            motion_speed = compute_motion_speed(
+                director.motion_of(clip), compute_target_motion(bpm, section), cfg
+            )
+            fx_preset = VSFX.pick(
+                duration=dur, idx=beat_idx, bpm=bpm,
+                section=section, has_scratch=audio.has_scratch_at(seg_start) if first_sub else False,
+            )
+            stutter_frac_seg, stutter_reps_seg = compute_stutter_params(section, cfg)
+            used_triplet = (stutter_frac_seg != cfg.stutter_frac)
+            do_stutter = (cfg.stutter_on and dur > 0.5 and (
+                (section in ("drop", "chorus") and beat_idx % cfg.stutter_every == 0)
+                or used_triplet
+            ))
+            plan.append({
+                "offset_t": round(seg_start, 3),
+                "duration": round(dur, 3),
+                "clip_path": clip,
+                "section": section,
+                "energy": round(audio.energy_at(seg_start), 3),
+                "has_scratch": audio.has_scratch_at(seg_start) if first_sub else False,
+                "vibe_9d": vibe.tolist(),
+                "fx": fx_preset,
+                "stutter": do_stutter,
+                "stutter_frac": stutter_frac_seg,
+                "stutter_reps": stutter_reps_seg,
+                "motion_speed": round(motion_speed, 4),
+                "beat_mod": beat_mod,   # für Beat‑Sync‑Motion
+            })
+            seg_start += dur
+            remaining -= dur
+            first_sub = False
+
+    if plan:
+        last = plan[-1]
+        end_time = last["offset_t"] + last["duration"]
+        if end_time < audio.duration - 0.5:
+            log(f"    → Filling tail: {end_time:.1f}s to {audio.duration:.1f}s", cfg, "debug")
+            while end_time < audio.duration - 0.2 and len(plan) < cfg.max_segments:
+                next_idx = int(np.searchsorted(beat_times, end_time, side="right"))
+                if next_idx < len(beat_times) and beat_times[next_idx] > end_time:
+                    dur = min(float(beat_times[next_idx]) - end_time, cfg.max_cut)
+                else:
+                    dur = min(cfg.max_cut, audio.duration - end_time)
+                if dur < cfg.min_cut:
+                    dur = min(cfg.min_cut, audio.duration - end_time)
+                vibe = audio.vibe_9d_at(end_time)
+                clip = director.select(vibe, section=audio.section_at(end_time), min_dur=dur,
+                                       clip_idx=len(plan), segment_start=end_time,
+                                       lyric_text=audio.lyric_query_at(end_time))
+                if clip is None:
+                    clip = plan[-1]["clip_path"]
+                tail_section = audio.section_at(end_time)
+                motion_speed = compute_motion_speed(
+                    director.motion_of(clip), compute_target_motion(bpm, tail_section), cfg
+                )
+                plan.append({
+                    "offset_t": round(end_time, 3),
+                    "duration": round(dur, 3),
+                    "clip_path": clip,
+                    "section": tail_section,
+                    "energy": round(audio.energy_at(end_time), 3),
+                    "has_scratch": False,
+                    "vibe_9d": vibe.tolist() if clip else [0]*9,
+                    "fx": "clean",
+                    "stutter": False,
+                    "motion_speed": round(motion_speed, 4),
+                    "beat_mod": 0,
+                })
+                end_time += dur
+    else:
+        log("    ⚠️  No plan generated – using coarse 0.5s grid.", cfg, "info")
+        step = 0.5
+        t = 0.0
+        beat_idx = 0
+        while t < audio.duration - 0.2 and len(plan) < cfg.max_segments:
+            dur = min(step, audio.duration - t)
+            vibe = audio.vibe_9d_at(t)
+            clip = director.select(vibe, section=audio.section_at(t), min_dur=dur,
+                                   clip_idx=beat_idx, segment_start=t,
+                                   lyric_text=audio.lyric_query_at(t))
+            if clip is None:
+                clip = director.paths[0] if director.paths else None
+                if clip is None: break
+            plan.append({
+                "offset_t": round(t, 3),
+                "duration": round(dur, 3),
+                "clip_path": clip,
+                "section": audio.section_at(t),
+                "energy": round(audio.energy_at(t), 3),
+                "has_scratch": False,
+                "vibe_9d": vibe.tolist() if clip else [0]*9,
+                "fx": "clean",
+                "stutter": False,
+                "motion_speed": 1.0,
+                "beat_mod": beat_idx % 4,
+            })
+            t += step
+            beat_idx += 1
+
+    log(f"    🗂  Cut plan: {len(plan)} segments over {audio.duration:.1f}s", cfg, "info")
+    return plan
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑬ MAIN ORCHESTRATOR (mit Scratch‑Unterstützung)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def render_track(audio_path: str, clip_db: Dict[str, dict],
+                 cfg: Config, db: WeeditDB, rl: ContextualRLBandit,
+                 lexicon: Optional[LearnedLexicon] = None) -> Optional[str]:
+
+    log("\n" + "═" * 72, cfg, "info")
+    log(f"  🎬  {Path(audio_path).name}", cfg, "info")
+    log("═" * 72, cfg, "info")
+
+    audio = None
+    try:
+        audio = AudioAnalysis(audio_path, cfg, lexicon)
+    except Exception as exc:
+        log(f"❌  Audio analysis failed: {exc}", cfg, "error")
+        return None
+
+    samples = None
+    try:
+        samples = _ffmpeg_decode_pcm(audio_path, sr=cfg.audio_sr, max_dur=cfg.max_audio_dur)
+    except Exception:
+        pass
+
+    genre_tag = audio.meta.get("genre", "").lower()
+    detected_genre = "other"
+    for g in GENRE_BUCKETS:
+        if g != "other" and g in genre_tag:
+            detected_genre = g
+            break
+    if detected_genre == "other":
+        for g in GENRE_BUCKETS:
+            if g != "other" and any(kw in audio.name.lower() for kw in GENRE_KW_SEED.get(g, [])):
+                detected_genre = g
+                break
+
+    log(f"    Detected genre: {detected_genre}", cfg, "info")
+
+    arm = rl.select_arm(detected_genre)
+    weights = rl.weights(arm)
+    log(f"    🎰  RL arm={arm} | weights={weights}", cfg, "info")
+
+    lyric_kw = extract_lyric_keywords(audio.lyrics.full_text(), max_words=40) if audio.lyrics.source != "none" else ""
+    song_query = f"{audio.meta.get('title','')} {audio.meta.get('artist','')} {audio.meta.get('genre','')} {audio.name} {lyric_kw}"
+
+    director = Director(clip_db, cfg, weights=weights,
+                        target_genre=detected_genre,
+                        song_query=song_query,
+                        total_duration=audio.duration,
+                        bpm=audio.tempo)
+
+    plan = build_cut_plan(audio, director, cfg, samples=samples)
+    if not plan:
+        log("❌  No cut segments produced.", cfg, "error")
+        audio.close()
+        return None
+
+    renderer = Renderer(cfg)
+
+    will_use_xfade = 2 <= len(plan) <= MAX_XFADE_SEGMENTS
+
+    temp_dir = tempfile.mkdtemp(prefix="weedit_")
+    try:
+        jobs = []
+        for idx, seg in enumerate(plan):
+            clip_path = seg["clip_path"]
+            dur = seg["duration"]
+            motion_speed = seg.get("motion_speed", 1.0)
+            clip_dur = clip_db.get(clip_path, {}).get("duration_s", dur)
+
+            base_speed = VSFX._PRESET_BASE_SPEED.get(seg["fx"], 1.0)
+            combined_speed = float(np.clip(base_speed * motion_speed, 0.5, 2.2))
+            source_needed = dur / combined_speed
+            max_ss = max(0.0, (clip_dur or dur) - source_needed - 0.05)
+            start_t = random.uniform(0, max_ss) if max_ss > 0 else 0.0
+
+            vf = VSFX.build_filter_chain(
+                preset=seg["fx"],
+                duration=dur,
+                w=cfg.target_width,
+                h=cfg.target_height,
+                fps=cfg.fps,
+                blend=not will_use_xfade,
+                blend_dur=cfg.blend_duration,
+                speed=motion_speed,
+            )
+
+            seg_path = os.path.join(temp_dir, f"seg_{idx:04d}.mp4")
+            jobs.append({
+                "idx": idx,
+                "clip": clip_path,
+                "start_t": start_t,
+                "dur": dur,
+                "vf": vf,
+                "out": seg_path,
+                "stutter": seg["stutter"],
+                "stutter_frac": seg.get("stutter_frac", cfg.stutter_frac),
+                "stutter_reps": seg.get("stutter_reps", cfg.stutter_reps),
+                "section": seg["section"],
+                "energy": seg["energy"],
+                "fx": seg["fx"],   # für Scratch‑Erkennung
+            })
+
+        log(f"    🎥  Rendering {len(jobs)} segments ({cfg.num_threads} workers)…", cfg, "info")
+        rendered = {}
+        ok = failed = 0
+
+        def _run_job(j):
+            success = renderer.render_segment(
+                clip_path=j["clip"],
+                start_time=j["start_t"],
+                duration=j["dur"],
+                vf_chain=j["vf"],
+                output_path=j["out"],
+                stutter=j["stutter"],
+                stutter_reps=j["stutter_reps"],
+                stutter_frac=j["stutter_frac"],
+                fx_preset=j["fx"],
+            )
+            return j["idx"], j["out"], success
+
+        with ThreadPoolExecutor(max_workers=cfg.num_threads) as pool:
+            futures = {pool.submit(_run_job, j): j for j in jobs}
+            for fut in as_completed(futures):
+                try:
+                    idx, seg_path, success = fut.result(timeout=600)
+                except Exception as e:
+                    print(f"\n  ⚠️  Job failed: {e}")
+                    failed += 1
+                    continue
+                if success:
+                    rendered[idx] = seg_path
+                    ok += 1
+                else:
+                    failed += 1
+                done = ok + failed
+                print(f"  {progress_bar(done, len(jobs))}  ✓{ok} ✗{failed}", end="\r", flush=True)
+        print()
+
+        if not rendered:
+            log("❌  No segments rendered successfully.", cfg, "error")
+            return None
+
+        fail_str = f"  ⚠️  {failed} failed" if failed else ""
+        log(f"    ✅  {ok}/{len(jobs)} segments OK{fail_str}", cfg, "info")
+
+        log("    🔗  Muxing with crossfade transitions…", cfg, "info")
+        sorted_idx = sorted(rendered)
+        segment_paths = [rendered[idx] for idx in sorted_idx]
+        segment_durations = [plan[idx]["duration"] for idx in sorted_idx]
+        segment_sections = [plan[idx]["section"] for idx in sorted_idx]
+        rng = random.Random(cfg.__dict__.get("seed", 7))
+        concat_out = os.path.join(temp_dir, "concat.mp4")
+        if not renderer.mux_with_xfade(segment_paths, segment_durations, temp_dir,
+                                        concat_out, rng, sections=segment_sections):
+            audio.close()
+            return None
+
+        log("    🎵  Muxing audio…", cfg, "info")
+        song_stem = Path(audio_path).stem
+        song_stem = re.sub(r'[^\w\-_. ]', '_', song_stem)
+        final_out = versioned_filename(cfg.output_dir, song_stem, script_version=cfg.script_version)
+        if not renderer.mux_audio(concat_out, audio_path, final_out):
+            audio.close()
+            return None
+
+    finally:
+        time.sleep(0.5)
+        try:
+            shutil.rmtree(temp_dir, ignore_errors=True)
+        except Exception:
+            pass
+
+    diversity_score = len(set(s["clip_path"] for s in plan)) / max(len(plan), 1)
+    rl.reward(detected_genre, arm, diversity_score)
+    rl.log_render(detected_genre, arm, final_out)
+
+    used_paths = [s["clip_path"] for s in plan if s["clip_path"]]
+    db.bump_usage(used_paths)
+
+    audio.close()
+    gc.collect()
+
+    size_mb = os.path.getsize(final_out) / 1024**2
+    log(f"\n    🚀  DONE → {final_out}  ({size_mb:.1f} MB)\n", cfg, "info")
+    return final_out
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⑭ ENTRY POINT
+# ══════════════════════════════════════════════════════════════════════════════
+
+BANNER = r"""
+╔══════════════════════════════════════════════════════════════════════════════╗
+║     WE.ED.IT v9.0 – Audiovisuelles Storytelling mit Full‑HD & einfachen    ║
+║     Filtern – Beat‑Sync‑Motion, Scratch (Joogweel), Geister‑Überblendung   ║
+║     Automatische GPU‑Erkennung, Vibe‑gesteuerte Clip‑Auswahl,             ║
+║     Motion‑Sync, Phrasen‑Kontinuität, Crossfades – alles in einem.        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+"""
+
+def check_ffmpeg():
+    for tool in ("ffmpeg", "ffprobe"):
+        if not shutil.which(tool):
+            print(f"❌  {tool} not found in PATH. Please install FFmpeg.")
+            sys.exit(1)
+
+def main():
+    parser = argparse.ArgumentParser(description="WE.ED.IT v9.0 – Audiovisuelles Storytelling")
+    parser.add_argument("--mp3", type=str, help="Single MP3 to render")
+    parser.add_argument("--clips", type=str, help="Override clips directory")
+    parser.add_argument("--audio", type=str, help="Override audio directory")
+    parser.add_argument("--output", type=str, help="Override output directory")
+    parser.add_argument("--jobs", type=int, help="Parallel render workers (default auto)")
+    parser.add_argument("--crf", type=int, help="Video quality CRF")
+    parser.add_argument("--no-stutter", action="store_true", help="Disable stutter cuts")
+    parser.add_argument("--no-lyrics", action="store_true", help="Disable lyric-aware clip selection")
+    parser.add_argument("--gpu", action="store_true", help="Force GPU acceleration")
+    parser.add_argument("--verbose", action="store_true", help="Print detailed logs")
+    parser.add_argument("--no-learn", action="store_true", help="Disable self-learning lexicon")
+    parser.add_argument("--list-effects", action="store_true", help="List VSFX presets")
+    parser.add_argument("--rl-summary", action="store_true", help="Print RL-Bandit state")
+    parser.add_argument("--backfill-motion", action="store_true",
+                        help="Recompute motion scores for clips with old stub value")
+    parser.add_argument("--export-json", type=str, help="Export clip database to JSON")
+    parser.add_argument("--import-json", type=str, help="Import clip database from JSON")
+    parser.add_argument("--db", type=str, help="Override database path")
+    parser.add_argument("--copy-default-db", action="store_true",
+                        help="Copy default.clip.db if no DB exists")
+    args = parser.parse_args()
+
+    print(BANNER)
+    check_ffmpeg()
+
+    cfg = Config.from_args(args)
+
+    tier = auto_tune(cfg)
+
+    if args.jobs:
+        cfg.num_threads = args.jobs
+    if args.gpu:
+        cfg.use_gpu = True
+        cfg.video_codec = "h264_nvenc"
+        cfg.preset = "p2"
+        cfg.hwaccel = "cuda"
+    if args.no_stutter:
+        cfg.stutter_on = False
+
+    db = WeeditDB(cfg.db_path, cfg)
+    rl = ContextualRLBandit(db)
+    lexicon = LearnedLexicon(db, cfg) if cfg.learn_lexicon else None
+
+    if args.export_json:
+        count = db.export_json(args.export_json)
+        print(f"Exportiert {count} Clips.")
+        return
+    if args.import_json:
+        count = db.import_json(args.import_json)
+        print(f"Importiert {count} Clips.")
+        return
+
+    print(f"⚙️   Tier: {tier.upper()} | {cfg.target_width}×{cfg.target_height} @ {cfg.fps}fps | "
+          f"Threads={cfg.num_threads} | Preset={cfg.preset} | GPU={cfg.use_gpu} | Codec={cfg.video_codec}")
+
+    if args.list_effects:
+        print("\n🎨  VSFX Presets (einfach & kraftvoll):")
+        for name in VSFX.PRESET_NAMES:
+            print(f"  {name}")
+        return
+
+    if args.rl_summary:
+        print(f"\n🎰  RL Bandit Summary:\n{rl.summary()}\n")
+        return
+
+    print(f"\n📁  Clips  : {cfg.clips_dir}")
+    print(f"📁  Audio  : {cfg.audio_dir}")
+    print(f"📁  Output : {cfg.output_dir}")
+
+    if not os.path.isdir(cfg.clips_dir):
+        print(f"❌  Clips directory not found: {cfg.clips_dir}")
+        sys.exit(1)
+
+    clip_pool = scan_recursive(cfg.clips_dir, cfg.video_exts, max_items=cfg.max_clips)
+    if not clip_pool:
+        print(f"❌  No video files found in {cfg.clips_dir}")
+        sys.exit(1)
+    print(f"    Found {len(clip_pool)} video clips.")
+
+    clip_db = build_clip_db(clip_pool, db, cfg, lexicon)
+
+    if args.backfill_motion:
+        backfill_motion_scores(clip_db, db, cfg)
+        return
+
+    if args.mp3:
+        mp3 = args.mp3 if os.path.isabs(args.mp3) else os.path.join(cfg.audio_dir, args.mp3)
+        if not os.path.isfile(mp3):
+            print(f"❌  File not found: {mp3}")
+            sys.exit(1)
+        tracks = [mp3]
+    else:
+        if not os.path.isdir(cfg.audio_dir):
+            print(f"❌  Audio directory not found: {cfg.audio_dir}")
+            sys.exit(1)
+        tracks = scan_recursive(cfg.audio_dir, cfg.audio_exts)
+        if not tracks:
+            print(f"❌  No audio files found in {cfg.audio_dir}")
+            sys.exit(1)
+        print(f"    Found {len(tracks)} audio tracks.")
+
+    t0 = time.time()
+    results = []
+    for i, track in enumerate(tracks, 1):
+        label = f"[{i}/{len(tracks)}]" if len(tracks) > 1 else ""
+        print(f"\n{label}")
+        out = render_track(track, clip_db, cfg, db, rl, lexicon)
+        if out:
+            results.append(out)
+
+    elapsed = time.time() - t0
+    print(f"\n{'═'*72}")
+    print(f"  🏁  WE.ED.IT v9.0 — {len(results)}/{len(tracks)} renders in {fmt_time(elapsed)}")
+    print(f"  🎰  RL Summary:\n{rl.summary()}")
+    if results:
+        print("  📁  Output files:")
+        for r in results:
+            print(f"       ▸ {r}")
+    print(f"{'═'*72}\n")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n⏹️  Abgebrochen (Ctrl+C)")
+        sys.exit(130)
+```
+fix and debug fix all and optimize all stacks bis manual and update repo
+
+## Copilot
+
+

@@ -1,0 +1,96 @@
+
+Claude Code
+
+Anthropic's coding tool with subagents
+
+ollama launch claude
+
+
+Codex
+
+OpenAI's open-source coding agent
+
+ollama launch codex
+
+
+OpenClaw
+
+Personal AI with 100+ skills
+
+ollama launch openclaw
+
+
+OpenCode
+
+Anomaly's open-source coding agent
+
+ollama launch opencode
+
+
+Hermes Agent
+
+Self-improving AI agent built by Nous Research
+
+ollama launch hermes
+
+
+Hermes Desktop
+
+Desktop app for Hermes Agent by Nous Research
+
+ollama launch hermes-desktop
+
+
+Droid
+
+Factory's coding agent across terminal and IDEs
+
+ollama launch droid
+
+
+Pi
+
+Minimal AI agent toolkit with plugin support
+
+ollama launch pi
+
+
+Cline
+
+Autonomous coding agent with parallel execution
+
+ollama launch cline
+
+
+Copilot CLI
+
+GitHub's AI coding agent for the terminal
+
+ollama launch copilot
+
+
+Oh My Pi
+
+AI coding agent with IDE integration
+
+ollama launch omp
+
+
+DeepSeek Harness
+
+DeepSeek's open-source agent harness
+
+ollama launch dsh
+
+
+Qwen Code
+
+Qwen's AI coding agent with tool use
+
+ollama launch qwen
+
+Terminal
+
+Run local models from your terminal
+
+ollama

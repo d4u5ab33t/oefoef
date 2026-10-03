@@ -1,0 +1,401 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>FX Preset Preview Grid – All Effects</title>
+  <style>
+    :root {
+      --bg: #05060a;
+      --card-bg: #10131a;
+      --accent: #00e0ff;
+      --accent-soft: rgba(0, 224, 255, 0.15);
+      --text: #f5f7ff;
+      --muted: #8b90a3;
+      --border: #1c2230;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151a24 0, #05060a 55%);
+      color: var(--text);
+      padding: 32px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    p.subtitle { color: var(--muted); margin-bottom: 24px; max-width: 640px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: linear-gradient(145deg, #0b0f16, #151a24);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, var(--accent-soft), transparent);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .thumb {
+      height: 90px;
+      background: radial-gradient(circle at center, #1f2635, #05060a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb span {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+    .thumb .pulse {
+      position: absolute;
+      width: 140%;
+      height: 140%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 224, 255, 0.25), transparent);
+      animation: pulse 3s infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.7); opacity: 0.7; }
+      60% { transform: scale(1.1); opacity: 0.0; }
+      100% { transform: scale(1.3); opacity: 0.0; }
+    }
+    .content {
+      padding: 10px 12px 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .title-row h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .title-row span.type {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .tag {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 224, 255, 0.35);
+      color: var(--accent);
+      background: rgba(0, 224, 255, 0.06);
+    }
+  </style>
+</head>
+<body>
+  <h1>FX Preset Preview Grid – All Effects</h1>
+  <p class="subtitle">
+    Alle Effekt‑Presets als visuelles Grid – ready für deine KI‑Regie‑Pipeline.
+  </p>
+
+  <div class="grid">
+    <!-- Helper pattern: name + simple type + 1–2 tags -->
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>AERIAL</span></div><div class="content"><div class="title-row"><h2>Aerial</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Wide</span><span class="tag">Smooth</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ALTERED STATE</span></div><div class="content"><div class="title-row"><h2>Altered State</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Surreal</span><span class="tag">Trippy</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ANIMATION</span></div><div class="content"><div class="title-row"><h2>Animation</h2><span class="type">Mixed Media</span></div><div class="tags"><span class="tag">Frame‑by‑Frame</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ANTHROPO</span></div><div class="content"><div class="title-row"><h2>Anthropo</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Human‑Focus</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ARC</span></div><div class="content"><div class="title-row"><h2>Arc</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Orbit</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ARCHITEXTURE</span></div><div class="content"><div class="title-row"><h2>Architexture</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Architecture</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>BOLT CAM</span></div><div class="content"><div class="title-row"><h2>Bolt Cam</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Robotic</span><span class="tag">Fast</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>BOOMERANG</span></div><div class="content"><div class="title-row"><h2>Boomerang</h2><span class="type">Loop</span></div><div class="tags"><span class="tag">Back‑and‑Forth</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>BTS</span></div><div class="content"><div class="title-row"><h2>BTS</h2><span class="type">Narrative</span></div><div class="tags"><span class="tag">Behind the Scenes</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>BULLET TIME</span></div><div class="content"><div class="title-row"><h2>Bullet Time</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Orbit</span><span class="tag">Slow Motion</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CAMERA ROLL</span></div><div class="content"><div class="title-row"><h2>Camera Roll</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Rotation</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CENTRAL FRAMING</span></div><div class="content"><div class="title-row"><h2>Central Framing</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Center</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CHOREO</span></div><div class="content"><div class="title-row"><h2>Choreo</h2><span class="type">Motion</span></div><div class="tags"><span class="tag">Dance</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CINEMAGRAPH</span></div><div class="content"><div class="title-row"><h2>Cinemagraph</h2><span class="type">Loop</span></div><div class="tags"><span class="tag">Still + Motion</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CLOSE-UP</span></div><div class="content"><div class="title-row"><h2>Close-Up</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Face</span><span class="tag">Shallow Focus</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>COLLAGE</span></div><div class="content"><div class="title-row"><h2>Collage</h2><span class="type">Mixed Media</span></div><div class="tags"><span class="tag">Multi‑Layer</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>COLOR SHIFT</span></div><div class="content"><div class="title-row"><h2>Color Shift</h2><span class="type">Color</span></div><div class="tags"><span class="tag">Hue Shift</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CONVEYOR</span></div><div class="content"><div class="title-row"><h2>Conveyor</h2><span class="type">Motion</span></div><div class="tags"><span class="tag">Linear Flow</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CRASH CUT</span></div><div class="content"><div class="title-row"><h2>Crash Cut</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Impact</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>CUT-INS</span></div><div class="content"><div class="title-row"><h2>Cut-ins</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Detail Shots</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DATAMOSH</span></div><div class="content"><div class="title-row"><h2>Datamosh</h2><span class="type">Glitch</span></div><div class="tags"><span class="tag">Pixel Smear</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DIORAMA</span></div><div class="content"><div class="title-row"><h2>Diorama</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Miniature</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DISTORTIONS</span></div><div class="content"><div class="title-row"><h2>Distortions</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Warp</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DOLLY</span></div><div class="content"><div class="title-row"><h2>Dolly</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Track Move</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DOLLY ZOOM</span></div><div class="content"><div class="title-row"><h2>Dolly Zoom</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Push‑Pull</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DOUBLE DOLLY</span></div><div class="content"><div class="title-row"><h2>Double Dolly</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Locked Subject</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DOUBLE EXPOSURE</span></div><div class="content"><div class="title-row"><h2>Double Exposure</h2><span class="type">Mixed</span></div><div class="tags"><span class="tag">Overlay</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DREAMCORE</span></div><div class="content"><div class="title-row"><h2>Dreamcore</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Soft Surreal</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DUPLICATION</span></div><div class="content"><div class="title-row"><h2>Duplication</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Clones</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DUTCH ANGLE</span></div><div class="content"><div class="title-row"><h2>Dutch Angle</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Tilted</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>DYSTOPIAN</span></div><div class="content"><div class="title-row"><h2>Dystopian</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Desaturated</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ECHO PRINT</span></div><div class="content"><div class="title-row"><h2>Echo Print</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Trails</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>EPIPHANY</span></div><div class="content"><div class="title-row"><h2>Epiphany</h2><span class="type">Narrative</span></div><div class="tags"><span class="tag">Realisation</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FALLING</span></div><div class="content"><div class="title-row"><h2>Falling</h2><span class="type">Motion</span></div><div class="tags"><span class="tag">Drop</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FAST MOTION</span></div><div class="content"><div class="title-row"><h2>Fast Motion</h2><span class="type">Speed</span></div><div class="tags"><span class="tag">Speed‑Up</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FEEDBACK</span></div><div class="content"><div class="title-row"><h2>Feedback</h2><span class="type">Glitch</span></div><div class="tags"><span class="tag">Recursive</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FIRST-PERSON</span></div><div class="content"><div class="title-row"><h2>First-Person</h2><span class="type">POV</span></div><div class="tags"><span class="tag">Subject View</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FISHEYE</span></div><div class="content"><div class="title-row"><h2>Fisheye</h2><span class="type">Lens</span></div><div class="tags"><span class="tag">Warped</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FIXED CAM</span></div><div class="content"><div class="title-row"><h2>Fixed Cam</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Static</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FLASH CUT</span></div><div class="content"><div class="title-row"><h2>Flash Cut</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Single Frame</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FLOATING UI</span></div><div class="content"><div class="title-row"><h2>Floating UI</h2><span class="type">UI</span></div><div class="tags"><span class="tag">Overlay</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FOCAL SHIFT</span></div><div class="content"><div class="title-row"><h2>Focal Shift</h2><span class="type">Focus</span></div><div class="tags"><span class="tag">Rack Focus</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FOURTH WALL</span></div><div class="content"><div class="title-row"><h2>Fourth Wall</h2><span class="type">Narrative</span></div><div class="tags"><span class="tag">Direct Address</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FPV DRONE</span></div><div class="content"><div class="title-row"><h2>FPV Drone</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">High Motion</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>FREEZE FRAME</span></div><div class="content"><div class="title-row"><h2>Freeze Frame</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Hold</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>GENERATIVE</span></div><div class="content"><div class="title-row"><h2>Generative</h2><span class="type">AI</span></div><div class="tags"><span class="tag">Synth</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>GESTURE</span></div><div class="content"><div class="title-row"><h2>Gesture</h2><span class="type">Motion</span></div><div class="tags"><span class="tag">Hands</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>GROUND LEVEL</span></div><div class="content"><div class="title-row"><h2>Ground Level</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Low POV</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>HALATION</span></div><div class="content"><div class="title-row"><h2>Halation</h2><span class="type">Color</span></div><div class="tags"><span class="tag">Glow</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>HANDHELD</span></div><div class="content"><div class="title-row"><h2>Handheld</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Shake</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>HARD LIGHT</span></div><div class="content"><div class="title-row"><h2>Hard Light</h2><span class="type">Lighting</span></div><div class="tags"><span class="tag">High Contrast</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>HAZE</span></div><div class="content"><div class="title-row"><h2>Haze</h2><span class="type">Atmosphere</span></div><div class="tags"><span class="tag">Fog</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>HIGH ANGLE</span></div><div class="content"><div class="title-row"><h2>High Angle</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Top Down</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>INFINITE LOOP</span></div><div class="content"><div class="title-row"><h2>Infinite Loop</h2><span class="type">Loop</span></div><div class="tags"><span class="tag">Seamless</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>INTERVIEW</span></div><div class="content"><div class="title-row"><h2>Interview</h2><span class="type">Narrative</span></div><div class="tags"><span class="tag">Talking Head</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>JUMP CUT</span></div><div class="content"><div class="title-row"><h2>Jump Cut</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Abrupt</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>KALEIDOSCOPE</span></div><div class="content"><div class="title-row"><h2>Kaleidoscope</h2><span class="type">Glitch</span></div><div class="tags"><span class="tag">Symmetry</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>LAZY SUSAN</span></div><div class="content"><div class="title-row"><h2>Lazy Susan</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Table Spin</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>LEVITATION</span></div><div class="content"><div class="title-row"><h2>Levitation</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Floating</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>LIGHT FLASH</span></div><div class="content"><div class="title-row"><h2>Light Flash</h2><span class="type">Lighting</span></div><div class="tags"><span class="tag">Strobe</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>LOCKED-ON</span></div><div class="content"><div class="title-row"><h2>Locked-On</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Subject Lock</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>LOW ANGLE</span></div><div class="content"><div class="title-row"><h2>Low Angle</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Power</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MAGICAL REALISM</span></div><div class="content"><div class="title-row"><h2>Magical Realism</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Subtle Magic</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MAGNIFICATION</span></div><div class="content"><div class="title-row"><h2>Magnification</h2><span class="type">Zoom</span></div><div class="tags"><span class="tag">Detail</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MASKING</span></div><div class="content"><div class="title-row"><h2>Masking</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Reveal</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MATCH CUT</span></div><div class="content"><div class="title-row"><h2>Match Cut</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Visual Match</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MATCH MOTION</span></div><div class="content"><div class="title-row"><h2>Match Motion</h2><span class="type">Transition</span></div><div class="tags"><span class="tag">Motion Align</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MATCH SPLIT</span></div><div class="content"><div class="title-row"><h2>Match Split</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Split Match</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MAXIMALISM</span></div><div class="content"><div class="title-row"><h2>Maximalism</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Overloaded</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MIXED MEDIA</span></div><div class="content"><div class="title-row"><h2>Mixed Media</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Hybrid</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MORPHING</span></div><div class="content"><div class="title-row"><h2>Morphing</h2><span class="type">Transition</span></div><div class="tags"><span class="tag">Shape Shift</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>MOTION BLUR</span></div><div class="content"><div class="title-row"><h2>Motion Blur</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Speed Smear</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>NIGHT VISION</span></div><div class="content"><div class="title-row"><h2>Night Vision</h2><span class="type">Color</span></div><div class="tags"><span class="tag">Green Tint</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>OBJECT PORTAL</span></div><div class="content"><div class="title-row"><h2>Object Portal</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Portal</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>OBJECT POV</span></div><div class="content"><div class="title-row"><h2>Object POV</h2><span class="type">POV</span></div><div class="tags"><span class="tag">From Object</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>OMNIDIRECTIONAL</span></div><div class="content"><div class="title-row"><h2>Omnidirectional</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">360°</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>OVERHEAD</span></div><div class="content"><div class="title-row"><h2>Overhead</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Top View</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>OVER THE SHOULDER</span></div><div class="content"><div class="title-row"><h2>Over the Shoulder</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Dialogue</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PAN</span></div><div class="content"><div class="title-row"><h2>Pan</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Horizontal</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PARALLAX</span></div><div class="content"><div class="title-row"><h2>Parallax</h2><span class="type">Motion</span></div><div class="tags"><span class="tag">Depth Shift</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PASS THROUGH</span></div><div class="content"><div class="title-row"><h2>Pass Through</h2><span class="type">Transition</span></div><div class="tags"><span class="tag">Through Object</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PEDESTAL</span></div><div class="content"><div class="title-row"><h2>Pedestal</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Vertical Move</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PHOTOGRAMMETRY</span></div><div class="content"><div class="title-row"><h2>Photogrammetry</h2><span class="type">3D</span></div><div class="tags"><span class="tag">Scan</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PHOTOGRAPHY</span></div><div class="content"><div class="title-row"><h2>Photography</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Still</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PIXEL ART</span></div><div class="content"><div class="title-row"><h2>Pixel Art</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Low‑Res</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PROBE</span></div><div class="content"><div class="title-row"><h2>Probe</h2><span class="type">Lens</span></div><div class="tags"><span class="tag">Macro</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PRODUCT</span></div><div class="content"><div class="title-row"><h2>Product</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Showcase</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PROFILE</span></div><div class="content"><div class="title-row"><h2>Profile</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Side View</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>PROJECTIONS</span></div><div class="content"><div class="title-row"><h2>Projections</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Mapped Light</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>QUICK CUTS</span></div><div class="content"><div class="title-row"><h2>Quick Cuts</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Rapid</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>RATIO SWITCH</span></div><div class="content"><div class="title-row"><h2>Ratio Switch</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Aspect Change</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>REFLECTIONS</span></div><div class="content"><div class="title-row"><h2>Reflections</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Mirror</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SCALE SHIFT</span></div><div class="content"><div class="title-row"><h2>Scale Shift</h2><span class="type">Zoom</span></div><div class="tags"><span class="tag">Size Change</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SCREEN IN SCREEN</span></div><div class="content"><div class="title-row"><h2>Screen in Screen</h2><span class="type">UI</span></div><div class="tags"><span class="tag">Meta</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SET TRANSITION</span></div><div class="content"><div class="title-row"><h2>Set Transition</h2><span class="type">Transition</span></div><div class="tags"><span class="tag">Scene Change</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SHADOW BOX</span></div><div class="content"><div class="title-row"><h2>Shadow Box</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Framed</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SHALLOW FOCUS</span></div><div class="content"><div class="title-row"><h2>Shallow Focus</h2><span class="type">Focus</span></div><div class="tags"><span class="tag">Bokeh</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SILHOUETTE</span></div><div class="content"><div class="title-row"><h2>Silhouette</h2><span class="type">Lighting</span></div><div class="tags"><span class="tag">Backlit</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SLIT-SCAN</span></div><div class="content"><div class="title-row"><h2>Slit-scan</h2><span class="type">Glitch</span></div><div class="tags"><span class="tag">Time Warp</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SLOW MOTION</span></div><div class="content"><div class="title-row"><h2>Slow Motion</h2><span class="type">Speed</span></div><div class="tags"><span class="tag">Slow</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SNORRICAM</span></div><div class="content"><div class="title-row"><h2>Snorricam</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Body‑Rig</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SPEED RAMP</span></div><div class="content"><div class="title-row"><h2>Speed Ramp</h2><span class="type">Speed</span></div><div class="tags"><span class="tag">Ramp</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SPLIT DIOPTER</span></div><div class="content"><div class="title-row"><h2>Split Diopter</h2><span class="type">Lens</span></div><div class="tags"><span class="tag">Dual Focus</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SPLIT SCREEN</span></div><div class="content"><div class="title-row"><h2>Split Screen</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Multi View</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>SPOTLIGHT</span></div><div class="content"><div class="title-row"><h2>Spotlight</h2><span class="type">Lighting</span></div><div class="tags"><span class="tag">Focus Beam</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>STEP-PRINT</span></div><div class="content"><div class="title-row"><h2>Step-print</h2><span class="type">Speed</span></div><div class="tags"><span class="tag">Stutter</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>STOP MOTION</span></div><div class="content"><div class="title-row"><h2>Stop Motion</h2><span class="type">Animation</span></div><div class="tags"><span class="tag">Frames</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>STUTTER</span></div><div class="content"><div class="title-row"><h2>Stutter</h2><span class="type">Speed</span></div><div class="tags"><span class="tag">Choppy</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>STYLISTIC SUCK</span></div><div class="content"><div class="title-row"><h2>Stylistic Suck</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Deliberate Bad</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TABLEAU</span></div><div class="content"><div class="title-row"><h2>Tableau</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Stage</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>THERMAL</span></div><div class="content"><div class="title-row"><h2>Thermal</h2><span class="type">Color</span></div><div class="tags"><span class="tag">Heat Map</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TILT</span></div><div class="content"><div class="title-row"><h2>Tilt</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Vertical</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TILT SHIFT</span></div><div class="content"><div class="title-row"><h2>Tilt Shift</h2><span class="type">Lens</span></div><div class="tags"><span class="tag">Miniature</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TRACKING</span></div><div class="content"><div class="title-row"><h2>Tracking</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Follow</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TRANSFORMATION</span></div><div class="content"><div class="title-row"><h2>Transformation</h2><span class="type">FX</span></div><div class="tags"><span class="tag">Change</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TRANSITIONS</span></div><div class="content"><div class="title-row"><h2>Transitions</h2><span class="type">Edit</span></div><div class="tags"><span class="tag">Varied</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TRUCKING</span></div><div class="content"><div class="title-row"><h2>Trucking</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Side Move</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TWO SHOT</span></div><div class="content"><div class="title-row"><h2>Two Shot</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Two People</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>TYPOGRAPHY</span></div><div class="content"><div class="title-row"><h2>Typography</h2><span class="type">UI</span></div><div class="tags"><span class="tag">Text</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ULTRA WIDE</span></div><div class="content"><div class="title-row"><h2>Ultra Wide</h2><span class="type">Lens</span></div><div class="tags"><span class="tag">Wide Field</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>UNDERWATER</span></div><div class="content"><div class="title-row"><h2>Underwater</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Submerged</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VIDEO GAME</span></div><div class="content"><div class="title-row"><h2>Video Game</h2><span class="type">Style</span></div><div class="tags"><span class="tag">HUD</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VIDEO PORTRAITS</span></div><div class="content"><div class="title-row"><h2>Video Portraits</h2><span class="type">Framing</span></div><div class="tags"><span class="tag">Portrait</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VIGNETTE</span></div><div class="content"><div class="title-row"><h2>Vignette</h2><span class="type">Focus</span></div><div class="tags"><span class="tag">Edge Dark</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VINTAGE</span></div><div class="content"><div class="title-row"><h2>Vintage</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Retro</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VOID</span></div><div class="content"><div class="title-row"><h2>Void</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Empty</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>VOYEUR</span></div><div class="content"><div class="title-row"><h2>Voyeur</h2><span class="type">Narrative</span></div><div class="tags"><span class="tag">Hidden View</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WANDERING</span></div><div class="content"><div class="title-row"><h2>Wandering</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Drift</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WEIRDCORE</span></div><div class="content"><div class="title-row"><h2>Weirdcore</h2><span class="type">Style</span></div><div class="tags"><span class="tag">Strange</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WHIP PAN</span></div><div class="content"><div class="title-row"><h2>Whip Pan</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Fast Pan</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WIDE SHOT</span></div><div class="content"><div class="title-row"><h2>Wide Shot</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Wide</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WIGGLEGRAM</span></div><div class="content"><div class="title-row"><h2>Wigglegram</h2><span class="type">Loop</span></div><div class="tags"><span class="tag">Wiggle</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>WORMS-EYE</span></div><div class="content"><div class="title-row"><h2>Worms-Eye</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Extreme Low</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>X-RAY</span></div><div class="content"><div class="title-row"><h2>X-Ray</h2><span class="type">Color</span></div><div class="tags"><span class="tag">Inverted</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ZOETROPE</span></div><div class="content"><div class="title-row"><h2>Zoetrope</h2><span class="type">Animation</span></div><div class="tags"><span class="tag">Loop Wheel</span></div></div></div>
+
+    <div class="card"><div class="thumb"><div class="pulse"></div><span>ZOOM</span></div><div class="content"><div class="title-row"><h2>Zoom</h2><span class="type">Camera</span></div><div class="tags"><span class="tag">Scale</span></div></div></div>
+  </div>
+</body>
+</html>
+```

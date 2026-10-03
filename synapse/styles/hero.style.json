@@ -1,0 +1,16 @@
+{
+  "name": "hero",
+  "constraints": {
+    "camera": "slow-zoom",
+    "lighting": "cinematic",
+    "transition": "fade"
+  },
+  "physics": {
+    "tension": "build-up",
+    "momentum": "steady"
+  },
+  "palette": {
+    "primary": "#FFFFFF",
+    "secondary": "#AAAAAA"
+  }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OIDAHEIM_3D_MATRIX_SHADOW</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: monospace; }
+        canvas { display: block; }
+        #ui {
+            position: absolute; top: 10px; left: 10px;
+            color: #00ff41; font-size: 12px; line-height: 1.2;
+            pointer-events: none; text-shadow: 0 0 5px #000;
+            background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid #004400;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        SYSTEM: OIDAHEIM_CORE_v2<br>
+        LAYER_0: 3D_ASCII_SHADOWS<br>
+        LAYER_1: MATRIX_RND_RAIN<br>
+        STATUS: MINGA_OVERLOAD_140BPM
+    </div>
+    <canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// --- DATA FROM YOUR FILES ---
+const asciiBanners = [
+`      __  _____  ______________
+     /  |/  / / / /_  __/ ____/
+    / /|_/ / / / / / / / __/   
+   / /  / / /_/ / / / / /___   
+  /_/  /_/\\____/ /_/ /_____/   `,
+
+`    ____  _ __              __
+   / __ \\(_) /___  ______ _/ /
+  / /_/ / / __/ / / / __ \`/ / 
+ / _, _/ / /_/ /_/ / /_/ / /  
+/_/ |_/_/\\__/\\__,_/\\__,_/_/   `,
+
+`        _____ _      __      __
+       / ___/(_)____/ /__   /  |
+ ______\\__ \\/ / ___/ //_/  / /|_/
+/_____/__/ / / /__/ ,<    / /  / 
+     /____/_/\\___/_/|_|  /_/  /_/`
+];
+
+const matrixChars = "0123456789µ-SICK089OIDAHEIMSTADELHEIM";
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = new Array(columns).fill(1);
+
+// --- 3D SHADOW OBJECTS ---
+class AsciiObject {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.text = asciiBanners[Math.floor(Math.random() * asciiBanners.length)];
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 2 + 0.5; // Depth factor
+        this.opacity = Math.random() * 0.3 + 0.1;
+        this.speed = this.z * 0.5;
+    }
+    update() {
+        this.y -= this.speed;
+        if (this.y < -200) this.reset();
+    }
+    draw() {
+        ctx.font = (fontSize * this.z) + "px monospace";
+        const lines = this.text.split('\n');
+        
+        // --- 3D SHADOW EFFECT ---
+        // We draw the text multiple times with offsets to create depth
+        for(let i = 5; i > 0; i--) {
+            ctx.fillStyle = `rgba(0, ${Math.floor(255/i)}, 0, ${this.opacity / i})`;
+            lines.forEach((line, index) => {
+                ctx.fillText(line, this.x + (i * this.z), this.y + (index * fontSize * this.z) + (i * this.z));
+            });
+        }
+        
+        // Main Glow Layer
+        ctx.fillStyle = `rgba(0, 255, 65, ${this.opacity})`;
+        lines.forEach((line, index) => {
+            ctx.fillText(line, this.x, this.y + (index * fontSize * this.z));
+        });
+    }
+}
+
+const backgroundBanners = Array.from({length: 8}, () => new AsciiObject());
+
+// --- ANIMATION LOOP ---
+function animate() {
+    // Trail effect
+    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 1. Draw 3D ASCII Shadows in Background
+    backgroundBanners.forEach(obj => {
+        obj.update();
+        obj.draw();
+    });
+
+    // 2. Draw Matrix Rain in Foreground
+    ctx.shadowBlur = 0;
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        
+        // Randomly highlight "OIDA"
+        if (Math.random() > 0.98) {
+            ctx.fillStyle = "#fff";
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#00ff41";
+        } else {
+            ctx.fillStyle = "#008822";
+            ctx.shadowBlur = 0;
+        }
+
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+animate();
+</script>
+</body>
+</html>

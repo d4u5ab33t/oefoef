@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OIDANATIVE_12.0_OIDA_SURPRISE</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
+        canvas { display: block; }
+        #hud {
+            position: absolute; top: 20px; left: 20px;
+            color: #00ff41; font-size: 11px; line-height: 1.5;
+            background: rgba(0,20,0,0.85); padding: 15px; border: 1px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0,255,65,0.3); pointer-events: none;
+        }
+        #meter-container { width: 150px; height: 10px; border: 1px solid #00ff41; margin-top: 5px; }
+        #meter-fill { width: 0%; height: 100%; background: #00ff41; transition: width 0.1s; }
+        .critical { color: #fff; text-shadow: 0 0 10px #f00; animation: blink 0.1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        CORE: OIDANATIVE_12.0<br>
+        GRAVITY: 9.81 m/s²<br>
+        <span id="label">OIDA-CRITICALITY:</span>
+        <div id="meter-container"><div id="meter-fill"></div></div>
+        <span id="status" style="font-size: 9px;">WAITING FOR IMPACT...</span>
+    </div>
+    <canvas id="surpriseMatrix"></canvas>
+
+<script>
+const canvas = document.getElementById('surpriseMatrix');
+const ctx = canvas.getContext('2d');
+const meter = document.getElementById('meter-fill');
+const statusText = document.getElementById('status');
+
+let w, h, cx, cy;
+let mouse = { x: 0, y: 0, targetX: 0, targetY: 0, down: false };
+let oidaCriticality = 0;
+let isOverloading = false;
+let shakeTime = 0;
+
+const floorY = 450;
+const gravity = 0.3;
+const bounce = -0.5;
+
+const BREZN_ASCII = [
+"   _  _   ",
+"  / \\/ \\  ",
+" |      | ",
+"  \\_  _/  ",
+"   /  \\   ",
+"  | OIDA |"
+];
+
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cx = w / 2; cy = h / 2;
+}
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => {
+    mouse.targetX = (e.clientX - cx);
+    mouse.targetY = (e.clientY - cy);
+});
+window.addEventListener('mousedown', () => { mouse.down = true; });
+window.addEventListener('mouseup', () => { mouse.down = false; });
+resize();
+
+const vocab = ["OIDA", "089", "MUC", "KURWA", "BASS", "GLITCH", "BREZN"];
+
+class PhysicalObject {
+    constructor(isSurprise = false) {
+        this.isSurprise = isSurprise;
+        this.init();
+    }
+    init() {
+        this.x = (Math.random() - 0.5) * 2000;
+        this.y = -500 - Math.random() * 1000;
+        this.z = Math.random() * 2000 + 500;
+        this.vy = 0;
+        this.text = this.isSurprise ? BREZN_ASCII : [vocab[Math.floor(Math.random() * vocab.length)]];
+        this.mass = this.isSurprise ? 10 : Math.random() * 2 + 1;
+        this.rotation = 0;
+        this.rotV = (Math.random() - 0.5) * 0.2;
+    }
+    update() {
+        if (isOverloading && !this.isSurprise) this.vy -= 0.5; // Float up during event
+        else this.vy += gravity * this.mass;
+
+        if (mouse.down) this.vy += 2.0;
+        this.y += this.vy;
+        this.rotation += this.rotV;
+
+        if (this.y > floorY) {
+            this.y = floorY;
+            if (Math.abs(this.vy) > 2) {
+                oidaCriticality += this.isSurprise ? 0 : 0.5;
+                shakeTime = 10; // Trigger camera shake
+            }
+            this.vy *= bounce;
+        }
+        this.z -= 10;
+        if (this.z < 100) this.init();
+    }
+    draw() {
+        const scale = 600 / this.z;
+        const x2d = cx + (this.x + mouse.x) * scale + (Math.random() * shakeTime);
+        const y2d = cy + (this.y + mouse.y) * scale + (Math.random() * shakeTime);
+        const shadowY2d = cy + (floorY + mouse.y) * scale;
+
+        // Shadow
+        const sAlpha = Math.max(0, 0.3 - (floorY - this.y) / 400);
+        ctx.fillStyle = `rgba(0, 40, 0, ${sAlpha})`;
+        ctx.font = `${this.isSurprise ? 30 : 15 * scale}px bold monospace`;
+        this.text.forEach((line, i) => {
+            ctx.fillText(line, x2d - ctx.measureText(line).width/2, shadowY2d + i * 10);
+        });
+
+        // Object
+        ctx.save();
+        ctx.translate(x2d, y2d);
+        ctx.rotate(this.rotation);
+        ctx.fillStyle = isOverloading ? "#fff" : (this.isSurprise ? "#ffaa00" : "#00ff41");
+        if (this.isSurprise) ctx.shadowBlur = 20; ctx.shadowColor = "#ffaa00";
+        this.text.forEach((line, i) => {
+            ctx.fillText(line, -ctx.measureText(line).width/2, i * (this.isSurprise ? 20 : 10));
+        });
+        ctx.restore();
+    }
+}
+
+let objects = Array.from({length: 100}, () => new PhysicalObject());
+let surpriseObj = null;
+
+function triggerSurprise() {
+    isOverloading = true;
+    statusText.innerText = "!!! OIDA OVERLOAD !!!";
+    statusText.className = "critical";
+    surpriseObj = new PhysicalObject(true);
+    surpriseObj.x = 0; surpriseObj.y = -1000; surpriseObj.z = 800;
+    
+    setTimeout(() => {
+        isOverloading = false;
+        oidaCriticality = 0;
+        statusText.innerText = "SYSTEM RECOVERED.";
+        statusText.className = "";
+        surpriseObj = null;
+    }, 5000);
+}
+
+function loop() {
+    mouse.x += (mouse.targetX - mouse.x) * 0.1;
+    mouse.y += (mouse.targetY - mouse.y) * 0.1;
+    if (shakeTime > 0) shakeTime--;
+
+    ctx.fillStyle = isOverloading ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 5, 0, 0.2)";
+    ctx.fillRect(0, 0, w, h);
+
+    if (oidaCriticality >= 100 && !isOverloading) triggerSurprise();
+    meter.style.width = oidaCriticality + "%";
+
+    objects.sort((a, b) => b.z - a.z);
+    objects.forEach(o => { o.update(); o.draw(); });
+    
+    if (surpriseObj) {
+        surpriseObj.update();
+        surpriseObj.draw();
+    }
+
+    // Grid Floor
+    ctx.strokeStyle = isOverloading ? "#f00" : "rgba(0, 255, 65, 0.1)";
+    for(let z=100; z<2000; z+=200) {
+        let y = cy + (floorY + mouse.y) * (600/z);
+        ctx.strokeRect(0, y, w, 1);
+    }
+
+    requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>

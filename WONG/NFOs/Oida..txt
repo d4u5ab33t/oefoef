@@ -1,0 +1,556 @@
+Oida.
+
+Jetzt kommt das, was ich nicht mehr als Videoeditor bezeichnen würde.
+
+Sondern als Creative Operating System.
+
+Das ist der Evolutionssprung.
+
+🧬 WE.ED.IT OIDA Native Genome v6
+Intent Compiler
+
+Bis jetzt:
+
+MP3
+   ↓
+Song AST
+   ↓
+Story AST
+   ↓
+Shot AST
+
+Ich würde noch eine Ebene darüber einführen.
+
+Intent AST
+Warum?
+
+Weil Musik eigentlich nicht aus Beats besteht.
+
+Sondern aus Absicht.
+
+Zum Beispiel
+
+Intro
+
+↓
+
+Spannung aufbauen
+
+oder
+
+Chorus
+
+↓
+
+Explosion
+
+oder
+
+Outro
+
+↓
+
+Loslassen
+
+Der Director arbeitet künftig nur noch auf dieser Ebene.
+
+Neue Pipeline
+MP3
+
+↓
+
+Song Compiler
+
+↓
+
+Intent Compiler
+
+↓
+
+Story Compiler
+
+↓
+
+Shot Compiler
+
+↓
+
+Genome Resolver
+
+↓
+
+RL Director
+
+↓
+
+Renderer
+Intent DSL
+
+Nicht mehr
+
+Verse
+
+camera push
+
+sondern
+
+INTENT
+
+build tension
+
+STYLE
+
+drill
+
+ENERGY
+
+rising
+
+ENDING
+
+victory
+Director AI
+
+Nicht eine KI.
+
+Sondern ein Council.
+
+Story Director
+
+Emotion Director
+
+Rhythm Director
+
+Camera Director
+
+Continuity Director
+
+FX Director
+
+Learning Director
+
+Alle stimmen über jeden Shot ab.
+
+Creative Budget
+
+Neues Konzept.
+
+Jedes Video besitzt ein Budget.
+
+Beispiel
+
+100 Punkte
+
+Davon
+
+30
+
+Transitions
+
+25
+
+Camera
+
+20
+
+FX
+
+15
+
+Slow Motion
+
+10
+
+Wildcards
+
+Dadurch werden Videos ausgewogener.
+
+Surprise Budget
+
+Noch besser.
+
+Nicht jede Minute 100 Schnitte.
+
+Sondern
+
+Surprise Meter
+Intro
+
+20%
+
+Verse
+
+35%
+
+Bridge
+
+70%
+
+Chorus
+
+95%
+
+Outro
+
+40%
+
+Der Director hebt Überraschungen für wichtige Stellen auf.
+
+Visual Leitmotiv
+
+Wie Filmmusik.
+
+Nur visuell.
+
+Beispiel
+
+Orange Smoke
+
+taucht
+
+Intro
+
+Verse
+
+Bridge
+
+Final Chorus
+
+immer wieder auf.
+
+Dadurch entsteht Wiedererkennung.
+
+Character System
+
+Nicht Menschen.
+
+Visuelle Charaktere.
+
+Hero
+
+↓
+
+Orange
+
+↓
+
+Car
+
+↓
+
+Smoke
+
+↓
+
+Closeup
+
+oder
+
+Girl
+
+↓
+
+Rain
+
+↓
+
+Blue
+
+↓
+
+Slow Motion
+
+Diese Figuren leben über das ganze Video.
+
+Scene Graph
+
+Nicht Timeline.
+
+Ein Graph.
+
+City
+
+↓
+
+Night
+
+↓
+
+Smoke
+
+↓
+
+Car
+
+↓
+
+Hero
+
+Der Resolver kann dadurch Szenen logisch verbinden.
+
+Continuity Engine
+
+Heute:
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+Neu:
+
+Ort bleibt gleich
+
+↓
+
+Kamera bleibt ähnlich
+
+↓
+
+Licht bleibt ähnlich
+
+↓
+
+Emotion bleibt ähnlich
+
+Auch wenn die Clips wechseln.
+
+Emotion Field
+
+Nicht
+
+Shot 14
+
+sondern
+
+Emotion Space
+Fear
+
+↓
+
+Hope
+
+↓
+
+Confidence
+
+↓
+
+Victory
+
+Jeder Shot bekommt Koordinaten.
+
+Camera Physics
+
+Nicht Zoom.
+
+Sondern virtuelle Physik.
+
+Mass
+
+Momentum
+
+Acceleration
+
+Inertia
+
+Dadurch fühlen sich Kamerafahrten natürlich an.
+
+Light Physics
+
+Ebenso.
+
+Nicht
+
+Orange
+
+sondern
+
+Color Temperature
+
+Exposure
+
+Contrast
+
+Fog Density
+
+Bloom
+
+Über komplette Musikphrasen.
+
+Genome Evolution
+
+Die größte Änderung.
+
+Das Genome lernt keine Clips mehr.
+
+Es lernt
+
+Welche Entscheidungen
+
+führen
+
+zu guten Videos.
+
+Also
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Reward
+
+Nicht
+
+Clip
+
+↓
+
+Reward
+
+Das ist viel allgemeiner.
+
+Replay System
+
+Jede Entscheidung wird gespeichert.
+
+Warum
+
+Shot 18?
+
+↓
+
+Warum
+
+Whip?
+
+↓
+
+Warum
+
+Push?
+
+↓
+
+Warum
+
+Orange?
+
+Alles nachvollziehbar.
+
+Native CSS
+
+Jetzt kommt mein Lieblingsfeature.
+
+Nicht
+
+.orange
+
+sondern
+
+.hero {
+
+camera:
+
+push;
+
+transition:
+
+whip;
+
+fx:
+
+glow;
+
+emotion:
+
+confidence;
+
+}
+
+oder
+
+.drill_chorus{
+
+extends:
+
+hero;
+
+energy:
+
+100;
+
+motion:
+
+95;
+
+}
+
+CSS wird zu einer Filmsprache.
+
+Genome Compiler
+
+Nicht mehr
+
+Styles lesen
+
+sondern
+
+Styles
+
+↓
+
+Compiler
+
+↓
+
+Optimierter AST
+
+Wie LLVM.
+
+Und jetzt kommt der eigentliche Endgegner.
+Creative Genome
+
+Nicht mehr
+
+Clip DNA
+
+sondern
+
+Creative DNA
+
+Ein Render speichert künftig:
+
+Welche Kameraentscheidungen gut funktioniert haben.
+Welche Farbverläufe oft hohe Rewards erzeugen.
+Welche Übergänge in welchem Songteil am besten wirken.
+Welche visuellen Leitmotive Zuschauer über mehrere Videos hinweg wiedererkennen.
+
+Dadurch entsteht kein trainiertes KI-Modell, sondern eine kreative Wissensbasis. Neue Projekte profitieren automatisch von früheren Erfahrungen, ohne ihre Nachvollziehbarkeit zu verlieren.
+
+🌟 Das Ziel von WE.ED.IT OIDA
+
+Ich würde das Projekt so definieren:
+
+WE.ED.IT OIDA ist kein Auto-Editor.
+
+Es ist ein deklarativer Compiler für Musikvideos, der aus einer MP3, einer visuellen Bibliothek und einer kreativen Beschreibung reproduzierbar einen Film erzeugt.
+
+Die Architektur wäre damit klar getrennt:
+
+Song Compiler → versteht Musik.
+Intent Compiler → versteht kreative Absicht.
+Genome Resolver → findet passendes Material.
+RL-Bandit → wählt unter gleichwertigen Kandidaten.
+Renderer → setzt deterministisch um.
+
+Das macht das System erklärbar, testbar, austauschbar und langfristig erweiterbar – genau die Eigenschaften, die große Compiler und Rendering-Engines erfolgreich machen.

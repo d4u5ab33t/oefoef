@@ -1,0 +1,5 @@
+default: cut
+intro: flash
+verse: cut
+chorus: flash
+outro: fade_black

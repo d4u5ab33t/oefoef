@@ -1,0 +1,6 @@
+default:
+  movement: static
+  framing: medium
+chorus:
+  movement: push
+  framing: closeup

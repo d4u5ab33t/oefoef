@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>oefoef — Repository-Handbuch</title>
+<style>
+  :root{
+    --bg: #0d0d10;
+    --bg-panel: #16161b;
+    --bg-card: #1c1c22;
+    --line: #2a2a32;
+    --text: #e9e7e1;
+    --text-dim: #9a98a3;
+    --amber: #e2a23b;
+    --amber-dim: #7a5b26;
+    --teal: #4fd6d6;
+    --teal-dim: #2a5c5c;
+    --red: #d8735f;
+    --red-dim: #6e3a30;
+    --mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+    --serif-body: "IBM Plex Sans", system-ui, sans-serif;
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:var(--serif-body); line-height:1.65; font-size:16px;}
+  a{color:var(--teal);}
+  code, .mono{font-family:var(--mono); font-size:0.88em;}
+
+  .shell{display:flex; max-width:1320px; margin:0 auto;}
+  nav.side{width:270px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; padding:32px 20px 40px 32px; border-right:1px solid var(--line);}
+  nav.side .brand{font-family:var(--sans); font-weight:700; font-size:1.05rem; color:var(--amber); margin-bottom:2px;}
+  nav.side .brand-sub{color:var(--text-dim); font-size:0.78rem; margin-bottom:28px;}
+  nav.side ul{list-style:none; margin:0; padding:0;}
+  nav.side a{display:block; color:var(--text-dim); text-decoration:none; font-size:0.85rem; padding:5px 0; border-left:2px solid transparent; padding-left:12px; transition:color .15s, border-color .15s;}
+  nav.side a:hover{color:var(--text); border-left-color:var(--amber-dim);}
+  nav.side .grp-title{color:var(--text); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; margin:20px 0 4px 12px; opacity:0.55;}
+
+  main{flex:1; min-width:0; padding:56px 56px 120px 56px;}
+  @media (max-width:900px){.shell{display:block;} nav.side{position:relative; height:auto; width:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px;} main{padding:36px 22px;}}
+
+  h1,h2,h3,h4{font-family:var(--sans); font-weight:600; color:var(--text); line-height:1.25;}
+  section{max-width:800px; padding-bottom:52px;}
+
+  .hero{max-width:840px; margin-bottom:56px;}
+  .hero .kicker{color:var(--amber); font-family:var(--mono); font-size:0.82rem; margin-bottom:14px;}
+  .hero h1{font-size:2.4rem; margin:0 0 14px 0;}
+  .hero p.lead{font-size:1.06rem; color:var(--text-dim); max-width:640px;}
+  .hero .meta-row{display:flex; gap:22px; margin-top:24px; font-family:var(--mono); font-size:0.76rem; color:var(--text-dim); flex-wrap:wrap;}
+  .hero .meta-row span b{color:var(--text);}
+
+  h2.section-title{font-size:1.45rem; margin:0 0 6px 0; border-top:1px solid var(--line); padding-top:20px;}
+  .section-sub{color:var(--text-dim); font-size:0.93rem; margin:0 0 22px 0; max-width:660px;}
+  h3{font-size:1.04rem; margin:28px 0 10px 0;}
+  h4{font-size:0.95rem; margin:18px 0 6px 0; color:var(--amber);}
+  p{color:#cfcdc7;}
+
+  pre{background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:15px 18px; overflow-x:auto; font-family:var(--mono); font-size:0.82rem; color:#d9d3c4; line-height:1.6;}
+  code.inline{background:var(--bg-panel); padding:1px 6px; border-radius:var(--radius); border:1px solid var(--line); color:var(--teal);}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0 6px 0; font-size:0.9rem;}
+  th{text-align:left; font-family:var(--sans); font-weight:600; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-dim); border-bottom:1px solid var(--line); padding:8px 12px 8px 0;}
+  td{border-bottom:1px solid var(--line); padding:9px 12px 9px 0; vertical-align:top; color:#d6d4ce;}
+  td code, th code{color:var(--amber);}
+  tr:last-child td{border-bottom:none;}
+  .flag{font-family:var(--mono); color:var(--amber); white-space:nowrap;}
+
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+  @media (max-width:640px){.cards{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px;}
+  .card .tag{font-family:var(--mono); font-size:0.8rem; color:var(--teal); display:block; margin-bottom:6px;}
+  .card p{margin:0; font-size:0.88rem; color:var(--text-dim);}
+
+  .modblock{border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-card); margin:16px 0; overflow:hidden;}
+  .modblock .head{display:flex; justify-content:space-between; align-items:baseline; padding:14px 18px; border-bottom:1px solid var(--line); background:var(--bg-panel);}
+  .modblock .head .name{font-family:var(--mono); color:var(--amber); font-size:0.95rem;}
+  .modblock .head .size{font-family:var(--mono); color:var(--text-dim); font-size:0.74rem;}
+  .modblock .body{padding:14px 18px 18px 18px;}
+  .modblock .body p{font-size:0.9rem; margin:0 0 10px 0;}
+  .modblock .fnlist{list-style:none; margin:10px 0 0 0; padding:0;}
+  .modblock .fnlist li{font-family:var(--mono); font-size:0.78rem; color:var(--text-dim); padding:3px 0; border-top:1px dashed var(--line);}
+  .modblock .fnlist li:first-child{border-top:none;}
+  .modblock .fnlist li .fname{color:var(--teal);}
+
+  .diagram{font-family:var(--mono); font-size:0.8rem; background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; overflow-x:auto; color:#cfcdc7; white-space:pre; line-height:1.55;}
+
+  .fileset{list-style:none; padding:0; margin:14px 0;}
+  .fileset li{font-family:var(--mono); font-size:0.84rem; padding:8px 0; border-bottom:1px solid var(--line); display:flex; gap:14px; flex-wrap:wrap;}
+  .fileset li:last-child{border-bottom:none;}
+  .fileset li span.ext{color:var(--amber); min-width:190px; display:inline-block;}
+  .fileset li span.desc{color:var(--text-dim); font-family:var(--serif-body); flex:1; min-width:200px;}
+
+  .note{border-left:3px solid var(--teal-dim); background:var(--bg-panel); padding:12px 16px; border-radius:0 var(--radius) var(--radius) 0; font-size:0.87rem; color:var(--text-dim); margin:16px 0;}
+  .note b{color:var(--teal);}
+  .warn{border-left-color:var(--red-dim);}
+  .warn b{color:var(--red);}
+
+  .badge{display:inline-block; font-family:var(--mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.04em; padding:2px 8px; border-radius:10px; margin-left:8px; vertical-align:middle;}
+  .badge.core{background:rgba(226,162,59,0.15); color:var(--amber); border:1px solid var(--amber-dim);}
+  .badge.optional{background:rgba(79,214,214,0.12); color:var(--teal); border:1px solid var(--teal-dim);}
+  .badge.legacy{background:rgba(216,115,95,0.12); color:var(--red); border:1px solid var(--red-dim);}
+
+  footer{border-top:1px solid var(--line); padding:32px 56px; color:var(--text-dim); font-size:0.8rem;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav class="side">
+  <div class="brand">oefoef</div>
+  <div class="brand-sub">Repository-Handbuch</div>
+  <ul>
+    <li><a href="#ueberblick">Überblick</a></li>
+    <li><a href="#struktur">Verzeichnisstruktur</a></li>
+    <li><a href="#datenfluss">Datenfluss-Diagramm</a></li>
+    <li class="grp-title">Kern-Pipeline</li>
+    <li><a href="#main">main.py</a></li>
+    <li><a href="#config">config.py</a></li>
+    <li><a href="#db">db.py &amp; Datenbank</a></li>
+    <li><a href="#scan">Scan &amp; Analyse</a></li>
+    <li><a href="#matching">Matching &amp; Timeline</a></li>
+    <li><a href="#genome">Genome &amp; Style</a></li>
+    <li><a href="#render">Rendering</a></li>
+    <li><a href="#viral">Viral-Strategy</a></li>
+    <li class="grp-title">Erweiterungen</li>
+    <li><a href="#optional">Optionale Module</a></li>
+    <li><a href="#luecken">Bekannte Lücken</a></li>
+    <li class="grp-title">Betrieb</li>
+    <li><a href="#setup">Setup &amp; Installation</a></li>
+    <li><a href="#sonstiges">Sonstige Verzeichnisse</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="hero">
+    <div class="kicker">J:\Oidasheim\oefoef · Vollständige Repo-Referenz</div>
+    <h1>oefoef — Beat-Sync Video Engine</h1>
+    <p class="lead">SYNAPSE AUDIO DYNAMICS &amp; WE.ED.IT-Core: eine autonome, offline-first Pipeline,
+    die aus MP3s und einem lokalen Clip-Pool automatisch musiksynchrone Videos samt
+    Upload-Strategie generiert. Dieses Dokument beschreibt das komplette Repository —
+    nicht nur <code class="inline">main.py</code>, sondern alle Module, die die Pipeline tragen.</p>
+    <div class="meta-row">
+      <span>Wurzel: <b>J:\Oidasheim\oefoef</b></span>
+      <span>Python: <b>3.10+ (getestet auf 3.12)</b></span>
+      <span>Status: <b>End-to-End verifiziert (siehe UPGRADE.md, 2026-08-31)</b></span>
+    </div>
+  </div>
+
+  <section id="ueberblick">
+    <h2 class="section-title">Überblick</h2>
+    <p class="section-sub">Was dieses Repository ist — und was es nicht ist.</p>
+
+    <p>Der Kern des Repos ist eine schlanke, deterministische Pipeline aus rund 15 zusammenspielenden
+    Python-Modulen (Einstieg: <code class="inline">main.py</code>). Sie analysiert Songs und Videoclips
+    rein lokal, baut daraus eine musiksynchrone Schnitt-Timeline und rendert per direktem ffmpeg-Subprocess
+    ein fertiges Video — inklusive lernendem Feedback-Loop, semantischer Song/Clip-Zuordnung und
+    automatisch generierter Upload-Strategie.</p>
+
+    <p>Daneben enthält der Ordner sehr viel <b>Drumherum</b>: Backups älterer <code class="inline">main.py</code>-Stände,
+    experimentelle Einzelskripte (Lyrics-/Punchline-Generatoren, Songrid-Tools, ein optionales
+    Unreal-Engine-Renderbackend, ein Schwesterprojekt "WONG"), große Datenexporte sowie mehrere
+    gepackte Archive. Dieses Handbuch trennt bewusst <span class="badge core">Kern</span>,
+    <span class="badge optional">optional/experimentell</span> und <span class="badge legacy">Legacy/Sonstiges</span>.</p>
+
+    <div class="cards">
+      <div class="card"><span class="tag">Einstiegspunkt</span><p><code class="inline">main.py</code> — 1-Click Batch- oder Einzelsong-Verarbeitung.</p></div>
+      <div class="card"><span class="tag">Persistenz</span><p>SQLite (<code class="inline">beat_sync.db</code>) + JSON-Cache (<code class="inline">libsync-flat-globe.db.json</code>).</p></div>
+      <div class="card"><span class="tag">Rendering</span><p>ffmpeg-Subprocess (Standard) oder optional Unreal Engine Movie Render Queue.</p></div>
+      <div class="card"><span class="tag">Weitere CLIs</span><p><code class="inline">song_semantics.py</code> (Lyrics-Lerner) und <code class="inline">viral-strategy.py</code> (Release-Planer) sind eigenständig aufrufbar.</p></div>
+    </div>
+  </section>
+
+  <section id="struktur">
+    <h2 class="section-title">Verzeichnisstruktur</h2>
+    <p class="section-sub">Die Wurzel enthält 109 Dateien und 36 Ordner (~266 MB). Diese Tabelle zeigt nur, was für die Pipeline tatsächlich relevant ist.</p>
+
+    <h3>Kern-Module (Root-Ebene)</h3>
+    <ul class="fileset">
+      <li><span class="ext">main.py</span><span class="desc">Einstiegspunkt / Orchestrierung <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">config.py</span><span class="desc">Zentrale Konfiguration, alle Konstanten <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">db.py</span><span class="desc">SQLite- und JSON-Persistenz <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">mp3_scanner.py</span><span class="desc">Findet Songs, baut Tag-Vektor aus mp3tag <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">audio_analysis.py</span><span class="desc">BPM/Beatgrid/Struktur/Energie/Stimme <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">song_semantics.py</span><span class="desc">Lyrics-Lerner aus Traktor-Tracklisten <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">clip_pool.py</span><span class="desc">Analysiert &amp; cached den Clip-Pool <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">semantic_matching.py</span><span class="desc">Song↔Clip Ähnlichkeits-Scoring <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">timeline_builder.py</span><span class="desc">Baut die Segment-Timeline <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">creative_genome.py</span><span class="desc">Style-Compiler, FilmDNA, Scoring-Grundbausteine <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">film_genome.py</span><span class="desc">Deklaratives Film-Genome-Manifest <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">renderer.py</span><span class="desc">ffmpeg-Rendering, virtuelle Kamera, FX <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">viral-strategy.py</span><span class="desc">Hooks, Hashtags, Posting-Zeiten, Briefs <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">user_prefs.py</span><span class="desc">Liest user_preferences.yaml (Scoring-Bonus) <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">swag_banners.py</span><span class="desc">ASCII-Banner beim Start <span class="badge core">Kern</span></span></li>
+      <li><span class="ext">wong_integration.py</span><span class="desc">Optionaler Vergleich mit WONG-Resolver <span class="badge optional">Optional</span></span></li>
+      <li><span class="ext">unreal_renderer.py</span><span class="desc">Optionales Unreal-Render-Backend <span class="badge optional">Optional</span></span></li>
+      <li><span class="ext">clip_tagging.py</span><span class="desc">Schreibt Nutzungs-Historie in Clip-MP4-Tags <span class="badge legacy">Nicht eingebunden</span></span></li>
+      <li><span class="ext">stem_separator.py</span><span class="desc">Audio-Stem-Trennung für audio_analysis.py <span class="badge core">Kern</span></span></li>
+    </ul>
+
+    <h3>Wichtige Unterordner</h3>
+    <table>
+      <tr><th>Ordner</th><th>Inhalt</th></tr>
+      <tr><td class="flag">styles/</td><td>Genome-Style-Pakete (z.B. <code class="inline">oida.json</code>), geladen über <code class="inline">--style</code>.</td></tr>
+      <tr><td class="flag">data/</td><td>Persistente Datenablagen: SQLite-DB, Flat-Globe-Cache.</td></tr>
+      <tr><td class="flag">logs/</td><td><code class="inline">run.log</code> — fortlaufendes Gesamt-Log aller Läufe.</td></tr>
+      <tr><td class="flag">output/</td><td>Standard-Zielordner für fertige Videos (falls kein <code class="inline">--output-dir</code> gesetzt).</td></tr>
+      <tr><td class="flag">agents/</td><td>Einzelne, unabhängige Zusatzskripte (Content-/Punchline-Generatoren, Monitoring-Stubs).</td></tr>
+      <tr><td class="flag">WONG/</td><td>1:1 kopiertes Schwesterprojekt "WE.ED.IT OIDA Native Genome" für <code class="inline">--wong-resolver</code>.</td></tr>
+      <tr><td class="flag">unreal_side/</td><td>Companion-Skript, das innerhalb der Unreal-Engine-Python-Umgebung läuft.</td></tr>
+      <tr><td class="flag">contracts/</td><td>Solidity-Vertrag <code class="inline">synapse_revenue_split.sol</code> — aktuell nicht an Python angebunden.</td></tr>
+      <tr><td class="flag">analysis/, scripts/, src/, dex/, claw2/, synapse*, SYNAPSE_*</td><td>Weitere, von der Kern-Pipeline unabhängige Experimente/Sub-Projekte.</td></tr>
+      <tr><td class="flag">tests/, .pytest_cache/, .github/</td><td>Test- und CI-Grundgerüst (laut UPGRADE.md noch nicht mit echten Tests befüllt).</td></tr>
+      <tr><td class="flag">.venv312/, venv/</td><td>Virtuelle Python-Umgebungen — nicht Teil des Quellcodes.</td></tr>
+    </table>
+
+    <div class="note">
+      <b>Root-Ebene ist unaufgeräumt:</b> Neben den Kern-Modulen liegen im Wurzelordner viele
+      Backups (<code class="inline">main.py.bak</code>, <code class="inline">main2.py</code>,
+      <code class="inline">film_genome - Kopie.py</code>), alte Stand-alone-Prototypen
+      (<code class="inline">Oidasheim_OneClick_V37.18…</code>, <code class="inline">Oidasheim_v106_AETHER_OIR…</code>,
+      <code class="inline">oidasheim_v116_llm_planner.py</code>), Zip-Archive, Debug-/Probe-Skripte
+      (<code class="inline">_probe_*.py</code>) sowie sehr große Datendateien (u.a. eine 112&nbsp;MB
+      <code class="inline">.bak</code> des Clip-Caches und eine 91&nbsp;MB <code class="inline">songrid.html</code>).
+      Keine dieser Dateien wird von <code class="inline">main.py</code> importiert — siehe
+      <a href="#sonstiges">Sonstige Verzeichnisse</a>.
+    </div>
+  </section>
+
+  <section id="datenfluss">
+    <h2 class="section-title">Datenfluss-Diagramm</h2>
+    <p class="section-sub">Wie die Kern-Module beim Aufruf von <code class="inline">python main.py</code> zusammenspielen.</p>
+    <div class="diagram">MP3-Dateien                    Clip-Pool-Ordner
+     │                              │
+     ▼                              ▼
+mp3_scanner.py                clip_pool.py
+ (Tag-Vektor)                 (Tags, Motion-/Face-Score,
+     │                         OCR, Fingerprint-Cache)
+     ▼                              │
+audio_analysis.py                   │
+ (BPM, Beatgrid, Struktur,          │
+  Energie, MC-Gender,               │
+  Repetition, Scratch-Events)       │
+     │                              │
+     ▼                              │
+song_semantics.py                   │
+ (Lyrics/NML/HTML → Mood,           │
+  Slang, Beat-Switches)             │
+     │                              │
+     └──────────────┬───────────────┘
+                     ▼
+            timeline_builder.py
+      (Scoring: semantic_matching.py +
+       creative_genome.py, Anti-Repeat,
+       Speed-Ramp, Breath-Extend)
+                     │
+                     ▼
+                 main.py
+        (_build_render_script → EDL,
+         Rhythm-Pattern/Sync-Type/Cut-Style)
+                     │
+        ┌────────────┼─────────────┐
+        ▼            ▼             ▼
+   renderer.py  creative_genome /  wong_integration.py
+   (ffmpeg)     film_genome.py     (nur --wong-resolver,
+        │       (.genome.json)     informativ)
+        ▼
+  fertiges .mp4
+        │
+        ▼
+  viral-strategy.py  →  .strategy.json, .metadata.json, CSV
+        │
+        ▼
+  db.py: record_experience() + clip_pool.update_learned_from_render()
+  (Reward-Feedback fließt in künftige Clip-Auswahl zurück)</div>
+  </section>
+
+  <section id="main">
+    <h2 class="section-title">main.py — Orchestrierung</h2>
+    <p class="section-sub">Der Einstiegspunkt. Ausführliche Funktionsreferenz und CLI-Tabelle siehe das
+    separate Dokument <code class="inline">oefoef_anleitung.html</code>; hier die Kurzfassung.</p>
+
+    <pre><span></span>python main.py                              <span></span># alle MP3s in FAVs/**, full+tiktok
+python main.py --song "J:/pfad/song.mp3"    # nur ein Song
+python main.py --limit 5                    # erste 5 (Test)
+python main.py --rebuild-globe              # Clip-Pool-Cache neu analysieren
+python main.py --dry-run                    # nur Analyse + EDL, kein Render
+python main.py --platform tiktok            # nur TikTok-Vertical-Version</pre>
+
+    <table>
+      <tr><th>Flag</th><th>Bedeutung</th></tr>
+      <tr><td class="flag">--song</td><td>Nur diesen einen Song verarbeiten.</td></tr>
+      <tr><td class="flag">--limit N</td><td>Nur die ersten N gefundenen Songs.</td></tr>
+      <tr><td class="flag">--rebuild-globe</td><td>Clip-Pool-Cache komplett neu analysieren.</td></tr>
+      <tr><td class="flag">--output-dir</td><td>Zielordner für fertige Videos.</td></tr>
+      <tr><td class="flag">--style</td><td>Genome-Style-Paket aus <code class="inline">styles/</code> (Default: <code class="inline">cinematic</code>).</td></tr>
+      <tr><td class="flag">--platform</td><td><code class="inline">full</code> oder <code class="inline">tiktok</code>.</td></tr>
+      <tr><td class="flag">--renderer</td><td><code class="inline">ffmpeg</code> (Default) oder <code class="inline">unreal</code>.</td></tr>
+      <tr><td class="flag">--dry-run</td><td>Nur Analyse/EDL, kein Rendering, kein Reward-Feedback.</td></tr>
+      <tr><td class="flag">--skip-semantics-scan</td><td>Überspringt den <code class="inline">song_semantics</code>-Scan.</td></tr>
+      <tr><td class="flag">--wong-resolver</td><td>Zusätzliches, rein informatives WONG-Vergleichssignal im EDL.</td></tr>
+    </table>
+  </section>
+
+  <section id="config">
+    <h2 class="section-title">config.py — Zentrale Konfiguration</h2>
+    <p class="section-sub">Alle Pfade und Tuning-Werte der gesamten Pipeline an einer Stelle (~530 Zeilen, in klar benannte Abschnitte gegliedert). Wird von praktisch jedem anderen Modul importiert.</p>
+
+    <table>
+      <tr><th>Abschnitt</th><th>Regelt u.a.</th></tr>
+      <tr><td class="flag">Root / Arbeitsverzeichnisse</td><td><code class="inline">ROOT_DIR</code>, <code class="inline">LOG_DIR</code>, <code class="inline">TMP_DIR</code>, <code class="inline">DATA_DIR</code> — per <code class="inline">OIDASHEIM_ROOT</code>-Env überschreibbar.</td></tr>
+      <tr><td class="flag">Engine-/Pipeline-Version</td><td><code class="inline">ENGINE_VERSION</code> — landet im Output-Dateinamen.</td></tr>
+      <tr><td class="flag">Input-Quellen</td><td><code class="inline">MP3_ROOTS</code> (per <code class="inline">OIDASHEIM_MP3_ROOT</code>, ';'-getrennt für mehrere Ordner).</td></tr>
+      <tr><td class="flag">Upload-Metadaten</td><td><code class="inline">DEFAULT_HASHTAG_NICHE</code>, <code class="inline">LABEL_NAME</code> für viral-strategy.py.</td></tr>
+      <tr><td class="flag">TikTok-Optimierungsmodus</td><td><code class="inline">TIKTOK_CLIP_SUBDIRS</code> — welche Clip-Unterordner als Vertical-tauglich gelten.</td></tr>
+      <tr><td class="flag">Output-Ablage</td><td><code class="inline">OUTPUT_SUBDIR_BY_PLATFORM</code> — Zielordner relativ zur Song-Datei.</td></tr>
+      <tr><td class="flag">Persistente Datenablagen</td><td><code class="inline">BEAT_SYNC_DB</code>, <code class="inline">FLAT_GLOBE_JSON</code>, <code class="inline">SONGS_CSV</code>.</td></tr>
+      <tr><td class="flag">ffmpeg / ffprobe</td><td>Pfade zu den Binaries als Subprocess-Aufrufe (kein Python-Wrapper).</td></tr>
+      <tr><td class="flag">Clip-Source-Tagging</td><td><code class="inline">TAG_SOURCE_CLIPS_ENABLED</code> u.a. für <code class="inline">clip_tagging.py</code> (aktuell nicht aus main.py aufgerufen, siehe <a href="#luecken">Bekannte Lücken</a>).</td></tr>
+      <tr><td class="flag">Rendering</td><td>Auflösung, FPS, Bitrate, NVENC-Einstellungen.</td></tr>
+      <tr><td class="flag">Video-Collagen</td><td>Multi-Kachel-Grid-Layouts mit erhaltenem Seitenverhältnis.</td></tr>
+      <tr><td class="flag">Render-Backend</td><td><code class="inline">RENDERER_BACKEND</code>, <code class="inline">UNREAL_ENGINE_CMD</code>, <code class="inline">UNREAL_PROJECT_PATH</code>, <code class="inline">UNREAL_MAP</code>, <code class="inline">UNREAL_MRQ_CONFIG</code>.</td></tr>
+      <tr><td class="flag">Beat / Segmentierung</td><td><code class="inline">MIN_SEGMENT_SEC</code>, <code class="inline">MAX_SEGMENT_SEC</code>.</td></tr>
+      <tr><td class="flag">Atem-/Pausen-Dehnung</td><td><code class="inline">BREATH_ENERGY_THRESHOLD</code>, <code class="inline">BREATH_EXTEND_FACTOR</code>, <code class="inline">BREATH_SEGMENT_MAX_SEC</code>.</td></tr>
+      <tr><td class="flag">Stem-Separation</td><td>Steuerung für <code class="inline">stem_separator.py</code> (Drums/Vocals/Bass/Other).</td></tr>
+      <tr><td class="flag">Clip-Auswahl / Anti-Repeat</td><td><code class="inline">NO_REPEAT_WINDOW</code>, <code class="inline">PARTIAL_REPEAT_COOLDOWN_SEC</code>, <code class="inline">PARTIAL_REPEAT_PADDING_SEC</code>, <code class="inline">MAX_CLIP_USES_TOTAL</code>, <code class="inline">SEMANTIC_WEIGHT</code>.</td></tr>
+      <tr><td class="flag">Virtuelle Kamera</td><td>Pan/Zoom-Verhalten je <code class="inline">camera</code>-Modus (push/snap/drift/hold).</td></tr>
+      <tr><td class="flag">Motion-Continuity &amp; Pseudo-3D</td><td>Perspective-/Keystone-Shift-Parameter.</td></tr>
+      <tr><td class="flag">Elastic-Kamera</td><td><code class="inline">CAMERA_ELASTIC_DECAY</code>, <code class="inline">CAMERA_ELASTIC_OVERSHOOT_CYCLES</code>.</td></tr>
+      <tr><td class="flag">Speed Ramps</td><td><code class="inline">SPEED_RAMP_ENABLED</code>, <code class="inline">SPEED_RAMP_MIN</code>/<code class="inline">MAX</code>.</td></tr>
+      <tr><td class="flag">Stutter/Flash</td><td>Schnelle-Wiederholungen-Erkennung und Reaktions-FX.</td></tr>
+      <tr><td class="flag">Cut-Style/Sync-Type Wiring</td><td>Verdrahtung zu <code class="inline">main.py</code>s Klassifikationsfunktionen.</td></tr>
+      <tr><td class="flag">Style Color-Grade &amp; FX</td><td>Rendering-Parameter je <code class="inline">StyleSpec.lighting/color/fx</code>.</td></tr>
+      <tr><td class="flag">MC-Gendern</td><td><code class="inline">GENDER_FEMALE_HZ_MIN</code>, <code class="inline">GENDER_MALE_HZ_MAX</code>, <code class="inline">MC_GENDER_ENABLED</code>.</td></tr>
+      <tr><td class="flag">Song-Struktur-Erkennung</td><td><code class="inline">STRUCTURE_*</code>-Schwellwerte für Intro/Verse/Hook/Bridge/Breakdown/Outro.</td></tr>
+      <tr><td class="flag">Struktur-abhängiges Cut-Tempo</td><td><code class="inline">STRUCTURE_TEMPO_MULT</code>.</td></tr>
+      <tr><td class="flag">DJ-Scratch / Cutoff-Actions</td><td><code class="inline">SCRATCH_ENABLED</code>, <code class="inline">SCRATCH_PROBABILITY</code>.</td></tr>
+      <tr><td class="flag">Echte DJ-Scratch-Erkennung</td><td>ZCR-/Onset-basierte Parameter für <code class="inline">audio_analysis._detect_scratch_dj_events</code>.</td></tr>
+      <tr><td class="flag">Storytelling / Clip-Gruppierung</td><td>Zusammenhängende Clip-Auswahl über mehrere Segmente.</td></tr>
+      <tr><td class="flag">Signature Touch</td><td><code class="inline">SONG_TOUCH_SEED_SALT</code> — deterministische Song-Varianz.</td></tr>
+      <tr><td class="flag">Fast-Replay-Erkennung</td><td>Instant-Replay auf wiederkehrende Hooks.</td></tr>
+      <tr><td class="flag">Stutter/Time-Warp/Wormhole-FX</td><td>Zusätzliche visuelle Effekt-Parameter.</td></tr>
+      <tr><td class="flag">Tag-Vokabular</td><td><code class="inline">TAG_VOCAB</code> — festes, offline berechenbares Keyword-Set für die Vektor-Logik (kein LLM/Embedding).</td></tr>
+    </table>
+  </section>
+
+  <section id="db">
+    <h2 class="section-title">db.py &amp; Datenbank-Schema</h2>
+    <p class="section-sub">SQLite-Datei <code class="inline">beat_sync.db</code> (WAL-Modus, busy-timeout-sicher) + der separate JSON-Cache <code class="inline">libsync-flat-globe.db.json</code>.</p>
+
+    <h3>Tabellen</h3>
+    <table>
+      <tr><th>Tabelle</th><th>Spalten (Auswahl)</th><th>Zweck</th></tr>
+      <tr><td class="flag">songs</td><td>path, bpm, duration_sec, tag_vector_json, beatgrid_json, sections_json, music_dna_json, analyzed_at</td><td>Ein Datensatz pro analysiertem Song.</td></tr>
+      <tr><td class="flag">usage_history</td><td>clip_path, song_id, used_at, position_in_render, clip_in, clip_out</td><td>Jede Verwendung eines Clip-Ausschnitts (Basis für Anti-Repeat/Cooldown).</td></tr>
+      <tr><td class="flag">experiences</td><td>song_id, situation_json, decision_json, reward, alternatives_json, why, film_dna_json, created_at</td><td>Erklärbares Render-Ergebnis pro Song (Reward-Historie).</td></tr>
+      <tr><td class="flag">song_semantics</td><td>path, source_file, title, artist, bpm, musical_key, sections_json, movements_json, mood_tags_json, slang_json, beat_switch_count, sentiment, dominant_style, energy_character, style_weights_json, learned_at</td><td>Aus Traktor-NML/HTML gelernte Song-Semantik (siehe song_semantics.py).</td></tr>
+    </table>
+
+    <h3>Wichtigste Funktionen</h3>
+    <ul class="fnlist" style="list-style:none; padding:0; font-family:var(--mono); font-size:0.85rem; color:var(--text-dim);">
+      <li><span class="fname" style="color:var(--teal)">init_db()</span> — Legt Schema an, migriert fehlende Spalten (ALTER TABLE) ohne Datenverlust.</li>
+      <li><span class="fname" style="color:var(--teal)">upsert_song() / upsert_song_semantics_many()</span> — Schreibt/aktualisiert Analyseergebnisse.</li>
+      <li><span class="fname" style="color:var(--teal)">record_usage_many() / get_recent_usage_ranges() / get_clip_cooldown_ranges()</span> — Anti-Repeat-Grundlage für timeline_builder.py.</li>
+      <li><span class="fname" style="color:var(--teal)">record_experience()</span> — Speichert Reward + Kontext eines Renders.</li>
+      <li><span class="fname" style="color:var(--teal)">load_flat_globe() / save_flat_globe()</span> — Lädt/schreibt den kompletten Clip-Pool-JSON-Cache.</li>
+    </ul>
+  </section>
+
+  <section id="scan">
+    <h2 class="section-title">Scan &amp; Analyse-Module</h2>
+    <p class="section-sub">Alles, was aus rohen Dateien (MP3s, Videoclips, Tracklisten) strukturierte Daten macht.</p>
+
+    <div class="modblock">
+      <div class="head"><span class="name">mp3_scanner.py</span><span class="size">164 Zeilen</span></div>
+      <div class="body">
+        <p>Findet MP3s rekursiv in <code class="inline">config.MP3_ROOTS</code>, liest mp3tag-Metadaten
+        (Genre/Mood/Comment/Artist) via <code class="inline">mutagen</code> und baut einen Bag-of-Keywords-
+        Tag-Vektor über <code class="inline">TAG_VOCAB</code> — komplett offline, deterministisch. Nutzt
+        <code class="inline">alle_songs_extrahiert.csv</code> als Fast-Path-Cache, wenn aktueller als die MP3.</p>
+        <ul class="fnlist">
+          <li><span class="fname">find_mp3_files()</span> — rekursiver Scan über alle konfigurierten Roots.</li>
+          <li><span class="fname">build_tag_vector()</span> — Text → Vektor über TAG_VOCAB.</li>
+          <li><span class="fname">scan_all_songs()</span> — komplette <code class="inline">SongInfo</code>-Liste.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">audio_analysis.py</span><span class="size">549 Zeilen</span></div>
+      <div class="body">
+        <p>Reines Audio-DSP über <code class="inline">librosa</code> (CPU, keine CUDA-Pflicht). Liefert pro
+        Song: BPM, Beatgrid, beat-synchrone Energiekurve, Song-Sections, MC-Gender (per Median-F0),
+        Repetitionszonen und DJ-Scratch-Events. Nutzt <code class="inline">stem_separator.py</code> für
+        saubereres Beat-Matching und cached Ergebnisse prozessweit, damit mehrfache Aufrufe für denselben
+        Song (z.B. über mehrere Plattformen) nicht doppelt rechnen.</p>
+        <ul class="fnlist">
+          <li><span class="fname">analyze_song()</span> — öffentliche Haupt-Einstiegsfunktion, cached.</li>
+          <li><span class="fname">_estimate_mc_gender()</span> — Stimmlagen-Schätzung aus Grundfrequenz.</li>
+          <li><span class="fname">_detect_song_structure()</span> — Intro/Verse/Hook/Bridge/Breakdown/Outro.</li>
+          <li><span class="fname">_detect_repetition_windows() / _detect_scratch_dj_events()</span> — für Rhythm-FX.</li>
+          <li><span class="fname">energy_to_segment_length()</span> — leitet Segmentlänge aus Energie ab.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">song_semantics.py <span class="badge core">Kern + eigene CLI</span></span><span class="size">678 Zeilen</span></div>
+      <div class="body">
+        <p>Lernt Song-Semantik aus Traktor-Pro-Tracklisten (<code class="inline">*.nml</code> / <code class="inline">*.htm</code>/<code class="inline">*.html</code>)
+        neben den MP3s. Bei Suno-generierten Songs stecken dort komplette Lyrics inkl. strukturierter
+        <code class="inline">[Section]</code>-Marker (z.B. <code class="inline">[BEAT SWITCH - 140 BPM - UK DRILL]</code>),
+        die mp3_scanner.py nicht sieht. Parsed Sections, Beat-Switches/Movements, SFX, Ad-libs, Vocal-Style
+        und Mood-/Slang-Keywords, matched jeden Eintrag auf die passende MP3 und schreibt alles in
+        <code class="inline">db.song_semantics</code>.</p>
+        <pre>python song_semantics.py                 # Full-Scan + Report
+python song_semantics.py --report-only    # nur Report über bereits Gelerntes</pre>
+        <ul class="fnlist">
+          <li><span class="fname">scan_and_learn()</span> — von main.py aufgerufener Haupteinstieg.</li>
+          <li><span class="fname">parse_nml_file() / parse_html_file()</span> — Tracklisten-Parser.</li>
+          <li><span class="fname">analyze_lyrics()</span> — zerlegt Lyrics in Sections + Metadaten.</li>
+          <li><span class="fname">get_semantics_for_song()</span> — Lookup für main.py::process_song.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">clip_pool.py</span><span class="size">570 Zeilen</span></div>
+      <div class="body">
+        <p>Analysiert den Clip-Pool einmalig und cached das Ergebnis als "flat globe"
+        (<code class="inline">libsync-flat-globe.db.json</code>). Nutzt <code class="inline">ffprobe</code>
+        für die Cliplänge, leitet Tags aus der Ordnerstruktur ab und berechnet Motion- und
+        Face-Score aus denselben gesampelten Frames (ein OpenCV-Decode-Pass statt Vollvideo-Decode —
+        wichtig bei zehntausenden Clips). Optional: OCR-Texterkennung (Tesseract) und ein
+        "learned"-Suffix, das aus dem Render-Feedback wächst.</p>
+        <ul class="fnlist">
+          <li><span class="fname">build_or_update_globe()</span> — inkrementeller Scan, nur geänderte Dateien neu.</li>
+          <li><span class="fname">analyze_clip()</span> — volle Einzelclip-Analyse (Tags, Motion, Face, OCR).</li>
+          <li><span class="fname">filter_globe_to_subdirs()</span> — TikTok-Vertical-Filterung.</li>
+          <li><span class="fname">update_learned_from_render()</span> — schreibt Reward-Feedback zurück in den Cache.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">clip_tagging.py <span class="badge legacy">nicht in main.py eingebunden</span></span><span class="size">251 Zeilen</span></div>
+      <div class="body">
+        <p>Würde nach jedem Render "wann/wie/wo/warum verwendet"-Metadaten direkt in die MP4-Tags der
+        <b>Original-Clip-Dateien</b> schreiben (verlustfreier ffmpeg-Remux, <code class="inline">-c copy</code>).
+        Nutzt drei zweckentfremdete Standard-Tags (<code class="inline">comment</code>,
+        <code class="inline">description</code>, <code class="inline">synopsis</code>), da MP4 keine
+        freien Custom-Keys erlaubt. <b>Wird aktuell von main.py nicht aufgerufen</b> — weder
+        <code class="inline">clip_tagging</code> noch <code class="inline">config.TAG_SOURCE_CLIPS_ENABLED</code>
+        tauchen im main.py-Quelltext auf.</p>
+        <ul class="fnlist">
+          <li><span class="fname">tag_clips_after_render()</span> — vorgesehener Einstiegspunkt (aktuell unerreicht).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="matching">
+    <h2 class="section-title">Matching &amp; Timeline</h2>
+    <p class="section-sub">Das eigentliche "Denken" der Pipeline: welcher Clip landet wann im Video.</p>
+
+    <div class="modblock">
+      <div class="head"><span class="name">semantic_matching.py</span><span class="size">163 Zeilen</span></div>
+      <div class="body">
+        <p>Reines Scoring/Text, ausgelagert aus main.py. Bewertet einen Clip anhand
+        Tag-Vektor-Kosinus-Ähnlichkeit, Gender-Alignment und Mood-Tag-Overlap gegen ein Song-Segment.</p>
+        <ul class="fnlist">
+          <li><span class="fname">calculate_semantic_match()</span> — gewichteter Gesamt-Score (0..1).</li>
+          <li><span class="fname">semantic_match_reason()</span> — menschenlesbare Begründung fürs EDL.</li>
+          <li><span class="fname">cosine_similarity() / gender_alignment_score() / mood_tag_overlap_score()</span> — Einzelbausteine.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">timeline_builder.py</span><span class="size">641 Zeilen</span></div>
+      <div class="body">
+        <p>Kernstück der Clip-Auswahl. Baut aus Song-Analyse + Tag-Vektor + Clip-Globe eine frame-genaue
+        Schnittliste. Score pro Kandidat-Clip:</p>
+        <pre>score = SEMANTIC_WEIGHT * cosine(song_vec, clip_vec)
+      + (1-SEMANTIC_WEIGHT) * energy_match(section_label, clip.motion_score)
+      + FACE_BOOST_VOCAL (falls Sektion vokal/emotional UND face_score hoch)</pre>
+        <p>Anti-Repeat kombiniert drei Ebenen: <code class="inline">NO_REPEAT_WINDOW</code> (harte Sperre
+        innerhalb des aktuellen Renders), <code class="inline">PARTIAL_REPEAT_COOLDOWN_SEC</code>
+        (zeitbasiert, rendersübergreifend über <code class="inline">beat_sync.db</code>) und
+        <code class="inline">MAX_CLIP_USES_TOTAL</code> (harte Obergrenze über die gesamte Historie).
+        Gesperrt wird dabei nur der tatsächlich genutzte Zeitbereich eines Clips, nicht der ganze Clip.</p>
+        <ul class="fnlist">
+          <li><span class="fname">build_timeline()</span> — Haupteinstieg, von main.py::process_song aufgerufen.</li>
+          <li><span class="fname">_pick_clip()</span> — Kandidaten-Scoring + Auswahl pro Segment.</li>
+          <li><span class="fname">_resolve_oida_semantics()</span> — songspezifische Struktur-/Semantik-Auflösung.</li>
+          <li><span class="fname">_apply_structure_tempo() / _polyrhythm_jitter()</span> — Tempo-/Rhythmus-Feinjustierung.</li>
+          <li><span class="fname">_maybe_extend_for_breath()</span> — Segment-Verlängerung in ruhigen Passagen.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="genome">
+    <h2 class="section-title">Genome &amp; Style-System</h2>
+    <p class="section-sub">Deklarative, deterministische Regie-Ebene zwischen Timeline und Renderer.</p>
+
+    <div class="modblock">
+      <div class="head"><span class="name">creative_genome.py</span><span class="size">238 Zeilen</span></div>
+      <div class="body">
+        <p>Trennt bewusst Analyse, Intent, Auflösung und Rendering: "Models may add signals to a genome,
+        but never own final decisions." Kompiliert benannte <code class="inline">StyleSpec</code>-Pakete
+        (aus <code class="inline">styles/*.json</code>, mit Parent-Vererbung), leitet daraus pro Segment
+        einen <code class="inline">DirectorIntent</code> ab und pflegt eine kumulative <code class="inline">FilmDNA</code>.</p>
+        <ul class="fnlist">
+          <li><span class="fname">compile_style() / resolve_style()</span> — lädt und vererbt Style-Pakete.</li>
+          <li><span class="fname">build_intent()</span> — Section + Energie + Style + Mood → Intent.</li>
+          <li><span class="fname">score_candidate()</span> — Basis-Scoring-Baustein (auch von timeline_builder genutzt).</li>
+          <li><span class="fname">information_density()</span> — Bewegungsdichte-Kennzahl eines Clips.</li>
+          <li><span class="fname">genome_manifest()</span> — baut das finale, serialisierbare Manifest.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">film_genome.py</span><span class="size">125 Zeilen</span></div>
+      <div class="body">
+        <p>Deklarativer Film-Genome-AST: <code class="inline">FrameAST</code> (Zoom/Pan/Crop/LUT/Grain) →
+        <code class="inline">ShotAST</code> → <code class="inline">SceneAST</code> → <code class="inline">EmotionAST</code>
+        / <code class="inline">ThemeAST</code> → <code class="inline">FilmGenome</code>. Rein datenhaltende,
+        deterministische Struktur ohne eigene Rendering-Logik.</p>
+        <ul class="fnlist">
+          <li><span class="fname">compile_film_genome()</span> — baut das Genome aus Tag-Vektor, Sections und Timeline.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">
+      Ergebnis landet pro Song als <code class="inline">*.genome.json</code> neben dem Video
+      (siehe <code class="inline">main.py::_finalize_song_artifacts</code>).
+    </div>
+  </section>
+
+  <section id="render">
+    <h2 class="section-title">Rendering</h2>
+    <p class="section-sub">Vom EDL zum fertigen MP4 — ohne moviepy/ffmpeg-python-Wrapper, direkt per Subprocess.</p>
+
+    <div class="modblock">
+      <div class="head"><span class="name">renderer.py</span><span class="size">1148 Zeilen</span></div>
+      <div class="body">
+        <p>Extrahiert pro Segment einen Clip, wendet eine virtuelle Kamera an (Pan/Zoom), normalisiert
+        auf gleiche Auflösung/FPS, konkateniert per concat-Demuxer (frame-genau, kein Re-Encode-Drift)
+        und legt am Ende die Original-MP3 als Tonspur über die gesamte Länge.</p>
+        <p><b>Virtuelle Kamera:</b> Zoom nur wenn er etwas bringt — Seitenverhältnis-Mismatch erzwingt
+        Zoom-Fill; <code class="inline">segment.camera</code> steuert <code class="inline">push</code>
+        (langsamer Ken-Burns-Zoom), <code class="inline">snap</code> (schneller Punch-In),
+        <code class="inline">drift</code> (Zoom + seitliches Pan) oder <code class="inline">hold</code>
+        (meist statisch). Pan-Richtung leitet sich primär aus der tatsächlich erkannten Bewegungsrichtung
+        des Clips ab (<code class="inline">clip_pool.motion_direction</code>), mit deterministischem
+        Hash-Seed als Fallback. Für <code class="inline">push</code>/<code class="inline">drift</code>
+        kommt zusätzlich ein dezenter, animierter Keystone/Perspective-Shift für Pseudo-3D-Tiefe dazu.</p>
+        <ul class="fnlist">
+          <li><span class="fname">render_music_video()</span> — Haupteinstieg (identische Signatur wie unreal_renderer).</li>
+          <li><span class="fname">_plan_camera() / _zoompan_filter() / _perspective_filter()</span> — Kamera-Logik.</li>
+          <li><span class="fname">_build_push_fade_transition() / _build_scratch_transition()</span> — Übergangs-Rendering.</li>
+          <li><span class="fname">_nvenc_available()</span> — nutzt Hardware-Encoding (NVENC), wenn verfügbar.</li>
+          <li><span class="fname">_write_ffmetadata_file()</span> — bettet MP4-Tags/Kapitel aus main.py-Metadata ein.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">unreal_renderer.py <span class="badge optional">optional, --renderer unreal</span></span><span class="size">265 Zeilen</span></div>
+      <div class="body">
+        <p>Alternatives Render-Backend über Unreal Engine Movie Render Queue. Laut internem Status-
+        Kommentar ist Engine (UE 5.8) + Testprojekt zwar konfiguriert, aber die render-spezifischen
+        Assets (<code class="inline">/Game/Maps/BeatSyncStage</code>, <code class="inline">/Game/MRQ/DefaultConfig</code>)
+        fehlen noch im Content-Ordner. <code class="inline">_check_configured()</code> prüft das per
+        reiner Dateisystem-Prüfung und fällt sonst sauber und schnell mit
+        <code class="inline">UnrealNotConfiguredError</code> auf ffmpeg zurück, statt main.py minutenlang
+        auf einen zum Scheitern verurteilten headless-Editor-Start warten zu lassen.</p>
+        <ul class="fnlist">
+          <li><span class="fname">render_music_video()</span> — schreibt Timeline als JSON-Manifest, startet UnrealEditor-Cmd.exe headless.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="viral">
+    <h2 class="section-title">viral-strategy.py — Release-Planer</h2>
+    <p class="section-sub">Eigenständig per CLI nutzbar UND von main.py automatisch pro gerendertem Song aufgerufen.</p>
+
+    <pre>python viral-strategy.py hook
+python viral-strategy.py posting --platform tiktok
+python viral-strategy.py hashtags --platform tiktok --niche electronic --label "Mein Label"
+python viral-strategy.py caption --hook "..." --body "..." --cta "..." --artist "..." --label "..."
+python viral-strategy.py brief --artist "..." --track "..." --release 2026-09-08 --label "..."
+python viral-strategy.py snapshot --artist "..." --track "..." --release 2026-09-08 --label "..." --output snapshot.json</pre>
+
+    <table>
+      <tr><th>Subcommand</th><th>Zweck</th></tr>
+      <tr><td class="flag">hook</td><td>Hook-Vorschläge aus 6 Frameworks (Punch-Drop, Vorher/Nachher, POV, Nostalgie-Trap, Tutorial-Dress, Relatable Pain).</td></tr>
+      <tr><td class="flag">posting</td><td>Optimale Post-Zeit je Plattform + Wochentag (TikTok/Instagram/YouTube).</td></tr>
+      <tr><td class="flag">hashtags</td><td>Hashtag-Mix je Plattform/Nische/Label.</td></tr>
+      <tr><td class="flag">caption</td><td>Caption-Generator mit Hook-Formel.</td></tr>
+      <tr><td class="flag">brief</td><td>Komplettes Strategy-Brief für einen Release — dieselbe Funktion (<code class="inline">build_brief</code>), die main.py pro Song aufruft.</td></tr>
+      <tr><td class="flag">snapshot</td><td>Viral-Health-Check-Report, als Datei gespeichert.</td></tr>
+    </table>
+
+    <p>Aus main.py heraus liefert <code class="inline">learn_default_niche()</code> außerdem die
+    automatisch aus allen bekannten Song-Semantiken gelernte Standard-Hashtag-Nische, und
+    <code class="inline">build_platform_metadata()</code> erzeugt die <code class="inline">.metadata.json</code>
+    + CSV-Zeile pro Video.</p>
+  </section>
+
+  <section id="optional">
+    <h2 class="section-title">Optionale Module</h2>
+    <p class="section-sub">Können komplett fehlen oder deaktiviert sein, ohne die Kern-Pipeline zu brechen.</p>
+
+    <div class="modblock">
+      <div class="head"><span class="name">wong_integration.py <span class="badge optional">--wong-resolver</span></span><span class="size">168 Zeilen</span></div>
+      <div class="body">
+        <p>Bindet das Schwesterprojekt <b>WONG</b> (WE.ED.IT OIDA Native Genome, 1:1 nach
+        <code class="inline">WONG/</code> kopiert) rein informativ an: fragt pro Segment dessen
+        GenomeResolver + RLBandit ab und loggt Wahl/Reward-Prediction als Vergleichssignal im EDL.
+        Ändert nie den tatsächlich gerenderten Clip. Module werden per gezieltem Datei-Import geladen
+        (kein dauerhafter <code class="inline">sys.path</code>-Eintrag, um Namenskollisionen mit
+        gleichnamigen oefoef-Ordnern wie <code class="inline">core/</code>, <code class="inline">styles/</code>
+        zu vermeiden). Jeder Fehler deaktiviert das Feature sauber, statt main.py abstürzen zu lassen.</p>
+        <ul class="fnlist">
+          <li><span class="fname">init_wong_state()</span> — einmalig pro main.py-Lauf.</li>
+          <li><span class="fname">wong_resolve_segment()</span> — pro Timeline-Segment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">user_prefs.py</span><span class="size">91 Zeilen</span></div>
+      <div class="body">
+        <p>Liest <code class="inline">user_preferences.yaml</code> (feste, einfache Struktur:
+        <code class="inline">global_weight</code> + likes/dislikes aus Tag/Weight-Paaren) über einen
+        Mini-Regex-Parser — kein <code class="inline">pyyaml</code> nötig. Liefert einen additiven
+        Scoring-Bonus/-Malus, der in <code class="inline">timeline_builder._pick_clip</code> einfließt.
+        Fehlt die Datei oder ist sie kaputt, liefert <code class="inline">preference_bonus()</code>
+        für jeden Clip 0.0 — niemals ein Absturzgrund.</p>
+        <ul class="fnlist">
+          <li><span class="fname">preference_bonus() / has_preferences()</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modblock">
+      <div class="head"><span class="name">stem_separator.py</span><span class="size">Zulieferer für audio_analysis.py</span></div>
+      <div class="body">
+        <p>Trennt Drums/Vocals/Bass/Other für saubereres Beat-Matching, disk-gecacht. Wird transparent
+        aus <code class="inline">audio_analysis.py</code> heraus verwendet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="luecken">
+    <h2 class="section-title">Bekannte Lücken &amp; Diskrepanzen</h2>
+    <p class="section-sub">Stellen, an denen Code-Kommentare/Docstrings mehr versprechen, als main.py aktuell tatsächlich tut.</p>
+
+    <div class="note warn">
+      <b>clip_tagging.py ist nicht verdrahtet:</b> Weder der Import noch ein Aufruf von
+      <code class="inline">tag_clips_after_render()</code> tauchen in main.py auf. Die im Code
+      dokumentierte Kette "main.py::process_song → tag_clips_after_render()" existiert nicht (mehr) —
+      Original-Clip-Dateien bekommen aktuell <b>keine</b> Nutzungs-Metadaten in die MP4-Tags geschrieben.
+    </div>
+    <div class="note warn">
+      <b>--mp3-root und --no-clip-tags fehlen im Parser:</b> Kommentare in <code class="inline">config.py</code>
+      und in <code class="inline">main.py</code> selbst (Zeile ~848) sprechen von einem geplanten
+      <code class="inline">--mp3-root</code>-Flag (mehrfach angebbar) bzw. einem
+      <code class="inline">--no-clip-tags</code>-Schalter. Im aktuellen <code class="inline">argparse</code>-Setup
+      von main.py existiert keiner der beiden — nur <code class="inline">config.MP3_ROOTS</code>
+      (per Env-Variable) steuert die Song-Quelle.</td>
+    </div>
+    <div class="note">
+      <b>Viele Root-Skripte sind unabhängig von main.py:</b> Dateien wie
+      <code class="inline">oida_track_generator_v5.py</code>, <code class="inline">oidaheim_archive_miner_v2_420_weed_beats.py</code>,
+      <code class="inline">canvas-export.py</code> oder die <code class="inline">agents/</code>-Skripte
+      werden von der Kern-Pipeline nicht importiert. Sie sind eigenständige Experimente/Tools desselben
+      Projektkontexts, aber kein Teil des <code class="inline">python main.py</code>-Laufs.
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2 class="section-title">Setup &amp; Installation</h2>
+    <p class="section-sub">Zusammengefasst aus UPGRADE.md — zuletzt am 2026-08-31 end-to-end verifiziert.</p>
+
+    <pre>cd j:\Oidasheim\oefoef
+python -m venv .venv312
+.venv312\Scripts\python.exe -m pip install -r requirements.txt
+
+<span></span># Verifizieren
+.venv312\Scripts\python.exe -c "import main; print('OK')"
+
+<span></span># Dry-Run (EDL + genome.json, kein Video)
+.venv312\Scripts\python.exe main.py --limit 1 --dry-run
+
+<span></span># Voller Render
+.venv312\Scripts\python.exe main.py --limit 1</pre>
+
+    <table>
+      <tr><th>Voraussetzung</th><th>Hinweis</th></tr>
+      <tr><td class="flag">Python</td><td>3.10+ deklariert, getestet auf 3.12 (<code class="inline">.venv312/</code>) — beste Wheel-Verfügbarkeit für torch/opencv/librosa/transformers.</td></tr>
+      <tr><td class="flag">ffmpeg / ffprobe</td><td>Müssen im <code class="inline">PATH</code> liegen. NVENC-Hardware-Encoding wird automatisch von renderer.py genutzt, falls verfügbar.</td></tr>
+      <tr><td class="flag">requirements.txt</td><td><code class="inline">ffmpeg-python</code> wurde von <code class="inline">>=0.2.1,&lt;1.0</code> (unerfüllbar, da PyPI-Latest 0.2.0 ist) auf <code class="inline">>=0.2.0,&lt;1.0</code> korrigiert.</td></tr>
+      <tr><td class="flag">web3</td><td>Wurde entfernt — nirgends im Code importiert, brach aber unter Windows/Python-3.12 den Build (fehlendes lru-dict-Wheel).</td></tr>
+      <tr><td class="flag">%TEMP%</td><td>Muss genug freien Platz haben — ein volles Temp-Verzeichnis lässt <code class="inline">venv</code>/<code class="inline">ensurepip</code> mit <code class="inline">OSError 28</code> fehlschlagen.</td></tr>
+    </table>
+
+    <p>Verifiziert wurden bislang: Clip-Pool-Cache mit 32.241 Clips, Audioanalyse/BPM-Erkennung,
+    MC-Gender-Erkennung, Timeline-Bau (112 Segmente im Testsong), EDL- + Film-Genome-JSON-Output
+    und finaler NVENC-Render — jeweils nur für Style <code class="inline">cinematic</code> und
+    Plattform <code class="inline">full</code>. <code class="inline">--platform tiktok</code> und
+    <code class="inline">--rebuild-globe</code> waren laut UPGRADE.md zuletzt noch nicht getestet.</p>
+  </section>
+
+  <section id="sonstiges">
+    <h2 class="section-title">Sonstige Verzeichnisse &amp; Dateien</h2>
+    <p class="section-sub">Nicht Teil der Kern-Pipeline — der Vollständigkeit halber aufgeführt, nicht im Detail dokumentiert.</p>
+
+    <table>
+      <tr><th>Kategorie</th><th>Beispiele</th></tr>
+      <tr><td class="flag">Backups alter main.py-Stände</td><td><code class="inline">main.py.bak</code>, <code class="inline">main2.py</code>, <code class="inline">film_genome - Kopie.py</code>, <code class="inline">renderer - Kopie.py</code>, <code class="inline">_backup_cutstyle_wiring/</code></td></tr>
+      <tr><td class="flag">Alte Stand-alone-Prototypen</td><td><code class="inline">Oidasheim_OneClick_V37.18_Architect_PATCHED (1).py</code>, <code class="inline">Oidasheim_v106_AETHER_OIR (1).py</code>, <code class="inline">oidasheim_v116_llm_planner.py</code>, <code class="inline">j__Oidasheim_jopta_oidasheim_main.py</code></td></tr>
+      <tr><td class="flag">Content-/Text-Generatoren</td><td><code class="inline">oida_track_generator_v5.py</code>, <code class="inline">oida_trend_agents.py</code>, <code class="inline">Oida-Swalla-Punchlines.py</code>, <code class="inline">oidaheim_archive_miner_v2_420_weed_beats.py</code>, <code class="inline">agents/oidaheim_imperium.py</code></td></tr>
+      <tr><td class="flag">Debug-/Probe-Skripte</td><td><code class="inline">_probe_diff.py</code>, <code class="inline">_probe_inspect.py</code>, <code class="inline">_probe_mp4_keys.py</code>, <code class="inline">_probe_mp4_tags.py</code>, <code class="inline">_probe_mp4_unicode.py</code>, <code class="inline">_import_check.py</code>, <code class="inline">_analyze_deps.py</code>, <code class="inline">verify_stack.py</code></td></tr>
+      <tr><td class="flag">Test-MP4s</td><td><code class="inline">_test_src.mp4</code>, <code class="inline">_test_tagged*.mp4</code> — Fixtures für die Probe-Skripte.</td></tr>
+      <tr><td class="flag">Große Datendumps</td><td><code class="inline">libsync-flat-globe.db.json.bak</code> (112,9 MB), <code class="inline">songrid.html</code> (91,4 MB), <code class="inline">database.json</code> (6,1 MB), <code class="inline">oidaheim_song_knowledge_base.db</code> (20,2 MB)</td></tr>
+      <tr><td class="flag">Archive</td><td><code class="inline">main.zip</code>, <code class="inline">claw2_engine.zip</code>, <code class="inline">atlas_monitor.zip</code>, <code class="inline">files*.zip</code>, <code class="inline">Creative Compiler-files.zip</code>, <code class="inline">film_genome-files.zip</code>, <code class="inline">oefoef.rar</code>, <code class="inline">requ_data.rar</code></td></tr>
+      <tr><td class="flag">Textnotizen / Prompts</td><td><code class="inline">🎤 10 NEUE AUFS MAUL BANGER – 2027.txt</code>, <code class="inline">ERSTELLE EINE SUNO4.5 PROMT LIST;fü.txt</code>, <code class="inline">style oida.txt</code>, <code class="inline">Systemarchitektur des autonomen Cre.txt</code></td></tr>
+      <tr><td class="flag">Unabhängige Sub-Projekte</td><td><code class="inline">synapse/</code>, <code class="inline">synapse_os/</code>, <code class="inline">synapse-os/</code>, <code class="inline">SYNAPSE_OIDAHEIM_3047/</code>, <code class="inline">SYNAPSE-SYNTHESIS/</code>, <code class="inline">dex/</code>, <code class="inline">claw2/</code>, <code class="inline">src/</code></td></tr>
+      <tr><td class="flag">Docker/CI-Grundgerüst</td><td><code class="inline">Dockerfile</code>, <code class="inline">docker-compose.yml</code>, <code class="inline">.github/</code>, <code class="inline">tests/</code> — laut UPGRADE.md noch ohne echte Tests befüllt.</td></tr>
+    </table>
+
+    <div class="note">
+      Diese Dateien werden von <code class="inline">main.py</code> zur Laufzeit nicht geladen und
+      beeinflussen die Beat-Sync-Pipeline nicht. Vor dem Löschen/Aufräumen trotzdem einzeln prüfen,
+      falls sie referenzierte Zwischenergebnisse (z.B. gelernte Wissensbasen) enthalten, die andernorts
+      noch gebraucht werden.
+    </div>
+  </section>
+
+</main>
+</div>
+
+<footer>oefoef — Repository-Handbuch · generiert aus dem vollständigen Verzeichnis J:\Oidasheim\oefoef</footer>
+
+</body>
+</html>

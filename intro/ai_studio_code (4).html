@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OIDANATIVE_10.0_SEGFAULT_SYMPHONY</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
+        canvas { display: block; filter: sepia(0.5) hue-rotate(80deg) contrast(1.5); }
+        #hud {
+            position: absolute; bottom: 30px; left: 30px;
+            color: #00ff41; font-size: 11px; line-height: 1.5;
+            background: rgba(0,20,0,0.8); padding: 15px; border: 1px solid #00ff41;
+            box-shadow: 0 0 15px rgba(0,255,65,0.2);
+        }
+        .warning { color: #fff; text-shadow: 0 0 5px #f00; animation: flash 0.2s infinite; }
+        @keyframes flash { 0% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        OS: OIDANATIVE_v10.0_STADELHEIM_EDITION<br>
+        MEMORY_DUMP: <span class="warning">SEGFAULT_DETECTED</span><br>
+        VIBE_CHECK: KURWA_OIDA_STABLE<br>
+        PROJECT: BETON_CHIPRUSH_3047
+    </div>
+    <canvas id="matrix10"></canvas>
+
+<script>
+const canvas = document.getElementById('matrix10');
+const ctx = canvas.getContext('2d');
+let w, h, cx, cy;
+
+const banners = [
+    "K U R W A   O I D A",
+    "S E G F A U L T",
+    "B E T O N",
+    "0 8 9",
+    "C H I P R U S H"
+];
+
+const hexChars = "0123456789ABCDEF-089-OIDA-".split("");
+
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cx = w / 2; cy = h / 2;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class MemoryChip {
+    constructor() { this.init(); }
+    init() {
+        this.x = (Math.random() - 0.5) * 3000;
+        this.y = (Math.random() - 0.5) * 3000;
+        this.z = 2000;
+        this.val = "0x" + Math.floor(Math.random()*0xFFFFFF).toString(16).toUpperCase();
+        this.speed = Math.random() * 20 + 10;
+    }
+    update() {
+        this.z -= this.speed;
+        if (this.z < 1) this.init();
+    }
+    draw() {
+        const scale = 500 / this.z;
+        const x2d = cx + this.x * scale;
+        const y2d = cy + this.y * scale;
+        
+        ctx.globalAlpha = Math.min(1, (2000 - this.z) / 1000);
+        ctx.font = `${12 * scale}px monospace`;
+        ctx.fillStyle = this.z < 500 ? "#fff" : "#00ff41";
+        ctx.fillText(this.val, x2d, y2d);
+    }
+}
+
+class BetonGate {
+    constructor() { this.init(); }
+    init() {
+        this.z = 2500;
+        this.text = banners[Math.floor(Math.random() * banners.length)];
+        this.rotation = Math.random() * Math.PI;
+    }
+    update() {
+        this.z -= 15;
+        this.rotation += 0.005;
+        if (this.z < 1) this.init();
+    }
+    draw() {
+        const scale = 500 / this.z;
+        const alpha = Math.max(0, Math.min(0.8, (2000 - this.z) / 1000));
+        
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(this.rotation);
+        ctx.scale(scale * 10, scale * 10);
+        
+        ctx.fillStyle = `rgba(0, 255, 65, ${alpha})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00ff41";
+        ctx.fillText(this.text, -ctx.measureText(this.text).width / 2, 0);
+        
+        // Beton texture shadow
+        ctx.fillStyle = `rgba(0, 50, 0, ${alpha / 2})`;
+        ctx.fillText("▓▒░▓▒░▓▒░▓▒░▓▒░", -ctx.measureText("▓▒░▓▒░▓▒░▓▒░▓▒░").width / 2, 10);
+        
+        ctx.restore();
+    }
+}
+
+const chips = Array.from({length: 300}, () => new MemoryChip());
+const gates = Array.from({length: 4}, () => new BetonGate());
+
+function loop() {
+    // Industrial Fog
+    ctx.fillStyle = "rgba(0, 10, 0, 0.2)";
+    ctx.fillRect(0, 0, w, h);
+
+    const all = [...chips, ...gates].sort((a, b) => b.z - a.z);
+    
+    all.forEach(obj => {
+        obj.update();
+        obj.draw();
+    });
+
+    // Random Glitch Interference
+    if (Math.random() > 0.95) {
+        ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+        ctx.fillRect(0, Math.random() * h, w, 2);
+    }
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

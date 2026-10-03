@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OIDANATIVE_10.1_MOUSE_REACTIVE</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Courier New', monospace; cursor: crosshair; }
+        canvas { display: block; filter: contrast(1.2) brightness(1.2); }
+        #hud {
+            position: absolute; top: 20px; left: 20px;
+            color: #00ff41; font-size: 11px; line-height: 1.4;
+            background: rgba(0,20,0,0.8); padding: 15px; border: 1px solid #00ff41;
+            pointer-events: none; text-transform: uppercase;
+        }
+        .inst { position: absolute; bottom: 20px; width: 100%; text-align: center; color: #006622; font-size: 10px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        UNIT: OIDANATIVE_10.1<br>
+        INPUT: MOUSE_X_Y_DETECTED<br>
+        FIELD: REPULSION_ACTIVE<br>
+        <span id="coord">X: 0 Y: 0</span>
+    </div>
+    <div class="inst">MOVE TO PAN // CLICK TO OVERFLOW</div>
+    <canvas id="kineticMatrix"></canvas>
+
+<script>
+const canvas = document.getElementById('kineticMatrix');
+const ctx = canvas.getContext('2d');
+const hudCoords = document.getElementById('coord');
+
+let w, h, cx, cy;
+let mouse = { x: 0, y: 0, targetX: 0, targetY: 0, down: false };
+const banners = ["KURWA OIDA", "BETON 089", "SEGFAULT", "CHIPRUSH", "STADELHEIM"];
+const hexChars = "0123456789ABCDEF".split("");
+
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cx = w / 2; cy = h / 2;
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => {
+    mouse.targetX = (e.clientX - cx);
+    mouse.targetY = (e.clientY - cy);
+    hudCoords.innerText = `X: ${e.clientX} Y: ${e.clientY}`;
+});
+window.addEventListener('mousedown', () => { mouse.down = true; });
+window.addEventListener('mouseup', () => { mouse.down = false; });
+resize();
+
+class Chip {
+    constructor() { this.init(); }
+    init() {
+        this.x = (Math.random() - 0.5) * 4000;
+        this.y = (Math.random() - 0.5) * 4000;
+        this.z = Math.random() * 2000 + 500;
+        this.val = "0x" + Math.floor(Math.random()*0xFF).toString(16).toUpperCase();
+        this.speed = Math.random() * 10 + 5;
+        this.isGlitched = false;
+    }
+    update() {
+        this.z -= this.speed + (Math.abs(mouse.targetX) * 0.05); // Speed up on edge
+        if (this.z < 1) this.init();
+
+        // Mouse interaction logic
+        const scale = 600 / this.z;
+        const x2d = (cx + mouse.x * 0.5) + this.x * scale;
+        const y2d = (cy + mouse.y * 0.5) + this.y * scale;
+        
+        // Calculate distance from screen-space mouse to particle
+        const dx = (cx + mouse.targetX) - x2d;
+        const dy = (cy + mouse.targetY) - y2d;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        
+        this.isGlitched = dist < 100;
+    }
+    draw() {
+        const scale = 600 / this.z;
+        const x2d = (cx + mouse.x * 0.5) + this.x * scale;
+        const y2d = (cy + mouse.y * 0.5) + this.y * scale;
+
+        ctx.globalAlpha = Math.min(1, (2000 - this.z) / 1000);
+        ctx.font = `${(this.isGlitched ? 18 : 12) * scale}px monospace`;
+        
+        if (this.isGlitched) {
+            ctx.fillStyle = "#fff";
+            ctx.fillText("!!ERR!!", x2d + (Math.random()-0.5)*10, y2d);
+        } else {
+            ctx.fillStyle = "#00ff41";
+            ctx.fillText(this.val, x2d, y2d);
+        }
+    }
+}
+
+class Gate {
+    constructor() { this.init(); }
+    init() {
+        this.z = 2500;
+        this.text = banners[Math.floor(Math.random() * banners.length)];
+        this.offset = (Math.random() - 0.5) * 500;
+    }
+    update() {
+        this.z -= 10;
+        if (this.z < 1) this.init();
+    }
+    draw() {
+        const scale = 600 / this.z;
+        const x2d = (cx + mouse.x * 0.8) + this.offset * scale;
+        const y2d = (cy + mouse.y * 0.8);
+        
+        ctx.save();
+        ctx.translate(x2d, y2d);
+        ctx.scale(scale * 8, scale * 8);
+        ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(0.7, 500/this.z)})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#00ff41";
+        ctx.fillText(this.text, -ctx.measureText(this.text).width / 2, 0);
+        
+        // Industrial texture
+        ctx.font = "4px monospace";
+        ctx.fillText("▓▒░ ▓▒░ ▓▒░ ▓▒░", -ctx.measureText("▓▒░ ▓▒░ ▓▒░ ▓▒░").width / 2, 5);
+        ctx.restore();
+    }
+}
+
+const chips = Array.from({length: 400}, () => new Chip());
+const gates = Array.from({length: 5}, () => new Gate());
+
+function loop() {
+    // Smooth camera movement (lerp)
+    mouse.x += (mouse.targetX - mouse.x) * 0.05;
+    mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+    // Background logic
+    ctx.fillStyle = mouse.down ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 15, 0, 0.2)";
+    ctx.fillRect(0, 0, w, h);
+
+    const all = [...chips, ...gates].sort((a, b) => b.z - a.z);
+
+    all.forEach(obj => {
+        obj.update();
+        obj.draw();
+    });
+
+    // Post-Process Glitch
+    if (mouse.down) {
+        ctx.globalCompositeOperation = "difference";
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0,0,w,h);
+        ctx.globalCompositeOperation = "source-over";
+    }
+
+    // Static Scanlines
+    ctx.fillStyle = "rgba(0, 255, 0, 0.03)";
+    for(let i=0; i<h; i+=4) ctx.fillRect(0, i, w, 1);
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

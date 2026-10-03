@@ -1,0 +1,16 @@
+# WE.ED.IT OIDA - Cinematic Style Package
+id: cinematic_v1
+base_tags:
+  - ".aesthetic"
+  - ".high_quality"
+sections:
+  intro:
+    cut_every_n_beats: 8
+    required_tags: [".wide_shot", ".nature", ".calm"]
+    camera_motion: "static"
+    allowed_transitions: ["crossfade"]
+  chorus:
+    cut_every_n_beats: 4
+    required_tags: [".epic", ".sunflare", ".slow_motion"]
+    camera_motion: "orbit"
+    allowed_transitions: ["cut"]

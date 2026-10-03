@@ -272,3 +272,45 @@ completed successfully end-to-end.
 
 **Last Updated:** 2026-08-31
 **Status:** ✅ Complete (installed, imported, dry-run, and full-render verified)
+
+---
+
+### Version 1.2.0 — Ecosystem Full Stack Upgrade & Master Automation (2026-09-22)
+
+Unified the entire Oidasheim ecosystem across AI Video (`oefoef`), Suno v6/v7 Prompt Engine (`la.bat`), and Web Studio Portals (`oidaheim_transit.html`).
+
+#### ✅ Completed Upgrades
+1. **Master Automation Launcher**:
+   - Created `update_all.py` and `fullstack_upgrade.bat` for one-click environment validation, database migration, and pipeline verification.
+---
+
+### Version 2.2.0 — C++20 AVX2 Native Engine & Cinematic Intelligence (2026-10-02)
+
+Massive architecture upgrade with native C++20 acceleration, background daemon ingestion, enhanced semantic concept clustering, session-wide cooldowns, and 2.5D fake 3D camera kinematics:
+
+#### ✅ Completed Upgrades
+1. **C++20 Native Acceleration Engine (`cxx_accel`)**:
+   - `vector_tree_accel.hpp`: Fast SIMD dot-products, spherical K-Means++ clustering, and Top-K candidate retrieval.
+   - `self_learning_accel.hpp`: Beta distribution sampling (Marsaglia-Tsang Gamma ratio), Thompson Sampling, UCB1 calculations, Markov transition success graphs, and EMA backpropagation.
+   - `camera_kinematics_accel.hpp`: Spline trajectory interpolation, smoothstep easing ($3t^2 - 2t^3$), and trapezoidal 2.5D perspective warp calculation.
+   - `clip_matcher.hpp`: SIMD cosine similarity, semantic candidate scoring, and fused multi-factor ranking.
+   - `audio_dsp.hpp` & `timeline_builder_accel.hpp`: High-speed beat and transient snapping, drum roll slicing, and boundary alignment.
+2. **Enhanced Semantic Matching & 9 Concept Clusters**:
+   - Added bitmask classification across 9 semantic domains (Weed/420, Urban/Street, Speed/Cars, Party/Club, Bavaria/089, Luxury/Cash, Cyber/Tech, Nature/Chill, Combat/Action).
+   - Visual object grounding (`object_grounding_score`) and gender alignment (`gender_alignment_score`).
+3. **Low-Priority Background Ingestion Daemon (`background_clip_worker.py`)**:
+   - Runs with Windows `BELOW_NORMAL_PRIORITY_CLASS` (Low Priority) in the background.
+   - Incrementally discovers, scans, and enriches new and existing clips without blocking UI or rendering.
+4. **2/3 Session Pool Lock & Anti-Repeat Cooldown**:
+   - Locks up to 66.7% (2/3) of frequently/recently used clips across sessions (48h cooldown), ensuring at least 1/3 fresh clips per render.
+   - Multi-factor diversity with temperature softmax sampling and domain-switch bonuses.
+5. **Cinematic Storytelling & 2.5D Fake 3D Parallax**:
+   - Section-aware narrative arc resolution in `timeline_builder.py`.
+   - Dynamic VCam movement with smoothstep zoompan and horizon curvature.
+   - 2.5D trapezoid perspective warping for realistic fake 3D depth.
+6. **Automated Setup & Test Suite**:
+   - `setup_and_fix.ps1` and `setup_and_fix.bat` updated with 5-step automated environment repair and CMake builds.
+   - Full test suite: **52/52 tests passing (100% green)**.
+
+
+

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.weed_cache/
+.weed_registry/
+output/
+reports/
+*.mp4
+*.mov

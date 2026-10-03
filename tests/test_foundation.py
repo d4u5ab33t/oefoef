@@ -34,3 +34,30 @@ def test_cli_parser():
 def test_cli_hardware_check_main():
     ret = main(["hardware-check"])
     assert ret == 0
+
+
+def test_prune_dead_clips_logic(tmp_path):
+    import clip_pool
+    # Create a real file and a fake missing path
+    real_file = tmp_path / "real.mp4"
+    real_file.write_text("fake video data")
+    fake_file = tmp_path / "missing.mp4"
+    
+    globe = {
+        str(real_file): {"tags": ["urban"], "duration": 5.0},
+        str(fake_file): {"tags": ["nature"], "duration": 3.0},
+    }
+    
+    saved_globes = []
+    cleaned_globe, dead = clip_pool.prune_dead_clips(
+        globe,
+        on_progress=lambda g: saved_globes.append(dict(g)),
+        sync_vector_tree=False,
+    )
+    
+    assert str(fake_file) in dead
+    assert len(dead) == 1
+    assert str(real_file) in cleaned_globe
+    assert str(fake_file) not in cleaned_globe
+    assert len(saved_globes) == 1
+

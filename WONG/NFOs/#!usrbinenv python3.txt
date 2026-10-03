@@ -1,0 +1,1735 @@
+#!/usr/bin/env python3
+"""
+WE.ED.IT OIDA Native Genome 2.0 - FINAL Install Script
+Fixes: WinError 32, ModuleNotFoundError, PYTHONPATH issues
+"""
+import os
+import shutil
+import subprocess
+import textwrap
+from pathlib import Path
+
+PROJECT_NAME = "weedit-native"
+INSTALL_DIR = Path.cwd() / PROJECT_NAME
+
+
+def write_file(path: str, content: str):
+    """Schreibt Datei mit korrekter Einrückung."""
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    clean_content = textwrap.dedent(content).strip() + "\n"
+    with open(p, "w", encoding="utf-8") as f:
+        f.write(clean_content)
+    print(f"  ✅ {path}")
+
+
+def kill_weed_processes():
+    """Killt alle laufenden weed.exe Prozesse."""
+    print("🔪 Killing old weed processes...")
+    try:
+        subprocess.run(
+            ["taskkill", "/F", "/IM", "weed.exe"],
+            capture_output=True, text=True
+        )
+        subprocess.run(
+            ["taskkill", "/F", "/IM", "python.exe", "/FI", "WINDOWTITLE eq weed*"],
+            capture_output=True, text=True
+        )
+    except Exception:
+        pass
+
+
+def uninstall_old():
+    """Deinstalliert alte Version."""
+    print("🗑️  Uninstalling old weedit-native...")
+    try:
+        subprocess.run(
+            ["pip", "uninstall", "-y", "weedit-native"],
+            capture_output=True, text=True
+        )
+    except Exception:
+        pass
+    
+    if INSTALL_DIR.exists():
+        print(f"  🧹 Removing {INSTALL_DIR}...")
+        shutil.rmtree(INSTALL_DIR, ignore_errors=True)
+
+
+def install_requirements():
+    """Installiert Dependencies."""
+    print("📦 Installing requirements...")
+    req_file = INSTALL_DIR / "requirements.txt"
+    try:
+        subprocess.run(
+            ["pip", "install", "-r", str(req_file)],
+            check=True
+        )
+        print("  ✅ Requirements installed!")
+    except Exception as e:
+        print(f"  ⚠️  Warning: {e}")
+
+
+def create_weed_bat():
+    """Erstellt weed.bat Wrapper (umgeht WinError 32)."""
+    print("🔧 Creating weed.bat wrapper...")
+    
+    bat_content = f"""@echo off
+set PYTHONPATH={INSTALL_DIR}
+python "{INSTALL_DIR}\\cli\\main.py" %*
+"""
+    
+    # Schreibe weed.bat in das Projekt-Verzeichnis
+    bat_path = INSTALL_DIR / "weed.bat"
+    with open(bat_path, "w", encoding="utf-8") as f:
+        f.write(bat_content)
+    
+    # Schreibe weed.bat auch in Python Scripts Ordner (für globalen Zugriff)
+    try:
+        result = subprocess.run(
+            ["python", "-c", "import sysconfig; print(sysconfig.get_path('scripts'))"],
+            capture_output=True, text=True, check=True
+        )
+        scripts_dir = Path(result.stdout.strip())
+        if scripts_dir.exists():
+            global_bat = scripts_dir / "weed.bat"
+            with open(global_bat, "w", encoding="utf-8") as f:
+                f.write(bat_content)
+            print(f"  ✅ Global weed.bat created: {global_bat}")
+    except Exception as e:
+        print(f"  ⚠️  Could not create global weed.bat: {e}")
+    
+    print(f"  ✅ Local weed.bat created: {bat_path}")
+
+
+def create_weed_ps1():
+    """Erstellt weed.ps1 für PowerShell."""
+    print("🔧 Creating weed.ps1 wrapper...")
+    
+    ps1_content = f"""$env:PYTHONPATH = "{INSTALL_DIR}"
+python "{INSTALL_DIR}\\cli\\main.py" $args
+"""
+    
+    ps1_path = INSTALL_DIR / "weed.ps1"
+    with open(ps1_path, "w", encoding="utf-8") as f:
+        f.write(ps1_content)
+    
+    # Auch global
+    try:
+        result = subprocess.run(
+            ["python", "-c", "import sysconfig; print(sysconfig.get_path('scripts'))"],
+            capture_output=True, text=True, check=True
+        )
+        scripts_dir = Path(result.stdout.strip())
+        if scripts_dir.exists():
+            global_ps1 = scripts_dir / "weed.ps1"
+            with open(global_ps1, "w", encoding="utf-8") as f:
+                f.write(ps1_content)
+            print(f"  ✅ Global weed.ps1 created: {global_ps1}")
+    except Exception:
+        pass
+    
+    print(f"  ✅ Local weed.ps1 created: {ps1_path}")
+
+
+def generate_project():
+    """Generiert das komplette Projekt."""
+    print(f"\n🧬 WE.ED.IT OIDA Native Genome 2.0 - FINAL INSTALL\n")
+    
+    # 1. Cleanup
+    kill_weed_processes()
+    uninstall_old()
+    
+    INSTALL_DIR.mkdir(parents=True, exist_ok=True)
+    
+    # 2. Configuration
+    print("📦 Writing configuration...")
+    write_file(f"{INSTALL_DIR}/requirements.txt", """
+        typer>=0.9.0
+        rich>=13.0.0
+        pydantic>=2.0.0
+        pyyaml>=6.0
+        numpy>=1.24.0
+        opencv-python>=4.8.0
+        scikit-learn>=1.3.0
+        librosa>=0.10.0
+    """)
+    
+    write_file(f"{INSTALL_DIR}/.gitignore", """
+        __pycache__/
+        *.pyc
+        .weed_cache/
+        output/
+        reports/
+    """)
+    
+    # 3. Core IR
+    print("🧬 Writing Core IR...")
+    write_file(f"{INSTALL_DIR}/core/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/ir.py", """
+        from __future__ import annotations
+        from uuid import uuid4
+        from datetime import datetime
+        from typing import List, Optional, Dict, Any, Literal
+        from pydantic import BaseModel, Field, ConfigDict
+        from dataclasses import dataclass, field
+
+        class GenomeAsset(BaseModel):
+            model_config = ConfigDict(frozen=True)
+            id: str = Field(default_factory=lambda: str(uuid4()))
+            type: str
+            version: str = "1.0.0"
+            genes: List[str] = Field(default_factory=list)
+            reward: float = 0.0
+            metadata: Dict[str, Any] = Field(default_factory=dict)
+            history: List[str] = Field(default_factory=list)
+            tags: List[str] = Field(default_factory=list)
+
+        class BeatAST(GenomeAsset):
+            type: Literal["beat"] = "beat"
+            time_ms: int
+            is_downbeat: bool
+            energy: float = Field(ge=0.0, le=1.0)
+
+        class PhraseAST(GenomeAsset):
+            type: Literal["phrase"] = "phrase"
+            start_ms: int
+            end_ms: int
+            beats: List[BeatAST]
+            dominant_emotion: str
+            energy_curve: List[float]
+
+        class SectionAST(GenomeAsset):
+            type: Literal["section"] = "section"
+            name: str
+            start_ms: int
+            end_ms: int
+            phrases: List[PhraseAST]
+            bpm: float
+            dynamic_range: float
+
+        class SongAST(GenomeAsset):
+            type: Literal["song"] = "song"
+            title: str
+            artist: str
+            total_duration_ms: int
+            sections: List[SectionAST]
+            global_energy_curve: List[float]
+            global_emotion_curve: List[float]
+
+        class CameraIntent(BaseModel):
+            movement: str
+            framing: str
+            persistence_id: str
+
+        class ShotIntent(GenomeAsset):
+            type: Literal["shot_intent"] = "shot_intent"
+            song_section: str
+            phrase_id: str
+            start_ms: int
+            end_ms: int
+            need_energy: float = Field(ge=0.0, le=1.0)
+            need_emotion: List[str]
+            need_color: List[str]
+            need_camera: CameraIntent
+            need_rhythm: str
+            continue_from_shot_id: Optional[str] = None
+
+        @dataclass
+        class ClipSegment:
+            segment_id: str
+            start_ms: int
+            end_ms: int
+            duration_ms: int
+            scene_type: str
+            energy_peak: float
+            visual_motifs: List[str] = field(default_factory=list)
+            color_dominance: List[str] = field(default_factory=list)
+            motion_direction: str = "static"
+            emotion: str = "neutral"
+            semantic_tags: List[str] = field(default_factory=list)
+
+        class ClipDNA(GenomeAsset):
+            type: Literal["clip_dna"] = "clip_dna"
+            file_path: str
+            duration_ms: int
+            motion_entropy: float
+            dominant_colors: List[str]
+            detected_objects: List[str]
+            detected_faces: int
+            camera_motion: str
+            lighting: str
+            embedding_vector_id: str
+            motion_vectors: Optional[Dict[str, Any]] = None
+            segments: List[ClipSegment] = Field(default_factory=list)
+            scene_changes: List[int] = Field(default_factory=list)
+            visual_story_arc: str = "neutral"
+
+        class ResolverCandidate(BaseModel):
+            clip_dna_id: str
+            trim_start_ms: int
+            trim_end_ms: int
+            constraint_match_score: float
+            semantic_similarity: float
+
+        class ResolverResult(BaseModel):
+            intent_id: str
+            candidates: List[ResolverCandidate]
+            query_constraints: Dict[str, Any]
+
+        class BanditDecision(BaseModel):
+            intent_id: str
+            chosen_candidate: ResolverCandidate
+            rejected_candidates_count: int
+            reward_prediction: float
+            decision_reason: str
+
+        class ReplayLog(GenomeAsset):
+            type: Literal["replay_log"] = "replay_log"
+            shot_id: str
+            timestamp: datetime = Field(default_factory=datetime.utcnow)
+            intent: ShotIntent
+            resolver_result: ResolverResult
+            bandit_decision: BanditDecision
+            final_reward: float
+            optimizer_passes_applied: List[str]
+
+        class RenderIR(GenomeAsset):
+            model_config = ConfigDict(frozen=True)
+            type: Literal["render_ir"] = "render_ir"
+            clip_file_path: str
+            trim_in_ms: int
+            trim_out_ms: int
+            speed_multiplier: float = 1.0
+            discard_clip_audio: bool = True
+            main_audio_track_id: str
+            camera_transform: Optional[Dict[str, float]] = None
+            camera_transform_start: Optional[Dict[str, float]] = None
+            camera_transform_end: Optional[Dict[str, float]] = None
+            transition_in: Optional[str] = None
+            transition_out: Optional[str] = None
+            lut_file: Optional[str] = None
+            fx_chain: List[str] = Field(default_factory=list)
+            source_intent_id: str
+            replay_log_id: str
+            speed_ramp_in: Optional[float] = None
+            speed_ramp_out: Optional[float] = None
+            motion_continuity: Optional[Dict[str, float]] = None
+    """)
+    
+    # 4. Utils
+    print("🔧 Writing Utils...")
+    write_file(f"{INSTALL_DIR}/core/utils/__init__.py", "")
+    
+    write_file(f"{INSTALL_DIR}/core/utils/output_config.py", """
+        from dataclasses import dataclass
+        from typing import Optional
+
+        @dataclass
+        class PlatformConfig:
+            name: str
+            aspect_ratio: tuple
+            max_duration_sec: Optional[int]
+            target_fps: int
+            video_bitrate: str
+            audio_bitrate: str
+            codec: str
+            fast_cut_threshold_ms: int
+            transition_style: str
+            zoom_level: float
+            file_extension: str = ".mp4"
+
+        PLATFORM_CONFIGS = {
+            "youtube": PlatformConfig("YouTube", (1920, 1080), None, 30, "8M", "192k", "libx264", 2000, "smooth", 1.0),
+            "youtube_shorts": PlatformConfig("YouTube Shorts", (1080, 1920), None, 30, "10M", "192k", "libx264", 1000, "flash", 1.3),
+            "tiktok": PlatformConfig("TikTok", (1080, 1920), None, 30, "10M", "192k", "libx264", 800, "flash", 1.4),
+            "instagram_reels": PlatformConfig("Instagram Reels", (1080, 1920), None, 30, "10M", "192k", "libx264", 1000, "flash", 1.3),
+            "instagram_feed": PlatformConfig("Instagram Feed", (1080, 1080), None, 30, "8M", "192k", "libx264", 1500, "smooth", 1.2),
+        }
+
+        def get_platform_config(platform: str) -> PlatformConfig:
+            config = PLATFORM_CONFIGS.get(platform)
+            if not config:
+                raise ValueError(f"Unknown platform: {platform}. Available: {list(PLATFORM_CONFIGS.keys())}")
+            return config
+
+        def list_platforms() -> list:
+            return list(PLATFORM_CONFIGS.keys())
+    """)
+    
+    write_file(f"{INSTALL_DIR}/core/utils/renamer.py", """
+        from pathlib import Path
+        import re
+        from rich.console import Console
+
+        console = Console()
+
+        class SmartRenamer:
+            def __init__(self, output_dir: Path):
+                self.output_dir = output_dir
+                self.output_dir.mkdir(parents=True, exist_ok=True)
+            
+            def get_next_version(self, base_name: str, platform: str = "youtube", extension: str = ".mp4") -> Path:
+                clean_base = re.sub(r'_(youtube|tiktok|instagram|shorts|reels)_v\\d{3}$', '', base_name)
+                clean_base = re.sub(r'_v\\d{3}$', '', clean_base)
+                platform_tag = platform.replace(" ", "_").lower()
+                
+                existing_versions = []
+                pattern = re.compile(rf'^{re.escape(clean_base)}_{platform_tag}_v(\\d{{3}}){re.escape(extension)}$')
+                
+                for file in self.output_dir.iterdir():
+                    match = pattern.match(file.name)
+                    if match:
+                        existing_versions.append(int(match.group(1)))
+                
+                next_version = max(existing_versions) + 1 if existing_versions else 1
+                version_str = f"v{next_version:03d}"
+                filename = f"{clean_base}_{platform_tag}_{version_str}{extension}"
+                
+                full_path = self.output_dir / filename
+                console.print(f"[cyan]📁 Output file: {filename}[/cyan]")
+                return full_path
+    """)
+    
+    write_file(f"{INSTALL_DIR}/core/utils/diversity_tracker.py", """
+        import sqlite3
+        import json
+        import numpy as np
+        from pathlib import Path
+        from typing import List, Dict, Tuple
+        from rich.console import Console
+
+        console = Console()
+
+        class DiversityTracker:
+            def __init__(self, db_path: Path = Path(".weed_cache/diversity.db")):
+                self.db_path = db_path
+                self.db_path.parent.mkdir(parents=True, exist_ok=True)
+                self.conn = sqlite3.connect(str(self.db_path))
+                self._init_db()
+                self.cooldown_size = 10
+                self.recent_segments: List[str] = []
+            
+            def _init_db(self):
+                self.conn.execute(\"\"\"CREATE TABLE IF NOT EXISTS usage (
+                    segment_id TEXT PRIMARY KEY, clip_id TEXT,
+                    usage_count INTEGER DEFAULT 0, last_used_in_shot TEXT,
+                    total_reward REAL DEFAULT 0.0)\"\"\")
+                self.conn.execute(\"\"\"CREATE TABLE IF NOT EXISTS visual_features (
+                    segment_id TEXT PRIMARY KEY, scene_type TEXT,
+                    energy_peak REAL, motion_direction TEXT,
+                    emotion TEXT, color_dominance TEXT, visual_motifs TEXT)\"\"\")
+                self.conn.commit()
+            
+            def record_usage(self, segment_id: str, clip_id: str, shot_id: str, reward: float):
+                cursor = self.conn.execute("SELECT usage_count, total_reward FROM usage WHERE segment_id = ?", (segment_id,))
+                row = cursor.fetchone()
+                if row:
+                    self.conn.execute("UPDATE usage SET usage_count = ?, last_used_in_shot = ?, total_reward = ? WHERE segment_id = ?",
+                        (row[0] + 1, shot_id, row[1] + reward, segment_id))
+                else:
+                    self.conn.execute("INSERT INTO usage (segment_id, clip_id, usage_count, last_used_in_shot, total_reward) VALUES (?, ?, 1, ?, ?)",
+                        (segment_id, clip_id, shot_id, reward))
+                self.conn.commit()
+                self.recent_segments.append(segment_id)
+                if len(self.recent_segments) > self.cooldown_size:
+                    self.recent_segments.pop(0)
+            
+            def store_visual_features(self, segment_id: str, features: Dict):
+                self.conn.execute(\"\"\"INSERT OR REPLACE INTO visual_features 
+                    (segment_id, scene_type, energy_peak, motion_direction, emotion, color_dominance, visual_motifs)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\", (
+                    segment_id, features.get("scene_type", "unknown"),
+                    features.get("energy_peak", 0.5), features.get("motion_direction", "static"),
+                    features.get("emotion", "neutral"), json.dumps(features.get("color_dominance", [])),
+                    json.dumps(features.get("visual_motifs", []))))
+                self.conn.commit()
+            
+            def is_in_cooldown(self, segment_id: str) -> bool:
+                return segment_id in self.recent_segments
+            
+            def get_novelty_penalty(self, segment_id: str) -> float:
+                cursor = self.conn.execute("SELECT usage_count FROM usage WHERE segment_id = ?", (segment_id,))
+                row = cursor.fetchone()
+                usage_count = row[0] if row else 0
+                penalties = {0: 0.0, 1: 0.05, 2: 0.1, 3: 0.2, 4: 0.3}
+                return penalties.get(usage_count, 0.4)
+            
+            def calculate_diversity_score(self, segment_id: str, recent_segments: List[str]) -> float:
+                if not recent_segments:
+                    return 1.0
+                cursor = self.conn.execute("SELECT scene_type, energy_peak, motion_direction, emotion, color_dominance FROM visual_features WHERE segment_id = ?", (segment_id,))
+                row = cursor.fetchone()
+                if not row:
+                    return 0.5
+                curr_scene, curr_energy, curr_motion, curr_emotion, curr_colors_json = row
+                curr_colors = json.loads(curr_colors_json) if curr_colors_json else []
+                
+                diversity_scores = []
+                for recent_id in recent_segments[-5:]:
+                    cursor = self.conn.execute("SELECT scene_type, energy_peak, motion_direction, emotion, color_dominance FROM visual_features WHERE segment_id = ?", (recent_id,))
+                    recent_row = cursor.fetchone()
+                    if not recent_row:
+                        continue
+                    rec_scene, rec_energy, rec_motion, rec_emotion, rec_colors_json = recent_row
+                    rec_colors = json.loads(rec_colors_json) if rec_colors_json else []
+                    
+                    diffs = []
+                    diffs.append(1.0 if curr_scene != rec_scene else 0.0)
+                    diffs.append(abs(curr_energy - rec_energy))
+                    diffs.append(1.0 if curr_motion != rec_motion else 0.0)
+                    diffs.append(1.0 if curr_emotion != rec_emotion else 0.0)
+                    
+                    matches = sum(1 for c1 in curr_colors if c1 in rec_colors)
+                    color_sim = matches / max(len(curr_colors), len(rec_colors), 1)
+                    diffs.append(1.0 - color_sim)
+                    
+                    diversity_scores.append(np.mean(diffs))
+                
+                return float(np.mean(diversity_scores)) if diversity_scores else 0.5
+            
+            def get_statistics(self) -> Dict:
+                cursor = self.conn.execute(\"\"\"SELECT 
+                    COUNT(*) as total, SUM(CASE WHEN usage_count = 0 THEN 1 ELSE 0 END) as unused,
+                    SUM(CASE WHEN usage_count = 1 THEN 1 ELSE 0 END) as used_once,
+                    SUM(CASE WHEN usage_count > 1 THEN 1 ELSE 0 END) as used_multiple,
+                    AVG(usage_count) as avg_usage, MAX(usage_count) as max_usage
+                    FROM usage\"\"\")
+                row = cursor.fetchone()
+                return {"total_segments": row[0] or 0, "unused": row[1] or 0, "used_once": row[2] or 0,
+                        "used_multiple": row[3] or 0, "avg_usage": row[4] or 0.0, "max_usage": row[5] or 0}
+            
+            def get_most_used_segments(self, limit: int = 10) -> List[Tuple[str, int]]:
+                cursor = self.conn.execute("SELECT segment_id, usage_count FROM usage ORDER BY usage_count DESC LIMIT ?", (limit,))
+                return [(row[0], row[1]) for row in cursor.fetchall()]
+    """)
+    
+    # 5. Genres
+    print("🎵 Writing Genre Database...")
+    write_file(f"{INSTALL_DIR}/core/genres/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/genres/database.py", """
+        from dataclasses import dataclass
+        from typing import Dict, List, Optional
+
+        @dataclass
+        class SectionTemplate:
+            name: str
+            shots_per_phrase: int
+            camera_movements: List[str]
+            camera_framings: List[str]
+            transitions: List[str]
+            effects: List[str]
+            energy_level: float
+            rhythm: str
+            color_grading: str
+
+        @dataclass
+        class GenreTemplate:
+            name: str
+            description: str
+            bpm_range: tuple
+            key_preferences: List[str]
+            sections: Dict[str, SectionTemplate]
+            global_effects: List[str]
+            color_palette: List[str]
+
+        def _make_sections(energy_base, shots_base, movements, framings, transitions, effects, rhythm, color):
+            return {
+                "intro": SectionTemplate("intro", max(2, shots_base - 1), movements[:2], framings[:2], transitions[:2], effects, energy_base * 0.6, "smooth", color),
+                "verse": SectionTemplate("verse", shots_base, movements, framings, transitions, effects, energy_base * 0.8, rhythm, color),
+                "chorus": SectionTemplate("chorus", shots_base + 2, movements + ["whip"], framings + ["extreme_closeup"], transitions + ["flash"], effects + ["bass_boost_visual"], 1.0, "strobe" if energy_base > 0.7 else rhythm, color),
+                "bridge": SectionTemplate("bridge", shots_base, movements, framings, transitions, effects, energy_base * 0.9, rhythm, color),
+                "outro": SectionTemplate("outro", max(2, shots_base - 1), ["pull", "static"], ["wide", "medium"], ["fade_black"], effects, energy_base * 0.5, "smooth", color),
+            }
+
+        GENRE_DATABASE: Dict[str, GenreTemplate] = {
+            "old_school_hiphop": GenreTemplate("Old School Hip-Hop", "Classic", (85, 95), ["G-Dur", "C-Dur"],
+                _make_sections(0.6, 3, ["static", "pan_left", "pan_right"], ["medium", "closeup"], ["cut", "dissolve"], ["film_grain"], "smooth", "warm"),
+                ["film_grain"], ["#ff6600", "#ffcc00"]),
+            "trap": GenreTemplate("Trap", "Aggressive", (135, 165), ["A-Moll", "C-Dur"],
+                _make_sections(0.8, 4, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut", "flash"], ["glitch"], "cut", "cold"),
+                ["glitch"], ["#0000ff", "#ff00ff"]),
+            "boom_bap": GenreTemplate("Boom Bap", "Classic 90s", (80, 95), ["D-Dur", "A-Dur"],
+                _make_sections(0.6, 3, ["static", "pan_left"], ["medium", "closeup"], ["cut", "dissolve"], ["film_grain"], "smooth", "warm"),
+                ["film_grain"], ["#cc6600", "#ffcc00"]),
+            "conscious_rap": GenreTemplate("Conscious Rap", "Deep", (70, 85), ["F-Dur", "A-Dur"],
+                _make_sections(0.6, 3, ["static", "pan_right"], ["medium", "closeup"], ["dissolve", "cut"], ["cinematic_color"], "smooth", "neutral"),
+                ["cinematic_color"], ["#336699", "#99ccff"]),
+            "mumble_rap": GenreTemplate("Mumble Rap", "Experimental", (125, 155), ["B-Moll", "D-Dur"],
+                _make_sections(0.8, 4, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut", "flash"], ["glitch", "vhs"], "cut", "cold"),
+                ["glitch", "vhs"], ["#ff00ff", "#00ffff"]),
+            "west_coast": GenreTemplate("West Coast Hip-Hop", "G-Funk", (90, 110), ["C-Moll", "F-Dur"],
+                _make_sections(0.6, 3, ["static", "pan_left", "pan_right"], ["medium", "closeup"], ["cut", "dissolve"], ["sunny_color"], "smooth", "warm"),
+                ["sunny_color"], ["#ff9900", "#ffcc00"]),
+            "east_coast": GenreTemplate("East Coast Hip-Hop", "Gritty", (80, 95), ["E-Moll", "A-Moll"],
+                _make_sections(0.6, 3, ["static", "handheld"], ["medium", "closeup"], ["cut"], ["urban_grit"], "smooth", "cold"),
+                ["urban_grit"], ["#333333", "#666666"]),
+            "experimental": GenreTemplate("Experimental", "Abstract", (65, 85), ["F#-Moll", "C-Moll"],
+                _make_sections(0.7, 4, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut"], ["glitch"], "cut", "cold"),
+                ["glitch"], ["#ff0000", "#00ff00"]),
+            "alternative": GenreTemplate("Alternative", "Melodic", (85, 110), ["B-Dur", "F#-Moll"],
+                _make_sections(0.6, 3, ["static", "pan_right"], ["medium", "closeup"], ["cut", "dissolve"], ["cinematic_color"], "smooth", "neutral"),
+                ["cinematic_color"], ["#6699cc", "#cc9966"]),
+            "cloud_rap": GenreTemplate("Cloud Rap", "Dreamy", (95, 120), ["D-Moll", "A-Moll"],
+                _make_sections(0.5, 3, ["static", "slow_pan"], ["medium", "closeup"], ["dissolve"], ["dreamy_blur"], "smooth", "cold"),
+                ["dreamy_blur"], ["#ccccff", "#ffccff"]),
+            "drill": GenreTemplate("Drill", "Dark", (135, 165), ["B-Moll", "E-Moll"],
+                _make_sections(0.9, 5, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut", "flash"], ["dark_grit"], "cut", "dark"),
+                ["dark_grit"], ["#000000", "#333333"]),
+            "reggaeton_hiphop": GenreTemplate("Reggaeton Hip-Hop", "Tropical", (90, 110), ["G-Dur", "C-Moll"],
+                _make_sections(0.7, 4, ["static", "pan_left", "pan_right"], ["medium", "closeup"], ["cut", "dissolve"], ["tropical_color"], "cut", "warm"),
+                ["tropical_color"], ["#ff6600", "#00cc66"]),
+            "lofi": GenreTemplate("Lo-Fi Hip-Hop", "Relaxed", (65, 85), ["E-Dur", "A-Moll"],
+                _make_sections(0.4, 3, ["static", "slow_pan"], ["medium", "closeup"], ["dissolve"], ["vhs", "film_grain"], "smooth", "warm"),
+                ["vhs", "film_grain"], ["#cc9966", "#ffcc99"]),
+            "horrorcore": GenreTemplate("Horrorcore", "Dark", (80, 100), ["F-Moll", "A-Moll"],
+                _make_sections(0.7, 3, ["static", "handheld"], ["medium", "closeup"], ["cut", "flash"], ["horror_grit"], "cut", "dark"),
+                ["horror_grit"], ["#660000", "#330000"]),
+            "jazz_rap": GenreTemplate("Jazz Rap", "Smooth", (75, 95), ["C-Moll", "F-Dur"],
+                _make_sections(0.5, 3, ["static", "pan_right"], ["medium", "closeup"], ["dissolve", "cut"], ["jazzy_color"], "smooth", "warm"),
+                ["jazzy_color"], ["#996633", "#cc9966"]),
+            "uk_grime": GenreTemplate("UK Grime", "Fast", (135, 160), ["D-Moll", "G-Moll"],
+                _make_sections(0.85, 5, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut", "flash"], ["urban_grit"], "cut", "cold"),
+                ["urban_grit"], ["#333333", "#0000ff"]),
+            "techno_hiphop": GenreTemplate("Techno Hip-Hop", "Futuristic", (115, 135), ["B-Moll", "F#-Moll"],
+                _make_sections(0.8, 4, ["handheld", "push", "whip"], ["closeup", "extreme_closeup"], ["cut", "flash"], ["cyber_color"], "cut", "cold"),
+                ["cyber_color"], ["#00ffff", "#ff00ff"]),
+            "nerdcore": GenreTemplate("Nerdcore", "Playful", (80, 100), ["G-Dur", "C-Moll"],
+                _make_sections(0.6, 3, ["static", "pan_left", "pan_right"], ["medium", "closeup"], ["cut", "dissolve"], ["playful_color"], "smooth", "warm"),
+                ["playful_color"], ["#ff6600", "#00cc66"]),
+            "emo_rap": GenreTemplate("Emo Rap", "Emotional", (65, 85), ["E-Moll", "C-Dur"],
+                _make_sections(0.5, 3, ["static", "slow_pan"], ["medium", "closeup"], ["dissolve"], ["melancholy_color"], "smooth", "cold"),
+                ["melancholy_color"], ["#666699", "#9999cc"]),
+            "phonk": GenreTemplate("Phonk", "Dark", (90, 110), ["A-Moll", "C-Dur"],
+                _make_sections(0.7, 3, ["static", "handheld"], ["medium", "closeup"], ["cut", "dissolve"], ["phonk_grit", "vhs"], "cut", "dark"),
+                ["phonk_grit", "vhs"], ["#330000", "#660000"]),
+        }
+
+        def get_genre_template(genre_name: str) -> Optional[GenreTemplate]:
+            return GENRE_DATABASE.get(genre_name)
+
+        def list_all_genres() -> List[str]:
+            return list(GENRE_DATABASE.keys())
+    """)
+    
+    write_file(f"{INSTALL_DIR}/core/genres/detector.py", """
+        import librosa
+        import numpy as np
+        from pathlib import Path
+        from typing import Tuple
+        from rich.console import Console
+        from core.genres.database import GENRE_DATABASE, GenreTemplate
+
+        console = Console()
+
+        class GenreDetector:
+            def __init__(self):
+                self.genre_database = GENRE_DATABASE
+            
+            def detect(self, mp3_path: Path) -> Tuple[str, GenreTemplate, dict]:
+                console.print(f"[cyan]🎵 Analyzing audio for genre detection...[/cyan]")
+                y, sr = librosa.load(str(mp3_path), sr=None)
+                tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
+                tempo = float(np.atleast_1d(tempo)[0])
+                rms = np.mean(librosa.feature.rms(y=y))
+                
+                analysis_data = {"tempo": tempo, "duration": len(y) / sr, "rms_energy": float(rms)}
+                
+                best_match = None
+                best_score = 0
+                
+                for genre_name, genre_template in self.genre_database.items():
+                    bpm_min, bpm_max = genre_template.bpm_range
+                    if bpm_min <= tempo <= bpm_max:
+                        score = 1.0
+                    else:
+                        distance = min(abs(tempo - bpm_min), abs(tempo - bpm_max))
+                        score = max(0, 1.0 - (distance / 50.0))
+                    
+                    if score > best_score:
+                        best_score = score
+                        best_match = (genre_name, genre_template)
+                
+                if best_match:
+                    genre_name, genre_template = best_match
+                    console.print(f"[green]✅ Detected genre: {genre_template.name} (BPM: {tempo:.0f})[/green]")
+                    return genre_name, genre_template, analysis_data
+                else:
+                    console.print("[yellow]⚠️  Using Old School Hip-Hop as default[/yellow]")
+                    return "old_school_hiphop", self.genre_database["old_school_hiphop"], analysis_data
+    """)
+    
+    # 6. Scanner
+    print("🔍 Writing Ultra-Fast Scanner...")
+    write_file(f"{INSTALL_DIR}/core/scanner/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/scanner/pipeline.py", """
+        import cv2
+        import numpy as np
+        import sqlite3
+        import json
+        from pathlib import Path
+        from typing import List, Dict
+        from sklearn.cluster import KMeans
+        from core.ir import ClipDNA, ClipSegment
+        from rich.console import Console
+
+        console = Console()
+
+        class NumpyEncoder(json.JSONEncoder):
+            def default(self, obj):
+                if isinstance(obj, np.ndarray): return obj.tolist()
+                if isinstance(obj, (np.integer,)): return int(obj)
+                if isinstance(obj, (np.floating,)): return float(obj)
+                if isinstance(obj, (np.bool_,)): return bool(obj)
+                return super().default(obj)
+
+        def safe_json_dumps(obj):
+            return json.dumps(obj, cls=NumpyEncoder)
+
+        class ScannerPipeline:
+            def __init__(self, db_path: Path = Path(".weed_cache/genome.db")):
+                self.db_path = db_path
+                self.db_path.parent.mkdir(parents=True, exist_ok=True)
+                self.conn = sqlite3.connect(str(self.db_path))
+                self._init_db()
+
+            def _init_db(self):
+                self.conn.execute(\"\"\"CREATE TABLE IF NOT EXISTS clips (
+                    id TEXT PRIMARY KEY, file_path TEXT UNIQUE, motion_entropy REAL, 
+                    camera_motion TEXT, genes TEXT, duration_ms INTEGER,
+                    motion_vectors TEXT, segments TEXT, scene_changes TEXT, visual_story_arc TEXT)\"\"\")
+                self.conn.commit()
+
+            def scan_directory(self, clips_dir: Path) -> List[ClipDNA]:
+                extensions = {"*.mp4", "*.mov", "*.avi", "*.mkv", "*.webm"}
+                video_files = []
+                for ext in extensions:
+                    video_files.extend(clips_dir.rglob(ext))
+                
+                console.print(f"🔍 Found {len(video_files)} potential video files (recursive).")
+                new_scanned = 0
+                
+                for vid in video_files:
+                    abs_path = str(vid.resolve())
+                    cursor = self.conn.execute("SELECT id FROM clips WHERE file_path = ?", (abs_path,))
+                    if cursor.fetchone() is not None:
+                        continue
+                    
+                    try:
+                        dna = self._scan_video_fast(vid)
+                        self._save_to_db(dna)
+                        new_scanned += 1
+                        if new_scanned % 50 == 0:
+                            console.print(f"  ⚡ Scanned {new_scanned} clips...")
+                    except Exception as e:
+                        continue
+                        
+                console.print(f"\\n🎉 Successfully scanned {new_scanned} new clips.")
+                all_clips = self._load_all_from_db()
+                console.print(f"📚 Total clips available in genome: {len(all_clips)}")
+                return all_clips
+
+            def _load_all_from_db(self) -> List[ClipDNA]:
+                cursor = self.conn.execute("SELECT id, file_path, motion_entropy, camera_motion, genes, duration_ms, motion_vectors, segments, scene_changes, visual_story_arc FROM clips")
+                rows = cursor.fetchall()
+                clips = []
+                for row in rows:
+                    cid, fpath, entropy, cam, genes_json, dur, mv_json, seg_json, sc_json, arc = row
+                    motion_vectors = json.loads(mv_json) if mv_json else {}
+                    segments_data = json.loads(seg_json) if seg_json else []
+                    scene_changes = json.loads(sc_json) if sc_json else []
+                    segments = [ClipSegment(**seg_data) for seg_data in segments_data]
+                    clips.append(ClipDNA(
+                        id=cid, file_path=fpath, duration_ms=dur, motion_entropy=entropy,
+                        dominant_colors=[], detected_objects=[], detected_faces=0,
+                        camera_motion=cam, lighting="neutral",
+                        embedding_vector_id=f"vec_{Path(fpath).stem}",
+                        genes=json.loads(genes_json), motion_vectors=motion_vectors,
+                        segments=segments, scene_changes=scene_changes,
+                        visual_story_arc=arc or "neutral"))
+                return clips
+
+            def _save_to_db(self, clip: ClipDNA):
+                segments_json = safe_json_dumps([seg.__dict__ for seg in clip.segments])
+                scene_changes_json = safe_json_dumps(clip.scene_changes)
+                motion_vectors_json = safe_json_dumps(clip.motion_vectors)
+                genes_json = safe_json_dumps(clip.genes)
+                
+                self.conn.execute(\"\"\"INSERT OR REPLACE INTO clips 
+                    (id, file_path, motion_entropy, camera_motion, genes, duration_ms, motion_vectors, segments, scene_changes, visual_story_arc) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\"\"\", (
+                    clip.id, clip.file_path, float(clip.motion_entropy), clip.camera_motion, 
+                    genes_json, int(clip.duration_ms), motion_vectors_json,
+                    segments_json, scene_changes_json, clip.visual_story_arc))
+                self.conn.commit()
+
+            def _scan_video_fast(self, video_path: Path) -> ClipDNA:
+                cap = cv2.VideoCapture(str(video_path))
+                frames = []
+                frame_count = 0
+                
+                while cap.isOpened() and len(frames) < 5:
+                    ret, frame = cap.read()
+                    if not ret: break
+                    frames.append(frame)
+                    frame_count += 1
+                
+                total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+                cap.release()
+                
+                duration_ms = int((total_frames / fps) * 1000) if total_frames > 0 else 5000
+                
+                motion_entropy = 0.5
+                if len(frames) > 1:
+                    prev_gray = cv2.cvtColor(frames[0], cv2.COLOR_BGR2GRAY)
+                    motions = []
+                    for frame in frames[1:]:
+                        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                        flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+                        motions.append(float(np.mean(np.sqrt(flow[..., 0]**2 + flow[..., 1]**2))))
+                        prev_gray = gray
+                    motion_entropy = float(np.mean(motions) / 10.0)
+                
+                scene_changes = []
+                
+                segments = [ClipSegment(
+                    segment_id="seg_0", start_ms=0, end_ms=duration_ms, duration_ms=duration_ms,
+                    scene_type="action" if motion_entropy > 0.6 else "emotion",
+                    energy_peak=float(min(1.0, motion_entropy)),
+                    visual_motifs=["fast_motion"] if motion_entropy > 0.6 else ["slow_motion"],
+                    color_dominance=["#ffffff"], motion_direction="static",
+                    emotion="happy" if motion_entropy > 0.5 else "calm",
+                    semantic_tags=["fast" if motion_entropy > 0.6 else "slow"])]
+                
+                visual_story_arc = "neutral"
+                motion_vectors = self._analyze_motion_vectors_fast(video_path)
+                
+                colors = ["#ffffff"]
+                if frames:
+                    pixels = frames[len(frames)//2].reshape(-1, 3)[::50]
+                    if len(pixels) > 5:
+                        kmeans = KMeans(n_clusters=3, random_state=42, n_init=10).fit(pixels)
+                        colors = [f"#{int(c[2]):02x}{int(c[1]):02x}{int(c[0]):02x}" for c in kmeans.cluster_centers_]
+                
+                cam_motion = "static"
+                end_speed = motion_vectors["end"]["speed"]
+                if end_speed > 3.0:
+                    end_dx = motion_vectors["end"]["dx"]
+                    end_dy = motion_vectors["end"]["dy"]
+                    if abs(end_dx) > abs(end_dy): cam_motion = "pan_right" if end_dx > 0 else "pan_left"
+                    else: cam_motion = "tilt_down" if end_dy > 0 else "tilt_up"
+                elif end_speed > 1.5: cam_motion = "push"
+                elif motion_entropy > 0.6: cam_motion = "handheld"
+                
+                genes = []
+                if motion_entropy > 0.6: genes.append(".fast")
+                else: genes.append(".slow")
+                if any("ff" in c.lower() for c in colors): genes.append(".warm")
+                if any("0000" in c.lower() or "0000ff" in c.lower() for c in colors): genes.append(".cold")
+                genes.append(".hero")
+                
+                return ClipDNA(
+                    file_path=str(video_path.resolve()), duration_ms=duration_ms,
+                    motion_entropy=float(min(1.0, motion_entropy)), dominant_colors=colors,
+                    detected_objects=["person"], detected_faces=1, camera_motion=cam_motion,
+                    lighting="neutral", embedding_vector_id=f"vec_{video_path.stem}",
+                    genes=genes, motion_vectors=motion_vectors, segments=segments,
+                    scene_changes=scene_changes, visual_story_arc=visual_story_arc)
+
+            def _analyze_motion_vectors_fast(self, video_path: Path) -> Dict:
+                cap = cv2.VideoCapture(str(video_path))
+                total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                
+                if total_frames < 6:
+                    cap.release()
+                    return {"start": {"dx": 0.0, "dy": 0.0, "speed": 0.0}, "end": {"dx": 0.0, "dy": 0.0, "speed": 0.0}}
+                
+                start_vectors = []
+                prev_gray = None
+                for _ in range(3):
+                    ret, frame = cap.read()
+                    if not ret: break
+                    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                    if prev_gray is not None:
+                        flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+                        dx = float(np.mean(flow[..., 0]))
+                        dy = float(np.mean(flow[..., 1]))
+                        speed = float(np.sqrt(dx**2 + dy**2))
+                        start_vectors.append({"dx": dx, "dy": dy, "speed": speed})
+                    prev_gray = gray
+                
+                cap.set(cv2.CAP_PROP_POS_FRAMES, max(0, total_frames - 3))
+                end_vectors = []
+                prev_gray = None
+                while True:
+                    ret, frame = cap.read()
+                    if not ret: break
+                    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                    if prev_gray is not None:
+                        flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+                        dx = float(np.mean(flow[..., 0]))
+                        dy = float(np.mean(flow[..., 1]))
+                        speed = float(np.sqrt(dx**2 + dy**2))
+                        end_vectors.append({"dx": dx, "dy": dy, "speed": speed})
+                    prev_gray = gray
+                cap.release()
+                
+                start_avg = {"dx": float(np.mean([v["dx"] for v in start_vectors])) if start_vectors else 0.0,
+                             "dy": float(np.mean([v["dy"] for v in start_vectors])) if start_vectors else 0.0,
+                             "speed": float(np.mean([v["speed"] for v in start_vectors])) if start_vectors else 0.0}
+                end_avg = {"dx": float(np.mean([v["dx"] for v in end_vectors])) if end_vectors else 0.0,
+                           "dy": float(np.mean([v["dy"] for v in end_vectors])) if end_vectors else 0.0,
+                           "speed": float(np.mean([v["speed"] for v in end_vectors])) if end_vectors else 0.0}
+                return {"start": start_avg, "end": end_avg}
+    """)
+    
+    # 7. Compiler
+    print("🎼 Writing Compiler...")
+    write_file(f"{INSTALL_DIR}/core/compiler/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/compiler/song_compiler.py", """
+        import librosa
+        import numpy as np
+        from pathlib import Path
+        from core.ir import SongAST, SectionAST, PhraseAST, BeatAST
+        from core.genres.detector import GenreDetector
+
+        class SongCompiler:
+            def compile(self, mp3_path: Path) -> SongAST:
+                y, sr = librosa.load(str(mp3_path), sr=None)
+                duration_ms = int(len(y) / sr * 1000)
+                tempo, beats = librosa.beat.beat_track(y=y, sr=sr)
+                tempo = float(np.atleast_1d(tempo)[0])
+                beat_times = librosa.frames_to_time(beats, sr=sr)
+                beat_times_ms = [int(t * 1000) for t in beat_times]
+                rms = librosa.feature.rms(y=y)[0]
+                rms_times = librosa.frames_to_time(np.arange(len(rms)), sr=sr)
+                energy_curve = []
+                for i in range(100):
+                    t = (i / 99) * (duration_ms / 1000)
+                    idx = np.argmin(np.abs(rms_times - t))
+                    energy_curve.append(float(rms[idx]))
+                max_e = max(energy_curve) or 1.0
+                energy_curve = [e / max_e for e in energy_curve]
+                
+                detector = GenreDetector()
+                genre_name, genre_template, analysis_data = detector.detect(mp3_path)
+                
+                beat_objs = [BeatAST(time_ms=bt, is_downbeat=(i % 4 == 0), energy=energy_curve[min(99, int((bt / duration_ms) * 100))]) for i, bt in enumerate(beat_times_ms)]
+                section_defs = [("intro", 0.0, 0.15), ("verse", 0.15, 0.4), ("chorus", 0.4, 0.7), ("bridge", 0.7, 0.85), ("outro", 0.85, 1.0)]
+                sections = []
+                for name, start_ratio, end_ratio in section_defs:
+                    start_ms = int(duration_ms * start_ratio)
+                    end_ms = int(duration_ms * end_ratio)
+                    sec_beats = [b for b in beat_objs if start_ms <= b.time_ms <= end_ms]
+                    section_template = genre_template.sections.get(name)
+                    energy_level = section_template.energy_level if section_template else 0.5
+                    phrase = PhraseAST(start_ms=start_ms, end_ms=end_ms, beats=sec_beats, dominant_emotion="high" if energy_level > 0.7 else "medium", energy_curve=energy_curve)
+                    sec = SectionAST(name=name, start_ms=start_ms, end_ms=end_ms, phrases=[phrase], bpm=tempo, dynamic_range=energy_level)
+                    sections.append(sec)
+                song_ast = SongAST(
+                    title=mp3_path.stem.split(" - ")[-1] if " - " in mp3_path.stem else mp3_path.stem,
+                    artist=mp3_path.stem.split(" - ")[0] if " - " in mp3_path.stem else "Unknown",
+                    total_duration_ms=duration_ms, sections=sections,
+                    global_energy_curve=energy_curve, global_emotion_curve=energy_curve)
+                song_ast.metadata["genre"] = genre_name
+                song_ast.metadata["genre_template"] = genre_template.name
+                song_ast.metadata["analysis"] = analysis_data
+                return song_ast
+    """)
+    
+    # 8. Director
+    print("🎬 Writing Director...")
+    write_file(f"{INSTALL_DIR}/core/director/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/director/director.py", """
+        import yaml
+        from pathlib import Path
+        from typing import List, Dict, Any
+        from core.ir import SongAST, ShotIntent, CameraIntent
+        from core.genres.database import get_genre_template
+        from core.utils.output_config import PlatformConfig
+        from rich.console import Console
+
+        console = Console()
+
+        class StyleLoader:
+            def __init__(self, styles_dir: Path = Path("./styles")):
+                self.styles_dir = styles_dir
+            def load(self, name: str) -> Dict[str, Any]:
+                p = self.styles_dir / name / "camera.yaml"
+                if p.exists():
+                    with open(p) as f: return yaml.safe_load(f)
+                return {"default": {"movement": "static", "framing": "medium"}, "chorus": {"movement": "push", "framing": "closeup"}}
+
+        class Director:
+            def __init__(self, style_name: str = "cinematic", platform_config: PlatformConfig = None):
+                self.style = StyleLoader().load(style_name)
+                self.genre_template = None
+                self.platform_config = platform_config
+                
+            def direct(self, song_ast: SongAST) -> List[ShotIntent]:
+                intents = []
+                genre_name = song_ast.metadata.get("genre", "old_school_hiphop")
+                self.genre_template = get_genre_template(genre_name)
+                if not self.genre_template:
+                    self.genre_template = get_genre_template("old_school_hiphop")
+                
+                for sec in song_ast.sections:
+                    for p_idx, phrase in enumerate(sec.phrases):
+                        section_template = self.genre_template.sections.get(sec.name)
+                        if section_template:
+                            shots_per_phrase = section_template.shots_per_phrase
+                            camera_movements = section_template.camera_movements
+                            camera_framings = section_template.camera_framings
+                            energy_level = section_template.energy_level
+                            rhythm = section_template.rhythm
+                        else:
+                            shots_per_phrase = 3
+                            camera_movements = ["static", "push"]
+                            camera_framings = ["medium", "closeup"]
+                            energy_level = 0.5
+                            rhythm = "smooth"
+                        duration = phrase.end_ms - phrase.start_ms
+                        shot_duration = duration // shots_per_phrase
+                        for i in range(shots_per_phrase):
+                            start = phrase.start_ms + (i * shot_duration)
+                            end = phrase.end_ms if i == shots_per_phrase - 1 else start + shot_duration
+                            if start >= end: break
+                            movement = camera_movements[i % len(camera_movements)]
+                            framing = camera_framings[i % len(camera_framings)]
+                            intents.append(ShotIntent(
+                                song_section=sec.name, phrase_id=f"{sec.name}_{p_idx}",
+                                start_ms=start, end_ms=end, need_energy=energy_level,
+                                need_emotion=["high"] if energy_level > 0.7 else ["medium"],
+                                need_color=[".warm"], need_camera=CameraIntent(movement=movement, framing=framing, persistence_id=f"{sec.name}_{p_idx}"),
+                                need_rhythm=rhythm, continue_from_shot_id=None if i==0 else f"{sec.name}_{p_idx}_{i-1}"))
+                console.print(f"🎬 Generated {len(intents)} shots covering full song duration")
+                return intents
+    """)
+    
+    # 9. Resolver
+    print("🎯 Writing Resolver...")
+    write_file(f"{INSTALL_DIR}/core/resolver/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/resolver/genome_resolver.py", """
+        import sqlite3
+        import json
+        import random
+        from pathlib import Path
+        from typing import List
+        from core.ir import ShotIntent, ClipDNA, ResolverResult, ResolverCandidate, ClipSegment
+        from core.utils.diversity_tracker import DiversityTracker
+
+        class GenomeResolver:
+            def __init__(self, clip_dna_list: List[ClipDNA], db_path: Path = Path(".weed_cache/genome.db")):
+                self.db_path = db_path
+                self.conn = sqlite3.connect(str(self.db_path))
+                self.diversity_tracker = DiversityTracker()
+                self.used_clips = set()
+                self.clip_pool = clip_dna_list
+                for clip in clip_dna_list:
+                    for segment in clip.segments:
+                        segment_id = f"{clip.id}_{segment.segment_id}"
+                        self.diversity_tracker.store_visual_features(segment_id, {
+                            "scene_type": segment.scene_type, "energy_peak": segment.energy_peak,
+                            "motion_direction": segment.motion_direction, "emotion": segment.emotion,
+                            "color_dominance": segment.color_dominance, "visual_motifs": segment.visual_motifs})
+                
+            def resolve(self, intent: ShotIntent, top_k: int = 50) -> ResolverResult:
+                cursor = self.conn.execute("SELECT * FROM clips")
+                rows = cursor.fetchall()
+                candidates = []
+                for row in rows:
+                    cid = row[0]
+                    genes_json = row[4]
+                    segments_json = row[7] if len(row) > 7 else "[]"
+                    genes_list = json.loads(genes_json)
+                    segments_data = json.loads(segments_json) if segments_json else []
+                    for seg_data in segments_data:
+                        segment = ClipSegment(**seg_data)
+                        segment_id = f"{cid}_{segment.segment_id}"
+                        score = 0.5
+                        if intent.need_energy > 0.7 and segment.energy_peak > 0.6: score += 0.3
+                        elif intent.need_energy < 0.4 and segment.energy_peak < 0.4: score += 0.3
+                        if intent.song_section == "chorus" and segment.scene_type == "action": score += 0.2
+                        elif intent.song_section == "verse" and segment.scene_type == "emotion": score += 0.2
+                        if "high" in intent.need_emotion and segment.emotion in ["aggressive", "happy"]: score += 0.15
+                        novelty_penalty = self.diversity_tracker.get_novelty_penalty(segment_id)
+                        score -= novelty_penalty
+                        diversity_score = self.diversity_tracker.calculate_diversity_score(segment_id, self.diversity_tracker.recent_segments)
+                        score += diversity_score * 0.2
+                        candidates.append(ResolverCandidate(
+                            clip_dna_id=cid, trim_start_ms=segment.start_ms, trim_end_ms=segment.end_ms,
+                            constraint_match_score=max(0.0, min(1.0, score)), semantic_similarity=diversity_score))
+                candidates.sort(key=lambda x: x.constraint_match_score, reverse=True)
+                top_50_percent = max(1, len(candidates) // 2)
+                top_candidates = candidates[:top_50_percent]
+                rest_candidates = candidates[top_50_percent:]
+                random.shuffle(rest_candidates)
+                return ResolverResult(intent_id=intent.id, candidates=(top_candidates + rest_candidates)[:top_k], query_constraints={})
+            
+            def mark_clip_used(self, clip_id: str):
+                self.used_clips.add(clip_id)
+            
+            def mark_segment_used(self, segment_id: str, clip_id: str, shot_id: str, reward: float):
+                self.diversity_tracker.record_usage(segment_id, clip_id, shot_id, reward)
+            
+            def get_diversity_statistics(self) -> dict:
+                return self.diversity_tracker.get_statistics()
+    """)
+    
+    # 10. Bandit
+    print("🎲 Writing Bandit...")
+    write_file(f"{INSTALL_DIR}/core/bandit/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/bandit/rl_bandit.py", """
+        import random
+        from core.ir import ShotIntent, ResolverResult, BanditDecision, SongAST, RenderIR
+        from typing import List
+
+        class RLBandit:
+            def __init__(self, novelty_weight: float = 0.15):
+                self.novelty_weight = novelty_weight
+                
+            def choose(self, intent: ShotIntent, resolver_result: ResolverResult, song_ast: SongAST, prev_shots: List[RenderIR]) -> BanditDecision:
+                candidates = resolver_result.candidates
+                if not candidates: raise ValueError("No candidates")
+                recent_clips = set(shot.clip_file_path for shot in prev_shots[-5:])
+                def score_candidate(c):
+                    base_score = c.constraint_match_score + random.uniform(0, 0.1)
+                    if c.clip_dna_id not in recent_clips: base_score += self.novelty_weight
+                    return base_score
+                best = max(candidates, key=score_candidate)
+                reward = best.constraint_match_score * 0.7 + best.semantic_similarity * 0.3
+                return BanditDecision(intent_id=intent.id, chosen_candidate=best, rejected_candidates_count=len(candidates)-1, reward_prediction=reward, decision_reason=f"Maximized constraint match ({best.constraint_match_score:.2f}) + novelty bonus")
+    """)
+    
+    # 11. Optimizer
+    print("⚙️ Writing Optimizer...")
+    write_file(f"{INSTALL_DIR}/core/camera/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/camera/virtual_camera.py", """
+        import math
+        from typing import Dict
+        from core.ir import SongAST
+
+        class VirtualCamera:
+            def __init__(self, song_ast: SongAST, base_resolution: tuple = (1920, 1080)):
+                self.song_ast = song_ast
+                self.width, self.height = base_resolution
+                self.max_zoom = 1.4
+                self.min_zoom = 1.0
+                self.max_pan = 0.15
+
+            def get_transform(self, time_ms: int, section_name: str, energy: float) -> Dict[str, float]:
+                total_duration = max(1, self.song_ast.total_duration_ms)
+                t_norm = time_ms / total_duration
+                base_zoom_speed = 0.2
+                if section_name == "chorus": base_zoom_speed = 0.6
+                elif section_name == "outro": base_zoom_speed = -0.3
+                zoom = self.min_zoom + (self.max_zoom - self.min_zoom) * (t_norm * base_zoom_speed + energy * 0.2)
+                zoom = max(self.min_zoom, min(self.max_zoom, zoom))
+                freq_x = 1.5 if section_name in ["verse", "intro"] else 3.0
+                pan_x = math.sin(t_norm * math.pi * freq_x) * self.max_pan * (1.0 - energy * 0.5)
+                freq_y = 2.0
+                pan_y = math.cos(t_norm * math.pi * freq_y) * (self.max_pan * 0.5)
+                rotation = math.sin(t_norm * math.pi * 4) * (energy * 1.5)
+                return {"zoom": round(zoom, 4), "x": round(pan_x, 4), "y": round(pan_y, 4), "rotation": round(rotation, 4)}
+    """)
+    
+    write_file(f"{INSTALL_DIR}/core/optimizer/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/optimizer/pipeline.py", """
+        from typing import List, Dict
+        from core.ir import ShotIntent, ResolverResult, BanditDecision, RenderIR, SongAST, ReplayLog, ClipDNA
+        from core.camera.virtual_camera import VirtualCamera
+        from datetime import datetime
+
+        class BeatAlignmentPass:
+            def run(self, intent, candidate, current_ir: RenderIR, song_ast: SongAST, clip_dna: ClipDNA = None) -> RenderIR:
+                snapped_in = (current_ir.trim_in_ms // 500) * 500
+                return current_ir.model_copy(update={"trim_in_ms": snapped_in, "metadata": {**current_ir.metadata, "pass": "beat"}})
+
+        class MotionFlowPass:
+            def __init__(self, clip_dna_map: Dict[str, ClipDNA]):
+                self.clip_dna_map = clip_dna_map
+            def run(self, intent, candidate, current_ir: RenderIR, prev_shots: List[RenderIR]) -> RenderIR:
+                current_clip = self.clip_dna_map.get(candidate.clip_dna_id)
+                if not current_clip or not current_clip.motion_vectors: return current_ir
+                updates = {}
+                if prev_shots:
+                    prev_shot = prev_shots[-1]
+                    prev_clip_id = None
+                    for clip_id, clip in self.clip_dna_map.items():
+                        if clip.file_path == prev_shot.clip_file_path:
+                            prev_clip_id = clip_id
+                            break
+                    if prev_clip_id and prev_clip_id in self.clip_dna_map:
+                        prev_clip = self.clip_dna_map[prev_clip_id]
+                        if prev_clip.motion_vectors:
+                            prev_end = prev_clip.motion_vectors.get("end", {})
+                            prev_end_speed = prev_end.get("speed", 0)
+                            curr_start = current_clip.motion_vectors.get("start", {})
+                            curr_start_speed = curr_start.get("speed", 0)
+                            speed_diff = abs(prev_end_speed - curr_start_speed)
+                            if speed_diff > 2.0:
+                                ramp_factor = min(0.7, curr_start_speed / max(0.1, prev_end_speed))
+                                updates["speed_ramp_in"] = ramp_factor
+                            updates["motion_continuity"] = {"prev_speed": prev_end_speed, "curr_speed": curr_start_speed, "speed_ratio": curr_start_speed / max(0.1, prev_end_speed)}
+                curr_end = current_clip.motion_vectors.get("end", {})
+                curr_end_speed = curr_end.get("speed", 0)
+                if curr_end_speed > 3.0: updates["speed_ramp_out"] = 1.3
+                if updates: return current_ir.model_copy(update=updates)
+                return current_ir
+
+        class VirtualCameraPass:
+            def __init__(self, virtual_camera: VirtualCamera):
+                self.vcam = virtual_camera
+            def run(self, intent: ShotIntent, candidate, current_ir: RenderIR, prev_shots: List[RenderIR]) -> RenderIR:
+                energy = intent.need_energy
+                start_transform = self.vcam.get_transform(time_ms=intent.start_ms, section_name=intent.song_section, energy=energy)
+                end_transform = self.vcam.get_transform(time_ms=intent.end_ms, section_name=intent.song_section, energy=energy)
+                return current_ir.model_copy(update={"camera_transform_start": start_transform, "camera_transform_end": end_transform})
+
+        class OptimizerPipeline:
+            def __init__(self, song_ast: SongAST, clip_dna_map: Dict[str, ClipDNA] = None):
+                self.song_ast = song_ast
+                self.clip_dna_map = clip_dna_map or {}
+                self.virtual_camera = VirtualCamera(song_ast)
+                self.passes = [BeatAlignmentPass(), MotionFlowPass(self.clip_dna_map), VirtualCameraPass(self.virtual_camera)]
+                self.replay_logs = []
+                
+            def optimize_all(self, intents: List[ShotIntent], resolver_results: Dict, bandit_decisions: Dict, initial_irs: Dict) -> List[RenderIR]:
+                timeline, prev_shots = [], []
+                for intent in intents:
+                    ir = initial_irs[intent.id]
+                    applied = []
+                    candidate = bandit_decisions[intent.id].chosen_candidate
+                    clip_dna = self.clip_dna_map.get(candidate.clip_dna_id)
+                    for p in self.passes:
+                        if isinstance(p, BeatAlignmentPass): ir = p.run(intent, candidate, ir, self.song_ast, clip_dna)
+                        elif isinstance(p, MotionFlowPass): ir = p.run(intent, candidate, ir, prev_shots)
+                        elif isinstance(p, VirtualCameraPass): ir = p.run(intent, candidate, ir, prev_shots)
+                        applied.append(p.__class__.__name__)
+                    timeline.append(ir)
+                    prev_shots.append(ir)
+                    self.replay_logs.append(ReplayLog(
+                        shot_id=intent.id, timestamp=datetime.utcnow(), intent=intent,
+                        resolver_result=resolver_results[intent.id], bandit_decision=bandit_decisions[intent.id],
+                        final_reward=bandit_decisions[intent.id].reward_prediction, optimizer_passes_applied=applied))
+                return timeline
+    """)
+    
+    # 12. Renderer
+    print("🎬 Writing Renderer...")
+    write_file(f"{INSTALL_DIR}/core/renderer/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/renderer/backend.py", """
+        import subprocess
+        import json
+        from pathlib import Path
+        from typing import List, Tuple
+        from core.ir import RenderIR
+        from core.utils.output_config import PlatformConfig
+
+        def get_video_dimensions(video_path: Path) -> Tuple[int, int]:
+            try:
+                cmd = ["ffprobe", "-v", "quiet", "-print_format", "json", "-show_streams", str(video_path)]
+                result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                data = json.loads(result.stdout)
+                for stream in data.get("streams", []):
+                    if stream.get("codec_type") == "video":
+                        return int(stream["width"]), int(stream["height"])
+                return 1920, 1080
+            except Exception as e:
+                print(f"⚠️  Could not probe {video_path.name}: {e}")
+                return 1920, 1080
+
+        class FFmpegBackend:
+            def __init__(self, platform_config: PlatformConfig = None):
+                self.platform_config = platform_config
+            
+            def render(self, timeline: List[RenderIR], output_path: Path, audio_path: Path) -> Path:
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                temp_dir = output_path.parent / "temp"
+                temp_dir.mkdir(exist_ok=True)
+                processed = []
+                
+                if self.platform_config:
+                    target_width, target_height = self.platform_config.aspect_ratio
+                    video_bitrate = self.platform_config.video_bitrate
+                    audio_bitrate = self.platform_config.audio_bitrate
+                    codec = self.platform_config.codec
+                    target_fps = self.platform_config.target_fps
+                else:
+                    target_width, target_height = 1920, 1080
+                    video_bitrate = "8M"
+                    audio_bitrate = "192k"
+                    codec = "libx264"
+                    target_fps = 30
+                
+                target_ratio = target_width / target_height
+                
+                for i, ir in enumerate(timeline):
+                    out_clip = temp_dir / f"clip_{i:04d}.mp4"
+                    duration_sec = max(0.1, (ir.trim_out_ms - ir.trim_in_ms) / 1000.0)
+                    start_sec = ir.trim_in_ms / 1000.0
+                    
+                    orig_w, orig_h = get_video_dimensions(Path(ir.clip_file_path))
+                    
+                    filters = [f"trim=start={start_sec}:duration={duration_sec}", "setpts=PTS-STARTPTS"]
+                    
+                    if ir.speed_ramp_in and ir.speed_ramp_in != 1.0:
+                        ramp_duration = min(0.5, duration_sec / 3)
+                        filters.append(f"setpts='if(lt(T\\,{ramp_duration})\\,PTS/{ir.speed_ramp_in}\\,PTS)'")
+                    if ir.speed_ramp_out and ir.speed_ramp_out != 1.0:
+                        ramp_start = max(0, duration_sec - 0.5)
+                        filters.append(f"setpts='if(gt(T\\,{ramp_start})\\,PTS*{ir.speed_ramp_out}\\,PTS)'")
+                    
+                    zoom_to_cover = max(target_width / orig_w, target_height / orig_h)
+                    
+                    vcam_zoom = 1.0
+                    vcam_x = 0.0
+                    vcam_y = 0.0
+                    
+                    if ir.camera_transform_start and ir.camera_transform_end:
+                        t_start = ir.camera_transform_start
+                        t_end = ir.camera_transform_end
+                        vcam_zoom = (t_start["zoom"] + t_end["zoom"]) / 2.0
+                        vcam_x = (t_start["x"] + t_end["x"]) / 2.0
+                        vcam_y = (t_start["y"] + t_end["y"]) / 2.0
+                    
+                    total_zoom = zoom_to_cover * vcam_zoom
+                    filters.append(f"scale=iw*{total_zoom}:ih*{total_zoom}")
+                    
+                    scaled_w = orig_w * total_zoom
+                    scaled_h = orig_h * total_zoom
+                    
+                    if scaled_w / scaled_h > target_ratio:
+                        crop_w = scaled_h * target_ratio
+                        crop_h = scaled_h
+                    else:
+                        crop_w = scaled_w
+                        crop_h = scaled_w / target_ratio
+                    
+                    max_offset_x = (scaled_w - crop_w) / 2.0
+                    max_offset_y = (scaled_h - crop_h) / 2.0
+                    
+                    crop_x = (scaled_w - crop_w) / 2.0 + (vcam_x * max_offset_x * 2)
+                    crop_y = (scaled_h - crop_h) / 2.0 + (vcam_y * max_offset_y * 2)
+                    
+                    crop_x = max(0, min(crop_x, scaled_w - crop_w))
+                    crop_y = max(0, min(crop_y, scaled_h - crop_h))
+                    
+                    filters.append(f"crop={int(crop_w)}:{int(crop_h)}:{int(crop_x)}:{int(crop_y)}")
+                    filters.append(f"scale={target_width}:{target_height}")
+
+                    vf_string = ",".join(filters)
+                    
+                    cmd = ["ffmpeg", "-y", "-i", str(ir.clip_file_path), "-vf", vf_string,
+                           "-an", "-c:v", codec, "-b:v", video_bitrate, "-r", str(target_fps), 
+                           "-preset", "fast", "-pix_fmt", "yuv420p", str(out_clip)]
+                    
+                    try:
+                        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+                        processed.append(out_clip)
+                        if (i + 1) % 10 == 0:
+                            print(f"  🎬 Rendered {i+1}/{len(timeline)} clips")
+                    except subprocess.CalledProcessError as e:
+                        print(f"\\n[red]❌ FFmpeg failed for {Path(ir.clip_file_path).name}[/red]")
+                        print(f"FFmpeg Error: {e.stderr[-500:]}")
+                    except Exception as e:
+                        print(f"\\n[red]❌ Exception for {Path(ir.clip_file_path).name}: {e}[/red]")
+                        
+                if not processed:
+                    raise RuntimeError("No clips processed. Check FFmpeg errors above.")
+                    
+                concat_file = temp_dir / "concat.txt"
+                with open(concat_file, "w", encoding="utf-8") as f:
+                    for p in processed: 
+                        f.write(f"file '{p.as_posix()}'\\n")
+                
+                concat_out = temp_dir / "concat.mp4"
+                subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(concat_file), "-c", "copy", str(concat_out)], check=True, capture_output=True)
+                
+                subprocess.run(["ffmpeg", "-y", "-i", str(concat_out), "-i", str(audio_path), "-c:v", "copy", "-c:a", "aac", "-b:a", audio_bitrate, "-map", "0:v:0", "-map", "1:a:0", "-shortest", str(output_path)], check=True, capture_output=True)
+                
+                for p in processed: p.unlink()
+                concat_file.unlink()
+                concat_out.unlink()
+                temp_dir.rmdir()
+                
+                return output_path
+    """)
+    
+    # 13. Replay & Report
+    print("📊 Writing Replay & Report...")
+    write_file(f"{INSTALL_DIR}/core/replay/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/replay/logger.py", """
+        import json
+        from pathlib import Path
+        from typing import List
+        from core.ir import ReplayLog
+
+        class ReplayLogger:
+            def __init__(self, project_dir: Path = Path.cwd()):
+                self.replay_dir = project_dir / ".weed_cache" / "replay"
+                self.replay_dir.mkdir(parents=True, exist_ok=True)
+            def save_logs(self, logs: List[ReplayLog]):
+                for log in logs:
+                    with open(self.replay_dir / f"{log.shot_id}.json", "w") as f:
+                        json.dump(log.model_dump(), f, indent=2, default=str)
+            def load_all(self) -> List[ReplayLog]:
+                logs = []
+                for f in self.replay_dir.glob("*.json"):
+                    with open(f) as fp: logs.append(ReplayLog.model_validate(json.load(fp)))
+                return logs
+    """)
+    
+    write_file(f"{INSTALL_DIR}/core/report/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/core/report/generator.py", """
+        from pathlib import Path
+        from typing import List
+        from core.ir import ReplayLog, SongAST
+
+        class ReportGenerator:
+            def __init__(self, song: SongAST, logs: List[ReplayLog]):
+                self.song = song
+                self.logs = logs
+            def generate_html(self, output_path: Path):
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                avg_reward = sum(l.final_reward for l in self.logs) / len(self.logs) if self.logs else 0
+                rows = "".join([f"<tr><td>{log.shot_id}</td><td>{log.intent.song_section}</td><td>{log.final_reward:.2f}</td><td>{', '.join(log.optimizer_passes_applied)}</td></tr>\\n" for log in self.logs])
+                html = f\"\"\"<!DOCTYPE html><html><head><title>WE.ED.IT Report</title>
+                <style>body{{font-family:sans-serif;background:#111;color:#eee;padding:20px}}
+                h1{{color:#0f0}}.stat{{background:#222;padding:15px;margin:10px 0;border-left:4px solid #0f0}}
+                table{{width:100%;border-collapse:collapse}}th,td{{padding:8px;border-bottom:1px solid #444;text-align:left}}
+                </style></head><body><h1>🧬 WE.ED.IT OIDA Report</h1>
+                <p><b>{self.song.artist} - {self.song.title}</b></p>
+                <p>Genre: {self.song.metadata.get('genre_template', 'Unknown')}</p>
+                <div class="stat"><h3>Average Reward: {avg_reward:.2f}</h3></div>
+                <div class="stat"><h3>Total Shots: {len(self.logs)}</h3></div>
+                <h2>Shot Timeline</h2><table><tr><th>Shot ID</th><th>Section</th><th>Reward</th><th>Passes</th></tr>{rows}</table></body></html>\"\"\"
+                with open(output_path, "w") as f: f.write(html)
+                return output_path
+    """)
+    
+    # 14. CLI
+    print("🖥️ Writing CLI...")
+    write_file(f"{INSTALL_DIR}/cli/__init__.py", "")
+    write_file(f"{INSTALL_DIR}/cli/main.py", """
+        import typer
+        import json
+        import sqlite3
+        from pathlib import Path
+        from rich.console import Console
+        from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeElapsedColumn
+        from rich.panel import Panel
+
+        from core.ir import RenderIR, ClipDNA
+        from core.scanner.pipeline import ScannerPipeline
+        from core.compiler.song_compiler import SongCompiler
+        from core.director.director import Director
+        from core.resolver.genome_resolver import GenomeResolver
+        from core.bandit.rl_bandit import RLBandit
+        from core.optimizer.pipeline import OptimizerPipeline
+        from core.renderer.backend import FFmpegBackend
+        from core.replay.logger import ReplayLogger
+        from core.report.generator import ReportGenerator
+        from core.utils.renamer import SmartRenamer
+        from core.utils.output_config import get_platform_config, list_platforms
+
+        app = typer.Typer(name="weed", help="🧬 WE.ED.IT OIDA Native Genome 2.0", add_completion=False, no_args_is_help=True)
+        console = Console()
+
+        class BuildContext:
+            def __init__(self, project_dir: Path):
+                self.dir = project_dir
+                self.cache = project_dir / ".weed_cache"
+                self.cache.mkdir(exist_ok=True)
+            def save(self, name: str, data):
+                with open(self.cache / f"{name}.json", "w") as f: json.dump(data, f, indent=2, default=str)
+            def load(self, name: str):
+                p = self.cache / f"{name}.json"
+                if p.exists():
+                    with open(p) as f: return json.load(f)
+                return None
+
+        def load_all_clips_from_db() -> list:
+            db_path = Path(".weed_cache/genome.db")
+            if not db_path.exists(): return []
+            conn = sqlite3.connect(str(db_path))
+            cursor = conn.execute("SELECT id, file_path, motion_entropy, camera_motion, genes, duration_ms, segments FROM clips")
+            rows = cursor.fetchall()
+            conn.close()
+            clips = []
+            for row in rows:
+                cid, fpath, entropy, cam, genes_json, dur, seg_json = row
+                from core.ir import ClipSegment
+                segments_data = json.loads(seg_json) if seg_json else []
+                segments = [ClipSegment(**seg_data) for seg_data in segments_data]
+                clips.append(ClipDNA(
+                    id=cid, file_path=fpath, duration_ms=dur, motion_entropy=entropy,
+                    dominant_colors=[], detected_objects=[], detected_faces=0,
+                    camera_motion=cam, lighting="neutral",
+                    embedding_vector_id=f"vec_{Path(fpath).stem}",
+                    genes=json.loads(genes_json), segments=segments))
+            return clips
+
+        @app.command()
+        def doctor():
+            console.print(Panel("🩺 WE.ED.IT System Doctor\\n✅ Python 3.10+\\n✅ Core Modules Loaded\\n⚠️ FFmpeg (ensure it is in PATH)", style="cyan"))
+
+        @app.command()
+        def make(
+            mp3: Path = typer.Argument(...), 
+            clips: Path = typer.Argument(...), 
+            style: str = typer.Option("cinematic", "--style", "-s"),
+            platform: str = typer.Option("youtube", "--platform", "-p", help="Output platform: youtube, tiktok, youtube_shorts, instagram_reels")
+        ):
+            ctx = BuildContext(Path.cwd())
+            
+            try:
+                platform_config = get_platform_config(platform)
+                console.print(f"[bold cyan]🎬 Platform: {platform_config.name}[/bold cyan]")
+                console.print(f"   Aspect Ratio: {platform_config.aspect_ratio[0]}x{platform_config.aspect_ratio[1]}")
+                console.print(f"   Full Song Duration: Yes (no hard limit)")
+            except ValueError as e:
+                console.print(f"[bold red]❌ {e}[/bold red]")
+                console.print(f"   Available platforms: {', '.join(list_platforms())}")
+                raise typer.Exit(1)
+            
+            render_success = False
+            out_file = None
+            timeline = []
+            song_ast = None
+            
+            with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}"), BarColumn(), TimeElapsedColumn(), console=console) as progress:
+                task = progress.add_task("🧬 Scanning Genome Library...", total=1)
+                scanner = ScannerPipeline()
+                scanner.scan_directory(clips)
+                clip_dna = load_all_clips_from_db()
+                console.print(f"[bold cyan]📚 Loaded {len(clip_dna)} clips from genome DB[/bold cyan]")
+                if not clip_dna:
+                    console.print("[bold red]❌ No clips in genome DB! Aborting.[/bold red]")
+                    raise typer.Exit(1)
+                ctx.save("scan", [c.model_dump() for c in clip_dna])
+                progress.advance(task)
+                
+                task = progress.add_task("🎼 Compiling Song AST...", total=1)
+                compiler = SongCompiler()
+                song_ast = compiler.compile(mp3)
+                ctx.save("compile", song_ast.model_dump())
+                genre_name = song_ast.metadata.get("genre", "unknown")
+                genre_template_name = song_ast.metadata.get("genre_template", "unknown")
+                console.print(f"\\n[bold cyan]🎵 Detected Genre:[/bold cyan] {genre_template_name}")
+                progress.advance(task)
+                
+                task = progress.add_task("🎬 Directing Shots...", total=1)
+                director = Director(style, platform_config)
+                intents = director.direct(song_ast)
+                ctx.save("intents", [i.model_dump() for i in intents])
+                console.print(f"\\n[bold cyan]🎬 Generated {len(intents)} shots[/bold cyan]")
+                progress.advance(task)
+                
+                task = progress.add_task("🎯 Resolving Candidates...", total=1)
+                resolver = GenomeResolver(clip_dna)
+                resolver_results = {i.id: resolver.resolve(i) for i in intents}
+                ctx.save("resolve", {k: v.model_dump() for k, v in resolver_results.items()})
+                progress.advance(task)
+                
+                task = progress.add_task("🎲 RL Bandit Selecting...", total=1)
+                bandit = RLBandit(novelty_weight=0.15)
+                bandit_decisions, initial_irs = {}, {}
+                for intent in intents:
+                    dec = bandit.choose(intent, resolver_results[intent.id], song_ast, list(initial_irs.values()))
+                    bandit_decisions[intent.id] = dec
+                    resolver.mark_clip_used(dec.chosen_candidate.clip_dna_id)
+                    chosen_id = dec.chosen_candidate.clip_dna_id
+                    matching_clip = next((c for c in clip_dna if c.id == chosen_id), None)
+                    clip_path = matching_clip.file_path if matching_clip else "unknown.mp4"
+                    initial_irs[intent.id] = RenderIR(
+                        clip_file_path=clip_path,
+                        trim_in_ms=dec.chosen_candidate.trim_start_ms,
+                        trim_out_ms=dec.chosen_candidate.trim_end_ms,
+                        main_audio_track_id=song_ast.id, source_intent_id=intent.id, replay_log_id="")
+                    if matching_clip:
+                        for segment in matching_clip.segments:
+                            if segment.start_ms == dec.chosen_candidate.trim_start_ms:
+                                segment_id = f"{chosen_id}_{segment.segment_id}"
+                                resolver.mark_segment_used(segment_id, chosen_id, intent.id, dec.reward_prediction)
+                                break
+                progress.advance(task)
+                
+                task = progress.add_task("⚙️ Running Optimizer Passes...", total=1)
+                clip_dna_map = {c.id: c for c in clip_dna}
+                optimizer = OptimizerPipeline(song_ast, clip_dna_map)
+                timeline = optimizer.optimize_all(intents, resolver_results, bandit_decisions, initial_irs)
+                ctx.save("optimize", {"timeline": [t.model_dump() for t in timeline], "logs": [l.model_dump() for l in optimizer.replay_logs]})
+                progress.advance(task)
+                
+                task = progress.add_task("🎬 Rendering Final Video...", total=1)
+                out_dir = Path.cwd() / "output"
+                renamer = SmartRenamer(out_dir)
+                base_name = f"{song_ast.artist}_{song_ast.title}"
+                out_file = renamer.get_next_version(base_name, platform, ".mp4")
+                renderer = FFmpegBackend(platform_config)
+                try:
+                    renderer.render(timeline, out_file, mp3)
+                    if out_file.exists() and out_file.stat().st_size > 0:
+                        render_success = True
+                    else:
+                        console.print("[bold red]❌ Render produced empty or missing file.[/bold red]")
+                except Exception as e:
+                    console.print(f"[bold red]❌ Render failed: {e}[/bold red]")
+                progress.advance(task)
+                
+                task = progress.add_task("📊 Generating Report...", total=1)
+                reporter = ReportGenerator(song_ast, optimizer.replay_logs)
+                reporter.generate_html(Path.cwd() / "reports" / "render_report.html")
+                ReplayLogger().save_logs(optimizer.replay_logs)
+                progress.advance(task)
+
+            if render_success:
+                console.print("\\n[bold green]🎉 Compilation Successful![/bold green]")
+                console.print(f"📁 Video: {out_file}")
+                console.print(f"📊 Report: ./reports/render_report.html")
+            else:
+                console.print("\\n[bold red]❌ Compilation Failed during rendering.[/bold red]")
+                console.print("Check the FFmpeg error messages above for details.")
+            
+            diversity_stats = resolver.get_diversity_statistics()
+            console.print(f"\\n[bold cyan]🎯 Diversity Statistics:[/bold cyan]")
+            console.print(f"   • Total segments: {diversity_stats['total_segments']}")
+            console.print(f"   • Used once: {diversity_stats['used_once']}")
+            console.print(f"   • Used multiple: {diversity_stats['used_multiple']}")
+            
+            total_duration_ms = sum(ir.trim_out_ms - ir.trim_in_ms for ir in timeline)
+            console.print(f"\\n[bold cyan]📊 Timeline Statistics:[/bold cyan]")
+            console.print(f"   • Total shots: {len(timeline)}")
+            console.print(f"   • Total duration: {total_duration_ms / 1000:.1f}s")
+            if song_ast:
+                console.print(f"   • Song duration: {song_ast.total_duration_ms / 1000:.1f}s")
+
+        @app.command()
+        def replay(shot_id: str = typer.Argument(...)):
+            logs = ReplayLogger().load_all()
+            log = next((l for l in logs if l.shot_id == shot_id), None)
+            if log:
+                console.print(f"\\n[bold cyan]📋 Intent:[/bold cyan] {log.intent.song_section} | Energy: {log.intent.need_energy}")
+                console.print(f"[bold green]✅ Chosen:[/bold green] {log.bandit_decision.chosen_candidate.clip_dna_id} (Reward: {log.final_reward:.2f})")
+                console.print(f"[bold magenta]⚙️ Passes:[/bold magenta] {', '.join(log.optimizer_passes_applied)}")
+            else:
+                console.print(f"[red]Shot {shot_id} not found.[/red]")
+
+        if __name__ == "__main__":
+            app()
+    """)
+    
+    # 15. Styles
+    print("🎨 Writing Styles...")
+    for style in ["cinematic", "drill", "trap", "fast_rhythmic"]:
+        write_file(f"{INSTALL_DIR}/styles/{style}/manifest.yaml", f"""
+            name: {style}
+            version: 1.0.0
+            description: "{style} style music video"
+            author: "WE.ED.IT Team"
+            license: "MIT"
+            dependencies: []
+            files: [camera.yaml, transitions.yaml]
+            tags: [{style}]
+            min_weedit_version: "2.0.0"
+        """)
+        if style == "fast_rhythmic":
+            write_file(f"{INSTALL_DIR}/styles/{style}/camera.yaml", """
+                default:
+                  movement: handheld
+                  framing: medium
+                chorus:
+                  movement: whip
+                  framing: extreme_closeup
+            """)
+        else:
+            write_file(f"{INSTALL_DIR}/styles/{style}/camera.yaml", f"""
+                default:
+                  movement: static
+                  framing: medium
+                chorus:
+                  movement: push
+                  framing: closeup
+            """)
+        write_file(f"{INSTALL_DIR}/styles/{style}/transitions.yaml", f"""
+            default: cut
+            chorus: whip
+            outro: fade_black
+        """)
+    
+    # 16. README
+    print("📚 Writing README...")
+    write_file(f"{INSTALL_DIR}/README.md", """
+        # 🧬 WE.ED.IT OIDA Native Genome 2.0
+        
+        ## 🚀 Quick Start
+        
+        ### Windows:
+        ```cmd
+        cd weedit-native
+        weed.bat make "song.mp3" "./clips" --platform tiktok
+        ```
+        
+        ### PowerShell:
+        ```powershell
+        cd weedit-native
+        .\\weed.ps1 make "song.mp3" "./clips" --platform tiktok
+        ```
+        
+        ### Python direkt:
+        ```bash
+        cd weedit-native
+        python cli/main.py make "song.mp3" "./clips" --platform tiktok
+        ```
+        
+        ## 🎯 Features
+        - **20 Hip-Hop Genres** (auto-detected)
+        - **Platform Optimization** (YouTube, TikTok, Shorts, Reels)
+        - **Cover-Crop** (no stretching/distortion)
+        - **Full Song Duration** (no hard limit)
+        - **Smart Clip Repetition** (with variation)
+        - **Ultra-Fast Scanner** (5 frames per clip)
+        - **Virtual Camera** (smooth cinematic motion)
+        - **Smart Renaming** (v001, v002 per platform)
+    """)
+    
+    # 17. Install Requirements & Create Wrappers
+    install_requirements()
+    create_weed_bat()
+    create_weed_ps1()
+    
+    # 18. Create ZIP
+    print("\n📦 Creating ZIP archive...")
+    try:
+        shutil.make_archive(PROJECT_NAME, 'zip', INSTALL_DIR.parent, PROJECT_NAME)
+        print(f"  ✅ {PROJECT_NAME}.zip created successfully!")
+    except Exception as e:
+        print(f"  ⚠️ ZIP creation failed: {e}")
+    
+    # 19. Final Output
+    print("\n" + "="*70)
+    print("✅ FULL PROJECT GENERATED SUCCESSFULLY!")
+    print("="*70)
+    print(f"\n📁 Directory: {INSTALL_DIR}")
+    print(f"📦 Archive:   {PROJECT_NAME}.zip")
+    print("\n🚀 HOW TO USE (3 options):")
+    print("\n  Option 1 - Windows CMD:")
+    print(f"    cd {INSTALL_DIR}")
+    print('    weed.bat make "song.mp3" "./clips" --platform tiktok')
+    print("\n  Option 2 - PowerShell:")
+    print(f"    cd {INSTALL_DIR}")
+    print('    .\\weed.ps1 make "song.mp3" "./clips" --platform tiktok')
+    print("\n  Option 3 - Python direkt:")
+    print(f"    cd {INSTALL_DIR}")
+    print('    python cli/main.py make "song.mp3" "./clips" --platform tiktok')
+    print("\n🎬 Available platforms:")
+    print("   • youtube         (1920x1080, full length)")
+    print("   • tiktok          (1080x1920, full length)")
+    print("   • youtube_shorts  (1080x1920, full length)")
+    print("   • instagram_reels (1080x1920, full length)")
+    print("\n🧬 Welcome to the future of music videos!")
+
+
+if __name__ == "__main__":
+    generate()e

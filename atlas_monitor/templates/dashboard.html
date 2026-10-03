@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark">
+    <span class="dot"></span>
+    <div>
+      <h1>ATLAS<span>MONITOR</span></h1>
+      <p class="tagline">Console readout for tracked posts &mdash; you feed it real numbers, it does the math.</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button id="refreshBtn" class="btn btn-ghost">Refresh</button>
+    <button id="resetBtn" class="btn btn-danger">Reset demo data</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="summary-strip" id="summaryStrip">
+    <div class="stat-card">
+      <span class="stat-label">Tracked Posts</span>
+      <span class="stat-value mono" id="statPosts">&mdash;</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Views</span>
+      <span class="stat-value mono" id="statViews">&mdash;</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Engagement Actions</span>
+      <span class="stat-value mono" id="statEngagement">&mdash;</span>
+    </div>
+    <div class="stat-card stat-card--accent">
+      <span class="stat-label">Average Viral Score</span>
+      <span class="stat-value mono" id="statAvgScore">&mdash;</span>
+    </div>
+  </section>
+
+  <section class="ingest-panel">
+    <details>
+      <summary>+ Log a metrics reading</summary>
+      <form id="ingestForm">
+        <div class="field">
+          <label>Platform</label>
+          <select name="platform" required>
+            <option value="tiktok">TikTok</option>
+            <option value="instagram">Instagram</option>
+            <option value="youtube">YouTube</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Post / video ID</label>
+          <input type="text" name="external_id" placeholder="e.g. 7284..." required>
+        </div>
+        <div class="field">
+          <label>Track title</label>
+          <input type="text" name="track_title" placeholder="optional">
+        </div>
+        <div class="field">
+          <label>Artist</label>
+          <input type="text" name="artist" placeholder="optional">
+        </div>
+        <div class="field">
+          <label>Views</label>
+          <input type="number" name="views" min="0" value="0" required>
+        </div>
+        <div class="field">
+          <label>Likes</label>
+          <input type="number" name="likes" min="0" value="0" required>
+        </div>
+        <div class="field">
+          <label>Comments</label>
+          <input type="number" name="comments" min="0" value="0" required>
+        </div>
+        <div class="field">
+          <label>Shares</label>
+          <input type="number" name="shares" min="0" value="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Log reading</button>
+        <span id="ingestStatus" class="ingest-status"></span>
+      </form>
+      <p class="hint">
+        Pull these numbers from the platform's own creator/analytics dashboard, or from a script
+        you write against the official TikTok/Instagram/YouTube APIs. Atlas Monitor never fetches
+        or scrapes anything on its own &mdash; every reading here is one you or your tooling submitted
+        via <code>POST /api/ingest</code>.
+      </p>
+    </details>
+  </section>
+
+  <section class="rack" id="rack">
+    <!-- channel strip cards injected here -->
+  </section>
+
+  <section class="detail-panel" id="detailPanel" hidden>
+    <div class="detail-header">
+      <h2 id="detailTitle">&mdash;</h2>
+      <button id="closeDetail" class="btn btn-ghost">Close</button>
+    </div>
+    <svg id="historyChart" viewBox="0 0 800 240" preserveAspectRatio="none"></svg>
+  </section>
+
+</main>
+
+<footer>
+  <p>Viral Score is a transparent heuristic (engagement + velocity + scale) computed from what you log &mdash; see README.md for the exact formula.</p>
+</footer>
+
+<script src="/static/dashboard.js"></script>
+</body>
+</html>

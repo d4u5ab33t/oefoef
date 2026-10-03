@@ -1,0 +1,57 @@
+{
+  "system_name": "SYNAPSE AUDIO DYNAMICS - OIDAHEIM 3047",
+  "master_key": "ROOT_USER_OIDA_PASS_DOOR",
+  "bpm_master": 140,
+  "quanten_mode": "Quanted Stoic Flow",
+  "vocal_presence_master": "Maximum Control",
+  "no_shouting_policy": true,
+  "modules": {
+    "atlas": {
+      "completion_threshold": 0.85,
+      "auto_ads": true,
+      "ad_spend_max": 5000
+    },
+    "orion": {
+      "target_platforms": [
+        "Spotify",
+        "Netflix"
+      ],
+      "auto_pitch": true
+    },
+    "jinx": {
+      "viral_score_min": 9.5,
+      "clip_gen_frequency": "15_min"
+    },
+    "kairo_vega": {
+      "next_track_pipeline": true,
+      "style": "Regional Cyber Drill"
+    },
+    "kreon_phoenix": {
+      "tech_merch_infra": true,
+      "chains": [
+        "Ethereum",
+        "Solana"
+      ]
+    }
+  },
+  "oidaheim_vibe": {
+    "sfx_master": [
+      "30hz_sub",
+      "u-bahn_squeal",
+      "spray_can_hiss"
+    ],
+    "adlibs_allowed": [
+      "oida",
+      "swalla",
+      "root_pass",
+      "089",
+      "1328"
+    ],
+    "punchlines": [
+      "intelligente oida-swalla-punchlines",
+      "total control through pure presäntz",
+      "no yelling",
+      "quanten sprünge"
+    ]
+  }
+}

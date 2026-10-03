@@ -1,0 +1,488 @@
+Jetzt kommt der Schritt, der das Projekt von "cool" zu "einzigartig" macht.
+
+🧬 WE.ED.IT OIDA Native Genome v0.2
+Genome Operating System (GOS)
+
+Bisher haben wir über Clips gesprochen.
+
+Ich würde einen Schritt höher gehen.
+
+Nicht der Clip ist die kleinste Einheit.
+
+Sondern das Visual Gene.
+
+Clip
+clip.mp4
+
+wird zerlegt in
+
+Visual Genome
+
+├── Motion Gene
+├── Camera Gene
+├── Color Gene
+├── Emotion Gene
+├── Object Gene
+├── Lighting Gene
+├── Composition Gene
+├── Face Gene
+├── Transition Affinity
+└── Audio Affinity
+
+Damit verliert der Clip seine Starrheit.
+
+Beispiel
+
+Ein Clip besitzt
+
+motion:
+
+fast
+
+camera:
+
+handheld
+
+color:
+
+orange
+
+lighting:
+
+sunset
+
+emotion:
+
+heroic
+
+objects:
+
+car
+smoke
+city
+
+composition:
+
+closeup
+
+Jetzt erzeugt der Scanner automatisch
+
+.hero
+
+.orange
+
+.smoke
+
+.sunset
+
+.handheld
+
+.fast
+
+.city
+
+.closeup
+
+UND zusätzlich
+
+.trap_candidate
+
+.drill_candidate
+
+.phonk_candidate
+Genome Query Language (GQL)
+
+Der Director schreibt keine Python-Regeln mehr.
+
+Er schreibt Queries.
+
+Beispiel
+
+SELECT clip
+
+WHERE
+
+hero
+AND orange
+AND smoke
+
+ORDER BY
+
+motion DESC
+
+LIMIT 20
+
+Oder
+
+STYLE drill
+
+SECTION chorus
+
+ENERGY high
+
+COLOR warm
+
+CAMERA push
+
+Der Resolver übersetzt das in echte Clips.
+
+Visual CSS 2.0
+
+Nicht nur Klassen.
+
+Sondern Vererbung.
+
+.hero{
+
+motion:
+
+high;
+
+camera:
+
+push;
+
+}
+.drill{
+
+extends:
+
+hero;
+
+transition:
+
+whip;
+
+fx:
+
+glow;
+}
+
+Dadurch entsteht eine visuelle Stylesprache.
+
+Director DSL
+
+Statt Python.
+
+Eine kleine Sprache.
+
+SONG
+
+↓
+
+Verse
+
+↓
+
+slow
+
+↓
+
+camera push
+
+↓
+
+hero
+
+↓
+
+orange
+
+↓
+
+smoke
+
+Oder
+
+VERSE{
+
+camera:
+
+push
+
+style:
+
+drill
+
+energy:
+
+80%
+}
+Shot Compiler
+
+Der Director erzeugt NICHT sofort Clips.
+
+Er erzeugt
+
+Shot
+
+emotion:
+
+epic
+
+duration:
+
+2.8
+
+camera:
+
+push
+
+transition:
+
+whip
+
+required:
+
+hero
+orange
+city
+
+Der Resolver sucht später passende Clips.
+
+Context Engine
+
+Nicht nur den aktuellen Shot.
+
+Sondern
+
+Shot -2
+
+↓
+
+Shot -1
+
+↓
+
+Shot
+
+↓
+
+Shot +1
+
+↓
+
+Shot +2
+
+Dadurch werden
+
+Farben
+Kamera
+Bewegung
+Stimmung
+
+kontinuierlich.
+
+Camera Genome
+
+Nicht mehr
+
+Zoom
+
+sondern
+
+camera_phrase
+
+length:
+
+24 s
+
+motion:
+
+push
+
+zoom:
+
+1.0
+
+↓
+
+1.25
+
+pan:
+
+left
+
+↓
+
+center
+
+shake:
+
+0.04
+
+Diese Kamera läuft über viele Clips.
+
+Motion Grammar
+
+Neue Sprache.
+
+Fast
+
+↓
+
+Fast
+
+↓
+
+Medium
+
+↓
+
+Slow
+
+↓
+
+Explosion
+
+↓
+
+Calm
+
+Nicht zufällig.
+
+Sondern dramaturgisch.
+
+Transition Genome
+
+Jeder Übergang bekommt Gene.
+
+transition
+
+cut
+
+energy:
+
+100
+
+smoothness:
+
+0
+
+visibility:
+
+0
+transition
+
+whip
+
+energy:
+
+95
+
+direction:
+
+left
+
+Dann kann der Director sagen
+
+need energy >80
+
+und bekommt passende Übergänge.
+
+RL Bandit 2
+
+Nicht mehr
+
+Welcher Clip?
+
+sondern
+
+Welcher Clip
+
++
+
+welche Kamera
+
++
+
+welcher Übergang
+
++
+
+welcher FX
+
+Vier Entscheidungen.
+
+Vier Policies.
+
+Project Manifest
+
+Nach jedem Render
+
+project/
+
+manifest.json
+
+song.ast
+
+story.ast
+
+shot.ast
+
+camera.ast
+
+render.ast
+
+reward.json
+
+genome.snapshot
+
+report.html
+
+Jeder Render wird reproduzierbar.
+
+Genome Evolution
+
+Das Beste kommt jetzt.
+
+Der Scanner lernt.
+
+Wenn häufig
+
+.orange
+
++
+
+.hero
+
++
+
+.push
+
+zu hohen Rewards führen,
+
+entsteht automatisch
+
+.hero_push
+
+Wenn häufig
+
+.smoke
+
++
+
+.city
+
++
+
+.orange
+
+zusammen vorkommen,
+
+entsteht automatisch
+
+.drill_city
+
+Das System erweitert seine eigene visuelle Sprache durch Nutzung.
+
+🔥 Evolution 3 (mein Favorit)
+
+Der nächste große Schritt wäre ein Visual Language Compiler:
+
+Die Clipbibliothek erzeugt ihre eigene CSS-ähnliche Sprache.
+Der Director schreibt nur noch deklarative Regeln (keine Clipnamen, keine Dateipfade).
+Der Genome Resolver übersetzt diese Sprache in konkrete Sequenzen.
+Der RL-Bandit verbessert die Auswahl über die Zeit.
+
+Ab diesem Punkt programmierst du keine Videos mehr – du beschreibst nur noch die gewünschte Wirkung, und das Genome-System kompiliert daraus das fertige Musikvideo. Das wäre aus meiner Sicht der eigentliche "Endgegner" der Architektur.

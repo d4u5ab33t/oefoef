@@ -1,0 +1,4 @@
+default: cut
+intro: fade_black
+chorus: whip
+outro: fade_black

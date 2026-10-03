@@ -82,14 +82,36 @@ songrid.html
 *.zip
 *.vsix
 
-
-# Video & Media Output
+# Video & Media Output / Assets
 output/
+output.old/
+IMGs/
+art/
+analysis/
+genome_output/
+dex/
+_backup_cutstyle_wiring/
+stored but never usedfiles/
 *.mp4
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+*.ogg
 *.mkv
 *.mov
 *.avi
 *.flv
+*.jfif
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.bmp
+*.ico
+*.csv
 
 # OS Specific
 Thumbs.db
@@ -99,8 +121,7 @@ Thumbs.db
 # Project Specific
 beat_sync.db
 libsync-flat-globe.db.json
-data/processed/
-data/raw/
+data/
 *.edl.json
 *.genome.json
 
@@ -120,3 +141,16 @@ client_secret*.json
 *.key
 .credentials/
 secrets/
+
+# Private data – ensure sensitive files are not tracked
+*.env
+*.env.*
+*.secret
+*.key
+*.pem
+*.crt
+*.csr
+client_secret*.json
+.credentials/
+secrets/
+github_token.json

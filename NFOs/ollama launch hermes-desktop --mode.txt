@@ -1,0 +1,24 @@
+ollama launch hermes-desktop --model deepseek-r1:8b
+(Falls du weniger Grafikspeicher hast, nutze stattdessen --model deepseek-r1:1.5b)
+/config set agent.thinking false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

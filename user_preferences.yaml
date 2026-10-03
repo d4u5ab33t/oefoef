@@ -1,0 +1,35 @@
+# OIDA User Preference Model (UPM)
+# This file defines the personal aesthetic tastes of the user.
+# The SLK (Self-Learning Kernel) uses these to adjust the global reward.
+
+user_profile:
+  name: "Oidamo"
+  global_weight: 0.3  # How much the user preference affects the final reward (0.0 to 1.0)
+
+preferences:
+  # Visual Genome Likes (Boosts Reward)
+  likes:
+    - tag: "night"
+      weight: 0.2
+    - tag: "slow_zoom"
+      weight: 0.15
+    - tag: "cyberpunk"
+      weight: 0.1
+    - tag: "orange"
+      weight: 0.1
+    - tag: "drone"
+      weight: 0.1
+
+  # Visual Genome Dislikes (Penalizes Reward)
+  dislikes:
+    - tag: "rapid_cut"
+      weight: -0.4
+    - tag: "flash"
+      weight: -0.3
+    - tag: "shaking"
+      weight: -0.2
+
+# Weighting for the Multi-Reward Vektor
+reward_adjustments:
+  user_rating_priority: 0.5 # Higher value = User taste overrules technical sync
+  render_cost_impact: 0.1    # How much GPU/Time costs penalize the choice

@@ -1,0 +1,18 @@
+{
+  "_inspired_by": {
+    "hype_williams": "Fisheye-artige Weitwinkel-Wucht, hartes Lowkey-Kontrastlicht, Bild wirkt groesser als das Leben -> uebersetzt in camera=snap (Punch-In) + lighting=lowkey.",
+    "cole_bennett_lyrical_lemonade": "Hyperkinetische, rohe Drill-Energie, viele schnelle harte Cuts statt Hochglanz-Politur -> motion_gain erhoeht, information_target erhoeht (viel Bild-Inhalt: Graffiti/Gesichter/Text).",
+    "director_x": "Cinematische Farbfuehrung als bewusstes Stilmittel statt Zufall -> hier bewusst color=desaturated fuer den grauen 089-Beton-/Nebel-Look statt bunter Vividness.",
+    "note": "Reine Konfigurationsdatei, kein generierter Content -> passt zur Pipeline-Philosophie 'analysis-only; resolver owns decisions' (siehe creative_genome.py)."
+  },
+  "name": "oida-pack",
+  "parent": "trap-pack",
+  "camera": "snap",
+  "lighting": "lowkey",
+  "color": "desaturated",
+  "transition": "slide",
+  "fx": ["grain", "flicker"],
+  "motion_gain": 1.2,
+  "information_target": 0.6,
+  "tags": ["night", "urban", "dark", "aggressive", "melancholic", "fog", "street", "089"]
+}

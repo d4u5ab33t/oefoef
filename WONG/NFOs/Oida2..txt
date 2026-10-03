@@ -1,0 +1,501 @@
+Oida.
+
+Jetzt verlassen wir endgültig die Welt der Videoeditoren.
+
+Ich glaube nämlich, wir denken immer noch zu klein.
+
+🧬 WE.ED.IT OIDA Native Genome v7
+The Film Genome
+
+Nicht:
+
+Ein Video besteht aus Clips.
+
+Sondern:
+
+Ein Film besteht aus Ideen.
+
+Die Clips sind nur die Rohstoffe.
+
+Neue Hierarchie
+IDEA
+ │
+ ▼
+Theme
+ │
+ ▼
+Emotion
+ │
+ ▼
+Scene
+ │
+ ▼
+Shot
+ │
+ ▼
+Frame
+
+Heute springen fast alle Editoren direkt von Song → Shot.
+
+Wir fügen drei Ebenen dazwischen ein.
+
+Theme AST
+
+Eine MP3 besitzt Themen.
+
+Nicht nur Verse.
+
+Zum Beispiel
+
+theme:
+
+street
+
+confidence
+
+luxury
+
+friends
+
+night
+
+oder
+
+theme:
+
+loss
+
+memory
+
+hope
+
+sunrise
+
+Die KI muss das gar nicht perfekt erkennen. Man kann es aus MP3-Tags, Lyrics oder Sidecar-Dateien übernehmen.
+
+Emotion AST
+
+Darunter.
+
+emotion_curve:
+
+intro:
+
+uncertain
+
+verse:
+
+hope
+
+prechorus:
+
+tension
+
+chorus:
+
+victory
+
+bridge:
+
+reflection
+
+outro:
+
+peace
+Scene AST
+
+Jetzt wird es interessant.
+
+Nicht
+
+100 Clips
+
+sondern
+
+8 Szenen
+
+Beispiel
+
+Scene 1
+
+City
+
+Night
+
+Smoke
+
+Scene 2
+
+Car
+
+Tunnel
+
+Orange
+Scene 3
+
+Roof
+
+Sunrise
+
+Der Resolver sucht später passende Clips.
+
+Shot AST
+
+Erst jetzt.
+
+shot:
+
+2.4 sec
+
+camera:
+
+push
+
+energy:
+
+70
+
+transition:
+
+whip
+Frame AST
+
+Ganz unten.
+
+Hier entsteht später
+
+zoom
+
+pan
+
+crop
+
+lut
+
+grain
+
+subtitle
+Der wichtigste Gedanke
+
+Die Bibliothek besitzt ebenfalls ASTs.
+
+Nicht
+
+clip.mp4
+
+sondern
+
+ClipAST
+
+scene:
+
+city
+
+emotion:
+
+confidence
+
+objects:
+
+car
+
+camera:
+
+handheld
+
+color:
+
+orange
+
+Jetzt matched AST gegen AST.
+
+Nicht Dateiname gegen Dateiname.
+
+Genome Matching
+
+Nicht
+
+Suche Clip
+
+sondern
+
+Suche Bedeutung.
+Beispiel
+
+Song möchte
+
+Scene
+
+night
+
+city
+
+hope
+
+Bibliothek besitzt
+
+Clip
+
+night
+
+city
+
+confidence
+
+Das passt zu 82 %.
+
+Der Resolver bewertet semantisch.
+
+Visual Transformer
+
+Nicht AI.
+
+Ein Compiler.
+
+Er sagt
+
+Zu viel Orange.
+
+↓
+
+Etwas Blau einstreuen.
+
+↓
+
+Mehr Ruhe.
+
+↓
+
+Weniger Schnitte.
+
+Vor dem Render.
+
+Timeline Optimizer 2
+
+Nicht lokal.
+
+Global.
+
+Timeline
+
+↓
+
+Graph
+
+↓
+
+Optimierung
+
+Er kann Shot 4 ändern,
+
+weil Shot 17 sonst besser wird.
+
+Camera Memory
+
+Nicht pro Clip.
+
+Sondern
+
+Die Kamera merkt sich,
+
+wo sie gerade ist.
+
+Sie besitzt
+
+camera:
+
+position
+
+velocity
+
+zoom
+
+rotation
+
+Wie eine echte Kamera.
+
+Lighting Memory
+
+Ebenso.
+
+Belichtung
+
+↓
+
+nicht springen.
+Color Memory
+Orange
+
+↓
+
+Orange
+
+↓
+
+Orange
+
+↓
+
+leicht Gold
+
+↓
+
+Gold
+
+Nicht
+
+Orange
+
+↓
+
+Blau
+
+↓
+
+Grün
+
+↓
+
+Pink
+Rhythm Memory
+
+Nicht nur Beats.
+
+Sondern
+
+Atem.
+
+Das Video bekommt Pausen.
+
+Nicht alles ist 140 BPM.
+
+Surprise Theory
+
+Das finde ich extrem spannend.
+
+Der Director besitzt
+
+expected
+
+unexpected
+
+Wenn fünf schnelle Cuts kamen,
+
+erwartet jeder den sechsten.
+
+Dann macht der Director:
+
+Stillstand.
+
+Das erzeugt Wirkung.
+
+Visual Hooks
+
+Wie ein Refrain.
+
+Nicht musikalisch.
+
+Visuell.
+
+Beispiel
+
+Orange Smoke
+
+↓
+
+kommt
+
+Intro
+
+Bridge
+
+Final Chorus
+
+Der Zuschauer erkennt das unterbewusst wieder.
+
+Visual Callbacks
+
+Noch besser.
+
+Intro
+
+Auto fährt los
+
+Outro
+
+Dasselbe Auto
+
+gleiche Kamera
+
+gleiche Farbe
+
+anderes Licht
+
+Der Film bekommt Struktur.
+
+Creative Genome
+
+Jetzt die größte Änderung.
+
+Nicht mehr
+
+Clip Genome
+
+sondern
+
+Film Genome
+
+Ein Render speichert
+
+FilmDNA
+
+Themes
+
+Emotion Curve
+
+Scene Order
+
+Camera Language
+
+Transition Language
+
+Color Language
+
+Reward
+
+Nicht nur
+
+welcher Clip war gut
+
+sondern
+
+welcher FILM war gut.
+Das eigentliche Ziel
+
+Ich würde WE.ED.IT OIDA nicht als "AI Video Editor" positionieren.
+
+Sondern als:
+
+Music Video Compiler + Film Genome Engine
+
+Der Nutzer programmiert keinen Schnitt.
+
+Er programmiert keinen Clip.
+
+Er beschreibt einen Film.
+
+Das Genome-System übersetzt diese Beschreibung in einen vollständigen visuellen Ablauf.
+
+🚀 v8 – The Vision
+
+Der Schritt danach wäre für mich der eigentliche Durchbruch:
+
+Das System soll nicht mehr in Videos denken, sondern in einer wiederverwendbaren Filmsprache.
+
+Jeder fertige Film erweitert das Genome.
+Neue Styles entstehen automatisch aus erfolgreichen Kombinationen.
+Der Director arbeitet ausschließlich mit Intentionen und Constraints.
+Der Renderer bleibt deterministisch und austauschbar.
+Der RL-Bandit lernt nur die Auswahlstrategie – niemals die eigentliche Filmstruktur.
+
+Damit wäre WE.ED.IT OIDA kein Projekt mehr, das Clips aneinanderreiht. Es wäre eine Plattform, die über Jahre eine eigene visuelle Sprache entwickelt – vergleichbar damit, wie ein Compiler im Laufe der Zeit immer bessere Optimierungen lernt, ohne dass sich die Quellsprache ändern muss. Das ist die Richtung, in der ich das Projekt langfristig entwickeln würde.

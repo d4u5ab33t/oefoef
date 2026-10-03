@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Oidanative Matrix RND 089</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        canvas {
+            display: block;
+        }
+        #overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ff41;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #00ff41;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay">
+        System: Oidaheim 3047<br>
+        Mode: RND_ANIMATE_v1.0<br>
+        Status: DAUERPRALL_LOADED
+    </div>
+    <canvas id="matrix"></canvas>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Vocabulary from your Style Bible & Slang
+        const words = [
+            "OIDA", "089", "BASS", "420", "BPM", "STADELHEIM", 
+            "MINGA", "DRILL", "TRAP", "GLITCH", "NPL83", "µ-SICK", 
+            "BOOM", "BAP", "808", "MUC", "RAW", "DAUERPRALL"
+        ];
+        
+        const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$+-*/=%\"#&_";
+        const combined = chars.split("");
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        // Initialize drops
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            // Semi-transparent black to create trailing effect
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                // RND: 10% chance to drop a full word from the Style Bible
+                let text;
+                if(Math.random() > 0.95) {
+                    text = words[Math.floor(Math.random() * words.length)];
+                    ctx.fillStyle = "#fff"; // Flash white for Oidaheim keywords
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = "#00ff41";
+                } else {
+                    text = combined[Math.floor(Math.random() * combined.length)];
+                    ctx.fillStyle = "#00ff41"; // Classic Matrix Green
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop to top randomly after hitting bottom
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        // Glitch effect: Randomly invert colors or shake screen
+        function glitch() {
+            if(Math.random() > 0.98) {
+                ctx.fillStyle = "rgba(0, 255, 65, 0.2)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        setInterval(() => {
+            draw();
+            glitch();
+        }, 33); // ~30 FPS
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

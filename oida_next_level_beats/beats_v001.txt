@@ -1,0 +1,997 @@
+
+================================================================================
+001 — 089 Attack
+BPM: 120
+GENRE: Drift Phonk × Dirty South
+MOOD: dreckig
+
+SURPRISES:
+  - Beat Switch
+  - Acapella Break
+  - Call And Response
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Verse 1]
+  [Micro Break]
+  [Hook]
+  [Fake Drop]
+  [Fake Drop]
+  [Beat Slam]
+  [Verse 2]
+  [Fake Drop]
+  [Half Time]
+  [Acapella Break]
+  [Fake Drop]
+  [Beat Switch]
+  [Verse 3]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Drift Phonk] [Dirty South] [Dreckig] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Acapella Break] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Drift Phonk] [Dirty South] [Dreckig] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Acapella Break] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 120 BPM, Mix aus Drift Phonk und Dirty South. Stimmung: dreckig. heavy Trap drums with rapid hi-hat rolls. funky electric bass with aggressive slides. distorted guitar fragments. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Beat Switch, Acapella Break, Call And Response. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Verse 1] → [Micro Break] → [Hook] → [Fake Drop] → [Fake Drop] → [Beat Slam] → [Verse 2] → [Fake Drop] → [Half Time] → [Acapella Break] → [Fake Drop] → [Beat Switch] → [Verse 3] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+002 — 089 Break
+BPM: 110
+GENRE: UK Drill × Electro Hip-Hop
+MOOD: chaotisch
+
+SURPRISES:
+  - Bass Ambush
+  - Flow Switch
+  - Unexpected Pause
+  - Reverse Hook
+
+STRUCTURE:
+  [Hype Intro]
+  [Hook]
+  [Verse 1]
+  [Call And Response]
+  [Beat Break]
+  [Final Beat Mutation]
+  [Verse 2]
+  [1-Bar Silence]
+  [Fake Drop]
+  [Rhythm Collapse]
+  [Silence]
+  [Beat Slam]
+  [Double Time]
+  [Rhythm Collapse]
+  [Final Hook]
+
+SUNO TAGS:
+[UK Drill] [Electro Hip-Hop] [Chaotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Flow Switch] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[UK Drill] [Electro Hip-Hop] [Chaotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Flow Switch] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 110 BPM, Mix aus UK Drill und Electro Hip-Hop. Stimmung: chaotisch. dry punchy Boom-Bap drums with vinyl swing. dirty analog bassline. psychedelic vinyl sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Bass Ambush, Flow Switch, Unexpected Pause, Reverse Hook. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Hype Intro] → [Hook] → [Verse 1] → [Call And Response] → [Beat Break] → [Final Beat Mutation] → [Verse 2] → [1-Bar Silence] → [Fake Drop] → [Rhythm Collapse] → [Silence] → [Beat Slam] → [Double Time] → [Rhythm Collapse] → [Final Hook]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+003 — BREAK Ambush
+BPM: 90
+GENRE: Abstract × Crunk
+MOOD: surreal
+
+SURPRISES:
+  - DJ Interruption
+  - 1-Bar Silence
+  - Half Time
+  - Unexpected Pause
+  - Drumless Section
+  - Beat Switch
+
+STRUCTURE:
+  [Cold Open]
+  [Acapella Break]
+  [Beat Drop]
+  [Verse 1]
+  [Reverse Hook]
+  [Micro Break]
+  [Final Beat Mutation]
+  [Hook]
+  [Fake Drop]
+  [Final Beat Mutation]
+  [Beat Slam]
+  [Verse 2]
+  [Half Time]
+  [Final Beat Mutation]
+  [Acapella Break]
+  [DJ Interruption]
+  [Beat Switch]
+  [Final Beat Mutation]
+  [Verse 3]
+  [Final Beat Mutation]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Abstract] [Crunk] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Half Time] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Abstract] [Crunk] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Half Time] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 90 BPM, Mix aus Abstract und Crunk. Stimmung: surreal. distorted Phonk drums with aggressive cowbell. minimal sub bass that disappears before drops. haunting Rhodes chords. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: DJ Interruption, 1-Bar Silence, Half Time, Unexpected Pause, Drumless Section, Beat Switch. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Acapella Break] → [Beat Drop] → [Verse 1] → [Reverse Hook] → [Micro Break] → [Final Beat Mutation] → [Hook] → [Fake Drop] → [Final Beat Mutation] → [Beat Slam] → [Verse 2] → [Half Time] → [Final Beat Mutation] → [Acapella Break] → [DJ Interruption] → [Beat Switch] → [Final Beat Mutation] → [Verse 3] → [Final Beat Mutation] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+004 — 089 Maschine
+BPM: 130
+GENRE: G-Funk × Trap
+MOOD: bedrohlich
+
+SURPRISES:
+  - False Ending
+  - DJ Interruption
+  - Reverse Hook
+  - Instrument Removal
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Verse 1]
+  [Fake Drop]
+  [Micro Break]
+  [Fake Drop]
+  [Hook]
+  [Fake Drop]
+  [Beat Switch]
+  [Beat Slam]
+  [Verse 2]
+  [Half Time]
+  [Acapella Break]
+  [Beat Switch]
+  [Verse 3]
+  [Half Time]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[G-Funk] [Trap] [Bedrohlich] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[G-Funk] [Trap] [Bedrohlich] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 130 BPM, Mix aus G-Funk und Trap. Stimmung: bedrohlich. hard Drill drums with syncopated hats. funky electric bass with aggressive slides. distorted guitar fragments. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: False Ending, DJ Interruption, Reverse Hook, Instrument Removal. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Verse 1] → [Fake Drop] → [Micro Break] → [Fake Drop] → [Hook] → [Fake Drop] → [Beat Switch] → [Beat Slam] → [Verse 2] → [Half Time] → [Acapella Break] → [Beat Switch] → [Verse 3] → [Half Time] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+005 — BASS Mutation
+BPM: 110
+GENRE: Crunk × hip hop
+MOOD: arrogant
+
+SURPRISES:
+  - 808 Dropout
+  - Final Beat Mutation
+  - Half Time
+  - 1-Bar Silence
+  - Reverse Hook
+  - Flow Switch
+  - Beat Switch
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Verse 1]
+  [Micro Break]
+  [Flow Switch]
+  [Hook]
+  [Fake Drop]
+  [Fake Drop]
+  [Beat Slam]
+  [Bass Ambush]
+  [Verse 2]
+  [Flow Switch]
+  [Half Time]
+  [Acapella Break]
+  [Beat Switch]
+  [Key Change]
+  [Verse 3]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Crunk] [hip hop] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Flow Switch] [Half Time] [Unexpected Silence] [808 Dropout] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Crunk] [hip hop] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Flow Switch] [Half Time] [Unexpected Silence] [808 Dropout] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 110 BPM, Mix aus Crunk und hip hop. Stimmung: arrogant. hard Drill drums with syncopated hats. deep sliding 808 sub bass. psychedelic vinyl sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: 808 Dropout, Final Beat Mutation, Half Time, 1-Bar Silence, Reverse Hook, Flow Switch, Beat Switch. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Verse 1] → [Micro Break] → [Flow Switch] → [Hook] → [Fake Drop] → [Fake Drop] → [Beat Slam] → [Bass Ambush] → [Verse 2] → [Flow Switch] → [Half Time] → [Acapella Break] → [Beat Switch] → [Key Change] → [Verse 3] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+006 — MINGA Chaos
+BPM: 102
+GENRE: Phonk × Dirty South
+MOOD: arrogant
+
+SURPRISES:
+  - Rhythm Collapse
+  - Bass Ambush
+  - Flow Switch
+  - Unexpected Pause
+  - Half Time
+  - Scratch Break
+  - Beat Switch
+
+STRUCTURE:
+  [DJ Cut Intro]
+  [Verse 1]
+  [Hook]
+  [Scratch Break]
+  [Verse 2]
+  [Reverse Hook]
+  [808 Dropout]
+  [Drumless Section]
+  [Beat Return]
+  [Instrument Removal]
+  [Flow Switch]
+  [DJ Interruption]
+  [Final Hook]
+  [Call And Response]
+  [False Ending]
+  [Hidden Beat]
+
+SUNO TAGS:
+[Phonk] [Dirty South] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Switch] [Flow Switch] [Half Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Phonk] [Dirty South] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Switch] [Flow Switch] [Half Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 102 BPM, Mix aus Phonk und Dirty South. Stimmung: arrogant. heavy Trap drums with rapid hi-hat rolls. deep sliding 808 sub bass. warped jazz fragments. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Rhythm Collapse, Bass Ambush, Flow Switch, Unexpected Pause, Half Time, Scratch Break, Beat Switch. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [DJ Cut Intro] → [Verse 1] → [Hook] → [Scratch Break] → [Verse 2] → [Reverse Hook] → [808 Dropout] → [Drumless Section] → [Beat Return] → [Instrument Removal] → [Flow Switch] → [DJ Interruption] → [Final Hook] → [Call And Response] → [False Ending] → [Hidden Beat]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+007 — DRIFT Drift
+BPM: 97
+GENRE: hip hop × German Boom Bap
+MOOD: surreal
+
+SURPRISES:
+  - DJ Interruption
+  - 808 Dropout
+  - Reverse Hook
+  - Beat Switch
+  - Instrument Removal
+  - Tempo Shift
+  - Half Time
+
+STRUCTURE:
+  [Hype Intro]
+  [Hook]
+  [Verse 1]
+  [Instrument Removal]
+  [Call And Response]
+  [Beat Break]
+  [Verse 2]
+  [Unexpected Pause]
+  [Fake Drop]
+  [Silence]
+  [Instrument Removal]
+  [Beat Slam]
+  [Double Time]
+  [Final Hook]
+
+SUNO TAGS:
+[hip hop] [German Boom Bap] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Half Time] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[hip hop] [German Boom Bap] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Half Time] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 97 BPM, Mix aus hip hop und German Boom Bap. Stimmung: surreal. dusty MPC drums with hard kick and cracking snare. heavy sustained 808 with sudden bass cuts. dusty chopped piano sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: DJ Interruption, 808 Dropout, Reverse Hook, Beat Switch, Instrument Removal, Tempo Shift, Half Time. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Hype Intro] → [Hook] → [Verse 1] → [Instrument Removal] → [Call And Response] → [Beat Break] → [Verse 2] → [Unexpected Pause] → [Fake Drop] → [Silence] → [Instrument Removal] → [Beat Slam] → [Double Time] → [Final Hook]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+008 — SWITCH Reloaded
+BPM: 130
+GENRE: Abstract Hip-Hop × Drill
+MOOD: cinematic
+
+SURPRISES:
+  - Beat Switch
+  - Half Time
+  - Double Time
+  - 1-Bar Silence
+  - 808 Dropout
+  - Final Beat Mutation
+
+STRUCTURE:
+  [DJ Cut Intro]
+  [Verse 1]
+  [Hook]
+  [Scratch Break]
+  [808 Dropout]
+  [Verse 2]
+  [808 Dropout]
+  [Drumless Section]
+  [Beat Return]
+  [Reverse Hook]
+  [Flow Switch]
+  [808 Dropout]
+  [Final Hook]
+  [False Ending]
+  [808 Dropout]
+  [Hidden Beat]
+
+SUNO TAGS:
+[Abstract Hip-Hop] [Drill] [Cinematic] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Half Time] [Double Time] [Unexpected Silence] [808 Dropout] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Abstract Hip-Hop] [Drill] [Cinematic] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Half Time] [Double Time] [Unexpected Silence] [808 Dropout] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 130 BPM, Mix aus Abstract Hip-Hop und Drill. Stimmung: cinematic. industrial drums with metallic transient hits. deep sliding 808 sub bass. minimal synth motif. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Beat Switch, Half Time, Double Time, 1-Bar Silence, 808 Dropout, Final Beat Mutation. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [DJ Cut Intro] → [Verse 1] → [Hook] → [Scratch Break] → [808 Dropout] → [Verse 2] → [808 Dropout] → [Drumless Section] → [Beat Return] → [Reverse Hook] → [Flow Switch] → [808 Dropout] → [Final Hook] → [False Ending] → [808 Dropout] → [Hidden Beat]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+009 — TUNNEL Reloaded
+BPM: 97
+GENRE: Rap Rock × Alternative Hip-Hop
+MOOD: hypnotisch
+
+SURPRISES:
+  - Unexpected Pause
+  - False Ending
+  - Fake Drop
+  - Reverse Hook
+  - Call And Response
+  - DJ Interruption
+  - Beat Switch
+
+STRUCTURE:
+  [Cold Open]
+  [Minimal Beat]
+  [Fake Drop]
+  [Verse 1]
+  [Call And Response]
+  [Hook]
+  [Instrument Removal]
+  [Verse 2]
+  [Beat Switch]
+  [Fake Drop]
+  [Double Time]
+  [Fake Drop]
+  [Drum Break]
+  [Half Time]
+  [Final Hook]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[Rap Rock] [Alternative Hip-Hop] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Fake Drop] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Rap Rock] [Alternative Hip-Hop] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Switch] [Fake Drop] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 97 BPM, Mix aus Rap Rock und Alternative Hip-Hop. Stimmung: hypnotisch. minimal drums that explode into full breaks. deep sliding 808 sub bass. cinematic brass stabs. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Unexpected Pause, False Ending, Fake Drop, Reverse Hook, Call And Response, DJ Interruption, Beat Switch. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Minimal Beat] → [Fake Drop] → [Verse 1] → [Call And Response] → [Hook] → [Instrument Removal] → [Verse 2] → [Beat Switch] → [Fake Drop] → [Double Time] → [Fake Drop] → [Drum Break] → [Half Time] → [Final Hook] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+010 — BASS Drift
+BPM: 160
+GENRE: d4u5a lines × Drift Phonk
+MOOD: aggressiv
+
+SURPRISES:
+  - Instrument Removal
+  - Beat Switch
+  - Tempo Shift
+  - 1-Bar Silence
+
+STRUCTURE:
+  [Cold Open]
+  [Minimal Beat]
+  [Fake Drop]
+  [Verse 1]
+  [Hook]
+  [Instrument Removal]
+  [Verse 2]
+  [Final Beat Mutation]
+  [Beat Switch]
+  [Double Time]
+  [Fake Drop]
+  [Drum Break]
+  [Half Time]
+  [Final Hook]
+  [Tempo Shift]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[d4u5a lines] [Drift Phonk] [Aggressiv] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[d4u5a lines] [Drift Phonk] [Aggressiv] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 160 BPM, Mix aus d4u5a lines und Drift Phonk. Stimmung: aggressiv. heavy Trap drums with rapid hi-hat rolls. dirty analog bassline. minimal synth motif. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Instrument Removal, Beat Switch, Tempo Shift, 1-Bar Silence. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Minimal Beat] → [Fake Drop] → [Verse 1] → [Hook] → [Instrument Removal] → [Verse 2] → [Final Beat Mutation] → [Beat Switch] → [Double Time] → [Fake Drop] → [Drum Break] → [Half Time] → [Final Hook] → [Tempo Shift] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+011 — ROTOr Chaos
+BPM: 140
+GENRE: Golden Era Hip-Hop × Alternative Hip-Hop
+MOOD: arrogant
+
+SURPRISES:
+  - False Ending
+  - Final Beat Mutation
+  - Rhythm Collapse
+  - Beat Switch
+  - Half Time
+  - Acapella Break
+
+STRUCTURE:
+  [Cold Open]
+  [Instrument Removal]
+  [Beat Drop]
+  [Verse 1]
+  [Micro Break]
+  [Hook]
+  [Instrument Removal]
+  [Fake Drop]
+  [Beat Slam]
+  [Verse 2]
+  [Half Time]
+  [Acapella Break]
+  [Final Beat Mutation]
+  [Beat Switch]
+  [Verse 3]
+  [Final Beat Mutation]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Golden Era Hip-Hop] [Alternative Hip-Hop] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Half Time] [Acapella Break] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Golden Era Hip-Hop] [Alternative Hip-Hop] [Arrogant] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [Half Time] [Acapella Break] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 140 BPM, Mix aus Golden Era Hip-Hop und Alternative Hip-Hop. Stimmung: arrogant. dusty MPC drums with hard kick and cracking snare. dirty analog bassline. minimal synth motif. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: False Ending, Final Beat Mutation, Rhythm Collapse, Beat Switch, Half Time, Acapella Break. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Instrument Removal] → [Beat Drop] → [Verse 1] → [Micro Break] → [Hook] → [Instrument Removal] → [Fake Drop] → [Beat Slam] → [Verse 2] → [Half Time] → [Acapella Break] → [Final Beat Mutation] → [Beat Switch] → [Verse 3] → [Final Beat Mutation] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+012 — BAM Mutation
+BPM: 100
+GENRE: d4 µ Sick × Crunk
+MOOD: psychedelisch
+
+SURPRISES:
+  - Instrument Removal
+  - Scratch Break
+  - False Ending
+
+STRUCTURE:
+  [Cold Open]
+  [Tempo Shift]
+  [Minimal Beat]
+  [Fake Drop]
+  [Verse 1]
+  [Beat Switch]
+  [Hook]
+  [Instrument Removal]
+  [DJ Interruption]
+  [Verse 2]
+  [Beat Switch]
+  [Call And Response]
+  [Double Time]
+  [Drum Break]
+  [Half Time]
+  [Final Hook]
+  [Fake Drop]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[d4 µ Sick] [Crunk] [Psychedelisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[d4 µ Sick] [Crunk] [Psychedelisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 100 BPM, Mix aus d4 µ Sick und Crunk. Stimmung: psychedelisch. distorted Phonk drums with aggressive cowbell. deep sliding 808 sub bass. dark minor-key piano. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Instrument Removal, Scratch Break, False Ending. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Tempo Shift] → [Minimal Beat] → [Fake Drop] → [Verse 1] → [Beat Switch] → [Hook] → [Instrument Removal] → [DJ Interruption] → [Verse 2] → [Beat Switch] → [Call And Response] → [Double Time] → [Drum Break] → [Half Time] → [Final Hook] → [Fake Drop] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+013 — BREAK Mutation
+BPM: 100
+GENRE: Golden Era Hip-Hop × Trap
+MOOD: hypnotisch
+
+SURPRISES:
+  - Double Time
+  - Key Change
+  - Instrument Removal
+  - Reverse Hook
+  - Drumless Section
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Verse 1]
+  [Micro Break]
+  [Hook]
+  [Bass Ambush]
+  [Fake Drop]
+  [Bass Ambush]
+  [Beat Slam]
+  [False Ending]
+  [Verse 2]
+  [Half Time]
+  [Acapella Break]
+  [False Ending]
+  [Beat Switch]
+  [Bass Ambush]
+  [Verse 3]
+  [Final Hook]
+  [False Ending]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Golden Era Hip-Hop] [Trap] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Double Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Golden Era Hip-Hop] [Trap] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Double Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 100 BPM, Mix aus Golden Era Hip-Hop und Trap. Stimmung: hypnotisch. distorted Phonk drums with aggressive cowbell. funky electric bass with aggressive slides. distorted guitar fragments. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Double Time, Key Change, Instrument Removal, Reverse Hook, Drumless Section. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Verse 1] → [Micro Break] → [Hook] → [Bass Ambush] → [Fake Drop] → [Bass Ambush] → [Beat Slam] → [False Ending] → [Verse 2] → [Half Time] → [Acapella Break] → [False Ending] → [Beat Switch] → [Bass Ambush] → [Verse 3] → [Final Hook] → [False Ending] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+014 — FLIP Maschine
+BPM: 140
+GENRE: d4u5a lines × Abstract
+MOOD: dunkel
+
+SURPRISES:
+  - Half Time
+  - Unexpected Pause
+  - False Ending
+
+STRUCTURE:
+  [Cold Open]
+  [Reverse Hook]
+  [Minimal Beat]
+  [Verse 1]
+  [Reverse Hook]
+  [Hook]
+  [Reverse Hook]
+  [Instrument Removal]
+  [Verse 2]
+  [Beat Switch]
+  [Double Time]
+  [Drum Break]
+  [Half Time]
+  [Reverse Hook]
+  [Final Hook]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[d4u5a lines] [Abstract] [Dunkel] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Half Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[d4u5a lines] [Abstract] [Dunkel] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Half Time] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 140 BPM, Mix aus d4u5a lines und Abstract. Stimmung: dunkel. dry punchy Boom-Bap drums with vinyl swing. minimal sub bass that disappears before drops. München-night atmospheric piano. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Half Time, Unexpected Pause, False Ending. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Reverse Hook] → [Minimal Beat] → [Verse 1] → [Reverse Hook] → [Hook] → [Reverse Hook] → [Instrument Removal] → [Verse 2] → [Beat Switch] → [Double Time] → [Drum Break] → [Half Time] → [Reverse Hook] → [Final Hook] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+015 — KRAWALL Maschine
+BPM: 120
+GENRE: Phonk × Hardcore Hip-Hop
+MOOD: underground
+
+SURPRISES:
+  - DJ Interruption
+  - Reverse Hook
+  - Unexpected Pause
+  - 1-Bar Silence
+  - Scratch Break
+  - Instrument Removal
+
+STRUCTURE:
+  [Cold Open]
+  [Minimal Beat]
+  [Half Time]
+  [Verse 1]
+  [Hook]
+  [Instrument Removal]
+  [Verse 2]
+  [DJ Interruption]
+  [Beat Switch]
+  [Double Time]
+  [Drum Break]
+  [Half Time]
+  [Half Time]
+  [DJ Interruption]
+  [Final Hook]
+  [Flow Switch]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[Phonk] [Hardcore Hip-Hop] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Phonk] [Hardcore Hip-Hop] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Unexpected Silence] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 120 BPM, Mix aus Phonk und Hardcore Hip-Hop. Stimmung: underground. hard Drill drums with syncopated hats. deep sliding 808 sub bass. eerie choir textures. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: DJ Interruption, Reverse Hook, Unexpected Pause, 1-Bar Silence, Scratch Break, Instrument Removal. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Minimal Beat] → [Half Time] → [Verse 1] → [Hook] → [Instrument Removal] → [Verse 2] → [DJ Interruption] → [Beat Switch] → [Double Time] → [Drum Break] → [Half Time] → [Half Time] → [DJ Interruption] → [Final Hook] → [Flow Switch] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+016 — BASS Flip
+BPM: 82
+GENRE: Electro Hip-Hop × UK Drill
+MOOD: aggressiv
+
+SURPRISES:
+  - Double Time
+  - Scratch Break
+  - Beat Switch
+  - Fake Drop
+
+STRUCTURE:
+  [Hype Intro]
+  [Hook]
+  [Verse 1]
+  [Bass Ambush]
+  [Call And Response]
+  [Beat Break]
+  [Half Time]
+  [Verse 2]
+  [Fake Drop]
+  [Silence]
+  [Bass Ambush]
+  [Beat Slam]
+  [Double Time]
+  [Final Hook]
+
+SUNO TAGS:
+[Electro Hip-Hop] [UK Drill] [Aggressiv] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Switch] [Double Time] [Fake Drop] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Electro Hip-Hop] [UK Drill] [Aggressiv] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Turntablism] [Beat Switch] [Double Time] [Fake Drop] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 82 BPM, Mix aus Electro Hip-Hop und UK Drill. Stimmung: aggressiv. hard Drill drums with syncopated hats. heavy sustained 808 with sudden bass cuts. psychedelic vinyl sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Double Time, Scratch Break, Beat Switch, Fake Drop. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Hype Intro] → [Hook] → [Verse 1] → [Bass Ambush] → [Call And Response] → [Beat Break] → [Half Time] → [Verse 2] → [Fake Drop] → [Silence] → [Bass Ambush] → [Beat Slam] → [Double Time] → [Final Hook]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+017 — KRAWALL Overdrive
+BPM: 140
+GENRE: Jazz Rap × Drift Phonk
+MOOD: underground
+
+SURPRISES:
+  - Unexpected Pause
+  - Rhythm Collapse
+  - DJ Interruption
+
+STRUCTURE:
+  [Cinematic Intro]
+  [Verse 1]
+  [808 Dropout]
+  [Mini Hook]
+  [Verse 2]
+  [Drumless Section]
+  [Unexpected Pause]
+  [Hook]
+  [Drumless Section]
+  [Genre Switch]
+  [808 Dropout]
+  [Verse 3]
+  [Acapella Break]
+  [Beat Slam]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Jazz Rap] [Drift Phonk] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Jazz Rap] [Drift Phonk] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 140 BPM, Mix aus Jazz Rap und Drift Phonk. Stimmung: underground. hard Drill drums with syncopated hats. deep sliding 808 sub bass. eerie choir textures. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Unexpected Pause, Rhythm Collapse, DJ Interruption. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cinematic Intro] → [Verse 1] → [808 Dropout] → [Mini Hook] → [Verse 2] → [Drumless Section] → [Unexpected Pause] → [Hook] → [Drumless Section] → [Genre Switch] → [808 Dropout] → [Verse 3] → [Acapella Break] → [Beat Slam] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+018 — MINGA Chaos
+BPM: 110
+GENRE: Electro Hip-Hop × d4u5a
+MOOD: hypnotisch
+
+SURPRISES:
+  - Instrument Removal
+  - Unexpected Pause
+  - Final Beat Mutation
+  - Acapella Break
+  - Fake Drop
+  - False Ending
+  - Drumless Section
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Key Change]
+  [Verse 1]
+  [Micro Break]
+  [Hook]
+  [Fake Drop]
+  [Beat Slam]
+  [Verse 2]
+  [False Ending]
+  [Half Time]
+  [Acapella Break]
+  [Call And Response]
+  [Beat Switch]
+  [Reverse Hook]
+  [Verse 3]
+  [Double Time]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Electro Hip-Hop] [d4u5a] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Fake Drop] [Acapella Break] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Electro Hip-Hop] [d4u5a] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Fake Drop] [Acapella Break] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 110 BPM, Mix aus Electro Hip-Hop und d4u5a. Stimmung: hypnotisch. industrial drums with metallic transient hits. funky electric bass with aggressive slides. eerie choir textures. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Instrument Removal, Unexpected Pause, Final Beat Mutation, Acapella Break, Fake Drop, False Ending, Drumless Section. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Key Change] → [Verse 1] → [Micro Break] → [Hook] → [Fake Drop] → [Beat Slam] → [Verse 2] → [False Ending] → [Half Time] → [Acapella Break] → [Call And Response] → [Beat Switch] → [Reverse Hook] → [Verse 3] → [Double Time] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+019 — KRAWALL Mutation
+BPM: 92
+GENRE: Hardcore Hip-Hop × d4u5a lines
+MOOD: surreal
+
+SURPRISES:
+  - 808 Dropout
+  - Call And Response
+  - Acapella Break
+  - Unexpected Pause
+  - Key Change
+  - Tempo Shift
+
+STRUCTURE:
+  [Cinematic Intro]
+  [1-Bar Silence]
+  [Verse 1]
+  [Mini Hook]
+  [False Ending]
+  [Verse 2]
+  [Unexpected Pause]
+  [Hook]
+  [Genre Switch]
+  [Verse 3]
+  [Half Time]
+  [Acapella Break]
+  [Beat Slam]
+  [1-Bar Silence]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Hardcore Hip-Hop] [d4u5a lines] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Dropout] [Acapella Break] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Hardcore Hip-Hop] [d4u5a lines] [Surreal] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Dropout] [Acapella Break] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 92 BPM, Mix aus Hardcore Hip-Hop und d4u5a lines. Stimmung: surreal. hard Drill drums with syncopated hats. minimal sub bass that disappears before drops. haunting Rhodes chords. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: 808 Dropout, Call And Response, Acapella Break, Unexpected Pause, Key Change, Tempo Shift. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cinematic Intro] → [1-Bar Silence] → [Verse 1] → [Mini Hook] → [False Ending] → [Verse 2] → [Unexpected Pause] → [Hook] → [Genre Switch] → [Verse 3] → [Half Time] → [Acapella Break] → [Beat Slam] → [1-Bar Silence] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+020 — 089 Collapse
+BPM: 102
+GENRE: Trap × Dirty South
+MOOD: chaotisch
+
+SURPRISES:
+  - Flow Switch
+  - Rhythm Collapse
+  - DJ Interruption
+
+STRUCTURE:
+  [Cold Open]
+  [Instrument Removal]
+  [Minimal Beat]
+  [Verse 1]
+  [Beat Switch]
+  [Hook]
+  [Instrument Removal]
+  [Beat Switch]
+  [Verse 2]
+  [Beat Switch]
+  [Key Change]
+  [Double Time]
+  [Drum Break]
+  [Half Time]
+  [Beat Switch]
+  [Final Hook]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[Trap] [Dirty South] [Chaotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Flow Switch] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Trap] [Dirty South] [Chaotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Flow Switch] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 102 BPM, Mix aus Trap und Dirty South. Stimmung: chaotisch. hard Drill drums with syncopated hats. funky electric bass with aggressive slides. München-night atmospheric piano. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Flow Switch, Rhythm Collapse, DJ Interruption. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Instrument Removal] → [Minimal Beat] → [Verse 1] → [Beat Switch] → [Hook] → [Instrument Removal] → [Beat Switch] → [Verse 2] → [Beat Switch] → [Key Change] → [Double Time] → [Drum Break] → [Half Time] → [Beat Switch] → [Final Hook] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+021 — 089 Break
+BPM: 92
+GENRE: d4 µ Sick × Alternative Hip-Hop
+MOOD: euphorisch
+
+SURPRISES:
+  - Call And Response
+  - Bass Ambush
+  - Drumless Section
+
+STRUCTURE:
+  [Cinematic Intro]
+  [Verse 1]
+  [Mini Hook]
+  [Verse 2]
+  [Bass Ambush]
+  [Unexpected Pause]
+  [Unexpected Pause]
+  [Hook]
+  [Genre Switch]
+  [Verse 3]
+  [Acapella Break]
+  [Beat Slam]
+  [Final Hook]
+  [Final Beat Mutation]
+  [Sudden Stop]
+
+SUNO TAGS:
+[d4 µ Sick] [Alternative Hip-Hop] [Euphorisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[d4 µ Sick] [Alternative Hip-Hop] [Euphorisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 92 BPM, Mix aus d4 µ Sick und Alternative Hip-Hop. Stimmung: euphorisch. minimal drums that explode into full breaks. heavy sustained 808 with sudden bass cuts. dusty chopped piano sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Call And Response, Bass Ambush, Drumless Section. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cinematic Intro] → [Verse 1] → [Mini Hook] → [Verse 2] → [Bass Ambush] → [Unexpected Pause] → [Unexpected Pause] → [Hook] → [Genre Switch] → [Verse 3] → [Acapella Break] → [Beat Slam] → [Final Hook] → [Final Beat Mutation] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+022 — PRALL Mutation
+BPM: 170
+GENRE: d4 µ Sick × Soul Rap
+MOOD: humorvoll
+
+SURPRISES:
+  - Instrument Removal
+  - Beat Switch
+  - Call And Response
+  - 808 Dropout
+  - Reverse Hook
+  - Key Change
+
+STRUCTURE:
+  [DJ Cut Intro]
+  [Verse 1]
+  [808 Dropout]
+  [Hook]
+  [Scratch Break]
+  [Beat Switch]
+  [Verse 2]
+  [Final Beat Mutation]
+  [808 Dropout]
+  [Drumless Section]
+  [Beat Return]
+  [Flow Switch]
+  [Final Hook]
+  [Unexpected Pause]
+  [False Ending]
+  [Hidden Beat]
+
+SUNO TAGS:
+[d4 µ Sick] [Soul Rap] [Humorvoll] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[d4 µ Sick] [Soul Rap] [Humorvoll] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Beat Switch] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 170 BPM, Mix aus d4 µ Sick und Soul Rap. Stimmung: humorvoll. hard Drill drums with syncopated hats. funky electric bass with aggressive slides. distorted guitar fragments. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Instrument Removal, Beat Switch, Call And Response, 808 Dropout, Reverse Hook, Key Change. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [DJ Cut Intro] → [Verse 1] → [808 Dropout] → [Hook] → [Scratch Break] → [Beat Switch] → [Verse 2] → [Final Beat Mutation] → [808 Dropout] → [Drumless Section] → [Beat Return] → [Flow Switch] → [Final Hook] → [Unexpected Pause] → [False Ending] → [Hidden Beat]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+023 — MINGA Flip
+BPM: 150
+GENRE: Jazz Rap × Electro Hip-Hop
+MOOD: dreckig
+
+SURPRISES:
+  - False Ending
+  - Flow Switch
+  - 808 Dropout
+  - Fake Drop
+  - Drumless Section
+  - 1-Bar Silence
+
+STRUCTURE:
+  [Cold Open]
+  [Beat Drop]
+  [Tempo Shift]
+  [Verse 1]
+  [Micro Break]
+  [Reverse Hook]
+  [Hook]
+  [Fake Drop]
+  [Beat Slam]
+  [Verse 2]
+  [Half Time]
+  [Acapella Break]
+  [Scratch Break]
+  [Beat Switch]
+  [Verse 3]
+  [Final Hook]
+  [Key Change]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Jazz Rap] [Electro Hip-Hop] [Dreckig] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Flow Switch] [Fake Drop] [Unexpected Silence] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Jazz Rap] [Electro Hip-Hop] [Dreckig] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Sub Bass] [Flow Switch] [Fake Drop] [Unexpected Silence] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 150 BPM, Mix aus Jazz Rap und Electro Hip-Hop. Stimmung: dreckig. industrial drums with metallic transient hits. deep sliding 808 sub bass. München-night atmospheric piano. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: False Ending, Flow Switch, 808 Dropout, Fake Drop, Drumless Section, 1-Bar Silence. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Beat Drop] → [Tempo Shift] → [Verse 1] → [Micro Break] → [Reverse Hook] → [Hook] → [Fake Drop] → [Beat Slam] → [Verse 2] → [Half Time] → [Acapella Break] → [Scratch Break] → [Beat Switch] → [Verse 3] → [Final Hook] → [Key Change] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+024 — ROTOr Maschine
+BPM: 130
+GENRE: Jazz Rap × Crunk
+MOOD: hypnotisch
+
+SURPRISES:
+  - Fake Drop
+  - Scratch Break
+  - Final Beat Mutation
+  - Tempo Shift
+  - False Ending
+  - Drumless Section
+  - 1-Bar Silence
+
+STRUCTURE:
+  [Cold Open]
+  [Unexpected Pause]
+  [Minimal Beat]
+  [Call And Response]
+  [Verse 1]
+  [Hook]
+  [Instrument Removal]
+  [Verse 2]
+  [Beat Switch]
+  [Double Time]
+  [Drum Break]
+  [Half Time]
+  [Final Hook]
+  [Final Beat Mutation]
+
+SUNO TAGS:
+[Jazz Rap] [Crunk] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Turntablism] [Fake Drop] [Unexpected Silence] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Jazz Rap] [Crunk] [Hypnotisch] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [Turntablism] [Fake Drop] [Unexpected Silence] [Final Beat Mutation] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 130 BPM, Mix aus Jazz Rap und Crunk. Stimmung: hypnotisch. hard Drill drums with syncopated hats. minimal sub bass that disappears before drops. psychedelic vinyl sample. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Fake Drop, Scratch Break, Final Beat Mutation, Tempo Shift, False Ending, Drumless Section, 1-Bar Silence. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cold Open] → [Unexpected Pause] → [Minimal Beat] → [Call And Response] → [Verse 1] → [Hook] → [Instrument Removal] → [Verse 2] → [Beat Switch] → [Double Time] → [Drum Break] → [Half Time] → [Final Hook] → [Final Beat Mutation]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.
+
+================================================================================
+025 — MINGA Flip
+BPM: 120
+GENRE: Electro Hip-Hop × Golden Era Hip-Hop
+MOOD: underground
+
+SURPRISES:
+  - Rhythm Collapse
+  - Key Change
+  - 808 Dropout
+  - False Ending
+
+STRUCTURE:
+  [Cinematic Intro]
+  [808 Dropout]
+  [Verse 1]
+  [Mini Hook]
+  [Verse 2]
+  [DJ Interruption]
+  [Unexpected Pause]
+  [Fake Drop]
+  [Hook]
+  [Genre Switch]
+  [Verse 3]
+  [Flow Switch]
+  [Acapella Break]
+  [Fake Drop]
+  [Beat Slam]
+  [Final Hook]
+  [Sudden Stop]
+
+SUNO TAGS:
+[Electro Hip-Hop] [Golden Era Hip-Hop] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+SUNO PROMPT:
+[Electro Hip-Hop] [Golden Era Hip-Hop] [Underground] [Hard Punchy Drums] [Dynamic Arrangement] [Male Rap Vocals] [Dense Multisyllabic Flow] [Internal Rhymes] [808 Dropout] [Beat Breaks] [Unexpected Transitions] [Cinematic Drops] [Aggressive Energy]
+
+Deutschsprachiger Hip-Hop-Beat mit 120 BPM, Mix aus Electro Hip-Hop und Golden Era Hip-Hop. Stimmung: underground. polyrhythmic breakbeats with ghost snares. distorted sub bass with pitch dives. haunting Rhodes chords. Dynamische, überraschende Arrangementstruktur mit echten Spannungswechseln statt monotonem Loop. Verwende: Rhythm Collapse, Key Change, 808 Dropout, False Ending. Die Überraschungen sollen musikalisch vorbereitet, aber nicht vorhersehbar sein. Punchy Drums, tiefer Bass, aggressive Transienten, deutliche Flow-Pockets und kurze extreme Breaks. Songstruktur: [Cinematic Intro] → [808 Dropout] → [Verse 1] → [Mini Hook] → [Verse 2] → [DJ Interruption] → [Unexpected Pause] → [Fake Drop] → [Hook] → [Genre Switch] → [Verse 3] → [Flow Switch] → [Acapella Break] → [Fake Drop] → [Beat Slam] → [Final Hook] → [Sudden Stop]. Finale mit maximaler Energie und anschließend hartem überraschendem Stop.

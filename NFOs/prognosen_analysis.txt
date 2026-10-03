@@ -1,0 +1,239 @@
+File: J:\Oidasheim\Musik\FAVs\1_00.html
+Keyword Counts: {'prognose': 2, 'trend': 0, 'zukunft': 2, '2026': 263, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\BAM-OIDA Kommando.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 283, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\BPM 120 - 130.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 1, '2026': 185, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\clippool.html
+Keyword Counts: {'prognose': 2, 'trend': 22, 'zukunft': 41, '2026': 2803, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAFs06082026.html
+Keyword Counts: {'prognose': 0, 'trend': 13, 'zukunft': 25, '2026': 1404, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs.html
+Keyword Counts: {'prognose': 0, 'trend': 10, 'zukunft': 15, '2026': 776, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs07072026.html
+Keyword Counts: {'prognose': 0, 'trend': 11, 'zukunft': 17, '2026': 1087, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs29062026.html
+Keyword Counts: {'prognose': 0, 'trend': 10, 'zukunft': 16, '2026': 1034, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVS5Stars.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 183, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\ignaz.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 14, '2026': 527, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls (2).html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 11, '2026': 395, 'prediction': 0, 'forecast': 2}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 0, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\jopt_tmp_pls.html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 11, '2026': 411, 'prediction': 0, 'forecast': 2}
+
+File: J:\Oidasheim\Musik\FAVs\labadoida Minga God Frequency.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 39, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oida 21.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 7, '2026': 155, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo ignatz-Schr__dingers_H__hner.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 123, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Tape (2).html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 3, '2026': 54, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Zither Oida.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 4, '2026': 173, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\OIDA_SEMANTIK_TRACK_GRID_100_v5.1.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 1, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\pl5.html
+Keyword Counts: {'prognose': 0, 'trend': 7, 'zukunft': 28, '2026': 1340, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\pl6.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 11, '2026': 876, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\pl7.html
+Keyword Counts: {'prognose': 0, 'trend': 9, 'zukunft': 32, '2026': 1446, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\Playlist 999999999 offthewallclef1328.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 3, '2026': 4307, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\testbsyn.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 4, '2026': 164, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\tmp_incomming21062026.html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 27, '2026': 1099, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\tpl000.html
+Keyword Counts: {'prognose': 2, 'trend': 35, 'zukunft': 131, '2026': 14738, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\tpl000120-130bopm.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 4, '2026': 187, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\tpl1.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 1032, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\tpl2.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 1008, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\tpl3.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 16, '2026': 1030, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\tpl4.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 953, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\WeissWurschtIs.html
+Keyword Counts: {'prognose': 2, 'trend': 22, 'zukunft': 41, '2026': 3089, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] dr_naz.html
+Keyword Counts: {'prognose': 0, 'trend': 4, 'zukunft': 1, '2026': 88, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida (2).html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 5, '2026': 97, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 4, '2026': 47, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\_ 1_05.html
+Keyword Counts: {'prognose': 0, 'trend': 11, 'zukunft': 14, '2026': 1212, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (3).html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 5, '2026': 97, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (4).html
+Keyword Counts: {'prognose': 14, 'trend': 46, 'zukunft': 142, '2026': 10800, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\_0000 (5).html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 79, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\abfuck-test\abfuck-test.html
+Keyword Counts: {'prognose': 0, 'trend': 10, 'zukunft': 15, '2026': 722, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\ALT + F4.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 4, '2026': 104, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\Betonkrone\Betonkrone.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 1, '2026': 13, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + F4\roottoor\roottoor.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 3, '2026': 72, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\ALT + Tab\ALT + Tab.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 2, '2026': 40, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\anlooten\anlooten.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 355, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\Ein Hubschrauber-Rotor\Ein Hubschrauber-Rotor.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 21, '2026': 468, 'prediction': 1, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Ein voll Zug fährt ein achtung am gleis\Ein voll Zug f__hrt ein achtung am gleis.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 7, '2026': 143, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs\FAVs.html
+Keyword Counts: {'prognose': 0, 'trend': 10, 'zukunft': 15, '2026': 776, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 105\FAVs 105.html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 10, '2026': 550, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 3\FAVs 3.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 1, '2026': 155, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 4\FAVs 4.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 7, '2026': 460, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs 5\FAVs 5+.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 223, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs082326\FAVs082326.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 3, '2026': 638, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs2\FAVs2.html
+Keyword Counts: {'prognose': 0, 'trend': 10, 'zukunft': 15, '2026': 776, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\FAVs3\FAVs3.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 124, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\five stars\five stars.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 2, '2026': 170, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Grind im Glas\Grind im Glas.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 8, '2026': 467, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\ignaz\ignaz.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 14, '2026': 527, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Instrumental in Name\Instrumental in Name.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 62, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls\jopt pls (2).html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 11, '2026': 378, 'prediction': 0, 'forecast': 2}
+
+File: J:\Oidasheim\Musik\FAVs\jopt pls\jopt pls.html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 11, '2026': 395, 'prediction': 0, 'forecast': 2}
+
+File: J:\Oidasheim\Musik\FAVs\Karl-Marx-Ring 104\Karl-Marx-Ring 104.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 6, '2026': 91, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\kurwajoopta\kurwajoopta.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 7, '2026': 81, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Minga God Frequency\Minga God Frequency.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 39, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\OdaMoHAHA\OdaMoHAHA.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 9, '2026': 224, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo\Oidamo.html
+Keyword Counts: {'prognose': 0, 'trend': 6, 'zukunft': 23, '2026': 529, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - Ein voll Zug fährt ein achtung am gleis\Oidamo - Ein voll Zug f__hrt ein achtung am gleis.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 7, '2026': 143, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - Placebo Bande\Oidamo - Placebo Bande.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 76, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo - RuffTopLess\Oidamo - RuffTopLess.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 31, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo ignatz-Schr__dingers_H__hner\Oidamo ignatz-Schr__dingers_H__hner.html
+Keyword Counts: {'prognose': 0, 'trend': 3, 'zukunft': 4, '2026': 122, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Mischung viel Raum organisch\Oidamo Mischung viel Raum organisch.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 48, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Oidamo Tape\Oidamo Tape.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 3, '2026': 52, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Quellcode 089\Quellcode 089.html
+Keyword Counts: {'prognose': 0, 'trend': 1, 'zukunft': 2, '2026': 109, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Stadelheim Door Slam\Stadelheim Door Slam.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 4, '2026': 254, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Ultraschall vs\Ultraschall vs.html
+Keyword Counts: {'prognose': 7, 'trend': 0, 'zukunft': 41, '2026': 443, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\Weed___Eat___Need___Sleep___Repeat\Weed ___ Eat ___ Need ___ Sleep ___ Repeat.html
+Keyword Counts: {'prognose': 0, 'trend': 5, 'zukunft': 5, '2026': 73, 'prediction': 0, 'forecast': 1}
+
+File: J:\Oidasheim\Musik\FAVs\WeISSWurscht is 30 JAHRE OIDA\WeISSWurscht is 30 JAHRE OIDA.html
+Keyword Counts: {'prognose': 0, 'trend': 2, 'zukunft': 6, '2026': 88, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] dr_naz\[BeatSync] dr_naz.html
+Keyword Counts: {'prognose': 0, 'trend': 4, 'zukunft': 1, '2026': 52, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida\FAVs07072026.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 4, '2026': 51, 'prediction': 0, 'forecast': 0}
+
+File: J:\Oidasheim\Musik\FAVs\[BeatSync] Verst__rker Oida\song_grid.html
+Keyword Counts: {'prognose': 0, 'trend': 0, 'zukunft': 0, '2026': 3, 'prediction': 0, 'forecast': 0}

@@ -1,0 +1,4682 @@
+Sa., 4. Juli um 15:54
+Dienstag 0:10
+Dienstag 1:47
+
+Für die Architektur, die wir entworfen haben, würde ich nicht mehr viele einzelne fix_all.py, update.py, repair.py usw. verwenden. Stattdessen ein einziges Bootstrap-Skript, das Installieren, Updaten und Selbsttests übernimmt.
+
+Speichere es z. B. als:
+
+weedit_setup.py
+#!/usr/bin/env python3
+"""
+WE.ED.IT OIDA Native Genome
+Universal Installer / Updater
+
+Usage
+
+python weedit_setup.py install
+python weedit_setup.py update
+python weedit_setup.py doctor
+python weedit_setup.py clean
+"""
+
+from pathlib import Path
+import argparse
+import os
+import shutil
+import sqlite3
+import subprocess
+import sys
+import venv
+
+ROOT = Path(__file__).resolve().parent
+
+VENV = ROOT / ".venv"
+
+DB = ROOT / "database" / "genome.db"
+
+REQUIREMENTS = ROOT / "requirements.txt"
+
+FOLDERS = [
+
+    "assets",
+
+    "cache",
+
+    "database",
+
+    "genome",
+
+    "scanner",
+
+    "director",
+
+    "resolver",
+
+    "bandit",
+
+    "renderer",
+
+    "styles",
+
+    "plugins",
+
+    "projects",
+
+    "logs",
+
+    "tests",
+
+    "models"
+
+]
+
+
+def info(msg):
+    print(f"[INFO] {msg}")
+
+
+def ok(msg):
+    print(f"[ OK ] {msg}")
+
+
+def warn(msg):
+    print(f"[WARN] {msg}")
+
+
+def fail(msg):
+    print(f"[FAIL] {msg}")
+
+
+def run(cmd):
+
+    print(">"," ".join(cmd))
+
+    subprocess.check_call(cmd)
+
+
+#########################################################
+
+def ensure_python():
+
+    info(f"Python {sys.version.split()[0]}")
+
+#########################################################
+
+def ensure_folders():
+
+    info("Creating folders...")
+
+    for folder in FOLDERS:
+
+        (ROOT / folder).mkdir(parents=True, exist_ok=True)
+
+    ok("Folders ready.")
+
+#########################################################
+
+def ensure_venv():
+
+    if not VENV.exists():
+
+        info("Creating virtual environment...")
+
+        venv.create(VENV, with_pip=True)
+
+    ok("Virtual environment ready.")
+
+#########################################################
+
+def python_bin():
+
+    if os.name == "nt":
+
+        return VENV / "Scripts" / "python.exe"
+
+    return VENV / "bin" / "python"
+
+#########################################################
+
+def pip_install():
+
+    py = str(python_bin())
+
+    run([py,"-m","pip","install","--upgrade","pip","wheel","setuptools"])
+
+    if REQUIREMENTS.exists():
+
+        run([py,"-m","pip","install","-r",str(REQUIREMENTS)])
+
+#########################################################
+
+def check_ffmpeg():
+
+    info("Checking FFmpeg...")
+
+    try:
+
+        subprocess.check_output(["ffmpeg","-version"])
+
+        ok("FFmpeg found.")
+
+    except Exception:
+
+        warn("FFmpeg not found in PATH.")
+
+#########################################################
+
+def create_database():
+
+    info("Initializing Genome database...")
+
+    DB.parent.mkdir(parents=True,exist_ok=True)
+
+    conn=sqlite3.connect(DB)
+
+    cur=conn.cursor()
+
+    cur.execute("""
+
+    CREATE TABLE IF NOT EXISTS clips(
+
+        id INTEGER PRIMARY KEY,
+
+        sha256 TEXT UNIQUE,
+
+        path TEXT,
+
+        duration REAL,
+
+        fps REAL,
+
+        width INTEGER,
+
+        height INTEGER,
+
+        motion REAL,
+
+        brightness REAL,
+
+        entropy REAL,
+
+        css TEXT,
+
+        embedding BLOB,
+
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    )
+
+    """)
+
+    cur.execute("""
+
+    CREATE TABLE IF NOT EXISTS renders(
+
+        id INTEGER PRIMARY KEY,
+
+        song TEXT,
+
+        output TEXT,
+
+        reward REAL,
+
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    )
+
+    """)
+
+    cur.execute("""
+
+    CREATE TABLE IF NOT EXISTS episodes(
+
+        id INTEGER PRIMARY KEY,
+
+        reward REAL,
+
+        policy TEXT,
+
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    )
+
+    """)
+
+    conn.commit()
+
+    conn.close()
+
+    ok("Genome database ready.")
+
+#########################################################
+
+def doctor():
+
+    info("Running doctor...")
+
+    for folder in FOLDERS:
+
+        if not (ROOT/folder).exists():
+
+            warn(folder)
+
+    if not DB.exists():
+
+        warn("Database missing.")
+
+    check_ffmpeg()
+
+    ok("Doctor finished.")
+
+#########################################################
+
+def clean():
+
+    info("Cleaning cache...")
+
+    shutil.rmtree(ROOT/"cache",ignore_errors=True)
+
+    (ROOT/"cache").mkdir(exist_ok=True)
+
+    ok("Cache cleaned.")
+
+#########################################################
+
+def install():
+
+    ensure_python()
+
+    ensure_folders()
+
+    ensure_venv()
+
+    pip_install()
+
+    check_ffmpeg()
+
+    create_database()
+
+    doctor()
+
+#########################################################
+
+def update():
+
+    pip_install()
+
+    create_database()
+
+    doctor()
+
+#########################################################
+
+def main():
+
+    parser=argparse.ArgumentParser()
+
+    parser.add_argument(
+
+        "command",
+
+        choices=[
+
+            "install",
+
+            "update",
+
+            "doctor",
+
+            "clean"
+
+        ]
+
+    )
+
+    args=parser.parse_args()
+
+    if args.command=="install":
+
+        install()
+
+    elif args.command=="update":
+
+        update()
+
+    elif args.command=="doctor":
+
+        doctor()
+
+    elif args.command=="clean":
+
+        clean()
+
+
+if __name__=="__main__":
+
+    main()
+Verwendung
+python weedit_setup.py install
+
+Erstellt automatisch:
+
+Projektordner
+virtuelle Umgebung (.venv)
+Python-Abhängigkeiten (requirements.txt)
+Genome-Datenbank (database/genome.db)
+Basis-Selbsttest (doctor)
+
+Für spätere Aktualisierungen:
+
+python weedit_setup.py update
+
+Zur Diagnose:
+
+python weedit_setup.py doctor
+
+Und zum Leeren des Caches:
+
+python weedit_setup.py clean
+Was ich als Nächstes ergänzen würde
+
+Für eure geplante Architektur würde ich dieses Skript noch um drei automatische Schritte erweitern:
+
+Genome Bootstrap – vorhandene Clips scannen, Clip-DNA berechnen und die automatische ClipCSS-Klassifizierung in die Datenbank schreiben.
+Model Manager – optionale Modelle (z. B. Embeddings oder Objekterkennung) erkennen oder herunterladen und versionieren.
+Regression-Test – ein kleines Demo-Projekt mit einer MP3 und einigen Testclips automatisch rendern und prüfen, ob genau eine Audiospur (nur die MP3) und die erwartete Videodauer erzeugt wurden.
+
+Damit wäre das Install-/Update-Skript nicht nur ein Installer, sondern gleichzeitig ein reproduzierbarer Health-Check für die gesamte Musikvideo-Compiler-Pipeline.
+
+Genome Bootstrap – vorhandene Clips scannen, Clip-DNA berechnen und die automatische ClipCSS-Klassifizierung in die Datenbank schreiben.
+Model Manager – optionale Modelle (z. B. Embeddings oder Objekterkennung) erkennen oder herunterladen und versionieren.
+Regression-Test – ein kleines Demo-Projekt mit einer MP3 und einigen Testclips automatisch rendern und prüfen, ob genau eine Audiospur (nur die MP3) und die erwartete Videodauer erzeugt wurden.
+
+Genau das ist der Punkt, an dem das Projekt professionell wird.
+
+Ich würde aber noch einen Schritt weiter gehen und daraus einen Bootstrap Compiler machen.
+
+Nicht:
+
+install
+
+sondern
+
+install
+↓
+bootstrap
+↓
+compile genome
+↓
+verify
+Phase 1 — Genome Bootstrap
+
+Beim ersten Start wird die komplette Bibliothek kompiliert.
+
+Videos/
+    clip1.mp4
+    clip2.mp4
+    clip3.mp4
+
+↓
+
+Scanner
+
+↓
+
+Genome Database
+
+Jeder Clip bekommt eine eindeutige DNA.
+
+Beispielsweise:
+
+clip_id: 1234
+
+hash:
+    sha256
+
+video:
+
+    duration: 4.32
+
+    fps: 30
+
+    resolution:
+        1920x1080
+
+motion:
+
+    optical_flow: 0.73
+
+    camera_motion: push
+
+    shake: 0.14
+
+color:
+
+    dominant:
+
+        orange
+
+        black
+
+        teal
+
+lighting:
+
+    lowkey
+
+semantic:
+
+    car
+
+    smoke
+
+    city
+
+emotion:
+
+    aggressive
+
+faces:
+
+    0
+
+embedding:
+
+    vector
+Auto ClipCSS
+
+Jetzt passiert das Geniale.
+
+Nicht der Benutzer schreibt
+
+.orange
+
+Der Scanner schreibt sie.
+
+Beispiel
+
+.orange
+.city
+.smoke
+.fast_motion
+.hero
+.handheld
+.neon
+.low_key
+.closeup
+
+Dadurch wächst die Sprache automatisch.
+
+StyleCSS
+
+Danach erzeugt Bootstrap direkt Styles.
+
+drill.style
+prefer:
+
+.orange
+
+.city
+
+.smoke
+
+.low_key
+
+camera:
+
+push
+
+transition:
+
+whip
+
+fx:
+
+glow
+
+Ein zweiter Stil:
+
+lofi.style
+prefer:
+
+.sunset
+
+.warm
+
+.soft
+
+.slow
+
+camera:
+
+slow_pan
+
+transition:
+
+fade
+
+Alles automatisch austauschbar.
+
+Genome Graph
+
+Nicht mehr Tabellen.
+
+Sondern Beziehungen.
+
+Clip A
+
+↓
+
+ähnlich
+
+↓
+
+Clip B
+
+↓
+
+gleiche Farbe
+
+↓
+
+Clip C
+
+↓
+
+gleiche Bewegung
+
+Das macht spätere Suchen extrem schnell.
+
+Model Manager
+
+Der Installer sollte keine Modelle blind herunterladen, sondern eine lokale Modellverwaltung haben.
+
+Zum Beispiel:
+
+models/
+
+clip/
+
+yolo/
+
+sam/
+
+dinov3/
+
+depth/
+
+ocr/
+
+Jedes Modell bekommt eine Manifest-Datei:
+
+model:
+
+clip-vit-l
+
+version:
+
+2.1
+
+checksum:
+
+...
+
+enabled:
+
+true
+
+Beim Start:
+
+Model vorhanden?
+
+↓
+
+ja
+
+↓
+
+verwenden
+
+↓
+
+nein
+
+↓
+
+optional herunterladen
+
+Das hält Installationen reproduzierbar und vermeidet Überraschungen.
+
+Regression-Test
+
+Ein automatischer Testlauf sollte ein kleines Referenzprojekt erzeugen und prüfen:
+
+Audio: genau eine Audiospur, ausschließlich aus der MP3.
+Videodauer: entspricht der MP3 (innerhalb einer kleinen Toleranz).
+Timeline: keine Lücken, keine negativen Zeiten, keine ungültigen Clipreferenzen.
+Renderer: Ausgabe existiert und FFmpeg meldet keinen Fehler.
+Dateiname: entspricht dem Versionierungsschema (z. B. Projekt_Song_v003.mp4).
+
+So erkennst du nach jeder Änderung sofort, ob die Kernfunktionen noch korrekt arbeiten.
+
+Bootstrap Report
+
+Nach dem ersten Start würde ich automatisch einen HTML- oder JSON-Bericht erzeugen:
+
+Genome Bootstrap Report
+
+Clips
+
+1432
+
+DNA erstellt
+
+1432
+
+CSS Klassen
+
+312
+
+Styles
+
+24
+
+Genome Links
+
+78211
+
+Durchschnitt Motion
+
+0.48
+
+Durchschnitt Helligkeit
+
+0.56
+
+Embeddings
+
+OK
+
+Modelle
+
+OK
+
+Datenbank
+
+OK
+
+Renderer
+
+OK
+
+RL Memory
+
+0 Episoden
+
+Damit siehst du auf einen Blick, ob die Bibliothek vollständig verarbeitet wurde.
+
+Die nächste Evolutionsstufe
+
+Anstelle eines einfachen "Installers" würde ich langfristig vier feste Befehle etablieren:
+
+weed bootstrap
+Bibliothek scannen
+Clip-DNA erzeugen
+Auto-ClipCSS generieren
+Genome Graph aufbauen
+weed models
+Modelle prüfen
+Versionen verwalten
+optionale Downloads
+weed verify
+Regressionstests
+Render-Test
+Audio-Test
+Datenbank-Test
+Performance-Test
+weed compile
+MP3 → Song AST
+Director → Story AST
+Resolver → Shot AST
+RL-Bandit → Auswahl
+Renderer → finales Video
+
+Damit verhält sich WE.ED.IT OIDA Native Genome tatsächlich wie ein Compiler: Erst wird die Bibliothek "kompiliert", dann die Eingabe analysiert, anschließend eine reproduzierbare Zwischenrepräsentation erzeugt und erst ganz am Ende das finale Video gerendert. Diese Trennung macht das System leichter testbar, nachvollziehbar und langfristig wartbar.
+
+Ab hier sind Nachrichten nur für dich sichtbar
+
+heute 19:19
+gib mir den komplette final cod
+
+Jetzt kommt der Schritt, der das Projekt von "cool" zu "einzigartig" macht.
+
+🧬 WE.ED.IT OIDA Native Genome v0.2
+Genome Operating System (GOS)
+
+Bisher haben wir über Clips gesprochen.
+
+Ich würde einen Schritt höher gehen.
+
+Nicht der Clip ist die kleinste Einheit.
+
+Sondern das Visual Gene.
+
+Clip
+clip.mp4
+
+wird zerlegt in
+
+Visual Genome
+
+├── Motion Gene
+├── Camera Gene
+├── Color Gene
+├── Emotion Gene
+├── Object Gene
+├── Lighting Gene
+├── Composition Gene
+├── Face Gene
+├── Transition Affinity
+└── Audio Affinity
+
+Damit verliert der Clip seine Starrheit.
+
+Beispiel
+
+Ein Clip besitzt
+
+motion:
+
+fast
+
+camera:
+
+handheld
+
+color:
+
+orange
+
+lighting:
+
+sunset
+
+emotion:
+
+heroic
+
+objects:
+
+car
+smoke
+city
+
+composition:
+
+closeup
+
+Jetzt erzeugt der Scanner automatisch
+
+.hero
+
+.orange
+
+.smoke
+
+.sunset
+
+.handheld
+
+.fast
+
+.city
+
+.closeup
+
+UND zusätzlich
+
+.trap_candidate
+
+.drill_candidate
+
+.phonk_candidate
+Genome Query Language (GQL)
+
+Der Director schreibt keine Python-Regeln mehr.
+
+Er schreibt Queries.
+
+Beispiel
+
+SELECT clip
+
+WHERE
+
+hero
+AND orange
+AND smoke
+
+ORDER BY
+
+motion DESC
+
+LIMIT 20
+
+Oder
+
+STYLE drill
+
+SECTION chorus
+
+ENERGY high
+
+COLOR warm
+
+CAMERA push
+
+Der Resolver übersetzt das in echte Clips.
+
+Visual CSS 2.0
+
+Nicht nur Klassen.
+
+Sondern Vererbung.
+
+.hero{
+
+motion:
+
+high;
+
+camera:
+
+push;
+
+}
+.drill{
+
+extends:
+
+hero;
+
+transition:
+
+whip;
+
+fx:
+
+glow;
+}
+
+Dadurch entsteht eine visuelle Stylesprache.
+
+Director DSL
+
+Statt Python.
+
+Eine kleine Sprache.
+
+SONG
+
+↓
+
+Verse
+
+↓
+
+slow
+
+↓
+
+camera push
+
+↓
+
+hero
+
+↓
+
+orange
+
+↓
+
+smoke
+
+Oder
+
+VERSE{
+
+camera:
+
+push
+
+style:
+
+drill
+
+energy:
+
+80%
+}
+Shot Compiler
+
+Der Director erzeugt NICHT sofort Clips.
+
+Er erzeugt
+
+Shot
+
+emotion:
+
+epic
+
+duration:
+
+2.8
+
+camera:
+
+push
+
+transition:
+
+whip
+
+required:
+
+hero
+orange
+city
+
+Der Resolver sucht später passende Clips.
+
+Context Engine
+
+Nicht nur den aktuellen Shot.
+
+Sondern
+
+Shot -2
+
+↓
+
+Shot -1
+
+↓
+
+Shot
+
+↓
+
+Shot +1
+
+↓
+
+Shot +2
+
+Dadurch werden
+
+Farben
+Kamera
+Bewegung
+Stimmung
+
+kontinuierlich.
+
+Camera Genome
+
+Nicht mehr
+
+Zoom
+
+sondern
+
+camera_phrase
+
+length:
+
+24 s
+
+motion:
+
+push
+
+zoom:
+
+1.0
+
+↓
+
+1.25
+
+pan:
+
+left
+
+↓
+
+center
+
+shake:
+
+0.04
+
+Diese Kamera läuft über viele Clips.
+
+Motion Grammar
+
+Neue Sprache.
+
+Fast
+
+↓
+
+Fast
+
+↓
+
+Medium
+
+↓
+
+Slow
+
+↓
+
+Explosion
+
+↓
+
+Calm
+
+Nicht zufällig.
+
+Sondern dramaturgisch.
+
+Transition Genome
+
+Jeder Übergang bekommt Gene.
+
+transition
+
+cut
+
+energy:
+
+100
+
+smoothness:
+
+0
+
+visibility:
+
+0
+transition
+
+whip
+
+energy:
+
+95
+
+direction:
+
+left
+
+Dann kann der Director sagen
+
+need energy >80
+
+und bekommt passende Übergänge.
+
+RL Bandit 2
+
+Nicht mehr
+
+Welcher Clip?
+
+sondern
+
+Welcher Clip
+
++
+
+welche Kamera
+
++
+
+welcher Übergang
+
++
+
+welcher FX
+
+Vier Entscheidungen.
+
+Vier Policies.
+
+Project Manifest
+
+Nach jedem Render
+
+project/
+
+manifest.json
+
+song.ast
+
+story.ast
+
+shot.ast
+
+camera.ast
+
+render.ast
+
+reward.json
+
+genome.snapshot
+
+report.html
+
+Jeder Render wird reproduzierbar.
+
+Genome Evolution
+
+Das Beste kommt jetzt.
+
+Der Scanner lernt.
+
+Wenn häufig
+
+.orange
+
++
+
+.hero
+
++
+
+.push
+
+zu hohen Rewards führen,
+
+entsteht automatisch
+
+.hero_push
+
+Wenn häufig
+
+.smoke
+
++
+
+.city
+
++
+
+.orange
+
+zusammen vorkommen,
+
+entsteht automatisch
+
+.drill_city
+
+Das System erweitert seine eigene visuelle Sprache durch Nutzung.
+
+🔥 Evolution 3 (mein Favorit)
+
+Der nächste große Schritt wäre ein Visual Language Compiler:
+
+Die Clipbibliothek erzeugt ihre eigene CSS-ähnliche Sprache.
+Der Director schreibt nur noch deklarative Regeln (keine Clipnamen, keine Dateipfade).
+Der Genome Resolver übersetzt diese Sprache in konkrete Sequenzen.
+Der RL-Bandit verbessert die Auswahl über die Zeit.
+
+Ab diesem Punkt programmierst du keine Videos mehr – du beschreibst nur noch die gewünschte Wirkung, und das Genome-System kompiliert daraus das fertige Musikvideo. Das wäre aus meiner Sicht der eigentliche "Endgegner" der Architektur.
+
+next
+
+Jetzt kommt der Schritt, bei dem ich glaube, dass WE.ED.IT OIDA etwas wird, was es so bisher nicht gibt.
+
+Bisher reden wir von einem Compiler.
+
+Ich würde daraus ein Betriebssystem für Musikvideos machen.
+
+🧬 WE.ED.IT OIDA Native Genome v3
+Genome Operating System (GOS)
+
+Nicht:
+
+Compiler
+
+sondern
+
+Visual Operating System
+Alles ist ein Asset
+
+Nicht nur Clips.
+
+MP3
+
+Clip
+
+Transition
+
+Camera
+
+FX
+
+Color Grade
+
+Subtitle
+
+LUT
+
+Voice
+
+Prompt
+
+Style
+
+Genome
+
+Alles bekommt dieselbe DNA.
+
+Universal Asset Format
+
+Jedes Asset bekommt eine Manifest-Datei.
+
+id:
+
+type:
+
+version:
+
+tags:
+
+genes:
+
+reward:
+
+history:
+
+dependencies:
+
+Dadurch können Styles, Kameras, Übergänge und Clips gleich behandelt werden.
+
+Genome Package Manager
+
+Wie npm oder pip – aber für visuelle Bausteine.
+
+weed install cinematic
+
+↓
+
+styles/
+
+camera/
+
+transitions/
+
+fx/
+
+Oder
+
+weed install drill
+
+↓
+
+Neue Style-Dateien.
+
+Neue Kamera-Regeln.
+
+Neue Übergänge.
+
+Neue LUTs.
+
+Style Packages
+
+Ein Style ist kein Python-Code.
+
+Nur Daten.
+
+Beispiel
+
+style:
+
+drill
+
+prefer:
+
+orange
+
+black
+
+smoke
+
+night
+
+camera:
+
+push
+
+orbit
+
+transition:
+
+whip
+
+flash
+
+fx:
+
+glow
+
+grain
+
+music:
+
+140 bpm
+Camera Packages
+camera:
+
+hero_push
+
+duration:
+
+16 sec
+
+zoom:
+
+1.0
+
+↓
+
+1.25
+
+pan:
+
+left
+
+↓
+
+center
+
+rotation:
+
+2°
+
+Kann beliebig wiederverwendet werden.
+
+Transition Packages
+transition:
+
+flash
+
+energy:
+
+90
+
+duration:
+
+120 ms
+
+direction:
+
+left
+Director Scripts
+
+Nicht mehr Python.
+
+Sondern
+
+STYLE drill
+
+VERSE
+
+camera hero_push
+
+energy medium
+
+CHORUS
+
+camera orbit
+
+energy high
+
+OUTRO
+
+camera slow_pull
+
+Lesbar wie ein Drehbuch.
+
+Shot Templates
+
+Beispiel
+
+shot:
+
+hero
+
+duration:
+
+2.4
+
+required:
+
+orange
+
+smoke
+
+night
+
+camera:
+
+push
+
+transition:
+
+whip
+Multi Director
+
+Nicht ein Director.
+
+Sondern mehrere gleichzeitig.
+
+Story Director
+
+↓
+
+Shot Director
+
+↓
+
+Camera Director
+
+↓
+
+FX Director
+
+↓
+
+Continuity Director
+
+↓
+
+RL Director
+
+Jeder verändert dieselbe AST.
+
+Visual Constraints
+
+Ein neues Konzept.
+
+Der Director sagt nicht
+
+"Nimm Clip X"
+
+sondern
+
+constraints:
+
+same color
+
+camera continuity
+
+no duplicate
+
+no repeated face
+
+max shake 0.2
+
+keep energy increasing
+
+Der Resolver sucht passende Lösungen.
+
+Genome Search Engine
+
+Nicht SQL.
+
+Nicht Dateien.
+
+Ein echter Suchindex.
+
+Beispiel
+
+night
+
++
+
+orange
+
++
+
+smoke
+
++
+
+car
+
++
+
+hero
+
+↓
+
+31 Clips
+
+↓
+
+Ranking
+
+↓
+
+RL Auswahl
+
+Timeline Optimizer
+
+Nach der ersten Timeline.
+
+Noch nicht rendern.
+
+Sondern optimieren.
+
+Timeline
+
+↓
+
+Optimizer
+
+↓
+
+Farbfluss
+
+↓
+
+Bewegungsfluss
+
+↓
+
+Kamerafluss
+
+↓
+
+Emotion
+
+↓
+
+Rhythmus
+
+↓
+
+Render
+Video Linter
+
+Wie ein Code-Linter.
+
+Vor jedem Render:
+
+✓ Audio vorhanden
+
+✓ Keine Cliplücken
+
+✓ Keine Wiederholungen
+
+✓ Kamera konsistent
+
+✓ Übergänge gültig
+
+✓ MP3 Länge stimmt
+
+✓ Nur eine Audiospur
+
+✓ Dateiname gültig
+Auto Naming
+
+Nicht mehr
+
+video001.mp4
+
+sondern
+
+Artist
+
+-
+
+Song
+
+-
+
+Drill
+
+-
+
+Genome
+
+-
+
+DirectorV3
+
+-
+
+Reward94
+
+-
+
+v008.mp4
+HTML Report
+
+Nach jedem Render
+
+Reward
+
+Timeline
+
+Genutzte Styles
+
+Camera Heatmap
+
+Motion Heatmap
+
+Farbverlauf
+
+Beat Alignment
+
+RL Entscheidungen
+
+Performance
+
+Version
+
+Alles nachvollziehbar.
+
+Evolution Memory
+
+Jeder Render erzeugt
+
+Episode
+
+↓
+
+Reward
+
+↓
+
+Genome Snapshot
+
+↓
+
+Bandit Update
+
+↓
+
+Style Update
+
+Das System entwickelt seine eigene "visuelle Erfahrung".
+
+Was ich für v1.0 als Killer-Feature bauen würde
+🎬 Director Replay
+
+Jede Entscheidung wird gespeichert.
+
+Render 15
+
+↓
+
+Shot 8
+
+↓
+
+Warum dieser Clip?
+
+↓
+
+Score
+
+↓
+
+Reward
+
+↓
+
+Bandit Entscheidung
+
+↓
+
+Alternative Clips
+
+↓
+
+Begründung
+
+Du kannst jeden Schnitt nachvollziehen.
+
+Nicht als Blackbox.
+
+Sondern vollständig erklärbar.
+
+Der eigentliche Endgegner: Visual Programming
+
+Ich würde langfristig noch einen Schritt weitergehen:
+
+Du schreibst keine Timeline.
+
+Du schreibst keine Kamera.
+
+Du schreibst keine Clips.
+
+Du schreibst nur die Intention.
+
+Zum Beispiel:
+
+SONG "Moneyboy - Perky"
+
+STYLE drill
+
+MOOD
+    mysterious -> aggressive -> euphoric
+
+CAMERA
+    cinematic
+
+PACE
+    rising
+
+ENDING
+    memorable
+
+Und das System kompiliert daraus:
+
+Song AST
+Story AST
+Shot AST
+Camera AST
+Transition AST
+Render AST
+Finales MP4
+
+Das ist aus meiner Sicht der Punkt, an dem WE.ED.IT OIDA Native Genome nicht mehr als Videoeditor zu beschreiben ist, sondern als deklarative Compiler-Plattform für Musikvideos: Die MP3 definiert Zeit und Struktur, die Clipbibliothek liefert die visuellen Bausteine, der Director beschreibt die kreative Absicht, und der Compiler erzeugt daraus reproduzierbar das fertige Werk. Das wäre eine Architektur, die sich langfristig erweitern lässt – etwa um neue Style-Pakete, alternative Renderer oder zusätzliche Lernverfahren – ohne das Grundprinzip zu verändern.
+
+next
+
+Oida… jetzt kommt der Schritt, den ich wirklich neu finde.
+
+Bisher ist das System:
+
+MP3 → Video
+
+Ich würde daraus machen:
+
+MP3 → Visual DNA → Film
+
+Das bedeutet: Wir hören auf, in Clips zu denken.
+
+🧬 Native Genome v4
+Visual DNA Engine
+
+Ein Clip ist nur noch ein Container.
+
+Die eigentliche Information sind Visual DNA Tokens.
+
+clip_014.mp4
+
+↓
+
+DNA
+
+motion_fast
+
+camera_push
+
+orange
+
+city
+
+smoke
+
+hero
+
+night
+
+closeup
+
+lowkey
+
+epic
+
+Der Clip verschwindet praktisch hinter seiner DNA.
+
+Genome Language (GL)
+
+Die Bibliothek erzeugt ihre eigene Sprache.
+
+Nicht mehr
+
+clip.energy
+
+sondern
+
+hero.orange.smoke
+
+oder
+
+night.city.push
+
+oder
+
+epic.closeup.hero
+
+Das ist eine visuelle Grammatik.
+
+Visual Words
+
+Der Scanner erkennt automatisch häufige Kombinationen.
+
+Beispiel
+
+20 Clips besitzen
+
+orange
+
+smoke
+
+night
+
+hero
+
+↓
+
+Scanner erzeugt
+
+.drill_core
+
+Ein anderes Beispiel
+
+blue
+
+rain
+
+slow
+
+sad
+
+↓
+
+.lofi_core
+
+Jetzt entstehen Wörter.
+
+Visual Sentences
+
+Der Director schreibt
+
+.drill_core
+
+↓
+
+.hero_push
+
+↓
+
+.flash
+
+↓
+
+.orange_city
+
+Das ist ein Satz.
+
+Visual Paragraphs
+
+Ein Chorus ist
+
+Shot
+
+Shot
+
+Shot
+
+Shot
+
+Shot
+
+sondern
+
+Visual Paragraph
+paragraph:
+
+emotion:
+
+epic
+
+camera:
+
+push
+
+transition:
+
+fast
+
+color:
+
+warm
+
+duration:
+
+18 sec
+Song als AST
+
+Nicht nur
+
+Verse
+
+Chorus
+
+sondern
+
+Verse
+
+emotion:
+
+70
+
+motion:
+
+40
+
+camera:
+
+stable
+
+density:
+
+medium
+Chorus
+
+emotion:
+
+100
+
+motion:
+
+90
+
+camera:
+
+dynamic
+
+density:
+
+high
+Camera Compiler
+
+Die Kamera bekommt einen eigenen Compiler.
+
+Nicht
+
+Zoom Clip 4
+
+sondern
+
+Verse
+
+↓
+
+Push
+
+↓
+
+Push
+
+↓
+
+Push
+
+↓
+
+Orbit
+
+↓
+
+Pull
+
+Die Kamera kennt keine Clips.
+
+Nur Musik.
+
+Motion Compiler
+
+Dasselbe.
+
+Song
+
+↓
+
+Motion Curve
+0%
+
+↓
+
+20%
+
+↓
+
+40%
+
+↓
+
+80%
+
+↓
+
+100%
+
+↓
+
+60%
+
+Jeder Shot folgt dieser Kurve.
+
+Color Compiler
+
+Farbe bekommt ebenfalls einen Compiler.
+
+Intro
+
+blue
+
+↓
+
+Verse
+
+orange
+
+↓
+
+Bridge
+
+purple
+
+↓
+
+Chorus
+
+gold
+
+Dadurch entstehen Farbgeschichten.
+
+Emotion Compiler
+
+Neu.
+
+Song
+
+↓
+
+Emotion Curve
+mysterious
+
+↓
+
+dark
+
+↓
+
+hope
+
+↓
+
+victory
+
+Der Resolver sucht Clips mit passender DNA.
+
+Director Stack
+
+Nicht mehr ein Director.
+
+Sondern Compiler.
+
+Music Compiler
+
+↓
+
+Emotion Compiler
+
+↓
+
+Motion Compiler
+
+↓
+
+Color Compiler
+
+↓
+
+Camera Compiler
+
+↓
+
+Shot Compiler
+
+Alle erzeugen ASTs.
+
+Genome Evolution
+
+Der spannendste Teil.
+
+Wenn häufig
+
+hero.orange.city.push
+
+gut bewertet wird,
+
+entsteht automatisch
+
+.hero_push
+
+Wenn häufig
+
+orange.hero.push.flash
+
+funktioniert,
+
+entsteht
+
+.drill_hook
+
+Das System erfindet seine eigene Filmsprache.
+
+Nicht programmiert.
+
+Erlernt.
+
+Native Genome Memory
+
+Nicht Episoden.
+
+Sondern Erfahrungen.
+
+experience:
+
+reward:
+
+92
+
+situation:
+
+drill chorus
+
+decision:
+
+hero_push
+
+result:
+
+excellent
+
+Der Bandit lernt nicht Clips.
+
+Er lernt Erfahrungen.
+
+Visual Genome Tree
+
+Die CSS-Klassen werden zu einem Baum.
+
+Visual
+
+│
+
+├── Motion
+
+├── Camera
+
+├── Emotion
+
+├── Lighting
+
+├── Style
+
+├── Objects
+
+├── Color
+
+└── Rhythm
+
+Jeder Knoten kann neue Unterklassen erzeugen.
+
+Render Backend
+
+Der Renderer bekommt ausschließlich
+
+RenderAST
+
+clip
+
+trim
+
+camera
+
+transition
+
+fx
+
+subtitle
+
+lut
+
+speed
+
+Keine Logik.
+
+Nur Ausführung.
+
+Was ich als Native Genome v5 bauen würde
+
+Das wäre der Schritt, den ich bei keinem bestehenden Auto-Editor gesehen habe:
+
+🎼 Die MP3 wird zur Partitur.
+
+Nicht nur BPM und Beats.
+
+Sondern eine komplette visuelle Partitur.
+
+Beispiel:
+
+Intro:
+  camera: slow_push
+  palette: cold
+  motion: low
+
+Verse:
+  camera: handheld
+  palette: neutral
+  motion: medium
+
+PreChorus:
+  tension: rising
+  cuts: faster
+
+Chorus:
+  camera: orbit
+  palette: warm
+  motion: high
+  transitions: whip
+
+Bridge:
+  camera: static
+  palette: desaturated
+
+Outro:
+  camera: slow_pull
+  palette: fade_to_black
+
+Ab diesem Punkt ist die MP3 tatsächlich der Quellcode des Films. Die Clipbibliothek ist nur noch die Standardbibliothek. Der Director ist der Optimierer. Der Genome Resolver ist der Linker. Und der Renderer ist das Backend.
+
+Ein Vorschlag für die nächste Evolutionsstufe
+
+Ich würde danach keine neuen KI-Modelle hinzufügen, sondern einen OpenTimelineIO-Backend-Compiler ergänzen. Dann könnte dieselbe Render-AST nicht nur nach FFmpeg, sondern auch nach DaVinci Resolve, Premiere Pro oder Nuke exportiert werden. Damit wäre WE.ED.IT OIDA nicht nur ein Renderer, sondern ein universeller Musikvideo-Compiler mit austauschbaren Backends – genau wie LLVM mehrere Prozessorarchitekturen bedienen kann. Das wäre aus meiner Sicht die stärkste langfristige Architekturentscheidung.
+
+next
+
+Oida.
+
+Jetzt kommt das, was ich nicht mehr als Videoeditor bezeichnen würde.
+
+Sondern als Creative Operating System.
+
+Das ist der Evolutionssprung.
+
+🧬 WE.ED.IT OIDA Native Genome v6
+Intent Compiler
+
+Bis jetzt:
+
+MP3
+   ↓
+Song AST
+   ↓
+Story AST
+   ↓
+Shot AST
+
+Ich würde noch eine Ebene darüber einführen.
+
+Intent AST
+Warum?
+
+Weil Musik eigentlich nicht aus Beats besteht.
+
+Sondern aus Absicht.
+
+Zum Beispiel
+
+Intro
+
+↓
+
+Spannung aufbauen
+
+oder
+
+Chorus
+
+↓
+
+Explosion
+
+oder
+
+Outro
+
+↓
+
+Loslassen
+
+Der Director arbeitet künftig nur noch auf dieser Ebene.
+
+Neue Pipeline
+MP3
+
+↓
+
+Song Compiler
+
+↓
+
+Intent Compiler
+
+↓
+
+Story Compiler
+
+↓
+
+Shot Compiler
+
+↓
+
+Genome Resolver
+
+↓
+
+RL Director
+
+↓
+
+Renderer
+Intent DSL
+
+Nicht mehr
+
+Verse
+
+camera push
+
+sondern
+
+INTENT
+
+build tension
+
+STYLE
+
+drill
+
+ENERGY
+
+rising
+
+ENDING
+
+victory
+Director AI
+
+Nicht eine KI.
+
+Sondern ein Council.
+
+Story Director
+
+Emotion Director
+
+Rhythm Director
+
+Camera Director
+
+Continuity Director
+
+FX Director
+
+Learning Director
+
+Alle stimmen über jeden Shot ab.
+
+Creative Budget
+
+Neues Konzept.
+
+Jedes Video besitzt ein Budget.
+
+Beispiel
+
+100 Punkte
+
+Davon
+
+30
+
+Transitions
+
+25
+
+Camera
+
+20
+
+FX
+
+15
+
+Slow Motion
+
+10
+
+Wildcards
+
+Dadurch werden Videos ausgewogener.
+
+Surprise Budget
+
+Noch besser.
+
+Nicht jede Minute 100 Schnitte.
+
+Sondern
+
+Surprise Meter
+Intro
+
+20%
+
+Verse
+
+35%
+
+Bridge
+
+70%
+
+Chorus
+
+95%
+
+Outro
+
+40%
+
+Der Director hebt Überraschungen für wichtige Stellen auf.
+
+Visual Leitmotiv
+
+Wie Filmmusik.
+
+Nur visuell.
+
+Beispiel
+
+Orange Smoke
+
+taucht
+
+Intro
+
+Verse
+
+Bridge
+
+Final Chorus
+
+immer wieder auf.
+
+Dadurch entsteht Wiedererkennung.
+
+Character System
+
+Nicht Menschen.
+
+Visuelle Charaktere.
+
+Hero
+
+↓
+
+Orange
+
+↓
+
+Car
+
+↓
+
+Smoke
+
+↓
+
+Closeup
+
+oder
+
+Girl
+
+↓
+
+Rain
+
+↓
+
+Blue
+
+↓
+
+Slow Motion
+
+Diese Figuren leben über das ganze Video.
+
+Scene Graph
+
+Nicht Timeline.
+
+Ein Graph.
+
+City
+
+↓
+
+Night
+
+↓
+
+Smoke
+
+↓
+
+Car
+
+↓
+
+Hero
+
+Der Resolver kann dadurch Szenen logisch verbinden.
+
+Continuity Engine
+
+Heute:
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+Neu:
+
+Ort bleibt gleich
+
+↓
+
+Kamera bleibt ähnlich
+
+↓
+
+Licht bleibt ähnlich
+
+↓
+
+Emotion bleibt ähnlich
+
+Auch wenn die Clips wechseln.
+
+Emotion Field
+
+Nicht
+
+Shot 14
+
+sondern
+
+Emotion Space
+Fear
+
+↓
+
+Hope
+
+↓
+
+Confidence
+
+↓
+
+Victory
+
+Jeder Shot bekommt Koordinaten.
+
+Camera Physics
+
+Nicht Zoom.
+
+Sondern virtuelle Physik.
+
+Mass
+
+Momentum
+
+Acceleration
+
+Inertia
+
+Dadurch fühlen sich Kamerafahrten natürlich an.
+
+Light Physics
+
+Ebenso.
+
+Nicht
+
+Orange
+
+sondern
+
+Color Temperature
+
+Exposure
+
+Contrast
+
+Fog Density
+
+Bloom
+
+Über komplette Musikphrasen.
+
+Genome Evolution
+
+Die größte Änderung.
+
+Das Genome lernt keine Clips mehr.
+
+Es lernt
+
+Welche Entscheidungen
+
+führen
+
+zu guten Videos.
+
+Also
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Reward
+
+Nicht
+
+Clip
+
+↓
+
+Reward
+
+Das ist viel allgemeiner.
+
+Replay System
+
+Jede Entscheidung wird gespeichert.
+
+Warum
+
+Shot 18?
+
+↓
+
+Warum
+
+Whip?
+
+↓
+
+Warum
+
+Push?
+
+↓
+
+Warum
+
+Orange?
+
+Alles nachvollziehbar.
+
+Native CSS
+
+Jetzt kommt mein Lieblingsfeature.
+
+Nicht
+
+.orange
+
+sondern
+
+.hero {
+
+camera:
+
+push;
+
+transition:
+
+whip;
+
+fx:
+
+glow;
+
+emotion:
+
+confidence;
+
+}
+
+oder
+
+.drill_chorus{
+
+extends:
+
+hero;
+
+energy:
+
+100;
+
+motion:
+
+95;
+
+}
+
+CSS wird zu einer Filmsprache.
+
+Genome Compiler
+
+Nicht mehr
+
+Styles lesen
+
+sondern
+
+Styles
+
+↓
+
+Compiler
+
+↓
+
+Optimierter AST
+
+Wie LLVM.
+
+Und jetzt kommt der eigentliche Endgegner.
+Creative Genome
+
+Nicht mehr
+
+Clip DNA
+
+sondern
+
+Creative DNA
+
+Ein Render speichert künftig:
+
+Welche Kameraentscheidungen gut funktioniert haben.
+Welche Farbverläufe oft hohe Rewards erzeugen.
+Welche Übergänge in welchem Songteil am besten wirken.
+Welche visuellen Leitmotive Zuschauer über mehrere Videos hinweg wiedererkennen.
+
+Dadurch entsteht kein trainiertes KI-Modell, sondern eine kreative Wissensbasis. Neue Projekte profitieren automatisch von früheren Erfahrungen, ohne ihre Nachvollziehbarkeit zu verlieren.
+
+🌟 Das Ziel von WE.ED.IT OIDA
+
+Ich würde das Projekt so definieren:
+
+WE.ED.IT OIDA ist kein Auto-Editor.
+
+Es ist ein deklarativer Compiler für Musikvideos, der aus einer MP3, einer visuellen Bibliothek und einer kreativen Beschreibung reproduzierbar einen Film erzeugt.
+
+Die Architektur wäre damit klar getrennt:
+
+Song Compiler → versteht Musik.
+Intent Compiler → versteht kreative Absicht.
+Genome Resolver → findet passendes Material.
+RL-Bandit → wählt unter gleichwertigen Kandidaten.
+Renderer → setzt deterministisch um.
+
+Das macht das System erklärbar, testbar, austauschbar und langfristig erweiterbar – genau die Eigenschaften, die große Compiler und Rendering-Engines erfolgreich machen.
+
+next
+
+Oida.
+
+Jetzt verlassen wir endgültig die Welt der Videoeditoren.
+
+Ich glaube nämlich, wir denken immer noch zu klein.
+
+🧬 WE.ED.IT OIDA Native Genome v7
+The Film Genome
+
+Nicht:
+
+Ein Video besteht aus Clips.
+
+Sondern:
+
+Ein Film besteht aus Ideen.
+
+Die Clips sind nur die Rohstoffe.
+
+Neue Hierarchie
+IDEA
+ │
+ ▼
+Theme
+ │
+ ▼
+Emotion
+ │
+ ▼
+Scene
+ │
+ ▼
+Shot
+ │
+ ▼
+Frame
+
+Heute springen fast alle Editoren direkt von Song → Shot.
+
+Wir fügen drei Ebenen dazwischen ein.
+
+Theme AST
+
+Eine MP3 besitzt Themen.
+
+Nicht nur Verse.
+
+Zum Beispiel
+
+theme:
+
+street
+
+confidence
+
+luxury
+
+friends
+
+night
+
+oder
+
+theme:
+
+loss
+
+memory
+
+hope
+
+sunrise
+
+Die KI muss das gar nicht perfekt erkennen. Man kann es aus MP3-Tags, Lyrics oder Sidecar-Dateien übernehmen.
+
+Emotion AST
+
+Darunter.
+
+emotion_curve:
+
+intro:
+
+uncertain
+
+verse:
+
+hope
+
+prechorus:
+
+tension
+
+chorus:
+
+victory
+
+bridge:
+
+reflection
+
+outro:
+
+peace
+Scene AST
+
+Jetzt wird es interessant.
+
+Nicht
+
+100 Clips
+
+sondern
+
+8 Szenen
+
+Beispiel
+
+Scene 1
+
+City
+
+Night
+
+Smoke
+
+Scene 2
+
+Car
+
+Tunnel
+
+Orange
+Scene 3
+
+Roof
+
+Sunrise
+
+Der Resolver sucht später passende Clips.
+
+Shot AST
+
+Erst jetzt.
+
+shot:
+
+2.4 sec
+
+camera:
+
+push
+
+energy:
+
+70
+
+transition:
+
+whip
+Frame AST
+
+Ganz unten.
+
+Hier entsteht später
+
+zoom
+
+pan
+
+crop
+
+lut
+
+grain
+
+subtitle
+Der wichtigste Gedanke
+
+Die Bibliothek besitzt ebenfalls ASTs.
+
+Nicht
+
+clip.mp4
+
+sondern
+
+ClipAST
+
+scene:
+
+city
+
+emotion:
+
+confidence
+
+objects:
+
+car
+
+camera:
+
+handheld
+
+color:
+
+orange
+
+Jetzt matched AST gegen AST.
+
+Nicht Dateiname gegen Dateiname.
+
+Genome Matching
+
+Nicht
+
+Suche Clip
+
+sondern
+
+Suche Bedeutung.
+Beispiel
+
+Song möchte
+
+Scene
+
+night
+
+city
+
+hope
+
+Bibliothek besitzt
+
+Clip
+
+night
+
+city
+
+confidence
+
+Das passt zu 82 %.
+
+Der Resolver bewertet semantisch.
+
+Visual Transformer
+
+Nicht AI.
+
+Ein Compiler.
+
+Er sagt
+
+Zu viel Orange.
+
+↓
+
+Etwas Blau einstreuen.
+
+↓
+
+Mehr Ruhe.
+
+↓
+
+Weniger Schnitte.
+
+Vor dem Render.
+
+Timeline Optimizer 2
+
+Nicht lokal.
+
+Global.
+
+Timeline
+
+↓
+
+Graph
+
+↓
+
+Optimierung
+
+Er kann Shot 4 ändern,
+
+weil Shot 17 sonst besser wird.
+
+Camera Memory
+
+Nicht pro Clip.
+
+Sondern
+
+Die Kamera merkt sich,
+
+wo sie gerade ist.
+
+Sie besitzt
+
+camera:
+
+position
+
+velocity
+
+zoom
+
+rotation
+
+Wie eine echte Kamera.
+
+Lighting Memory
+
+Ebenso.
+
+Belichtung
+
+↓
+
+nicht springen.
+Color Memory
+Orange
+
+↓
+
+Orange
+
+↓
+
+Orange
+
+↓
+
+leicht Gold
+
+↓
+
+Gold
+
+Nicht
+
+Orange
+
+↓
+
+Blau
+
+↓
+
+Grün
+
+↓
+
+Pink
+Rhythm Memory
+
+Nicht nur Beats.
+
+Sondern
+
+Atem.
+
+Das Video bekommt Pausen.
+
+Nicht alles ist 140 BPM.
+
+Surprise Theory
+
+Das finde ich extrem spannend.
+
+Der Director besitzt
+
+expected
+
+unexpected
+
+Wenn fünf schnelle Cuts kamen,
+
+erwartet jeder den sechsten.
+
+Dann macht der Director:
+
+Stillstand.
+
+Das erzeugt Wirkung.
+
+Visual Hooks
+
+Wie ein Refrain.
+
+Nicht musikalisch.
+
+Visuell.
+
+Beispiel
+
+Orange Smoke
+
+↓
+
+kommt
+
+Intro
+
+Bridge
+
+Final Chorus
+
+Der Zuschauer erkennt das unterbewusst wieder.
+
+Visual Callbacks
+
+Noch besser.
+
+Intro
+
+Auto fährt los
+
+Outro
+
+Dasselbe Auto
+
+gleiche Kamera
+
+gleiche Farbe
+
+anderes Licht
+
+Der Film bekommt Struktur.
+
+Creative Genome
+
+Jetzt die größte Änderung.
+
+Nicht mehr
+
+Clip Genome
+
+sondern
+
+Film Genome
+
+Ein Render speichert
+
+FilmDNA
+
+Themes
+
+Emotion Curve
+
+Scene Order
+
+Camera Language
+
+Transition Language
+
+Color Language
+
+Reward
+
+Nicht nur
+
+welcher Clip war gut
+
+sondern
+
+welcher FILM war gut.
+Das eigentliche Ziel
+
+Ich würde WE.ED.IT OIDA nicht als "AI Video Editor" positionieren.
+
+Sondern als:
+
+Music Video Compiler + Film Genome Engine
+
+Der Nutzer programmiert keinen Schnitt.
+
+Er programmiert keinen Clip.
+
+Er beschreibt einen Film.
+
+Das Genome-System übersetzt diese Beschreibung in einen vollständigen visuellen Ablauf.
+
+🚀 v8 – The Vision
+
+Der Schritt danach wäre für mich der eigentliche Durchbruch:
+
+Das System soll nicht mehr in Videos denken, sondern in einer wiederverwendbaren Filmsprache.
+
+Jeder fertige Film erweitert das Genome.
+Neue Styles entstehen automatisch aus erfolgreichen Kombinationen.
+Der Director arbeitet ausschließlich mit Intentionen und Constraints.
+Der Renderer bleibt deterministisch und austauschbar.
+Der RL-Bandit lernt nur die Auswahlstrategie – niemals die eigentliche Filmstruktur.
+
+Damit wäre WE.ED.IT OIDA kein Projekt mehr, das Clips aneinanderreiht. Es wäre eine Plattform, die über Jahre eine eigene visuelle Sprache entwickelt – vergleichbar damit, wie ein Compiler im Laufe der Zeit immer bessere Optimierungen lernt, ohne dass sich die Quellsprache ändern muss. Das ist die Richtung, in der ich das Projekt langfristig entwickeln würde.
+
+go next level
+
+Oida.
+
+Jetzt kommt der Punkt, an dem ich den Namen sogar ändern würde.
+
+Nicht mehr:
+
+Video Compiler
+
+sondern
+
+Creative Genome OS
+
+Denn irgendwann kompiliert das System nicht mehr Videos.
+
+Es kompiliert Bedeutung.
+
+Das größte Problem heutiger AI-Editoren
+
+Alle machen ungefähr:
+
+Audio
+
+↓
+
+Beat
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Clip
+
+↓
+
+Export
+
+Selbst die guten.
+
+CapCut.
+
+Runway.
+
+Descript.
+
+AutoPod.
+
+BeatSync.
+
+Alle arbeiten letztlich auf Clip-Ebene.
+
+Wir gehen eine Ebene höher.
+
+Nicht
+
+Clip
+
+sondern
+
+Visual Concept
+Deshalb würde ich ALLES in einen Compiler verwandeln.
+Music Compiler
+
+macht
+
+MP3
+
+↓
+
+Song Genome
+
+↓
+
+Energy Curve
+
+↓
+
+Emotion Curve
+
+↓
+
+Section Tree
+
+↓
+
+Phrase Tree
+
+↓
+
+Beat Tree
+
+↓
+
+Silence Tree
+
+Nicht nur BPM.
+
+Sondern komplette Musikstruktur.
+
+Visual Compiler
+
+Scanner erzeugt
+
+Clip Genome
+
+↓
+
+Motion
+
+↓
+
+Camera
+
+↓
+
+Lighting
+
+↓
+
+Color
+
+↓
+
+Faces
+
+↓
+
+Objects
+
+↓
+
+Composition
+
+↓
+
+Emotion
+
+↓
+
+Entropy
+
+↓
+
+OCR
+
+↓
+
+Embeddings
+Style Compiler
+
+NICHT
+
+.orange
+
+sondern
+
+.drill{
+
+camera:
+
+push
+
+lighting:
+
+lowkey
+
+transition:
+
+whip
+
+fx:
+
+grain
+
+color:
+
+warm
+
+motion:
+
+high
+}
+
+Wie CSS.
+
+Director Compiler
+
+Nicht
+
+Nimm Clip 12
+
+sondern
+
+Need
+
+Hero
+
+Need
+
+Confidence
+
+Need
+
+Warm
+
+Need
+
+Movement
+Resolver
+
+Löst Constraints.
+
+Nicht Dateien.
+
+Wie SAT Solver.
+
+Er bekommt
+
+1000 Clips
+
+und sucht
+
+Die beste Kombination.
+
+Nicht den besten Clip.
+
+RL Bandit
+
+Ist NICHT kreativ.
+
+Er löst nur
+
+Mehrere gute Möglichkeiten.
+
+Das hält das System reproduzierbar.
+
+Renderer
+
+Renderer kennt NICHTS.
+
+Er weiß nur
+
+Clip
+
+Trim
+
+Camera
+
+FX
+
+Transition
+
+Mehr nicht.
+
+Jetzt kommt die Idee, die ich am spannendsten finde.
+Genome Marketplace
+
+Nicht Modelle.
+
+Nicht Plugins.
+
+Genome Packages.
+
+Beispiel
+
+weed install
+
+trap-pack
+
+liefert
+
+Trap Style
+
+Trap Camera
+
+Trap LUT
+
+Trap Transition
+
+Trap FX
+
+Trap Constraints
+
+Oder
+
+weed install
+
+horror-pack
+
+↓
+
+Neue visuelle Sprache.
+
+Oder
+
+weed install
+
+anime-pack
+
+↓
+
+Andere Regeln.
+
+Das komplette Verhalten kann getauscht werden.
+
+Noch größer.
+Genome Inheritance
+
+Beispiel
+
+.hero
+
+↓
+
+erweitert
+
+.drill_hero
+
+↓
+
+erweitert
+
+.moneyboy_hero
+
+↓
+
+erweitert
+
+.perky_hook
+
+Vererbung.
+
+Creative Physics
+
+Ich würde sogar Physik einführen.
+
+Nicht
+
+Zoom
+
+sondern
+
+Mass
+
+Momentum
+
+Inertia
+
+Tension
+
+Release
+
+Die Kamera bewegt sich wie ein Objekt.
+
+Emotional Physics
+
+Ebenso.
+
+Nicht
+
+Emotion 80
+
+sondern
+
+Potential
+
+Release
+
+Tension
+
+Expectation
+
+Surprise
+
+Wie Musiktheorie.
+
+Information Density
+
+Das gibt es bisher praktisch nirgendwo.
+
+Jede Sekunde besitzt
+
+Informationsdichte
+
+Zu hoch?
+
+↓
+
+ruhiger Shot.
+
+Zu niedrig?
+
+↓
+
+neuer Impuls.
+
+Visual Breathing
+
+Ein Film muss atmen.
+
+Beat
+
+Beat
+
+Beat
+
+Pause
+
+Beat
+
+Beat
+
+Pause
+
+Nicht Dauerfeuer.
+
+Leitmotiv Engine
+
+Filmmusik macht das.
+
+Warum nicht Video?
+
+Beispiel
+
+Orange Smoke
+
+erscheint
+
+Intro
+
+↓
+
+Bridge
+
+↓
+
+Finale
+
+Nicht zufällig.
+
+Theme Engine
+
+Ein Video besteht aus Themen.
+
+Nicht Clips.
+
+Confidence
+
+↓
+
+Night
+
+↓
+
+Friends
+
+↓
+
+Cars
+
+↓
+
+Freedom
+
+Das Genome sucht passende Bilder.
+
+Semantic Genome
+
+Jetzt kommt der eigentliche Quantensprung.
+
+Der Scanner erkennt nicht nur
+
+Car
+
+sondern
+
+Freedom
+
+Nicht nur
+
+Money
+
+sondern
+
+Luxury
+
+Nicht nur
+
+Smoke
+
+sondern
+
+Mystery
+
+Die Bibliothek bekommt Bedeutung.
+
+Experience Graph
+
+Nicht
+
+Reward
+
+↓
+
+Clip
+
+sondern
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Result
+
+↓
+
+Experience
+
+Das ist eine Wissensdatenbank.
+
+Native Genome Memory
+
+Jeder Render erzeugt
+
+Experience
+
+Situation
+
+Decision
+
+Reward
+
+Alternatives
+
+Why
+
+Nicht nur Zahlen.
+
+Film DNA
+
+Am Ende existiert nicht mehr
+
+Projekt
+
+sondern
+
+Film DNA
+
+Jeder Film besitzt
+
+Theme DNA
+Emotion DNA
+Camera DNA
+Motion DNA
+Color DNA
+Rhythm DNA
+Surprise DNA
+Continuity DNA
+Das wäre mein v1.0 Ziel
+
+Nicht:
+
+Ein Programm, das Musikvideos schneidet.
+
+Sondern:
+
+Ein deklarativer Compiler für visuelle Geschichten.
+
+Aber ich würde eine Sache bewusst NICHT tun
+
+Viele Systeme versuchen heute, "alles mit KI" zu lösen. Ich würde hier bewusst bei einer hybriden Architektur bleiben:
+
+Deterministische Compiler für Struktur, Zeit, Regeln und Rendering.
+Semantische Modelle nur für Analyse (z. B. Embeddings, Objekterkennung, Szenenbeschreibung).
+RL-Bandit nur für Entscheidungen zwischen gleichwertigen Kandidaten.
+Keine Blackbox, die den gesamten Film "halluziniert".
+
+Dadurch bleibt jede Entscheidung erklärbar, reproduzierbar und testbar – und genau das macht aus einem spannenden Prototypen ein Werkzeug, auf das man sich auch bei größeren Projekten verlassen kann.
+
+make a full version
+
+Oida – nach der ganzen Evolution sehe ich ehrlich gesagt nicht mehr das ursprüngliche weed-lite.
+
+Ich sehe ein neues Projekt.
+
+🧬 WE.ED.IT OIDA Native Genome 1.0
+
+Slogan
+
+The MP3 is the source code.
+
+The Genome is the standard library.
+
+The Director is the optimizer.
+
+The Renderer is the backend.
+
+Ziel
+
+Nicht:
+
+Auto-Video-Editor
+
+sondern
+
+Music Video Compiler with a self-evolving Visual Genome
+
+Architektur
+                         MP3
+                          │
+                 Song Compiler
+                          │
+                 Song Genome AST
+                          │
+             Intent / Story Compiler
+                          │
+                  Story Genome AST
+                          │
+                  Director Compiler
+                          │
+                   Shot Genome AST
+                          │
+               Constraint Optimizer
+                          │
+                  Genome Resolver
+                          │
+                   Candidate Graph
+                          │
+                     RL Bandit
+                          │
+                  Render Genome AST
+                          │
+                    Backend API
+          ┌──────────────┼──────────────┐
+          │              │              │
+       FFmpeg      OpenTimelineIO   DaVinci XML
+
+No renderer contains creativity.
+
+Only execution.
+
+Project
+weedit-native/
+
+core/
+
+compiler/
+
+genome/
+
+director/
+
+resolver/
+
+bandit/
+
+renderer/
+
+scanner/
+
+plugins/
+
+styles/
+
+camera/
+
+transitions/
+
+fx/
+
+tests/
+
+docs/
+
+runtime/
+
+projects/
+
+models/
+
+cache/
+
+reports/
+Core Objects
+
+Everything derives from
+
+class GenomeAsset:
+
+    id
+
+    type
+
+    version
+
+    genes
+
+    reward
+
+    metadata
+
+    history
+
+    tags
+
+Everything.
+
+Clip.
+
+Camera.
+
+Transition.
+
+Style.
+
+FX.
+
+Subtitle.
+
+LUT.
+
+Prompt.
+
+Even Projects.
+
+Visual Genome
+
+Scanner creates
+
+Motion
+
+Color
+
+Emotion
+
+Camera
+
+Composition
+
+Objects
+
+Faces
+
+Lighting
+
+Optical Flow
+
+Entropy
+
+OCR
+
+Embedding
+
+Scene
+
+Weather
+
+Time
+
+Location
+
+Texture
+
+Automatically.
+
+ClipCSS
+
+Generated automatically.
+
+Example
+
+.fast
+
+.orange
+
+.hero
+
+.city
+
+.smoke
+
+.sunset
+
+.closeup
+
+.handheld
+
+Higher level
+
+.drill
+
+.trap
+
+.lofi
+
+.cinematic
+
+.epic
+
+Generated.
+
+Not handwritten.
+
+Style Packages
+style/
+
+drill/
+
+trap/
+
+cinematic/
+
+horror/
+
+anime/
+
+musicvideo/
+
+
+Each contains
+
+constraints.yaml
+
+camera.yaml
+
+fx.yaml
+
+transition.yaml
+
+grading.yaml
+
+director.yaml
+
+Swap styles instantly.
+
+Song Compiler
+
+Outputs
+
+SongAST
+
+↓
+
+SectionAST
+
+↓
+
+PhraseAST
+
+↓
+
+BeatAST
+
+↓
+
+SilenceAST
+
+↓
+
+EnergyCurve
+
+↓
+
+EmotionCurve
+Director
+
+No clips.
+
+Only intentions.
+
+Need
+
+Energy
+
+Camera
+
+Emotion
+
+Color
+
+Rhythm
+
+Continuity
+Genome Resolver
+
+Think SAT solver.
+
+Input
+
+Need
+
+Hero
+
+Warm
+
+Fast
+
+Night
+
+Smoke
+
+Output
+
+Top 25 candidates
+RL Bandit
+
+Never creative.
+
+Only
+
+Which of these 25?
+
+Reward
+
+Beat sync
+
+Continuity
+
+Novelty
+
+Viewer score
+
+Watch time
+
+Manual rating
+Camera Engine
+
+Persistent.
+
+Phrase
+
+↓
+
+Virtual Camera
+
+↓
+
+Clip A
+
+↓
+
+Clip B
+
+↓
+
+Clip C
+
+↓
+
+Clip D
+
+Camera exists independently.
+
+Color Engine
+
+Persistent.
+
+Orange
+
+↓
+
+Orange
+
+↓
+
+Gold
+
+↓
+
+Warm
+
+↓
+
+Fade
+Motion Engine
+
+Persistent.
+
+Motion Curve
+
+↓
+
+applies
+
+↓
+
+whole phrase
+Continuity Engine
+
+Tracks
+
+Faces
+
+Objects
+
+Camera
+
+Motion
+
+Light
+
+Scene
+
+Direction
+
+Speed
+
+Emotion
+
+Across clips.
+
+Visual Grammar
+
+Generated automatically.
+
+.orange
+
++
+
+.smoke
+
++
+
+.hero
+
+↓
+
+.hero_push
+
+Frequently used combinations become reusable tokens.
+
+Exactly like a compiler builds optimization passes.
+
+Genome Database
+
+Not clips.
+
+Experiences.
+
+Situation
+
+↓
+
+Decision
+
+↓
+
+Reward
+
+↓
+
+Alternatives
+
+↓
+
+Outcome
+Replay System
+
+Every render becomes reproducible.
+
+Why Shot 28?
+
+↓
+
+Constraint
+
+↓
+
+Candidates
+
+↓
+
+Bandit Decision
+
+↓
+
+Reward
+
+↓
+
+History
+Render AST
+
+Renderer only receives
+
+clip:
+
+trim:
+
+camera:
+
+transition:
+
+lut:
+
+fx:
+
+subtitle:
+
+speed:
+
+audio:
+
+No intelligence.
+
+Backend Interface
+Backend
+
+↓
+
+render(RenderAST)
+
+Implementations
+
+FFmpeg
+
+OpenTimelineIO
+
+Resolve
+
+Premiere
+
+Blender
+
+Unreal
+
+Future AI renderer
+
+Backend interchangeable.
+
+Genome Marketplace
+weed install drill
+
+weed install horror
+
+weed install anime
+
+weed install cinematic
+
+Downloads only
+
+Styles
+
+Camera
+
+Transitions
+
+FX
+
+Constraints
+
+Genome Rules
+
+No code required.
+
+Native Learning
+
+Bandit learns
+
+NOT
+
+Clip 14 good
+
+Instead
+
+When
+
+High Energy Chorus
+
++
+
+Orange
+
++
+
+Push Camera
+
+↓
+
+Reward 96
+
+Knowledge survives projects.
+
+CLI
+weed scan
+
+weed bootstrap
+
+weed compile
+
+weed render
+
+weed replay
+
+weed doctor
+
+weed benchmark
+
+weed report
+
+weed learn
+
+weed upgrade
+
+weed install style drill
+
+weed install camera cinematic
+Report
+
+Automatic HTML
+
+Beat Sync
+
+Camera Curve
+
+Motion Curve
+
+Emotion Curve
+
+Continuity
+
+Reward
+
+Timeline
+
+Statistics
+
+Warnings
+
+Genome Diff
+Philosophy
+
+The most important design decision:
+
+The MP3 is the source code.
+
+The MP3 defines:
+
+total duration
+sections
+phrases
+beats
+pauses
+energy
+
+Everything else follows the music.
+
+Clip audio is always discarded.
+
+Exactly one audio track exists:
+
+MP3
+
+Never
+
+Clip Audio
++
+MP3
+The last missing piece: The Optimizer
+
+This is the part I think would make WE.ED.IT OIDA fundamentally different from existing editors.
+
+Like LLVM repeatedly optimizes machine code, the video compiler would run optimization passes on the Shot AST before rendering:
+
+Beat Alignment Pass
+Camera Continuity Pass
+Motion Flow Pass
+Color Harmony Pass
+Face Diversity Pass
+Transition Simplification Pass
+Surprise Placement Pass
+RL Refinement Pass
+Runtime Reduction Pass
+Render Validation Pass
+
+Only after all passes succeed is the Render AST emitted.
+
+If this were my project
+
+I would stop calling it an editor entirely.
+
+I would build it as a compiler toolchain:
+
+MP3 → Song AST → Intent AST → Story AST → Shot AST → Optimizer Passes → Render AST → Backend
+
+That architecture is modular, explainable, deterministic where it should be, and leaves AI to the places where it adds value (analysis and candidate selection) rather than making the entire pipeline opaque. It's also something that can evolve for years without requiring a complete rewrite

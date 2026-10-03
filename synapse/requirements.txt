@@ -1,0 +1,13 @@
+# SYNAPSE AUDIO DYNAMICS - Python-Abhaengigkeiten
+# Diese Liste ist absichtlich minimal. Externe APIs (TikTok, Meta, Spotify, Ethereum)
+# brauchen zusaetzlich manuell eingerichtete Accounts/Credentials - siehe README.
+
+# Lokale Audio/Video-Pipeline (CLAW2-Engine-Kompatibilitaet)
+numpy>=1.24
+ffmpeg-python>=0.2.0
+
+# HTTP / API-Calls (von Nodes benutzt, Credentials separat)
+requests>=2.31
+
+# Fuer verteilte Hive-Mind (optional, Nodes funktionieren auch mit JSON-Datei)
+# redis>=5.0

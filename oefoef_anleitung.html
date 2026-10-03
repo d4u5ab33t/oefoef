@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>oefoef — Handbuch zur Beat-Sync-Engine</title>
+<style>
+  :root{
+    --bg: #0d0d10;
+    --bg-panel: #16161b;
+    --bg-card: #1c1c22;
+    --line: #2a2a32;
+    --text: #e9e7e1;
+    --text-dim: #9a98a3;
+    --amber: #e2a23b;
+    --amber-dim: #7a5b26;
+    --teal: #4fd6d6;
+    --teal-dim: #2a5c5c;
+    --mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+    --serif-body: "IBM Plex Sans", system-ui, sans-serif;
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--serif-body);
+    line-height:1.65;
+    font-size:16px;
+  }
+  a{color:var(--teal);}
+  code, .mono{font-family:var(--mono); font-size:0.88em;}
+
+  /* ---- layout ---- */
+  .shell{display:flex; max-width:1280px; margin:0 auto;}
+  nav.side{
+    width:260px; flex-shrink:0; position:sticky; top:0; height:100vh;
+    overflow-y:auto; padding:32px 20px 40px 32px; border-right:1px solid var(--line);
+  }
+  nav.side .brand{
+    font-family:var(--sans); font-weight:700; font-size:1.05rem; letter-spacing:0.02em;
+    color:var(--amber); margin-bottom:2px;
+  }
+  nav.side .brand-sub{color:var(--text-dim); font-size:0.78rem; margin-bottom:28px;}
+  nav.side ul{list-style:none; margin:0; padding:0;}
+  nav.side li{margin:0;}
+  nav.side a{
+    display:block; color:var(--text-dim); text-decoration:none; font-size:0.86rem;
+    padding:6px 0; border-left:2px solid transparent; padding-left:12px;
+    transition:color .15s, border-color .15s;
+  }
+  nav.side a:hover{color:var(--text); border-left-color:var(--amber-dim);}
+  nav.side .grp-title{
+    color:var(--text); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;
+    margin:22px 0 4px 12px; opacity:0.55;
+  }
+
+  main{flex:1; min-width:0; padding:56px 56px 120px 56px;}
+  @media (max-width:900px){
+    .shell{display:block;}
+    nav.side{position:relative; height:auto; width:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px;}
+    main{padding:36px 22px;}
+  }
+
+  h1,h2,h3,h4{font-family:var(--sans); font-weight:600; color:var(--text); line-height:1.25;}
+  section{max-width:760px;}
+
+  .hero{max-width:820px; margin-bottom:64px;}
+  .hero .kicker{
+    color:var(--amber); font-family:var(--mono); font-size:0.82rem; margin-bottom:14px;
+  }
+  .hero h1{font-size:2.5rem; margin:0 0 14px 0;}
+  .hero p.lead{font-size:1.08rem; color:var(--text-dim); max-width:620px;}
+  .hero .meta-row{
+    display:flex; gap:22px; margin-top:26px; font-family:var(--mono); font-size:0.78rem;
+    color:var(--text-dim); flex-wrap:wrap;
+  }
+  .hero .meta-row span b{color:var(--text);}
+
+  h2.section-title{
+    font-size:1.5rem; margin:0 0 6px 0; padding-top:6px;
+    border-top:1px solid var(--line); padding-top:20px;
+  }
+  section + section h2.section-title{margin-top:8px;}
+  .section-sub{color:var(--text-dim); font-size:0.94rem; margin:0 0 24px 0; max-width:640px;}
+  section{padding-bottom:52px;}
+
+  h3{font-size:1.08rem; margin:30px 0 10px 0;}
+  p{color:#cfcdc7;}
+
+  pre{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; overflow-x:auto; font-family:var(--mono); font-size:0.84rem;
+    color:#d9d3c4; line-height:1.6;
+  }
+  pre .c{color:var(--text-dim);}
+  code.inline{
+    background:var(--bg-panel); padding:1px 6px; border-radius:var(--radius);
+    border:1px solid var(--line); color:var(--teal);
+  }
+
+  table{width:100%; border-collapse:collapse; margin:14px 0 6px 0; font-size:0.92rem;}
+  th{
+    text-align:left; font-family:var(--sans); font-weight:600; font-size:0.76rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--text-dim);
+    border-bottom:1px solid var(--line); padding:8px 12px 8px 0;
+  }
+  td{border-bottom:1px solid var(--line); padding:10px 12px 10px 0; vertical-align:top; color:#d6d4ce;}
+  td code, th code{color:var(--amber);}
+  tr:last-child td{border-bottom:none;}
+
+  .flag{font-family:var(--mono); color:var(--amber); white-space:nowrap;}
+
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+  @media (max-width:640px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .card .tag{
+    font-family:var(--mono); font-size:0.82rem; color:var(--teal); display:block; margin-bottom:6px;
+  }
+  .card p{margin:0; font-size:0.9rem; color:var(--text-dim);}
+
+  .pipeline{border-left:2px solid var(--amber-dim); margin:22px 0 22px 8px; padding-left:24px;}
+  .pipeline .step{position:relative; padding-bottom:26px;}
+  .pipeline .step:last-child{padding-bottom:0;}
+  .pipeline .step::before{
+    content:""; position:absolute; left:-29px; top:4px; width:9px; height:9px;
+    border-radius:50%; background:var(--amber); box-shadow:0 0 0 3px var(--bg);
+  }
+  .pipeline .step h4{margin:0 0 4px 0; font-size:0.98rem;}
+  .pipeline .step p{margin:0; font-size:0.89rem; color:var(--text-dim);}
+
+  .fn{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-card);
+    margin:14px 0; padding:14px 18px 16px 18px;
+  }
+  .fn .sig{
+    font-family:var(--mono); font-size:0.85rem; color:var(--amber); display:block;
+    margin-bottom:8px; word-break:break-word;
+  }
+  .fn .sig .pn{color:var(--teal);}
+  .fn p{margin:0; font-size:0.89rem; color:var(--text-dim);}
+
+  .note{
+    border-left:3px solid var(--teal-dim); background:var(--bg-panel);
+    padding:12px 16px; border-radius:0 var(--radius) var(--radius) 0; font-size:0.88rem;
+    color:var(--text-dim); margin:16px 0;
+  }
+  .note b{color:var(--teal);}
+  .warn{border-left-color:var(--amber-dim);}
+  .warn b{color:var(--amber);}
+
+  .fileset{list-style:none; padding:0; margin:14px 0;}
+  .fileset li{
+    font-family:var(--mono); font-size:0.86rem; padding:9px 0; border-bottom:1px solid var(--line);
+    display:flex; gap:14px;
+  }
+  .fileset li:last-child{border-bottom:none;}
+  .fileset li span.ext{color:var(--amber); min-width:150px; display:inline-block;}
+  .fileset li span.desc{color:var(--text-dim); font-family:var(--serif-body);}
+
+  footer{border-top:1px solid var(--line); padding:32px 56px; color:var(--text-dim); font-size:0.8rem;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav class="side">
+  <div class="brand">oefoef</div>
+  <div class="brand-sub">Beat-Sync Engine — Handbuch</div>
+  <ul>
+    <li><a href="#ueberblick">Überblick</a></li>
+    <li><a href="#quickstart">Schnellstart</a></li>
+    <li><a href="#cli">CLI-Referenz</a></li>
+    <li><a href="#ablauf">Programmablauf</a></li>
+    <li class="grp-title">Rhythmus-Engine</li>
+    <li><a href="#rhythm-pattern">Rhythm Pattern</a></li>
+    <li><a href="#sync-type">Sync Type</a></li>
+    <li><a href="#cut-style">Cut Style</a></li>
+    <li><a href="#tuning">Tuning-Konstanten</a></li>
+    <li class="grp-title">Technik</li>
+    <li><a href="#module">Modul-Übersicht</a></li>
+    <li><a href="#funktionen">Funktionsreferenz</a></li>
+    <li><a href="#outputs">Output-Dateien</a></li>
+    <li><a href="#hinweise">Hinweise &amp; Verhalten</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="hero">
+    <div class="kicker">main.py · Referenzdokumentation</div>
+    <h1>1-Click Beat-Sync Video Editor</h1>
+    <p class="lead">oefoef verwandelt einen MP3-Song und einen lokalen Clip-Pool automatisch in ein
+    musiksynchron geschnittenes Video. Alles läuft offline über direkten ffmpeg-Subprocess-Aufruf —
+    keine Cloud-API, keine GPU-Pflicht.</p>
+    <div class="meta-row">
+      <span>Datei: <b>J:\Oidasheim\oefoef\main.py</b></span>
+      <span>Sprache: <b>Python 3</b></span>
+      <span>Renderer: <b>ffmpeg (Default), optional Unreal MRQ</b></span>
+    </div>
+  </div>
+
+  <section id="ueberblick">
+    <h2 class="section-title">Überblick</h2>
+    <p class="section-sub">Was die Pipeline tut, bevor überhaupt ein Kommando ausgeführt wird.</p>
+
+    <p>Das Skript nimmt Songs aus einem konfigurierten Ordner (<code class="inline">FAVs/**</code>),
+    analysiert sie akustisch (BPM, Beatgrid, Song-Struktur, Energie-Verlauf, Stimm-Tonhöhe) und
+    kombiniert das Ergebnis mit einem semantisch getaggten Pool aus Videoclips. Für jeden Song wird
+    eine Timeline aus Clip-Segmenten gebaut, die exakt auf Beats, Struktur-Wechsel und Energie-Kurven
+    des Songs einschnappt — inklusive automatischer Klassifikation von Rhythmus-Muster, Sync-Genauigkeit
+    und Schnitt-Art pro Segment.</p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Input</span>
+        <p>MP3-Dateien (rekursiv gescannt) + ein lokaler Ordner mit Videoclips ("Clip-Pool" / "Globe").</p>
+      </div>
+      <div class="card">
+        <span class="tag">Output</span>
+        <p>Fertiges MP4 pro Song &amp; Plattform, plus EDL-, Genome-, Strategy- und Metadata-Dateien.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Plattformen</span>
+        <p><code class="inline">full</code> (16:9 / YouTube) und <code class="inline">tiktok</code> (nur
+        Clips aus konfigurierten TikTok-Unterordnern).</p>
+      </div>
+      <div class="card">
+        <span class="tag">Lernender Teil</span>
+        <p>Jedes Rendering schreibt ein Reward-Signal in die Clip-Pool-Datenbank zurück, das künftige
+        Clip-Auswahl beeinflusst.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quickstart">
+    <h2 class="section-title">Schnellstart</h2>
+    <p class="section-sub">Die vier Aufrufe, mit denen die meiste Arbeit erledigt ist.</p>
+
+    <pre><span class="c"># Batch-Modus: verarbeitet ALLE MP3s in FAVs/**, erzeugt full + tiktok Versionen</span>
+python main.py
+
+<span class="c"># Nur einen einzelnen Song verarbeiten</span>
+python main.py --song "J:/path/to/song.mp3"
+
+<span class="c"># Nur die ersten 5 gefundenen Songs (zum Testen)</span>
+python main.py --limit 5
+
+<span class="c"># Clip-Pool-Cache komplett neu analysieren (z.B. nach vielen neuen Clips)</span>
+python main.py --rebuild-globe</pre>
+
+    <div class="note">
+      <b>Wichtig:</b> Wird <code class="inline">main.py</code> ganz ohne Parameter gestartet, erkennt es das
+      selbst (<code class="inline">no_explicit_args</code>) und schaltet automatisch in den Batch-Modus:
+      alle gefundenen Songs, jeweils in <code class="inline">full</code> UND <code class="inline">tiktok</code>.
+      Sobald irgendein Flag gesetzt ist, wird nur noch die per <code class="inline">--platform</code>
+      gewählte Plattform gerendert (Default: <code class="inline">full</code>).
+    </div>
+  </section>
+
+  <section id="cli">
+    <h2 class="section-title">CLI-Referenz</h2>
+    <p class="section-sub">Alle Kommandozeilen-Parameter von <code class="inline">main.py</code>.</p>
+
+    <table>
+      <tr><th>Flag</th><th>Typ</th><th>Default</th><th>Beschreibung</th></tr>
+      <tr>
+        <td class="flag">--song</td><td>Pfad (String)</td><td>—</td>
+        <td>Verarbeitet nur diesen einen Song. Pfad wird sowohl exakt als auch case-insensitiv gegen
+        die gescannten Songs abgeglichen.</td>
+      </tr>
+      <tr>
+        <td class="flag">--limit</td><td>Integer</td><td>—</td>
+        <td>Beschränkt den Batch-Lauf auf die ersten N gefundenen Songs. Praktisch zum Testen.</td>
+      </tr>
+      <tr>
+        <td class="flag">--rebuild-globe</td><td>Flag</td><td>aus</td>
+        <td>Erzwingt eine komplette Neuanalyse des Clip-Pool-Caches ("flat globe"), unabhängig vom
+        Fresh-Cache-Schwellwert.</td>
+      </tr>
+      <tr>
+        <td class="flag">--output-dir</td><td>Pfad</td><td>—</td>
+        <td>Zielordner für fertige Videos. Ohne Angabe wird pro Song ein Unterordner neben der MP3
+        verwendet (siehe <code class="inline">OUTPUT_SUBDIR_BY_PLATFORM</code>).</td>
+      </tr>
+      <tr>
+        <td class="flag">--style</td><td>String</td><td><code class="inline">cinematic</code></td>
+        <td>Name des lokalen Genome-Style-Pakets aus dem <code class="inline">styles</code>-Ordner
+        (deterministischer Style-Compiler).</td>
+      </tr>
+      <tr>
+        <td class="flag">--platform</td><td><code class="inline">full</code> | <code class="inline">tiktok</code></td>
+        <td><code class="inline">full</code></td>
+        <td>Ausgabeprofil. <code class="inline">tiktok</code> filtert den Clip-Pool auf konfigurierte
+        Unterordner (<code class="inline">TIKTOK_CLIP_SUBDIRS</code>).</td>
+      </tr>
+      <tr>
+        <td class="flag">--renderer</td><td><code class="inline">ffmpeg</code> | <code class="inline">unreal</code></td>
+        <td>config.RENDERER_BACKEND</td>
+        <td>Render-Backend. <code class="inline">unreal</code> (Movie Render Queue) fällt automatisch
+        auf ffmpeg zurück, solange <code class="inline">UNREAL_ENGINE_CMD</code> /
+        <code class="inline">UNREAL_PROJECT_PATH</code> nicht konfiguriert sind.</td>
+      </tr>
+      <tr>
+        <td class="flag">--dry-run</td><td>Flag</td><td>aus</td>
+        <td>Führt nur Analyse + Timeline-Aufbau aus, rendert kein Video. Es wird trotzdem ein
+        <code class="inline">.edl.json</code> geschrieben; es gibt kein Reward-Feedback in die
+        Clip-Pool-DB.</td>
+      </tr>
+      <tr>
+        <td class="flag">--skip-semantics-scan</td><td>Flag</td><td>aus</td>
+        <td>Überspringt den automatischen <code class="inline">song_semantics</code>-Scan zu Beginn
+        des Laufs (spart Zeit, wenn sich an den Songtexten/Metadaten nichts geändert hat).</td>
+      </tr>
+      <tr>
+        <td class="flag">--wong-resolver</td><td>Flag</td><td>aus</td>
+        <td>Fragt zusätzlich pro Segment WONGs GenomeResolver + RLBandit ab und loggt dessen Wahl /
+        Reward-Prediction als reines Vergleichssignal ins EDL. Beeinflusst NICHT, welcher Clip
+        tatsächlich gerendert wird.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="ablauf">
+    <h2 class="section-title">Programmablauf</h2>
+    <p class="section-sub">Was <code class="inline">main()</code> Schritt für Schritt macht.</p>
+
+    <div class="pipeline">
+      <div class="step">
+        <h4>1. Init &amp; Style-Compiler</h4>
+        <p>DB initialisieren (<code class="inline">db.init_db()</code>), gewählten Style deterministisch
+        kompilieren (<code class="inline">compile_style</code>), Nutzergeschmack aus
+        <code class="inline">user_preferences.yaml</code> laden, falls vorhanden.</p>
+      </div>
+      <div class="step">
+        <h4>2. Song-Semantik-Scan</h4>
+        <p>Sofern nicht per <code class="inline">--skip-semantics-scan</code> übersprungen:
+        <code class="inline">song_semantics.scan_and_learn()</code> analysiert Mood-Tags, Slang,
+        420/Weed-Vibe-Score und Beat-Switches der Songs.</p>
+      </div>
+      <div class="step">
+        <h4>3. Hashtag-Nische lernen</h4>
+        <p>Aus allen bekannten Song-Semantiken wird per <code class="inline">viral_strategy.learn_default_niche</code>
+        eine Standard-Hashtag-Nische abgeleitet (Fallback: <code class="inline">DEFAULT_HASHTAG_NICHE</code>).</p>
+      </div>
+      <div class="step">
+        <h4>4. Clip-Pool-Index laden ("flat globe")</h4>
+        <p>Cache aus der DB laden oder komplett neu bauen. Ist der Cache bereits ausreichend "frisch"
+        gefüllt (&gt; <code class="inline">CLIP_POOL_SKIP_SCAN_FRESH_THRESHOLD</code> Clips mit aktueller
+        Analyse-Version), wird der volle Scan übersprungen — außer bei <code class="inline">--rebuild-globe</code>.</p>
+      </div>
+      <div class="step">
+        <h4>5. TikTok-Globe vorbereiten</h4>
+        <p>Falls die Plattform <code class="inline">tiktok</code> gebraucht wird, wird der Clip-Pool auf
+        die konfigurierten TikTok-Unterordner gefiltert.</p>
+      </div>
+      <div class="step">
+        <h4>6. Songs auswählen</h4>
+        <p>Entweder der eine per <code class="inline">--song</code> angegebene Song, oder alle per
+        <code class="inline">mp3_scanner.scan_all_songs()</code> gefundenen (optional per
+        <code class="inline">--limit</code> gekürzt).</p>
+      </div>
+      <div class="step">
+        <h4>7. Audioanalyse mit Prefetch</h4>
+        <p>Ein <code class="inline">ThreadPoolExecutor</code> mit 2 Workern analysiert die Audiodaten
+        des jeweils nächsten Songs bereits im Voraus (Sliding-Window über Futures), während der
+        aktuelle Song weiterverarbeitet wird.</p>
+      </div>
+      <div class="step">
+        <h4>8. Pro Song &amp; Plattform: <code class="inline">process_song()</code></h4>
+        <p>Baut die Timeline, schreibt das EDL, rendert (außer im Dry-Run) und schreibt
+        Genome-/Strategy-/Metadata-Artefakte sowie Reward-Feedback in die Clip-Pool-DB.</p>
+      </div>
+      <div class="step">
+        <h4>9. Abschluss</h4>
+        <p>Zusammenfassung mit Anzahl erfolgreicher/fehlgeschlagener Songs im Log. Bei Ctrl+C wird sauber
+        abgebrochen (Exit-Code 130), laufende Vorab-Analysen werden verworfen statt abgewartet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rhythm-pattern">
+    <h2 class="section-title">Rhythm Pattern</h2>
+    <p class="section-sub">Klassifikation jedes Timeline-Segments über <code class="inline">_detect_rhythm_pattern()</code> —
+    beschreibt, WARUM an dieser Stelle geschnitten wird.</p>
+    <table>
+      <tr><th>Pattern</th><th>Bedeutung</th></tr>
+      <tr><td class="flag">intro</td><td>Erstes Segment der Timeline (Anfang des Videos).</td></tr>
+      <tr><td class="flag">beat_drop</td><td>Exakter Struktur-Wechsel im Song, oder alle
+        <code class="inline">RHYTHM_BEAT_DROP_STRIDE</code> (4) Segmente.</td></tr>
+      <tr><td class="flag">expansion</td><td>Segment plötzlich deutlich länger als das vorherige
+        (Verhältnis &gt; <code class="inline">RHYTHM_EXPANSION_RATIO</code>).</td></tr>
+      <tr><td class="flag">compression</td><td>Segment deutlich kürzer als das vorherige (Verhältnis &lt;
+        <code class="inline">RHYTHM_COMPRESSION_RATIO</code>) — schnellere Schnittfolge.</td></tr>
+      <tr><td class="flag">energy_surge</td><td>Ziel-Energie über <code class="inline">RHYTHM_ENERGY_SURGE</code> — hohe
+        Energie-Spitze.</td></tr>
+      <tr><td class="flag">buildup</td><td>Ziel-Energie unter <code class="inline">RHYTHM_BUILDUP_ENERGY</code> — Energie
+        baut sich erst auf.</td></tr>
+      <tr><td class="flag">stutter_repeat</td><td>Repetition innerhalb des Segments erkannt (Clip wiederholt sich).</td></tr>
+      <tr><td class="flag">peak</td><td>Song-Section-Label ist "high" (Höhepunkt des Songs).</td></tr>
+      <tr><td class="flag">dense_motion</td><td>Informationsdichte über <code class="inline">RHYTHM_DENSE_MOTION_DENSITY</code> —
+        viel Bewegung im Clip.</td></tr>
+      <tr><td class="flag">steady</td><td>Fallback: keines der obigen Kriterien trifft zu — gleichmäßiger Schnitt.</td></tr>
+    </table>
+  </section>
+
+  <section id="sync-type">
+    <h2 class="section-title">Sync Type</h2>
+    <p class="section-sub">Wie präzise ein Segment auf den Beat trifft — berechnet in
+    <code class="inline">_calculate_sync_type()</code>.</p>
+    <table>
+      <tr><th>Typ</th><th>Bedeutung</th></tr>
+      <tr><td class="flag">snap_drop</td><td>Struktur-Grenze im Song, oder Section "high" mit sehr hoher Energie
+        (&gt; <code class="inline">SYNC_SNAP_DROP_ENERGY</code>) — präziser Schnitt auf einen Beat-Drop.</td></tr>
+      <tr><td class="flag">energy_peak</td><td>Section "high", aber unterhalb der Snap-Drop-Schwelle.</td></tr>
+      <tr><td class="flag">breath</td><td>Section "low" — Atemraum in ruhigen Song-Abschnitten.</td></tr>
+      <tr><td class="flag">on_beat</td><td>Energie über <code class="inline">SYNC_ON_BEAT_ENERGY</code> — exakt auf den Beat.</td></tr>
+      <tr><td class="flag">syncopated</td><td>Energie über <code class="inline">SYNC_SYNCOPATED_ENERGY</code> — leicht gegen
+        den Beat versetzt.</td></tr>
+      <tr><td class="flag">polyrhythm</td><td>Fallback bei niedriger Energie — komplexeres, weniger direktes
+        Rhythmus-Pattern.</td></tr>
+    </table>
+  </section>
+
+  <section id="cut-style">
+    <h2 class="section-title">Cut Style</h2>
+    <p class="section-sub">Die eigentliche Schnitt-Art zwischen zwei Segmenten — berechnet in
+    <code class="inline">_calculate_cut_style()</code>.</p>
+    <table>
+      <tr><th>Stil</th><th>Bedeutung</th></tr>
+      <tr><td class="flag">hard_cut</td><td>Innerhalb der ersten <code class="inline">CUT_INTRO_SEGMENTS</code> (2)
+        Segmente, oder wenn kein Folge-Segment existiert.</td></tr>
+      <tr><td class="flag">fade_out</td><td>Innerhalb der letzten <code class="inline">CUT_OUTRO_SEGMENTS</code> (2)
+        Segmente — Ausblenden zum Ende.</td></tr>
+      <tr><td class="flag">jump_cut</td><td>Struktur-Grenze im Song, oder Energie-Sprung zum nächsten Segment größer
+        als <code class="inline">CUT_JUMP_ENERGY_DELTA</code>.</td></tr>
+      <tr><td class="flag">push</td><td>Energie steigt zum nächsten Segment um mehr als
+        <code class="inline">CUT_PUSH_ENERGY_DELTA</code> — Energie-Aufbau zwischen Clips.</td></tr>
+      <tr><td class="flag">break</td><td>Energie fällt zum nächsten Segment um mehr als
+        <code class="inline">CUT_PUSH_ENERGY_DELTA</code> — Energie-Abfall.</td></tr>
+      <tr><td class="flag">whip</td><td>Nächstes Segment hat hohe Informationsdichte (&gt;
+        <code class="inline">CUT_WHIP_DENSITY</code>) — schnelle Übergänge bei viel Bewegung.</td></tr>
+      <tr><td class="flag">dissolve</td><td>Fallback: sanfter Übergang, wenn nichts anderes zutrifft.</td></tr>
+    </table>
+  </section>
+
+  <section id="tuning">
+    <h2 class="section-title">Tuning-Konstanten</h2>
+    <p class="section-sub">Alle Schwellwerte am Kopf von <code class="inline">main.py</code>, die das Verhalten
+    der Rhythmus-Engine und des Reward-Systems steuern.</p>
+    <table>
+      <tr><th>Konstante</th><th>Wert</th><th>Wirkung</th></tr>
+      <tr><td class="flag">RHYTHM_EXPANSION_RATIO</td><td>1.8</td><td>Ab diesem Längenverhältnis zum Vorgänger-Segment gilt ein Segment als "expansion".</td></tr>
+      <tr><td class="flag">RHYTHM_COMPRESSION_RATIO</td><td>0.6</td><td>Unter diesem Verhältnis gilt ein Segment als "compression".</td></tr>
+      <tr><td class="flag">RHYTHM_ENERGY_SURGE</td><td>0.8</td><td>Energie-Schwelle für "energy_surge".</td></tr>
+      <tr><td class="flag">RHYTHM_BUILDUP_ENERGY</td><td>0.3</td><td>Energie-Schwelle (darunter) für "buildup".</td></tr>
+      <tr><td class="flag">RHYTHM_BEAT_DROP_STRIDE</td><td>4</td><td>Jedes n-te Segment wird als "beat_drop" markiert.</td></tr>
+      <tr><td class="flag">RHYTHM_DENSE_MOTION_DENSITY</td><td>0.7</td><td>Dichte-Schwelle für "dense_motion".</td></tr>
+      <tr><td class="flag">SYNC_SNAP_DROP_ENERGY</td><td>0.85</td><td>Energie-Schwelle für "snap_drop" in Peak-Sections.</td></tr>
+      <tr><td class="flag">SYNC_ON_BEAT_ENERGY</td><td>0.75</td><td>Energie-Schwelle für "on_beat".</td></tr>
+      <tr><td class="flag">SYNC_SYNCOPATED_ENERGY</td><td>0.5</td><td>Energie-Schwelle für "syncopated".</td></tr>
+      <tr><td class="flag">CUT_INTRO_SEGMENTS</td><td>2</td><td>Anzahl Segmente am Anfang, die als "hard_cut" gelten.</td></tr>
+      <tr><td class="flag">CUT_OUTRO_SEGMENTS</td><td>2</td><td>Anzahl Segmente am Ende, die als "fade_out" gelten.</td></tr>
+      <tr><td class="flag">CUT_JUMP_ENERGY_DELTA</td><td>0.4</td><td>Energie-Delta-Schwelle für "jump_cut".</td></tr>
+      <tr><td class="flag">CUT_PUSH_ENERGY_DELTA</td><td>0.2</td><td>Energie-Delta-Schwelle für "push"/"break".</td></tr>
+      <tr><td class="flag">CUT_WHIP_DENSITY</td><td>0.6</td><td>Dichte-Schwelle für "whip".</td></tr>
+      <tr><td class="flag">REWARD_HECTIC_CUTS_PER_MIN</td><td>120.0</td><td>Schnitte/Minute, ab denen ein Video als "hektisch" gilt.</td></tr>
+      <tr><td class="flag">REWARD_HECTIC_MAX_ENERGY</td><td>0.4</td><td>Zusatzbedingung für "hektisch": niedrige Durchschnitts-Energie trotz vieler Schnitte.</td></tr>
+      <tr><td class="flag">REWARD_SEMANTIC_FALLBACK</td><td>0.7</td><td>Fallback-Score, wenn keine Vektor-Ähnlichkeiten berechnet werden konnten.</td></tr>
+      <tr><td class="flag">REWARD_SYNC_WEIGHT</td><td>0.35</td><td>Gewicht des Sync-Scores in der Gesamt-Reward-Formel.</td></tr>
+      <tr><td class="flag">REWARD_DIVERSITY_WEIGHT</td><td>0.35</td><td>Gewicht des Diversity-Scores (Clip-Vielfalt).</td></tr>
+      <tr><td class="flag">REWARD_SEMANTIC_WEIGHT</td><td>0.3</td><td>Gewicht des semantischen Song/Clip-Match-Scores.</td></tr>
+      <tr><td class="flag">MAX_OUTPUT_VERSION_ATTEMPTS</td><td>9999</td><td>Obergrenze beim Suchen eines freien, durchnummerierten Output-Dateinamens.</td></tr>
+      <tr><td class="flag">CLIP_POOL_SKIP_SCAN_FRESH_THRESHOLD</td><td>1000</td><td>Ab so vielen frisch gecachten Clips wird der volle DB-Scan übersprungen (außer bei --rebuild-globe).</td></tr>
+      <tr><td class="flag">MP4_COMMENT_MAX_CHARS</td><td>6000</td><td>Maximale Länge des MP4-"comment"-Tags, danach wird gekürzt.</td></tr>
+      <tr><td class="flag">CHAPTER_MATCH_REASON_MAX_CHARS</td><td>70</td><td>Maximale Länge des Match-Grunds in einem Kapitel-Titel.</td></tr>
+    </table>
+  </section>
+
+  <section id="module">
+    <h2 class="section-title">Modul-Übersicht</h2>
+    <p class="section-sub">Von <code class="inline">main.py</code> importierte bzw. dynamisch nachgeladene Module.</p>
+    <table>
+      <tr><th>Modul</th><th>Rolle</th></tr>
+      <tr><td class="flag">config</td><td>Zentrale Konstanten: Engine-Version, Label-Name, Ausgabepfade, TikTok-Unterordner, Renderer-Backend.</td></tr>
+      <tr><td class="flag">db</td><td>SQLite-Persistenz: Songs, Clip-Pool-Cache ("flat globe"), Nutzungshistorie, Experience-/Reward-Log.</td></tr>
+      <tr><td class="flag">mp3_scanner</td><td>Findet und scannt alle Songs im MP3-Wurzelordner.</td></tr>
+      <tr><td class="flag">audio_analysis</td><td>BPM, Beatgrid, Song-Struktur, Energie, Stimm-Tonhöhe/-Geschlecht, Repetitionszonen, "Music DNA".</td></tr>
+      <tr><td class="flag">song_semantics</td><td>Textuelle/semantische Song-Analyse: Mood-Tags, Slang, Weed-Vibe-Score, Beat-Switches.</td></tr>
+      <tr><td class="flag">clip_pool</td><td>Baut/aktualisiert den Clip-Pool-Index ("Globe"), filtert nach Plattform, lernt aus Render-Feedback.</td></tr>
+      <tr><td class="flag">semantic_matching</td><td>Berechnet Song↔Clip-Vektor-Ähnlichkeit und liefert menschenlesbare Match-Begründungen.</td></tr>
+      <tr><td class="flag">timeline_builder</td><td>Baut die eigentliche Segment-Timeline aus Audio, Song-Tags und Clip-Pool.</td></tr>
+      <tr><td class="flag">creative_genome</td><td>FilmDNA-Aufbau, Intent-Kompilierung, Style-Compiler, Genome-Manifest.</td></tr>
+      <tr><td class="flag">film_genome</td><td>Kompiliert das "Film Genome" aus Tag-Vektor, Song-Sections und Timeline.</td></tr>
+      <tr><td class="flag">wong_integration</td><td>Optionale GenomeResolver/RLBandit-Anbindung (nur bei <code class="inline">--wong-resolver</code>), rein informativ.</td></tr>
+      <tr><td class="flag">viral-strategy.py</td><td>Per <code class="inline">importlib</code> geladen (Bindestrich im Dateinamen). Baut Viral-Strategy-Briefs und Plattform-Metadaten.</td></tr>
+      <tr><td class="flag">user_prefs</td><td>Liest <code class="inline">user_preferences.yaml</code>, falls Nutzergeschmack konfiguriert ist.</td></tr>
+      <tr><td class="flag">renderer</td><td>Lazy-Import beim Rendern: baut das fertige MP4 per ffmpeg-Subprocess.</td></tr>
+      <tr><td class="flag">unreal_renderer</td><td>Optionaler Zusatz-Renderer über Unreal Movie Render Queue (nur bei <code class="inline">--renderer unreal</code>).</td></tr>
+      <tr><td class="flag">swag_banners</td><td>Liefert das ASCII-Banner, das beim Start ausgegeben wird.</td></tr>
+    </table>
+  </section>
+
+  <section id="funktionen">
+    <h2 class="section-title">Funktionsreferenz (main.py)</h2>
+    <p class="section-sub">Alle in <code class="inline">main.py</code> selbst definierten Funktionen.</p>
+
+    <div class="fn">
+      <span class="sig">log(<span class="pn">msg: str</span>)</span>
+      <p>Schreibt eine Zeile auf die Konsole (mit Flush) und hängt sie zusätzlich zeitgestempelt an
+      <code class="inline">LOG_DIR/run.log</code> an. Zentrale Logging-Funktion der gesamten Pipeline.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_count_fresh_cached_clips(<span class="pn">globe: dict</span>) → int</span>
+      <p>Zählt Clips im Globe-Cache, die bereits erfolgreich mit der aktuellen
+      <code class="inline">clip_pool.ANALYSIS_VERSION</code> analysiert wurden. Basis für die
+      Skip-Scan-Entscheidung.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_versioned_output_path(<span class="pn">output_dir, song_path, platform</span>) → Path</span>
+      <p>Erzeugt einen eindeutigen, durchnummerierten Output-Dateinamen im Format
+      <code class="inline">{titel}_beatsync[_tiktok]_eng{ENGINE_VERSION}_v{NN}.mp4</code>.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_detect_rhythm_pattern(<span class="pn">segment, idx, timeline</span>) → str</span>
+      <p>Klassifiziert das Rhythm Pattern eines Segments (siehe Tabelle oben).</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_calculate_sync_type(<span class="pn">segment, idx, timeline</span>) → str</span>
+      <p>Berechnet den Sync Type eines Segments anhand Section-Label und Ziel-Energie.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_calculate_cut_style(<span class="pn">segment, idx, timeline</span>) → str</span>
+      <p>Berechnet den Cut Style eines Segments anhand Position in der Timeline und Energie-Delta
+      zum nächsten Segment.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_build_timeline_narrative(<span class="pn">song, sequence</span>) → str</span>
+      <p>Gruppiert aufeinanderfolgende Segmente mit gleichem Song-Section-Label zu Absätzen und fasst
+      pro Absatz dominantes Thema, häufigsten Match-Grund und Rhythmus-Pattern zusammen. Ergebnis
+      landet als <code class="inline">timeline_narrative</code> im EDL und im Log.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_build_render_script(<span class="pn">song, timeline, style, output_path, globe, song_mood_tags, song_mc_gender, song_style_weights, wong_state</span>) → dict</span>
+      <p>Baut das vollständige EDL-Dict (Edit Decision List): pro Segment Start/Ende, Clip, Rhythm-Klassifikation,
+      semantischen Match-Score und -Grund sowie optional WONG-Vergleichswerte. Schreibt die berechnete
+      Klassifikation zusätzlich direkt auf das Timeline-Segment-Objekt, damit der Renderer sie lesen kann.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_build_video_metadata(<span class="pn">song, render_script, platform</span>) → dict</span>
+      <p>Baut MP4-Tags (Titel, Artist, Kommentar mit Timeline-Dramaturgie) und ein Kapitel pro Clip-Segment,
+      inklusive Kürzung überlanger Kommentar-/Kapiteltexte. Rein additiv — beeinflusst weder Clip-Auswahl
+      noch Rendering.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_compute_render_reward(<span class="pn">timeline, globe, song_tag_vector, song_mood_tags, song_mc_gender, song_style_weights</span>) → float</span>
+      <p>Berechnet den Gesamt-Reward eines fertigen Videos aus gewichtetem Sync-Score, Diversity-Score
+      (Clip-Vielfalt, Wiederholungs-Strafe) und semantischem Score. Ergebnis liegt zwischen 0 und 1.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">_finalize_song_artifacts(<span class="pn">song, audio, timeline, style, output_path, full_globe, semantics, resolved_label, resolved_default_niche, platform, log</span>) → dict</span>
+      <p>Erzeugt alle Post-Render-Artefakte: FilmDNA, Film-Genome-Manifest (<code class="inline">.genome.json</code>),
+      Viral-Strategy-Brief (<code class="inline">.strategy.json</code>) und Upload-Metadaten
+      (<code class="inline">.metadata.json</code> + CSV-Zeile). Einzelne Teile schlagen unabhängig
+      voneinander fehl, ohne den ganzen Song abzubrechen.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">process_song(<span class="pn">song, candidate_globe, output_dir, style, platform, dry_run, audio, label, default_niche, full_globe, renderer_backend, wong_state</span>) → bool</span>
+      <p>Kernfunktion pro Song: Audioanalyse (falls nicht schon vorhanden), Song-Semantik laden,
+      Timeline bauen, EDL schreiben, rendern (ffmpeg oder Unreal mit Fallback), Nutzung in die DB
+      eintragen, Artefakte finalisieren und Reward-Feedback zurückschreiben. Gibt <code class="inline">True</code>
+      bei Erfolg zurück.</p>
+    </div>
+    <div class="fn">
+      <span class="sig">main()</span>
+      <p>Einstiegspunkt: Argument-Parsing, Initialisierung, Semantik-Scan, Clip-Pool-Index laden,
+      Song-Auswahl, Audio-Prefetch-Loop über alle Songs/Plattformen, Abschluss-Log. Sauberer Abbruch
+      bei Ctrl+C.</p>
+    </div>
+  </section>
+
+  <section id="outputs">
+    <h2 class="section-title">Output-Dateien pro Song</h2>
+    <p class="section-sub">Was am Ende neben dem fertigen Video liegt.</p>
+    <ul class="fileset">
+      <li><span class="ext">*_beatsync[_tiktok]_eng{V}_v{NN}.mp4</span><span class="desc">Das fertige, geschnittene Musikvideo (bzw. wird bei --dry-run übersprungen).</span></li>
+      <li><span class="ext">*.edl.json</span><span class="desc">Vollständige Edit Decision List: jedes Segment mit Timing, Clip, Rhythmus-Klassifikation und Match-Begründung.</span></li>
+      <li><span class="ext">*.genome.json</span><span class="desc">FilmDNA + Film-Genome-Manifest, inklusive der verwendeten Song-Semantik.</span></li>
+      <li><span class="ext">*.strategy.json</span><span class="desc">Viral-Strategy-Brief (Hook-Framework, Zielgruppe, Empfehlungen).</span></li>
+      <li><span class="ext">*.metadata.json</span><span class="desc">Plattform-spezifische Upload-Metadaten (Titel, Beschreibung, Tags, Hashtags, bester Post-Zeitpunkt).</span></li>
+      <li><span class="ext">metadata_{youtube|tiktok}.csv</span><span class="desc">Sammel-CSV im Output-Ordner, eine Zeile pro gerendertem Video dieser Plattform.</span></li>
+      <li><span class="ext">LOG_DIR/run.log</span><span class="desc">Fortlaufendes, zeitgestempeltes Gesamt-Log aller Läufe.</span></li>
+    </ul>
+  </section>
+
+  <section id="hinweise">
+    <h2 class="section-title">Hinweise &amp; Verhalten im Detail</h2>
+
+    <h3>Dry-Run ist wirklich folgenlos</h3>
+    <p>Bei <code class="inline">--dry-run</code> wird weder ein Reward-Feedback in den Clip-Pool-Cache
+    geschrieben noch eine Experience in der DB gespeichert — nur Analyse + EDL. Das verhindert, dass
+    Testläufe die künftige Clip-Auswahl verfälschen.</p>
+
+    <h3>Unreal-Renderer fällt automatisch zurück</h3>
+    <p>Ist <code class="inline">--renderer unreal</code> gesetzt, aber das Modul nicht ladbar oder
+    nicht konfiguriert (<code class="inline">UNREAL_ENGINE_CMD</code> / <code class="inline">UNREAL_PROJECT_PATH</code>
+    fehlen), rendert die Pipeline automatisch mit ffmpeg weiter, statt den Song fehlschlagen zu lassen.</p>
+
+    <div class="note warn">
+      <b>Skip-Scan-Schwellwert beachten:</b> Liegt der Clip-Pool-Cache bereits über
+      <code class="inline">CLIP_POOL_SKIP_SCAN_FRESH_THRESHOLD</code> (1000) frisch analysierten Clips,
+      werden ganz neu hinzugefügte Clip-Dateien beim normalen Lauf <b>nicht</b> automatisch erkannt.
+      In dem Fall <code class="inline">--rebuild-globe</code> verwenden.
+    </div>
+
+    <h3>Sliding-Window statt Pfad-Index bei der Audio-Prefetch</h3>
+    <p>Die vorab laufende Audioanalyse verwaltet ihre Futures positionsbasiert (Index → Fenster-Position)
+    statt über den Song-Pfad als Dictionary-Key. Das verhindert einen KeyError, falls zwei Songs
+    denselben Pfad-String tragen sollten.</p>
+
+    <h3>WONG-Resolver ist rein informativ</h3>
+    <p><code class="inline">--wong-resolver</code> schreibt Vergleichswerte (Wahl, Reward-Prediction,
+    Übereinstimmungsrate) zusätzlich ins EDL, ändert aber nie, welcher Clip tatsächlich im Video landet.</p>
+
+    <div class="note">
+      <b>Abbruch per Ctrl+C:</b> Läuft sauber ab — bereits gequeue­te, aber noch nicht gestartete
+      Vorab-Audioanalysen werden verworfen, aktuell laufende Aufgaben werden nicht hart unterbrochen.
+      Exit-Code ist in diesem Fall 130.
+    </div>
+  </section>
+
+</main>
+</div>
+
+<footer>oefoef Beat-Sync Engine · Referenzdokumentation generiert aus main.py</footer>
+
+</body>
+</html>

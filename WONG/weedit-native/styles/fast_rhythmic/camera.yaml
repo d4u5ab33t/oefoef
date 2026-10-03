@@ -1,0 +1,15 @@
+default:
+  movement: handheld
+  framing: medium
+intro:
+  movement: whip
+  framing: wide
+verse:
+  movement: push
+  framing: closeup
+chorus:
+  movement: whip
+  framing: extreme_closeup
+outro:
+  movement: pull
+  framing: wide

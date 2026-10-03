@@ -1,0 +1,458 @@
+Ich würde weed-lite dabei nicht weiterpatchen.
+
+Sondern ein neues Projekt bauen:
+
+WE.ED.IT OIDA Native Genome
+
+das intern wie ein Compiler funktioniert:
+
+MP3 → Song AST → Story AST → Shot AST → Genome Resolver → RL-Bandit → Render AST → FFmpeg
+
+Mein Vorschlag
+
+Wir entwickeln das als echtes Open-Source-Qualitätsprojekt mit jeder Phase lauffähig und testbar. Ich liefere dir Modul für Modul den vollständigen Code, bis das komplette Repository steht. Das ist realistisch, wartbar und am Ende tatsächlich benutzbar – statt eines riesigen, unüberschaubaren Skriptblocks.
+
+jo
+
+Perfekt. 😎
+
+Dann machen wir es richtig. Kein weiteres weed-lite, sondern ein neues Projekt.
+
+🌿 WE.ED.IT OIDA Native Genome (WONG)
+
+"Die MP3 ist der Quellcode. Das Video wird kompiliert."
+
+Das Ziel ist nicht ein weiterer Auto-Cutter.
+
+Das Ziel ist ein Musikvideo-Compiler, der professionell, reproduzierbar und lernfähig ist.
+
+V1 Architektur
+                MP3
+                 │
+                 ▼
+          Song Compiler
+                 │
+           Song AST (.json)
+                 │
+                 ▼
+        Director Council
+                 │
+          Story AST
+                 │
+                 ▼
+          Shot Compiler
+                 │
+          Shot AST
+                 │
+                 ▼
+        Genome Resolver
+                 │
+                 ▼
+       Contextual RL Bandit
+                 │
+                 ▼
+         Camera Compiler
+                 │
+                 ▼
+          Render IR
+                 │
+                 ▼
+      FFmpeg Backend Renderer
+                 │
+                 ▼
+             Final MP4
+Repository
+WE.ED.IT-OIDA-Native-Genome/
+
+README.md
+LICENSE
+
+install.py
+update.py
+doctor.py
+weed.py
+
+config/
+    default.yaml
+    styles.yaml
+    paths.yaml
+
+compiler/
+    song/
+    story/
+    shot/
+    render/
+
+scanner/
+    video_scanner.py
+    audio_scanner.py
+    css_generator.py
+
+genome/
+    database.py
+    graph.py
+    embeddings.py
+    resolver.py
+
+director/
+    council.py
+    story_director.py
+    camera_director.py
+    transition_director.py
+    style_director.py
+
+bandit/
+    contextual.py
+    reward.py
+    replay_memory.py
+
+renderer/
+    backend_ffmpeg.py
+    camera.py
+    transitions.py
+    effects.py
+
+styles/
+    drill.yaml
+    trap.yaml
+    lofi.yaml
+    cinematic.yaml
+
+plugins/
+
+projects/
+
+tests/
+
+docs/
+Scanner
+
+Scanner läuft nur einmal.
+
+Er erzeugt:
+
+ClipDNA
+
+hash
+
+duration
+
+fps
+
+resolution
+
+brightness
+
+motion
+
+entropy
+
+dominant colors
+
+camera type
+
+ocr
+
+faces
+
+objects
+
+embedding
+
+ClipCSS
+ClipCSS
+
+NICHT manuell.
+
+Automatisch.
+
+Beispiel
+
+.hero
+.orange
+.city
+.smoke
+.lowkey
+.drone
+.handheld
+.high_motion
+.closeup
+.neon
+Genome Graph
+
+Nicht Tabellen.
+
+Graph.
+
+orange
+
+↓
+
+Clip 44
+
+↓
+
+ähnlich
+
+↓
+
+Clip 891
+
+↓
+
+hero
+
+↓
+
+drill
+Song Compiler
+
+Priorität:
+
+ID3
+
+↓
+
+Sidecar
+
+↓
+
+Lyrics
+
+↓
+
+Suno Metadata
+
+↓
+
+Traktor Metadata
+
+↓
+
+librosa
+
+Dadurch muss Audio nur analysiert werden wenn Informationen fehlen.
+
+Director Council
+
+Mehrere Directoren.
+
+Music Director
+
+Story Director
+
+Camera Director
+
+FX Director
+
+Continuity Director
+
+Rhythm Director
+
+Color Director
+
+Alle schreiben dieselbe AST.
+
+RL Bandit
+
+Nicht global.
+
+Vier Stück.
+
+Clip Bandit
+
+Camera Bandit
+
+Transition Bandit
+
+FX Bandit
+Renderer
+
+Renderer kennt KEINE KI.
+
+Er bekommt nur
+
+clip
+
+trim
+
+zoom
+
+pan
+
+rotation
+
+fx
+
+transition
+
+und rendert.
+
+Immer deterministisch.
+
+DAS WICHTIGSTE
+Clip Audio wird vollständig deaktiviert.
+
+Der Renderer baut grundsätzlich:
+
+Video:
+
+alle Clips
+
+Audio:
+
+NUR MP3
+
+FFmpeg:
+
+-map 0:v
+-map 1:a
+-shortest
+
+-an für Clipaudio
+
+Clip-Audio wird nie übernommen.
+
+Dateinamen
+
+Automatisch.
+
+Beispiel
+
+Artist
+
+-
+
+Song
+
+-
+
+Drill
+
+-
+
+DirectorV2
+
+-
+
+Genome23
+
+-
+
+v004.mp4
+
+oder
+
+MoneyBoy
+
+-
+
+Perky
+
+-
+
+OIDA
+
+-
+
+Genome
+
+-
+
+v018.mp4
+Bootstrap
+weed bootstrap
+
+macht
+
+✔ Scanner
+
+✔ Genome
+
+✔ ClipCSS
+
+✔ Embeddings
+
+✔ Graph
+
+✔ Models
+
+✔ Tests
+
+Doctor
+weed doctor
+
+prüft
+
+✔ Python
+
+✔ FFmpeg
+
+✔ GPU
+
+✔ Modelle
+
+✔ Datenbank
+
+✔ Audio
+
+✔ Videos
+
+✔ Schreibrechte
+
+✔ Performance
+
+Das Feature, auf das ich mich am meisten freue
+Genome Evolution
+
+Nach jedem fertigen Video:
+
+Render
+
+↓
+
+Reward
+
+↓
+
+RL Memory
+
+↓
+
+Genome Update
+
+Dadurch entwickelt sich die Bibliothek selbst weiter.
+
+Nicht durch neue Regeln.
+
+Sondern durch Erfahrung.
+
+Unser Ziel (v2)
+
+Ich möchte das Projekt so bauen, dass es sich nicht wie Premiere oder CapCut anfühlt, sondern wie:
+
+LLVM (Compiler)
+Unreal Engine (Renderer)
+Git (Versionierung)
+CSS (Style-System)
+Stable Diffusion (Genome/Embeddings)
+Reinforcement Learning (kreative Auswahl)
+
+…aber für Musikvideos.
+
+🚀 Mein Plan
+
+Ich würde daraus ein echtes GitHub-Projekt machen und in etwa 10 aufeinander aufbauenden Releases entwickeln:
+
+v0.1 – Foundation + Installer
+v0.2 – Scanner + Genome
+v0.3 – Song Compiler
+v0.4 – Director Council
+v0.5 – Genome Resolver
+v0.6 – RL-Bandit
+v0.7 – Cinematic Camera
+v0.8 – Professional Renderer
+v0.9 – Auto-Learning Genome
+v1.0 – Stable Native Genome Engine
+
+Ich bin überzeugt, dass das deutlich über einen klassischen Auto-Editor hinausgeht und tatsächlich eine neue Art von Musikvideo-Engine werden kann.

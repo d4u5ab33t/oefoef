@@ -1,0 +1,15 @@
+{
+  "extends": "hero",
+  "name": "drill-hero",
+  "constraints": {
+    "camera": "push",
+    "transition": "whip"
+  },
+  "physics": {
+    "tension": "aggressive",
+    "momentum": "erratic"
+  },
+  "palette": {
+    "primary": "#FFD700"
+  }
+}

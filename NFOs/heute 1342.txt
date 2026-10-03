@@ -1,0 +1,699 @@
+heute 13:42
+Weißwurscht hunting bugs I find, and flag what's still missing. Diss // 089 13/1/28 420
+BPM
+
+golden age Boom-Bap X drill X phonk Peak Mode 140 → peak 168 BPM mit fetten dubsteopp hybride danchehall Brakes und Drops funky bavarian bras of beat lines layed back bis brouk u neck passive aggresive alpine drille ohne zu schreien
+
+
+
+
+Half-time trap-boom-bap hybrid in Bb minor at 91 BPM, surging to 108 on drops. Deep kick, rolling hats, snare crack with dusty vinyl saturation, melancholic clean guitar motif, warm live bass guitar with syncopated bounce. SFX layers rotate: sub-bass rumble, turntable cut, tape hiss decay, digital error beep, keyboard clatter, chalk screech.
+
+
+Ja — da sind ein paar echte Prompt-Bugs drin. Vor allem konkurrieren gerade zwei unterschiedliche BPM-/Arrangement-Systeme miteinander.
+
+🐛 Bug Hunt
+Fund	Problem	Fix
+140 → 168 BPM vs. 91 → 108 BPM	Zwei widersprüchliche Tempi	Als Makro-/Halftime-Verhältnis definieren
+Bb minor nur im zweiten Block	Tonart fehlt für den ersten Teil	Bb minor als Grundtonalität setzen
+Peak Mode 140 → 168	Unklar, wann und warum der Wechsel passiert	konkreten Drop/Section-Wechsel definieren
+Half-time + 140 BPM	Kann funktionieren, aber muss explizit sein	140 BPM gefühltes 70 BPM Half-Time
+danchehall	Schreibfehler	dancehall
+Brakes	Gemeint vermutlich Beat-Brakes	beat brakes
+funky bavarian bras	Sehr wahrscheinlich Tippfehler	funky Bavarian brass
+lines layed	Englisch falsch	lines laid / besser brass lines laid-back...
+brouk u neck	Unklar/fehlerhaft	vermutlich break your neck
+passive aggresive	Schreibfehler	passive-aggressive
+alpine drille	Mischsprache	alpine drill
+without screaming	Gut, aber Vocal-Performance fehlt	controlled, dry, deadpan aggressive delivery
+SFX layers rotate	Gute Idee, aber keine Positionierung	Intro / verse / transition / drop festlegen
+clean guitar motif	Im ersten Prompt nicht erwähnt	bewusst als wiederkehrendes Motiv definieren
+live bass guitar	Konflikt mit 808 nicht zwingend, aber arrangieren	Bass + 808 klar trennen
+dubstep hybride	Schreibweise/Genre unpräzise	dubstep hybrid bass design
+Peak Mode	Nicht musikalisch definiert	Peak = 168 BPM / maximaler Arrangement-Druck
+13/1/28 420	Semantisch unklar	als Metadata entfernen oder separat führen
+Wichtigster struktureller Fix
+
+Ich würde nicht einfach 91 → 108 und 140 → 168 nebeneinander stehen lassen.
+
+Besser:
+
+140 BPM = Haupttempo
+70 BPM = Half-Time-Gefühl
+168 BPM = Peak/Double-Time-Eskalation
+
+Damit ergibt das musikalisch ein zusammenhängendes System:
+
+140 BPM → Half-Time 70 → 140 → Peak 168
+
+Die 91 → 108 BPM-Angabe würde ich komplett entfernen, außer du willst tatsächlich einen zweiten Song-/Beat-Charakter.
+
+🔧 Bereinigte Monster-Version
+
+WEISSWURSCHT HUNTING BUGS — Diss // 089
+
+Golden Age Boom-Bap × Bavarian Drill × Phonk × Trap × Dubstep Hybrid × Dancehall energy.
+
+140 BPM main tempo, with heavy half-time passages that feel like 70 BPM. Gradually escalate into peak mode at 168 BPM for the hardest drops and final sections.
+
+Key: Bb minor. Dark alpine atmosphere, minor-key tension, dusty Golden Age texture fused with modern low-end pressure.
+
+Deep punchy kick, cracked snare, rolling hi-hats, syncopated percussion, dusty vinyl saturation, chopped turntable cuts, warm live bass guitar with funky syncopated bounce, layered with controlled sub-bass and sliding 808s.
+
+Recurring melancholic clean-guitar motif underneath the drums, contrasting the aggressive low-end.
+
+Funky Bavarian brass lines, laid-back at first, then progressively more aggressive and rhythmically chopped. Alpine drill attitude without shouting.
+
+Vocal delivery: passive-aggressive, dry, sarcastic, controlled and confident. Bavarian street slang, intelligent insults, deadpan humor, tightly articulated rap. No screaming. No unnecessary melodic singing.
+
+Arrangement:
+INTRO — dusty vinyl, clean guitar motif, distant brass fragments, tape hiss, restrained drums.
+
+VERSE 1 — 140 BPM Golden Age Boom-Bap foundation, relaxed pocket, syncopated bass, dry rap delivery.
+
+TRANSITION — beat brakes, turntable cuts, digital error beeps, keyboard clatter, rising sub-bass pressure.
+
+DROP 1 — Bavarian Drill × Phonk, heavier 808 slides, sharper hats, darker brass stabs.
+
+VERSE 2 — Half-time feel at 70 BPM while the underlying production remains locked to 140 BPM. Heavy head-nod groove, spacious drums, sarcastic vocal pocket.
+
+BUILD — percussion becomes increasingly polyrhythmic, brass phrases become shorter and more aggressive, guitar motif distorted and chopped.
+
+PEAK DROP — 168 BPM escalation, hybrid Dubstep / Trap / Drill bass design, massive sub drops, aggressive drum edits, chopped brass, rapid hi-hats, glitch cuts and sudden beat brakes.
+
+FINAL SECTION — maximum-density 168 BPM peak mode, rapid-fire rhythmic vocal phrasing, hard stop-start transitions, bass pressure and chaotic turntablism.
+
+OUTRO — abrupt tape-stop decay, fading vinyl hiss, final digital error beep, one last distorted brass hit.
+
+SFX palette:
+sub-bass rumble, turntable cuts, tape hiss decay, digital error beeps, keyboard clatter, chalk screech, vinyl crackle, glitch transitions, bass drops and hard beat brakes.
+
+Overall character:
+Munich 089 underground energy, Bavarian street sarcasm, Golden Age boom-bap discipline, modern drill aggression, phonk darkness and heavyweight bass pressure. Funky, dirty, intelligent, ridiculous and threatening without ever becoming theatrical or screamed.
+
+🚩 Was noch fehlt
+
+Für einen wirklich generatorfesten Prompt fehlen eigentlich nur noch fünf Entscheidungen:
+
+Vocal-Dichte: normaler Flow → Doubletime → Rapid-Fire im Peak?
+Brass: echte Bläser / gesampelt / komplett synthetisch?
+808: eher sauberer Sub oder dreckig übersteuert?
+Beat-Switch: ein großer Switch oder mehrere kleine Fake-Drops?
+Diss-Level: eher witzig-sarkastisch, bösartig, oder komplett absurd-akademisch?
+
+Für deinen bisherigen Stil würde ich #1 = Flow-Eskalation, #4 = mehrere Fake-Drops und #5 = absurd-akademisch + passiv-aggressiv nehmen.
+
+Ich würde nicht sofort alle Agenten, Prediction-Modelle und Marketplace-Features integrieren. Stabilität kommt zuerst.
+
+Die erste stabile Ausbaustufe sieht so aus:
+
+Creative Genome OS
+│
+├── KERNEL
+│   ├── Ontology
+│   ├── State
+│   ├── Events
+│   ├── Provenance
+│   └── Capabilities
+│
+├── GENOME
+│   ├── Schema
+│   ├── Parser
+│   ├── Type Checker
+│   ├── Inheritance
+│   └── Compiler
+│
+├── DECISION
+│   ├── Intent
+│   ├── Constraints
+│   ├── Candidates
+│   ├── Proposals
+│   └── Decisions
+│
+├── MEDIA
+│   ├── Sequential Worker
+│   ├── Analysis
+│   ├── Plugins
+│   └── Renderer
+│
+├── MEMORY
+│   ├── Episodes
+│   ├── Experience
+│   ├── Failures
+│   └── Replay
+│
+├── SYNAPSE
+│   ├── Scheduler
+│   ├── Resource Governor
+│   ├── Cache
+│   └── Recovery
+│
+└── API
+    ├── Jobs
+    ├── Projects
+    ├── State
+    ├── Genome
+    └── Events
+Stabilitätsregeln
+1. SQLite = autoritative Control Plane
+2. Events = einzige persistente Zustandsänderungen
+3. Reducer = einzige State-Mutation
+4. Agents = read/propose only
+5. Decision Engine = einzige kreative Commit-Stelle
+6. Renderer = dumb executor
+7. Hard constraints = niemals überstimmbar
+8. Heavy video = max. 1 gleichzeitig
+9. Learning = versioniert, nie still
+10. Replay = für jeden abgeschlossenen Episode verpflichtend
+Zustandsfluss
+INTENT
+  ↓
+STATE SNAPSHOT
+  ↓
+GENOME
+  ↓
+CANDIDATES
+  ↓
+CONSTRAINT CHECK
+  ↓
+PROPOSALS
+  ↓
+DECISION
+  ↓
+RENDER PLAN
+  ↓
+SEQUENTIAL WORKER
+  ↓
+QC
+  ↓
+EPISODE
+  ↓
+REWARD
+  ↓
+LEARNING
+Crash-Sicherheit
+
+Ein Render wird nicht einfach als „läuft“ markiert.
+
+QUEUED
+ ↓
+RUNNING
+ ↓
+CHECKPOINT
+ ↓
+RENDERING
+ ↓
+ARTIFACT_WRITTEN
+ ↓
+QC
+ ↓
+COMMITTED
+
+Bei Crash:
+
+RUNNING
+ ↓
+RECOVERING
+ ↓
+CHECKPOINT
+ ↓
+RETRY
+
+Bei dauerhaftem Fehler:
+
+FAILED
+ ↓
+Failure Genome
+ ↓
+Episode Error
+Resource Governor
+
+Für deine Hardware:
+
+execution:
+  max_video_parallelism: 1
+  max_decoders: 1
+  max_encoders: 1
+  max_heavy_workers: 1
+
+und bei RAM-Druck:
+
+GREEN   normal
+YELLOW  cache reduzieren
+ORANGE  Analyse degradieren
+RED     Worker pausieren / recovern
+Was ich noch nicht in den Stable Core lasse
+Deep RL
+Self-modifying code
+unversionierte Genome Mutation
+direkte LLM→Renderer-Kommandos
+untrusted plugins
+automatische Architekturänderungen
+große Multi-Agent-Swarm-Orchestrierung
+verdeckte externe Interventionsmechanismen
+
+Die kommen später hinter stabile Contracts.
+
+Für den tatsächlichen Bau und die Integration mit deiner bestehenden beat_sync-/Clip-Engine brauche ich jetzt die aktuelle Codebasis bzw. die relevanten Dateien:
+
+Dann würde ich daraus den stabilen Core statt eines weiteren Prototypen bauen: Repository-Struktur, Contracts, SQLite/Event Store, Reducer, Resource Governor, Sequential Media Worker, Replay und anschließend die vorhandene Engine sauber darüber verdrahten.
+
+oefoef
+
+Repository-Handbuch
+
+Überblick
+Verzeichnisstruktur
+Datenfluss-Diagramm
+Kern-Pipeline
+main.py
+config.py
+db.py & Datenbank
+Scan & Analyse
+Matching & Timeline
+Genome & Style
+Rendering
+Viral-Strategy
+Erweiterungen
+Optionale Module
+Bekannte Lücken
+Betrieb
+Setup & Installation
+Sonstige Verzeichnisse
+
+J:\Oidasheim\oefoef · Vollständige Repo-Referenz
+
+oefoef — Beat-Sync Video Engine
+
+SYNAPSE AUDIO DYNAMICS & WE.ED.IT-Core: eine autonome, offline-first Pipeline, die aus MP3s und einem lokalen Clip-Pool automatisch musiksynchrone Videos samt Upload-Strategie generiert. Dieses Dokument beschreibt das komplette Repository — nicht nur main.py, sondern alle Module, die die Pipeline tragen.
+
+Wurzel: J:\Oidasheim\oefoefPython: **3.10+ (getestet auf 3.12)**Status: End-to-End verifiziert (siehe UPGRADE.md, 2026-08-31)
+
+Überblick
+
+Was dieses Repository ist — und was es nicht ist.
+
+Der Kern des Repos ist eine schlanke, deterministische Pipeline aus rund 15 zusammenspielenden Python-Modulen (Einstieg: main.py). Sie analysiert Songs und Videoclips rein lokal, baut daraus eine musiksynchrone Schnitt-Timeline und rendert per direktem ffmpeg-Subprocess ein fertiges Video — inklusive lernendem Feedback-Loop, semantischer Song/Clip-Zuordnung und automatisch generierter Upload-Strategie.
+
+Daneben enthält der Ordner sehr viel Drumherum: Backups älterer main.py-Stände, experimentelle Einzelskripte (Lyrics-/Punchline-Generatoren, Songrid-Tools, ein optionales Unreal-Engine-Renderbackend, ein Schwesterprojekt "WONG"), große Datenexporte sowie mehrere gepackte Archive. Dieses Handbuch trennt bewusst Kern, optional/experimentell und Legacy/Sonstiges.
+
+Einstiegspunkt
+
+main.py — 1-Click Batch- oder Einzelsong-Verarbeitung.
+
+Persistenz
+
+SQLite (beat_sync.db) + JSON-Cache (libsync-flat-globe.db.json).
+
+Rendering
+
+ffmpeg-Subprocess (Standard) oder optional Unreal Engine Movie Render Queue.
+
+Weitere CLIs
+
+song_semantics.py (Lyrics-Lerner) und viral-strategy.py (Release-Planer) sind eigenständig aufrufbar.
+
+Verzeichnisstruktur
+
+Die Wurzel enthält 109 Dateien und 36 Ordner (~266 MB). Diese Tabelle zeigt nur, was für die Pipeline tatsächlich relevant ist.
+
+Kern-Module (Root-Ebene)
+main.pyEinstiegspunkt / Orchestrierung Kern
+config.pyZentrale Konfiguration, alle Konstanten Kern
+db.pySQLite- und JSON-Persistenz Kern
+mp3_scanner.pyFindet Songs, baut Tag-Vektor aus mp3tag Kern
+audio_analysis.pyBPM/Beatgrid/Struktur/Energie/Stimme Kern
+song_semantics.pyLyrics-Lerner aus Traktor-Tracklisten Kern
+clip_pool.pyAnalysiert & cached den Clip-Pool Kern
+semantic_matching.pySong↔Clip Ähnlichkeits-Scoring Kern
+timeline_builder.pyBaut die Segment-Timeline Kern
+creative_genome.pyStyle-Compiler, FilmDNA, Scoring-Grundbausteine Kern
+film_genome.pyDeklaratives Film-Genome-Manifest Kern
+renderer.pyffmpeg-Rendering, virtuelle Kamera, FX Kern
+viral-strategy.pyHooks, Hashtags, Posting-Zeiten, Briefs Kern
+user_prefs.pyLiest user_preferences.yaml (Scoring-Bonus) Kern
+swag_banners.pyASCII-Banner beim Start Kern
+wong_integration.pyOptionaler Vergleich mit WONG-Resolver Optional
+unreal_renderer.pyOptionales Unreal-Render-Backend Optional
+clip_tagging.pySchreibt Nutzungs-Historie in Clip-MP4-Tags Nicht eingebunden
+stem_separator.pyAudio-Stem-Trennung für audio_analysis.py Kern
+Wichtige Unterordner
+OrdnerInhalt	
+styles/	Genome-Style-Pakete (z.B. oida.json), geladen über --style.
+data/	Persistente Datenablagen: SQLite-DB, Flat-Globe-Cache.
+logs/	run.log — fortlaufendes Gesamt-Log aller Läufe.
+output/	Standard-Zielordner für fertige Videos (falls kein --output-dir gesetzt).
+agents/	Einzelne, unabhängige Zusatzskripte (Content-/Punchline-Generatoren, Monitoring-Stubs).
+WONG/	1:1 kopiertes Schwesterprojekt "WE.ED.IT OIDA Native Genome" für --wong-resolver.
+unreal_side/	Companion-Skript, das innerhalb der Unreal-Engine-Python-Umgebung läuft.
+contracts/	Solidity-Vertrag synapse_revenue_split.sol — aktuell nicht an Python angebunden.
+analysis/, scripts/, src/, dex/, claw2/, synapse*, SYNAPSE_*	Weitere, von der Kern-Pipeline unabhängige Experimente/Sub-Projekte.
+tests/, .pytest_cache/, .github/	Test- und CI-Grundgerüst (laut UPGRADE.md noch nicht mit echten Tests befüllt).
+.venv312/, venv/	Virtuelle Python-Umgebungen — nicht Teil des Quellcodes.
+
+Root-Ebene ist unaufgeräumt: Neben den Kern-Modulen liegen im Wurzelordner viele Backups (main.py.bak, main2.py, film_genome - Kopie.py), alte Stand-alone-Prototypen (Oidasheim_OneClick_V37.18…, Oidasheim_v106_AETHER_OIR…, oidasheim_v116_llm_planner.py), Zip-Archive, Debug-/Probe-Skripte (_probe_*.py) sowie sehr große Datendateien (u.a. eine 112 MB .bak des Clip-Caches und eine 91 MB songrid.html). Keine dieser Dateien wird von main.py importiert — siehe Sonstige Verzeichnisse.
+
+Datenfluss-Diagramm
+
+Wie die Kern-Module beim Aufruf von python main.py zusammenspielen.
+
+MP3-Dateien Clip-Pool-Ordner │ │ ▼ ▼ mp3_scanner.py clip_pool.py (Tag-Vektor) (Tags, Motion-/Face-Score, │ OCR, Fingerprint-Cache) ▼ │ audio_analysis.py │ (BPM, Beatgrid, Struktur, │ Energie, MC-Gender, │ Repetition, Scratch-Events) │ │ │ ▼ │ song_semantics.py │ (Lyrics/NML/HTML → Mood, │ Slang, Beat-Switches) │ │ │ └──────────────┬───────────────┘ ▼ timeline_builder.py (Scoring: semantic_matching.py + creative_genome.py, Anti-Repeat, Speed-Ramp, Breath-Extend) │ ▼ main.py (_build_render_script → EDL, Rhythm-Pattern/Sync-Type/Cut-Style) │ ┌────────────┼─────────────┐ ▼ ▼ ▼ renderer.py creative_genome / wong_integration.py (ffmpeg) film_genome.py (nur --wong-resolver, │ (.genome.json) informativ) ▼ fertiges .mp4 │ ▼ viral-strategy.py → .strategy.json, .metadata.json, CSV │ ▼ db.py: record_experience() + clip_pool.update_learned_from_render() (Reward-Feedback fließt in künftige Clip-Auswahl zurück)
+
+main.py — Orchestrierung
+
+Der Einstiegspunkt. Ausführliche Funktionsreferenz und CLI-Tabelle siehe das separate Dokument oefoef_anleitung.html; hier die Kurzfassung.
+
+python main.py                              # alle MP3s in FAVs/**, full+tiktok
+python main.py --song "J:/pfad/song.mp3"    # nur ein Song
+python main.py --limit 5                    # erste 5 (Test)
+python main.py --rebuild-globe              # Clip-Pool-Cache neu analysieren
+python main.py --dry-run                    # nur Analyse + EDL, kein Render
+python main.py --platform tiktok            # nur TikTok-Vertical-Version
+FlagBedeutung	
+--song	Nur diesen einen Song verarbeiten.
+--limit N	Nur die ersten N gefundenen Songs.
+--rebuild-globe	Clip-Pool-Cache komplett neu analysieren.
+--output-dir	Zielordner für fertige Videos.
+--style	Genome-Style-Paket aus styles/ (Default: cinematic).
+--platform	full oder tiktok.
+--renderer	ffmpeg (Default) oder unreal.
+--dry-run	Nur Analyse/EDL, kein Rendering, kein Reward-Feedback.
+--skip-semantics-scan	Überspringt den song_semantics-Scan.
+--wong-resolver	Zusätzliches, rein informatives WONG-Vergleichssignal im EDL.
+config.py — Zentrale Konfiguration
+
+Alle Pfade und Tuning-Werte der gesamten Pipeline an einer Stelle (~530 Zeilen, in klar benannte Abschnitte gegliedert). Wird von praktisch jedem anderen Modul importiert.
+
+AbschnittRegelt u.a.	
+Root / Arbeitsverzeichnisse	ROOT_DIR, LOG_DIR, TMP_DIR, DATA_DIR — per OIDASHEIM_ROOT-Env überschreibbar.
+Engine-/Pipeline-Version	ENGINE_VERSION — landet im Output-Dateinamen.
+Input-Quellen	MP3_ROOTS (per OIDASHEIM_MP3_ROOT, ';'-getrennt für mehrere Ordner).
+Upload-Metadaten	DEFAULT_HASHTAG_NICHE, LABEL_NAME für viral-strategy.py.
+TikTok-Optimierungsmodus	TIKTOK_CLIP_SUBDIRS — welche Clip-Unterordner als Vertical-tauglich gelten.
+Output-Ablage	OUTPUT_SUBDIR_BY_PLATFORM — Zielordner relativ zur Song-Datei.
+Persistente Datenablagen	BEAT_SYNC_DB, FLAT_GLOBE_JSON, SONGS_CSV.
+ffmpeg / ffprobe	Pfade zu den Binaries als Subprocess-Aufrufe (kein Python-Wrapper).
+Clip-Source-Tagging	TAG_SOURCE_CLIPS_ENABLED u.a. für clip_tagging.py (aktuell nicht aus main.py aufgerufen, siehe Bekannte Lücken).
+Rendering	Auflösung, FPS, Bitrate, NVENC-Einstellungen.
+Video-Collagen	Multi-Kachel-Grid-Layouts mit erhaltenem Seitenverhältnis.
+Render-Backend	RENDERER_BACKEND, UNREAL_ENGINE_CMD, UNREAL_PROJECT_PATH, UNREAL_MAP, UNREAL_MRQ_CONFIG.
+Beat / Segmentierung	MIN_SEGMENT_SEC, MAX_SEGMENT_SEC.
+Atem-/Pausen-Dehnung	BREATH_ENERGY_THRESHOLD, BREATH_EXTEND_FACTOR, BREATH_SEGMENT_MAX_SEC.
+Stem-Separation	Steuerung für stem_separator.py (Drums/Vocals/Bass/Other).
+Clip-Auswahl / Anti-Repeat	NO_REPEAT_WINDOW, PARTIAL_REPEAT_COOLDOWN_SEC, PARTIAL_REPEAT_PADDING_SEC, MAX_CLIP_USES_TOTAL, SEMANTIC_WEIGHT.
+Virtuelle Kamera	Pan/Zoom-Verhalten je camera-Modus (push/snap/drift/hold).
+Motion-Continuity & Pseudo-3D	Perspective-/Keystone-Shift-Parameter.
+Elastic-Kamera	CAMERA_ELASTIC_DECAY, CAMERA_ELASTIC_OVERSHOOT_CYCLES.
+Speed Ramps	SPEED_RAMP_ENABLED, SPEED_RAMP_MIN/MAX.
+Stutter/Flash	Schnelle-Wiederholungen-Erkennung und Reaktions-FX.
+Cut-Style/Sync-Type Wiring	Verdrahtung zu main.pys Klassifikationsfunktionen.
+Style Color-Grade & FX	Rendering-Parameter je StyleSpec.lighting/color/fx.
+MC-Gendern	GENDER_FEMALE_HZ_MIN, GENDER_MALE_HZ_MAX, MC_GENDER_ENABLED.
+Song-Struktur-Erkennung	STRUCTURE_*-Schwellwerte für Intro/Verse/Hook/Bridge/Breakdown/Outro.
+Struktur-abhängiges Cut-Tempo	STRUCTURE_TEMPO_MULT.
+DJ-Scratch / Cutoff-Actions	SCRATCH_ENABLED, SCRATCH_PROBABILITY.
+Echte DJ-Scratch-Erkennung	ZCR-/Onset-basierte Parameter für audio_analysis._detect_scratch_dj_events.
+Storytelling / Clip-Gruppierung	Zusammenhängende Clip-Auswahl über mehrere Segmente.
+Signature Touch	SONG_TOUCH_SEED_SALT — deterministische Song-Varianz.
+Fast-Replay-Erkennung	Instant-Replay auf wiederkehrende Hooks.
+Stutter/Time-Warp/Wormhole-FX	Zusätzliche visuelle Effekt-Parameter.
+Tag-Vokabular	TAG_VOCAB — festes, offline berechenbares Keyword-Set für die Vektor-Logik (kein LLM/Embedding).
+db.py & Datenbank-Schema
+
+SQLite-Datei beat_sync.db (WAL-Modus, busy-timeout-sicher) + der separate JSON-Cache libsync-flat-globe.db.json.
+
+Tabellen
+TabelleSpalten (Auswahl)Zweck		
+songs	path, bpm, duration_sec, tag_vector_json, beatgrid_json, sections_json, music_dna_json, analyzed_at	Ein Datensatz pro analysiertem Song.
+usage_history	clip_path, song_id, used_at, position_in_render, clip_in, clip_out	Jede Verwendung eines Clip-Ausschnitts (Basis für Anti-Repeat/Cooldown).
+experiences	song_id, situation_json, decision_json, reward, alternatives_json, why, film_dna_json, created_at	Erklärbares Render-Ergebnis pro Song (Reward-Historie).
+song_semantics	path, source_file, title, artist, bpm, musical_key, sections_json, movements_json, mood_tags_json, slang_json, beat_switch_count, sentiment, dominant_style, energy_character, style_weights_json, learned_at	Aus Traktor-NML/HTML gelernte Song-Semantik (siehe song_semantics.py).
+Wichtigste Funktionen
+init_db() — Legt Schema an, migriert fehlende Spalten (ALTER TABLE) ohne Datenverlust.
+upsert_song() / upsert_song_semantics_many() — Schreibt/aktualisiert Analyseergebnisse.
+record_usage_many() / get_recent_usage_ranges() / get_clip_cooldown_ranges() — Anti-Repeat-Grundlage für timeline_builder.py.
+record_experience() — Speichert Reward + Kontext eines Renders.
+load_flat_globe() / save_flat_globe() — Lädt/schreibt den kompletten Clip-Pool-JSON-Cache.
+Scan & Analyse-Module
+
+Alles, was aus rohen Dateien (MP3s, Videoclips, Tracklisten) strukturierte Daten macht.
+
+mp3_scanner.py164 Zeilen
+
+Findet MP3s rekursiv in config.MP3_ROOTS, liest mp3tag-Metadaten (Genre/Mood/Comment/Artist) via mutagen und baut einen Bag-of-Keywords- Tag-Vektor über TAG_VOCAB — komplett offline, deterministisch. Nutzt alle_songs_extrahiert.csv als Fast-Path-Cache, wenn aktueller als die MP3.
+
+find_mp3_files() — rekursiver Scan über alle konfigurierten Roots.
+build_tag_vector() — Text → Vektor über TAG_VOCAB.
+scan_all_songs() — komplette SongInfo-Liste.
+
+audio_analysis.py549 Zeilen
+
+Reines Audio-DSP über librosa (CPU, keine CUDA-Pflicht). Liefert pro Song: BPM, Beatgrid, beat-synchrone Energiekurve, Song-Sections, MC-Gender (per Median-F0), Repetitionszonen und DJ-Scratch-Events. Nutzt stem_separator.py für saubereres Beat-Matching und cached Ergebnisse prozessweit, damit mehrfache Aufrufe für denselben Song (z.B. über mehrere Plattformen) nicht doppelt rechnen.
+
+analyze_song() — öffentliche Haupt-Einstiegsfunktion, cached.
+_estimate_mc_gender() — Stimmlagen-Schätzung aus Grundfrequenz.
+_detect_song_structure() — Intro/Verse/Hook/Bridge/Breakdown/Outro.
+_detect_repetition_windows() / _detect_scratch_dj_events() — für Rhythm-FX.
+energy_to_segment_length() — leitet Segmentlänge aus Energie ab.
+
+song_semantics.py Kern + eigene CLI678 Zeilen
+
+Lernt Song-Semantik aus Traktor-Pro-Tracklisten (*.nml / *.htm/*.html) neben den MP3s. Bei Suno-generierten Songs stecken dort komplette Lyrics inkl. strukturierter [Section]-Marker (z.B. [BEAT SWITCH - 140 BPM - UK DRILL]), die mp3_scanner.py nicht sieht. Parsed Sections, Beat-Switches/Movements, SFX, Ad-libs, Vocal-Style und Mood-/Slang-Keywords, matched jeden Eintrag auf die passende MP3 und schreibt alles in db.song_semantics.
+
+python song_semantics.py                 # Full-Scan + Report
+python song_semantics.py --report-only    # nur Report über bereits Gelerntes
+scan_and_learn() — von main.py aufgerufener Haupteinstieg.
+parse_nml_file() / parse_html_file() — Tracklisten-Parser.
+analyze_lyrics() — zerlegt Lyrics in Sections + Metadaten.
+get_semantics_for_song() — Lookup für main.py::process_song.
+
+clip_pool.py570 Zeilen
+
+Analysiert den Clip-Pool einmalig und cached das Ergebnis als "flat globe" (libsync-flat-globe.db.json). Nutzt ffprobe für die Cliplänge, leitet Tags aus der Ordnerstruktur ab und berechnet Motion- und Face-Score aus denselben gesampelten Frames (ein OpenCV-Decode-Pass statt Vollvideo-Decode — wichtig bei zehntausenden Clips). Optional: OCR-Texterkennung (Tesseract) und ein "learned"-Suffix, das aus dem Render-Feedback wächst.
+
+build_or_update_globe() — inkrementeller Scan, nur geänderte Dateien neu.
+analyze_clip() — volle Einzelclip-Analyse (Tags, Motion, Face, OCR).
+filter_globe_to_subdirs() — TikTok-Vertical-Filterung.
+update_learned_from_render() — schreibt Reward-Feedback zurück in den Cache.
+
+clip_tagging.py nicht in main.py eingebunden251 Zeilen
+
+Würde nach jedem Render "wann/wie/wo/warum verwendet"-Metadaten direkt in die MP4-Tags der Original-Clip-Dateien schreiben (verlustfreier ffmpeg-Remux, -c copy). Nutzt drei zweckentfremdete Standard-Tags (comment, description, synopsis), da MP4 keine freien Custom-Keys erlaubt. Wird aktuell von main.py nicht aufgerufen — weder clip_tagging noch config.TAG_SOURCE_CLIPS_ENABLED tauchen im main.py-Quelltext auf.
+
+tag_clips_after_render() — vorgesehener Einstiegspunkt (aktuell unerreicht).
+Matching & Timeline
+
+Das eigentliche "Denken" der Pipeline: welcher Clip landet wann im Video.
+
+semantic_matching.py163 Zeilen
+
+Reines Scoring/Text, ausgelagert aus main.py. Bewertet einen Clip anhand Tag-Vektor-Kosinus-Ähnlichkeit, Gender-Alignment und Mood-Tag-Overlap gegen ein Song-Segment.
+
+calculate_semantic_match() — gewichteter Gesamt-Score (0..1).
+semantic_match_reason() — menschenlesbare Begründung fürs EDL.
+cosine_similarity() / gender_alignment_score() / mood_tag_overlap_score() — Einzelbausteine.
+
+timeline_builder.py641 Zeilen
+
+Kernstück der Clip-Auswahl. Baut aus Song-Analyse + Tag-Vektor + Clip-Globe eine frame-genaue Schnittliste. Score pro Kandidat-Clip:
+
+score = SEMANTIC_WEIGHT * cosine(song_vec, clip_vec)
+      + (1-SEMANTIC_WEIGHT) * energy_match(section_label, clip.motion_score)
+      + FACE_BOOST_VOCAL (falls Sektion vokal/emotional UND face_score hoch)
+
+Anti-Repeat kombiniert drei Ebenen: NO_REPEAT_WINDOW (harte Sperre innerhalb des aktuellen Renders), PARTIAL_REPEAT_COOLDOWN_SEC (zeitbasiert, rendersübergreifend über beat_sync.db) und MAX_CLIP_USES_TOTAL (harte Obergrenze über die gesamte Historie). Gesperrt wird dabei nur der tatsächlich genutzte Zeitbereich eines Clips, nicht der ganze Clip.
+
+build_timeline() — Haupteinstieg, von main.py::process_song aufgerufen.
+_pick_clip() — Kandidaten-Scoring + Auswahl pro Segment.
+_resolve_oida_semantics() — songspezifische Struktur-/Semantik-Auflösung.
+_apply_structure_tempo() / _polyrhythm_jitter() — Tempo-/Rhythmus-Feinjustierung.
+_maybe_extend_for_breath() — Segment-Verlängerung in ruhigen Passagen.
+Genome & Style-System
+
+Deklarative, deterministische Regie-Ebene zwischen Timeline und Renderer.
+
+creative_genome.py238 Zeilen
+
+Trennt bewusst Analyse, Intent, Auflösung und Rendering: "Models may add signals to a genome, but never own final decisions." Kompiliert benannte StyleSpec-Pakete (aus styles/*.json, mit Parent-Vererbung), leitet daraus pro Segment einen DirectorIntent ab und pflegt eine kumulative FilmDNA.
+
+compile_style() / resolve_style() — lädt und vererbt Style-Pakete.
+build_intent() — Section + Energie + Style + Mood → Intent.
+score_candidate() — Basis-Scoring-Baustein (auch von timeline_builder genutzt).
+information_density() — Bewegungsdichte-Kennzahl eines Clips.
+genome_manifest() — baut das finale, serialisierbare Manifest.
+
+film_genome.py125 Zeilen
+
+Deklarativer Film-Genome-AST: FrameAST (Zoom/Pan/Crop/LUT/Grain) → ShotAST → SceneAST → EmotionAST / ThemeAST → FilmGenome. Rein datenhaltende, deterministische Struktur ohne eigene Rendering-Logik.
+
+compile_film_genome() — baut das Genome aus Tag-Vektor, Sections und Timeline.
+
+Ergebnis landet pro Song als *.genome.json neben dem Video (siehe main.py::_finalize_song_artifacts).
+
+Rendering
+
+Vom EDL zum fertigen MP4 — ohne moviepy/ffmpeg-python-Wrapper, direkt per Subprocess.
+
+renderer.py1148 Zeilen
+
+Extrahiert pro Segment einen Clip, wendet eine virtuelle Kamera an (Pan/Zoom), normalisiert auf gleiche Auflösung/FPS, konkateniert per concat-Demuxer (frame-genau, kein Re-Encode-Drift) und legt am Ende die Original-MP3 als Tonspur über die gesamte Länge.
+
+Virtuelle Kamera: Zoom nur wenn er etwas bringt — Seitenverhältnis-Mismatch erzwingt Zoom-Fill; segment.camera steuert push (langsamer Ken-Burns-Zoom), snap (schneller Punch-In), drift (Zoom + seitliches Pan) oder hold (meist statisch). Pan-Richtung leitet sich primär aus der tatsächlich erkannten Bewegungsrichtung des Clips ab (clip_pool.motion_direction), mit deterministischem Hash-Seed als Fallback. Für push/drift kommt zusätzlich ein dezenter, animierter Keystone/Perspective-Shift für Pseudo-3D-Tiefe dazu.
+
+render_music_video() — Haupteinstieg (identische Signatur wie unreal_renderer).
+_plan_camera() / _zoompan_filter() / _perspective_filter() — Kamera-Logik.
+_build_push_fade_transition() / _build_scratch_transition() — Übergangs-Rendering.
+_nvenc_available() — nutzt Hardware-Encoding (NVENC), wenn verfügbar.
+_write_ffmetadata_file() — bettet MP4-Tags/Kapitel aus main.py-Metadata ein.
+
+unreal_renderer.py optional, --renderer unreal265 Zeilen
+
+Alternatives Render-Backend über Unreal Engine Movie Render Queue. Laut internem Status- Kommentar ist Engine (UE 5.8) + Testprojekt zwar konfiguriert, aber die render-spezifischen Assets (/Game/Maps/BeatSyncStage, /Game/MRQ/DefaultConfig) fehlen noch im Content-Ordner. _check_configured() prüft das per reiner Dateisystem-Prüfung und fällt sonst sauber und schnell mit UnrealNotConfiguredError auf ffmpeg zurück, statt main.py minutenlang auf einen zum Scheitern verurteilten headless-Editor-Start warten zu lassen.
+
+render_music_video() — schreibt Timeline als JSON-Manifest, startet UnrealEditor-Cmd.exe headless.
+viral-strategy.py — Release-Planer
+
+Eigenständig per CLI nutzbar UND von main.py automatisch pro gerendertem Song aufgerufen.
+
+python viral-strategy.py hook
+python viral-strategy.py posting --platform tiktok
+python viral-strategy.py hashtags --platform tiktok --niche electronic --label "Mein Label"
+python viral-strategy.py caption --hook "..." --body "..." --cta "..." --artist "..." --label "..."
+python viral-strategy.py brief --artist "..." --track "..." --release 2026-09-08 --label "..."
+python viral-strategy.py snapshot --artist "..." --track "..." --release 2026-09-08 --label "..." --output snapshot.json
+SubcommandZweck	
+hook	Hook-Vorschläge aus 6 Frameworks (Punch-Drop, Vorher/Nachher, POV, Nostalgie-Trap, Tutorial-Dress, Relatable Pain).
+posting	Optimale Post-Zeit je Plattform + Wochentag (TikTok/Instagram/YouTube).
+hashtags	Hashtag-Mix je Plattform/Nische/Label.
+caption	Caption-Generator mit Hook-Formel.
+brief	Komplettes Strategy-Brief für einen Release — dieselbe Funktion (build_brief), die main.py pro Song aufruft.
+snapshot	Viral-Health-Check-Report, als Datei gespeichert.
+
+Aus main.py heraus liefert learn_default_niche() außerdem die automatisch aus allen bekannten Song-Semantiken gelernte Standard-Hashtag-Nische, und build_platform_metadata() erzeugt die .metadata.json + CSV-Zeile pro Video.
+
+Optionale Module
+
+Können komplett fehlen oder deaktiviert sein, ohne die Kern-Pipeline zu brechen.
+
+wong_integration.py --wong-resolver168 Zeilen
+
+Bindet das Schwesterprojekt WONG (WE.ED.IT OIDA Native Genome, 1:1 nach WONG/ kopiert) rein informativ an: fragt pro Segment dessen GenomeResolver + RLBandit ab und loggt Wahl/Reward-Prediction als Vergleichssignal im EDL. Ändert nie den tatsächlich gerenderten Clip. Module werden per gezieltem Datei-Import geladen (kein dauerhafter sys.path-Eintrag, um Namenskollisionen mit gleichnamigen oefoef-Ordnern wie core/, styles/ zu vermeiden). Jeder Fehler deaktiviert das Feature sauber, statt main.py abstürzen zu lassen.
+
+init_wong_state() — einmalig pro main.py-Lauf.
+wong_resolve_segment() — pro Timeline-Segment.
+
+user_prefs.py91 Zeilen
+
+Liest user_preferences.yaml (feste, einfache Struktur: global_weight + likes/dislikes aus Tag/Weight-Paaren) über einen Mini-Regex-Parser — kein pyyaml nötig. Liefert einen additiven Scoring-Bonus/-Malus, der in timeline_builder._pick_clip einfließt. Fehlt die Datei oder ist sie kaputt, liefert preference_bonus() für jeden Clip 0.0 — niemals ein Absturzgrund.
+
+preference_bonus() / has_preferences()
+
+stem_separator.pyZulieferer für audio_analysis.py
+
+Trennt Drums/Vocals/Bass/Other für saubereres Beat-Matching, disk-gecacht. Wird transparent aus audio_analysis.py heraus verwendet.
+
+Bekannte Lücken & Diskrepanzen
+
+Stellen, an denen Code-Kommentare/Docstrings mehr versprechen, als main.py aktuell tatsächlich tut.
+
+clip_tagging.py ist nicht verdrahtet: Weder der Import noch ein Aufruf von tag_clips_after_render() tauchen in main.py auf. Die im Code dokumentierte Kette "main.py::process_song → tag_clips_after_render()" existiert nicht (mehr) — Original-Clip-Dateien bekommen aktuell keine Nutzungs-Metadaten in die MP4-Tags geschrieben.
+
+--mp3-root und --no-clip-tags fehlen im Parser: Kommentare in config.py und in main.py selbst (Zeile ~848) sprechen von einem geplanten --mp3-root-Flag (mehrfach angebbar) bzw. einem --no-clip-tags-Schalter. Im aktuellen argparse-Setup von main.py existiert keiner der beiden — nur config.MP3_ROOTS (per Env-Variable) steuert die Song-Quelle.
+
+Viele Root-Skripte sind unabhängig von main.py: Dateien wie oida_track_generator_v5.py, oidaheim_archive_miner_v2_420_weed_beats.py, canvas-export.py oder die agents/-Skripte werden von der Kern-Pipeline nicht importiert. Sie sind eigenständige Experimente/Tools desselben Projektkontexts, aber kein Teil des python main.py-Laufs.
+
+Setup & Installation
+
+Zusammengefasst aus UPGRADE.md — zuletzt am 2026-08-31 end-to-end verifiziert.
+
+cd j:\Oidasheim\oefoef
+python -m venv .venv312
+.venv312\Scripts\python.exe -m pip install -r requirements.txt
+
+# Verifizieren
+.venv312\Scripts\python.exe -c "import main; print('OK')"
+
+# Dry-Run (EDL + genome.json, kein Video)
+.venv312\Scripts\python.exe main.py --limit 1 --dry-run
+
+# Voller Render
+.venv312\Scripts\python.exe main.py --limit 1
+VoraussetzungHinweis	
+Python	3.10+ deklariert, getestet auf 3.12 (.venv312/) — beste Wheel-Verfügbarkeit für torch/opencv/librosa/transformers.
+ffmpeg / ffprobe	Müssen im PATH liegen. NVENC-Hardware-Encoding wird automatisch von renderer.py genutzt, falls verfügbar.
+requirements.txt	ffmpeg-python wurde von >=0.2.1,<1.0 (unerfüllbar, da PyPI-Latest 0.2.0 ist) auf >=0.2.0,<1.0 korrigiert.
+web3	Wurde entfernt — nirgends im Code importiert, brach aber unter Windows/Python-3.12 den Build (fehlendes lru-dict-Wheel).
+%TEMP%	Muss genug freien Platz haben — ein volles Temp-Verzeichnis lässt venv/ensurepip mit OSError 28 fehlschlagen.
+
+Verifiziert wurden bislang: Clip-Pool-Cache mit 32.241 Clips, Audioanalyse/BPM-Erkennung, MC-Gender-Erkennung, Timeline-Bau (112 Segmente im Testsong), EDL- + Film-Genome-JSON-Output und finaler NVENC-Render — jeweils nur für Style cinematic und Plattform full. --platform tiktok und --rebuild-globe waren laut UPGRADE.md zuletzt noch nicht getestet.
+
+Sonstige Verzeichnisse & Dateien
+
+Nicht Teil der Kern-Pipeline — der Vollständigkeit halber aufgeführt, nicht im Detail dokumentiert.
+
+KategorieBeispiele	
+Backups alter main.py-Stände	main.py.bak, main2.py, film_genome - Kopie.py, renderer - Kopie.py, _backup_cutstyle_wiring/
+Alte Stand-alone-Prototypen	Oidasheim_OneClick_V37.18_Architect_PATCHED (1).py, Oidasheim_v106_AETHER_OIR (1).py, oidasheim_v116_llm_planner.py, j__Oidasheim_jopta_oidasheim_main.py
+Content-/Text-Generatoren	oida_track_generator_v5.py, oida_trend_agents.py, Oida-Swalla-Punchlines.py, oidaheim_archive_miner_v2_420_weed_beats.py, agents/oidaheim_imperium.py
+Debug-/Probe-Skripte	_probe_diff.py, _probe_inspect.py, _probe_mp4_keys.py, _probe_mp4_tags.py, _probe_mp4_unicode.py, _import_check.py, _analyze_deps.py, verify_stack.py
+Test-MP4s	_test_src.mp4, _test_tagged*.mp4 — Fixtures für die Probe-Skripte.
+Große Datendumps	libsync-flat-globe.db.json.bak (112,9 MB), songrid.html (91,4 MB), database.json (6,1 MB), oidaheim_song_knowledge_base.db (20,2 MB)
+Archive	main.zip, claw2_engine.zip, atlas_monitor.zip, files*.zip, Creative Compiler-files.zip, film_genome-files.zip, oefoef.rar, requ_data.rar
+Textnotizen / Prompts	🎤 10 NEUE AUFS MAUL BANGER – 2027.txt, ERSTELLE EINE SUNO4.5 PROMT LIST;fü.txt, style oida.txt, Systemarchitektur des autonomen Cre.txt
+Unabhängige Sub-Projekte	synapse/, synapse_os/, synapse-os/, SYNAPSE_OIDAHEIM_3047/, SYNAPSE-SYNTHESIS/, dex/, claw2/, src/
+Docker/CI-Grundgerüst	Dockerfile, docker-compose.yml, .github/, tests/ — laut UPGRADE.md noch ohne echte Tests befüllt.
+
+Diese Dateien werden von main.py zur Laufzeit nicht geladen und beeinflussen die Beat-Sync-Pipeline nicht. Vor dem Löschen/Aufräumen trotzdem einzeln prüfen, falls sie referenzierte Zwischenergebnisse (z.B. gelernte Wissensbasen) enthalten, die andernorts noch gebraucht werden.
+
+oefoef — Repository-Handbuch · generiert aus dem vollständigen Verzeichnis J:\Oidasheim\oefoef
+
+Perfekt — damit haben wir jetzt die echte oefoef-Architektur und nicht mehr nur ein Konzept. Der nächste stabile Schritt ist, die vorhandene Kern-Pipeline gegen den Creative Genome OS-Kern zu verdrahten, ohne die funktionierende BeatSync-/FFmpeg-Logik kaputtzumachen.
+
+Ich würde dabei konkret:
+
+main.py
+  ↓
+Kernel State / Events
+  ↓
+Music Compiler
+  ↓
+Visual Genome
+  ↓
+Style / Theme / Motif
+  ↓
+Constraint Resolver
+  ↓
+Sequence Selection
+  ↓
+Render Plan
+  ↓
+Sequential Media Worker
+  ↓
+FFmpeg
+  ↓
+QC
+  ↓
+Episode / Reward / Prediction Feedback
+
+und die aktuell dokumentierten Brüche direkt schließen:
+
+clip_tagging.py            → sauber optional einhängen
+--mp3-root                 → Parser + Config synchronisieren
+--no-clip-tags             → Parser + Pipeline synchronisieren
+timeline_builder           → Decision/Proposal-Vertrag
+creative_genome            → echter Compiler statt Scoring-Helfer
+film_genome                → kanonisches Genome-Output
+db.py                      → State/Event/Experience erweitern
+viral-strategy.py          → vom Core entkoppeln, aber als Consumer anbinden
+WONG                       → isolierter Adapter
+unreal renderer            → echtes Backend-Interface
+
+Dabei bleibt deine wichtigste Hardware-Regel unangetastet:
+
+MAX HEAVY VIDEO PARALLELISM = 1
+MAX DECODER = 1
+MAX ENCODER = 1
+
+Für den wirklichen Code-Patch brauche ich jetzt aber die aktuellen Quelldateien aus J:\Oidasheim\oefoef; das Handbuch beschreibt die Architektur, enthält aber nicht den tatsächlichen Code von main.py, timeline_builder.py, creative_genome.py, db.py, renderer.py usw.
+
+Lade idealerweise das Repository als ZIP/Archiv oder die Kernmodule hoch. Dann kann ich die vorhandene Pipeline wirklich prüfen, Fehlerstellen verdrahten und auf einen stabilen gemeinsamen Core upgraden, statt Code anhand des Handbuchs zu erfinden.
