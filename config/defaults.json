@@ -1,0 +1,15 @@
+{
+  "project": "default_sync_stack",
+  "clip_pool": "https://drive.google.com/drive/folders/1bu8_TcNDS9nbvQfYm1os7QqmfVe4kFmf?usp=drive_link",
+  "sound_pool": "https://drive.google.com/drive/folders/11IyUj6NWRdinL1llLBO7GMhQfdTf1bs3?usp=drive_link",
+  "fini_files": "https://drive.google.com/drive/folders/1r85qROjuMLVVC5ieFMc3t1VJaiuEStLg?usp=drive_link",
+  "default_output": {
+    "platform_dir": "./<platform>/<songname>",
+    "locale_output_dir": "./<locale output>/<dir structure>"
+  },
+  "privacy": {
+    "ignore_env_files": true,
+    "ignore_generated_media": true,
+    "ignore_credentials": true
+  }
+}
